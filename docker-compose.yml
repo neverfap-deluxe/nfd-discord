@@ -1,6 +1,5 @@
 version: '3'
 services:
-  
   nfd-discord-api:
     image: dottjt/nfd-discord
     container_name: 'nfd-discord'
@@ -15,17 +14,12 @@ services:
     image: postgres:alpine
     container_name: 'nfd-discord-postgres'
     ports:
-      - 2345:2345
+      - 5432:2345
     volumes:
       - ./nfd-discord-postgres:/var/lib/postgresql/data:rw
     restart: always
     env_file:
       - .env
-
-    environment:
-      - POSTGRES_USER=deploy
-      - POSTGRES_PASSWORD=deploy
-      - POSTGRES_DB=watashi_api
 
 networks:
   docker-network:

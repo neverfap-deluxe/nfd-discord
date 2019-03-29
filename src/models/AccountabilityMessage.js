@@ -5,15 +5,16 @@ class AccountabilityMessage extends Model {
     return 'accountability_message';
   }
 
-  // Incorrect
   static get relationMappings() {
+    const DbUser = require('./DbUser');
+
     return {
       children: {
-        relation: Model.HasManyRelation,
-        modelClass: Person,
+        relation: Model.BelongsToOneRelation,
+        modelClass: DbUser,
         join: {
-          from: 'persons.id',
-          to: 'persons.parentId'
+          from: 'accountability_message.db_user_id',
+          to: 'persons.id'
         }
       }
     };
