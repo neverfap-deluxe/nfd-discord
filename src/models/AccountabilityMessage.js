@@ -2,19 +2,19 @@ const { Model } = require('objection');
 
 class AccountabilityMessage extends Model {
   static get tableName() {
-    return 'accountability_message';
+    return 'accountability_messages';
   }
 
   static get relationMappings() {
     const DbUser = require('./DbUser');
 
     return {
-      children: {
+      db_user: {
         relation: Model.BelongsToOneRelation,
         modelClass: DbUser,
         join: {
-          from: 'accountability_message.db_user_id',
-          to: 'persons.id'
+          from: 'accountability_messages.db_users_id',
+          to: 'db_users.id'
         }
       }
     };
