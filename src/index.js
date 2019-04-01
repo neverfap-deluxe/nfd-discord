@@ -12,7 +12,7 @@ const onReady = require('./events/onReady');
 const onMessage = require('./events/onMessage');
 const onGuildMemberAdd = require('./events/onGuildMemberAdd');
 
-const knex = require('./db/knex');
+// const knex = require('./db/knex');
 
 const app = new Koa();
 const client = new Discord.Client();
@@ -22,10 +22,10 @@ configureLogger(logger);
 client.on('ready', onReady(client, logger));
 client.on('message', onMessage(client));
 client.on('guildMemberAdd', onGuildMemberAdd(client));
-client.login(process.env.DISCORD_API_KEY);
+client.login(process.env.DISCORD_NFD_BOT_TOKEN);
  
-cron.schedule('* * * * *', () => {
-  console.log('running a task every minute');
-});
+// cron.schedule('* * * * *', () => {
+//   console.log('running a task every minute');
+// });
 
 app.listen(2000);

@@ -1,4 +1,4 @@
-const { introductionMessage } = require('../const/messages');
+const { introductionMessage } = require('../const/MESSAGE');
 const {
   WELCOME_CHANNEL_ID,
   // GENERAL_CHANNEL_ID,
@@ -6,7 +6,7 @@ const {
   // LOLFAP_CHANNEL_ID,
   // ANNOUNCEMENT_CHANNEL_ID,
   // EMERGENCY_CHANNEL_ID,
-} = require('../const/channels');
+} = require('../const/CHANNEL');
 
 const onGuildMemberAdd = (/* client */) => {
   return function(member) {
@@ -15,7 +15,7 @@ const onGuildMemberAdd = (/* client */) => {
       channel.send(`Welcome to the server, ${member}!`);
       member.createDM(introductionMessage);
     } catch(error) {
-      throw new Error(`${error} - Could not send error message.`);     
+      throw new Error(`${error} - Could not send onGuildMemberAdd message.`);     
     }
   }
 }

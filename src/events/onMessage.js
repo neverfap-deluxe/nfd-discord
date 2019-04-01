@@ -4,7 +4,7 @@ const {
   GENERAL_CHANNEL_ID,
   LOLFAP_CHANNEL_ID,
   UPDATES_CHANNEL_ID,
-} = require('../const/channels');
+} = require('../const/CHANNEL');
 
 const {
   INFO_COMMAND,
@@ -14,7 +14,7 @@ const {
   CHEATSHEET_COMMAND,
   EMERGENCY_COMMAND,
   // PROGRESS_COMMAND,
-} = require('../const/commands');
+} = require('../const/COMMAND');
 
 const {
   infoMessage,
@@ -22,7 +22,7 @@ const {
   commandListMessage,
   channelListMessage,
   emergencyMessage,
-} = require('../const/messages');
+} = require('../const/MESSAGE');
 
 const {
   sendMessageHelper,
@@ -71,16 +71,15 @@ const neverFapDeluxeBotCommands = (client, channelId, message) => {
     const cmd = args[0];
   
     switch(cmd) {
-      case INFO_COMMAND: sendMessageHelper(channelId, infoMessage);
-      case HELP_COMMAND: sendMessageHelper(channelId, welcomeMessage);
-      case CHANNELS_COMMAND: sendMessageHelper(channelId, channelListMessage);
+      case INFO_COMMAND: sendMessageHelper(channelId, infoMessage); break;
+      case HELP_COMMAND: sendMessageHelper(channelId, welcomeMessage); break;
+      case CHANNELS_COMMAND: sendMessageHelper(channelId, channelListMessage); break;
       // case ACCOUNTABILITY_COMMAND:
       // case CHEATSHEET_COMMAND:
-      case EMERGENCY_COMMAND: sendMessageHelper(channelId, emergencyMessage);
+      case EMERGENCY_COMMAND: sendMessageHelper(channelId, emergencyMessage); break;
       // case PROGRESS_COMMAND:
-      case default:
-        sendMessageHelper(channelId, "sorry, the command doesn");
-      break;
+      default: sendMessageHelper(channelId, "Sorry, the command doesn't exist!"); break;
+      
      }
   }  
 }

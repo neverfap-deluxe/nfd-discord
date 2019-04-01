@@ -1,6 +1,6 @@
 # nfd_discord
 
-npm i -S koa pm2 knex objection pg moment node-cron dotenv
+npm i -S koa pm2 knex objection pg moment node-cron dotenv discord.js winston
 
 knex migrate:latest
 npm start
