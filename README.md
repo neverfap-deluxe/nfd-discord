@@ -18,6 +18,9 @@ npm start
 
 ## Properties 
 
+- get channel properties n' stuff. 
+
+
 - message.channel
 - message.content
 - message.createdAt
@@ -43,4 +46,5 @@ npm start
 - .then(console.log)
 - .catch(console.error);
 
-
+// automated list
+// automated message which sends to #emergency if someone is posting in there for the first time within an hour, and that message hasn't yet been posted.

@@ -4,7 +4,29 @@ const {
   GENERAL_CHANNEL_ID,
   LOLFAP_CHANNEL_ID,
   UPDATES_CHANNEL_ID,
-} = require('../const');
+} = require('../const/channels');
+
+const {
+  INFO_COMMAND,
+  HELP_COMMAND,
+  CHANNELS_COMMAND,
+  ACCOUNTABILITY_COMMAND,
+  CHEATSHEET_COMMAND,
+  EMERGENCY_COMMAND,
+  // PROGRESS_COMMAND,
+} = require('../const/commands');
+
+const {
+  infoMessage,
+  welcomeMessage,
+  commandListMessage,
+  channelListMessage,
+  emergencyMessage,
+} = require('../const/messages');
+
+const {
+  sendMessageHelper,
+} = require('../util/util');
 
 const {
   whenMessageAccountabilityChannel
@@ -13,13 +35,16 @@ const {
 const onMessage = (client, logger) => {
   return function (message) {
     const channel = message.channel;
-    const discordUser = message.user;
-    const member = message.member;
+    // const discordUser = message.user;
+    // const member = message.member;
    
-    const dbUser = getDbUserOtherwiseCreate(discordUser);
+    // const dbUser = getDbUserOtherwiseCreate(discordUser);
+    // const dbUser = 'cake';
   
+    neverFapDeluxeBotCommands(client, channel.id, message);
+
     if (channel.id === ACCOUNTABILITY_CHANNEL_ID) {
-      whenMessageAccountabilityChannel(message, channel, discordUser, member, dbUser)
+      // whenMessageAccountabilityChannel(message, channel, discordUser, member, dbUser)
     }
 
     if (channel.id === WELCOME_CHANNEL_ID) {
@@ -37,12 +62,28 @@ const onMessage = (client, logger) => {
     if (channel.id === UPDATES_CHANNEL_ID) {
 
     }
-  
-    // client.sendMessage({
-    //   to: channelID,
-    //   message: 'Pong!'
-    // });
   }
 }
+
+const neverFapDeluxeBotCommands = (client, channelId, message) => {
+  if (message.substring(0, 1) == '!') {
+    const args = message.substring(1).split(' ');
+    const cmd = args[0];
+  
+    switch(cmd) {
+      case INFO_COMMAND: sendMessageHelper(channelId, infoMessage);
+      case HELP_COMMAND: sendMessageHelper(channelId, welcomeMessage);
+      case CHANNELS_COMMAND: sendMessageHelper(channelId, channelListMessage);
+      // case ACCOUNTABILITY_COMMAND:
+      // case CHEATSHEET_COMMAND:
+      case EMERGENCY_COMMAND: sendMessageHelper(channelId, emergencyMessage);
+      // case PROGRESS_COMMAND:
+      case default:
+        sendMessageHelper(channelId, "sorry, the command doesn");
+      break;
+     }
+  }  
+}
+
 
 module.exports = onMessage;

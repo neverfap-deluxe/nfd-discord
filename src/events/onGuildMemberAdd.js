@@ -1,12 +1,22 @@
-const onGuildMemberAdd = (client) => {
+const { introductionMessage } = require('../const/messages');
+const {
+  WELCOME_CHANNEL_ID,
+  // GENERAL_CHANNEL_ID,
+  // ACCOUNTABILITY_CHANNEL_ID,
+  // LOLFAP_CHANNEL_ID,
+  // ANNOUNCEMENT_CHANNEL_ID,
+  // EMERGENCY_CHANNEL_ID,
+} = require('../const/channels');
+
+const onGuildMemberAdd = (/* client */) => {
   return function(member) {
-    // Send the message to a designated channel on a server:
-    const channel = member.guild.channels.find(ch => ch.id === 'member-log');
-  
-    // Do nothing if the channel wasn't found on this server
-    if (!channel) return;
-    // Send the message, mentioning the member
-    channel.send(`Welcome to the server, ${member}`);
+    try {
+      const channel = member.guild.channels.find(ch => ch.id === WELCOME_CHANNEL_ID);
+      channel.send(`Welcome to the server, ${member}!`);
+      member.createDM(introductionMessage);
+    } catch(error) {
+      throw new Error(`${error} - Could not send error message.`);     
+    }
   }
 }
 

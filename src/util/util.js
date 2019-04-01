@@ -1,3 +1,13 @@
+// NOTE: Not sure if message is the full message
+const sendMessageHelper = (channelId, message) => {
+  client.sendMessage({
+    to: channelId,
+    message: message
+  })
+  .then(message => console.log(`Sent message: ${message.content}`))
+  .catch(console.error);
+}
+
 const configureLogger = (logger) => {
   logger.remove(logger.transports.Console);
   logger.add(new logger.transports.Console, {
@@ -8,4 +18,5 @@ const configureLogger = (logger) => {
 
 module.exports = {
   configureLogger,
+  sendMessageHelper,
 }
