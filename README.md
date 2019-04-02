@@ -48,3 +48,10 @@ npm start
 
 // automated list
 // automated message which sends to #emergency if someone is posting in there for the first time within an hour, and that message hasn't yet been posted.
+
+
+// const cron = require('node-cron');
+
+// cron.schedule('* * * * *', () => {
+//   console.log('running a task every minute');
+// });
