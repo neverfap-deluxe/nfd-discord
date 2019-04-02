@@ -1,10 +1,10 @@
-language: elixir
+language: node_js
 sudo: enabled
 addons:
   ssh_known_hosts: 198.199.67.180
 branches:
   only:
-  - production
+  - master
 services:
 - docker
 env:
@@ -18,11 +18,7 @@ before_script:
 script:
 - ls -a
 - echo "$AWS_ACCESS_KEY"
-- docker-compose build --build-arg AWS_ACCESS_KEY="$AWS_ACCESS_KEY" --build-arg AWS_SECRET_KEY="$AWS_SECRET_KEY"
-  --build-arg JSON_API="$JSON_API" --build-arg HOST="$HOST" --build-arg POSTGRES_USER="$POSTGRES_USER"
-  --build-arg POSTGRES_PASSWORD="$POSTGRES_PASSWORD" --build-arg POSTGRES_DB="$POSTGRES_DB"
-  --build-arg POSTGRES_HOST="$POSTGRES_HOST" --build-arg SECRET_KEY_BASE="$SECRET_KEY_BASE"
-  --no-cache nfd-discord
+- docker-compose build nfd-discord
 after_script:
 - docker images
 before_deploy:
@@ -36,9 +32,9 @@ deploy:
 - provider: script
   script: docker push dottjt/nfd-discord
   on:
-    branch: production
+    branch: master
 - provider: script
   script: bash deploy.sh
   on:
-    branch: production
+    branch: master
 
