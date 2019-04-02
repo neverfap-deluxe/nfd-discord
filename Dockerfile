@@ -5,11 +5,11 @@ ENV NODE_PATH=/usr/src/app/api/node_modules
 ENV PATH=/usr/src/app/api/node_modules/.bin:$PATH
 
 WORKDIR /usr/src/app/api
-COPY package.json yarn.lock /tmp/api/
-RUN cd /tmp/api && yarn
+COPY package.json /tmp/api/
+RUN cd /tmp/api && npm install
 RUN cp -a /tmp/api/node_modules /usr/src/app/api
 
 COPY . .
 
 EXPOSE 2000
-CMD [ "yarn", "start" ]
+CMD [ "npm", "start" ]
