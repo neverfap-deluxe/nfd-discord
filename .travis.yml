@@ -1,4 +1,6 @@
 language: node_js
+node_js:
+  - "10"
 sudo: enabled
 addons:
   ssh_known_hosts: 198.199.67.180
