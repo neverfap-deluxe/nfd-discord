@@ -9,11 +9,11 @@ const EMERGENCY_COMMAND = "emergency";
 // const PROGRESS_COMMAND = "progress";
 
 // const INFO_COMMAND_DESCRIPTION = "Learn more about the NeverFap Deluxe Discord channel.";
-const COMMANDS_COMMAND_DESCRIPTION = "List all NeverFap Deluxe Bot commands.";
-const CHANNELS_COMMAND_DESCRIPTION = "List all NeverFap Deluxe channels.";
-const ACCOUNTABILITY_COMMAND_DESCRIPTION = "Understand the rules of the #accountability channel.";
-const CHEATSHEET_COMMAND_DESCRIPTION = "List Healthy Coping Mechanism cheatsheet.";
-const EMERGENCY_COMMAND_DESCRIPTION = "Show emergency urge procedure.";
+const COMMANDS_COMMAND_DESCRIPTION = "List all commands.";
+const CHANNELS_COMMAND_DESCRIPTION = "List all channels.";
+const ACCOUNTABILITY_COMMAND_DESCRIPTION = "#accountability channel rules.";
+const CHEATSHEET_COMMAND_DESCRIPTION = "Healthy Coping Mechanism cheatsheet.";
+const EMERGENCY_COMMAND_DESCRIPTION = "Display #emergency urge procedure.";
 // const SET_STREAK_COMMAND_DESCRIPTION = "Set your current PMO streak.";
 // const PROGRESS_COMMAND_DESCRIPTION = 'Learn more about your progress!';
 

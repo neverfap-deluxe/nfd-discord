@@ -55,3 +55,11 @@ npm start
 // cron.schedule('* * * * *', () => {
 //   console.log('running a task every minute');
 // });
+
+
+
+
+# IDEAS
+
+- Send people messages, asking them if they meditated that day?
+- Input DM bot.

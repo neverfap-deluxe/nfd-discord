@@ -16,29 +16,36 @@ const {
 
 const {
   automatedMessageGeneral,
+  automatedMessageAccountability,
 } = require('../const/MESSAGE');
 
 const {
   generateRandomNumber,
   sendChannelMessageHelper,
+  isLastMessageTheBot,
 } = require('../util/util');
 
 const onIntervalOneHour = (client) => {
   return function (evt) {
-    generalChannelAutomatedMessages(client);
+    generalChannelAutomatedMessages(client.channels);
   }
 };
-
 const onIntervalTwoHours = (client) => {
   return function (evt) {
     accountabilityChannelAutomatedMessages(client);
   }
 };
+const onIntervalDay = (client) => {
+  return function (evt) {
 
-const generalChannelAutomatedMessages = (client) => {
-  const generalChannel = client.channels.find(channel => channel.id === GENERAL_CHANNEL_TEST_ID);
-  const num = generateRandomNumber();
-
+  }
+};
+const generalChannelAutomatedMessages = async (channels) => {
+  const generalChannel = channels.get(GENERAL_CHANNEL_TEST_ID);
+  const num = generateRandomNumber(0, 10);
+  const lastMessageIsBot = await isLastMessageTheBot(generalChannel);
+  if (lastMessageIsBot) return;
+  
   switch(num) {
     case 0:  sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral1); break;
     case 1:  sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral2); break;
@@ -50,28 +57,27 @@ const generalChannelAutomatedMessages = (client) => {
     case 7:  sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral8); break;
     case 8:  sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral9); break;
     case 9:  sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral10); break;
-    case 10: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral11); break;
-    case 11: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral12); break;
-    case 12: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral13); break;
-    case 13: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral14); break;
-    case 14: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral15); break;
-    case 15: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral16); break;
+    // case 10: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral11); break;
+    // case 11: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral12); break;
+    // case 12: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral13); break;
+    // case 13: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral14); break;
+    // case 14: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral15); break;
+    // case 15: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral16); break;
     default:
       throw new Error('generalChannelAutomatedMessages - generateRandomNumber - created an incorrect generator number')
   }
 }
 
-const accountabilityChannelAutomatedMessages = (client) => {
-  const generalChannel = client.channels.find(channel => channel.id === ACCOUNTABILITY_CHANNEL_TEST_ID);
-  // TODO
-  const num = generateRandomNumber();
-
-  // Don't forget to login and give people emoji's!
-
-  // NOTE: Check if the last message was the NFD bot. If so, don't send the message.
+const accountabilityChannelAutomatedMessages = async (channels) => {
+  const accountabilityChannel = channels.get(ACCOUNTABILITY_CHANNEL_TEST_ID);
+  const num = generateRandomNumber(0, 1);
+  const lastMessageIsBot = await isLastMessageTheBot(generalChannel);
+  if (lastMessageIsBot) return;
 
   switch(num) {
-    case 0: return 'cake'; break;
+    case 0: sendChannelMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageGeneral1); break;
+    case 1: sendChannelMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageGeneral2); break;
+  
     default:
       throw new Error('generalChannelAutomatedMessages - generateRandomNumber - created an incorrect generator number')
   }
@@ -80,4 +86,5 @@ const accountabilityChannelAutomatedMessages = (client) => {
 module.exports = {
   onIntervalOneHour,
   onIntervalTwoHours,
+  onIntervalDay,
 };

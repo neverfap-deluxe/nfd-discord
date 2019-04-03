@@ -6,15 +6,11 @@ const whenMessageAccountabilityChannel = async (message, channel, discordUser, m
   if (doesMessageContainAccountabilityHash && isFirstMessageForToday) {
     const newAccountabilityMessage = await AccountabilityMessage.query().insert({ discordId: discordUser.id });
 
-    const updatedDbUser = 
+    // const updatedDbUser = 
 
     currentAccountabilityStreakConsequences(updatedDbUser);
     totalAccountabilityConsequences(updatedDbUser);
   }
-
-  // message.reply('Hey, I\'m a reply!')
-  //   .then(sent => console.log(`Sent a reply to ${sent.author.username}`))
-  //   .catch(console.error);
 
 }
 

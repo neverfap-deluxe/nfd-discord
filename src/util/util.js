@@ -1,3 +1,7 @@
+const {
+  NEVERFAP_DELUXE_BOT_ID
+} = require('../const/BOT');
+
 const sendChannelMessageHelper = (channel, message) => {
   channel.send(message)
     .then(message => console.log(`Sent channel message: ${message.content}`))
@@ -5,8 +9,9 @@ const sendChannelMessageHelper = (channel, message) => {
 }
 
 const sendDirectMessageHelper = (member, message) => {
-  member.createDM(message)
-    .then(message => console.log(`Sent DM message: ${message.content}`))
+  console.log(message)
+  member.send(message)
+    .then(messageResp => console.log(`Sent DM message: ${messageResp}`))
     .catch(console.error);
 }
 
@@ -18,8 +23,15 @@ const configureLogger = (logger) => {
   logger.level = 'debug';
 }
 
-const generateRandomNumber = () => {
+const isLastMessageTheBot = async (generalChannel) => {
+  const lastMessage = await generalChannel.fetchMessage(generalChannel.lastMessageID)
+  return lastMessage.author.id === NEVERFAP_DELUXE_BOT_ID;
+}
 
+const generateRandomNumber = (min, max) => {
+  const newMin = Math.ceil(min);
+  const newMax = Math.floor(max);
+  return Math.floor(Math.random() * (newMax - newMin + 1)) + newMin;
 }
 
 module.exports = {
@@ -27,4 +39,5 @@ module.exports = {
   sendDirectMessageHelper,
   configureLogger,
   generateRandomNumber,
+  isLastMessageTheBot,
 }
