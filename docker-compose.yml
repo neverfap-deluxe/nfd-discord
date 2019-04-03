@@ -5,22 +5,22 @@ services:
     container_name: 'nfd-discord'
     ports:
       - 2000:2000
-    networks:
-      - docker-network
+    # networks:
+    #   - docker-network
     depends_on:
       - nfd-discord-postgres
 
-  nfd-discord-postgres:
-    image: postgres:alpine
-    container_name: 'nfd-discord-postgres'
-    ports:
-      - 5432:2345
-    volumes:
-      - ./nfd-discord-postgres:/var/lib/postgresql/data:rw
-    restart: always
-    env_file:
-      - .env
+  # nfd-discord-postgres:
+  #   image: postgres:alpine
+  #   container_name: 'nfd-discord-postgres'
+  #   ports:
+  #     - 5432:2345
+  #   volumes:
+  #     - ./nfd-discord-postgres:/var/lib/postgresql/data:rw
+  #   restart: always
+  #   env_file:
+  #     - .env
 
-networks:
-  docker-network:
-    driver: bridge
+# networks:
+#   docker-network:
+#     driver: bridge
