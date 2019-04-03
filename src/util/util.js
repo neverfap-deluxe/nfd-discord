@@ -1,6 +1,3 @@
-const {
-  NEVERFAP_DELUXE_BOT_ID
-} = require('../const/BOT');
 
 const sendChannelMessageHelper = (channel, message) => {
   channel.send(message)
@@ -25,7 +22,7 @@ const configureLogger = (logger) => {
 
 const isLastMessageTheBot = async (generalChannel) => {
   const lastMessage = await generalChannel.fetchMessage(generalChannel.lastMessageID)
-  return lastMessage.author.id === NEVERFAP_DELUXE_BOT_ID;
+  return lastMessage.author.id === process.env.NEVERFAP_DELUXE_BOT_ID;
 }
 
 const generateRandomNumber = (min, max) => {

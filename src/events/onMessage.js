@@ -1,13 +1,5 @@
 const {
-  ACCOUNTABILITY_CHANNEL_ID,
-  WELCOME_CHANNEL_ID,
-  GENERAL_CHANNEL_ID,
-  LOLFAP_CHANNEL_ID,
-  UPDATES_CHANNEL_ID,
-} = require('../const/CHANNEL');
-
-const {
-  // INFO_COMMAND,
+  RULES_COMMAND,
   COMMANDS_COMMAND,
   CHANNELS_COMMAND,
   ACCOUNTABILITY_COMMAND,
@@ -42,7 +34,7 @@ const onMessage = (client) => {
    
     // const dbUser = getDbUserOtherwiseCreate(discordUser);
   
-    if (channel.id === ACCOUNTABILITY_CHANNEL_ID) {
+    if (channel.id === process.env.ACCOUNTABILITY_CHANNEL_ID) {
       // whenMessageAccountabilityChannel(message, channel, discordUser, author, dbUser)
     }
 
@@ -51,6 +43,9 @@ const onMessage = (client) => {
       const cmd = args[0];
     
       switch(cmd) {
+        case RULES_COMMAND:
+          sendChannelMessageHelper(channel, rulesMessage);
+          break;
         case COMMANDS_COMMAND:
           sendChannelMessageHelper(channel, commandListMessage);
           break;
@@ -67,7 +62,7 @@ const onMessage = (client) => {
           sendChannelMessageHelper(channel, emergencyMessage);
           break;
         default:
-        sendChannelMessageHelper(author, "Sorry, the command doesn't exist!"); 
+          sendChannelMessageHelper(channel, "Sorry, the command doesn't exist!"); 
           break;
        }
     }

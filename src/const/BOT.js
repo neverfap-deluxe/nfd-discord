@@ -1,5 +1,0 @@
-const NEVERFAP_DELUXE_BOT_ID = "560641931466768384";
-
-module.exports = {
-  NEVERFAP_DELUXE_BOT_ID,
-}

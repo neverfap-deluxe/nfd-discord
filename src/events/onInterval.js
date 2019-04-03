@@ -1,20 +1,4 @@
 const {
-  ACCOUNTABILITY_CHANNEL_ID,
-  WELCOME_CHANNEL_ID,
-  GENERAL_CHANNEL_ID,
-  LOLFAP_CHANNEL_ID,
-  UPDATES_CHANNEL_ID,
-  EMERGENCY_CHANNEL_ID,
-
-  WELCOME_CHANNEL_TEST_ID,
-  GENERAL_CHANNEL_TEST_ID,
-  ACCOUNTABILITY_CHANNEL_TEST_ID,
-  LOLFAP_CHANNEL_TEST_ID,
-  ANNOUNCEMENT_CHANNEL_TEST_ID,
-  EMERGENCY_CHANNEL_TEST_ID,
-} = require('../const/CHANNEL');
-
-const {
   automatedMessageGeneral,
   automatedMessageAccountability,
 } = require('../const/MESSAGE');
@@ -25,6 +9,10 @@ const {
   isLastMessageTheBot,
 } = require('../util/util');
 
+const onIntervalTenMinutes = (client) => {
+  return function (evt) {
+  }
+};
 const onIntervalOneHour = (client) => {
   return function (evt) {
     generalChannelAutomatedMessages(client.channels);
@@ -41,7 +29,7 @@ const onIntervalDay = (client) => {
   }
 };
 const generalChannelAutomatedMessages = async (channels) => {
-  const generalChannel = channels.get(GENERAL_CHANNEL_TEST_ID);
+  const generalChannel = channels.get(process.env.GENERAL_CHANNEL_ID);
   const num = generateRandomNumber(0, 10);
   const lastMessageIsBot = await isLastMessageTheBot(generalChannel);
   if (lastMessageIsBot) return;
@@ -69,7 +57,7 @@ const generalChannelAutomatedMessages = async (channels) => {
 }
 
 const accountabilityChannelAutomatedMessages = async (channels) => {
-  const accountabilityChannel = channels.get(ACCOUNTABILITY_CHANNEL_TEST_ID);
+  const accountabilityChannel = channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
   const num = generateRandomNumber(0, 1);
   const lastMessageIsBot = await isLastMessageTheBot(generalChannel);
   if (lastMessageIsBot) return;
@@ -84,6 +72,7 @@ const accountabilityChannelAutomatedMessages = async (channels) => {
 }
 
 module.exports = {
+  onIntervalTenMinutes,
   onIntervalOneHour,
   onIntervalTwoHours,
   onIntervalDay,

@@ -1,7 +1,7 @@
 const { RichEmbed } = require('discord.js');
 
 const { 
-  // INFO_COMMAND,
+  RULES_COMMAND,
   COMMANDS_COMMAND,
   CHANNELS_COMMAND,
   ACCOUNTABILITY_COMMAND,
@@ -10,7 +10,7 @@ const {
   // SET_STREAK_COMMAND,
   // PROGRESS_COMMAND,
 
-  // INFO_COMMAND_DESCRIPTION,
+  RULES_COMMAND_DESCRIPTION,
   COMMANDS_COMMAND_DESCRIPTION,
   CHANNELS_COMMAND_DESCRIPTION,
   ACCOUNTABILITY_COMMAND_DESCRIPTION,
@@ -37,13 +37,13 @@ const {
 } = require('./CHANNEL');
 
 const commandListText = `
+  !${RULES_COMMAND} - ${RULES_COMMAND_DESCRIPTION}
   !${COMMANDS_COMMAND} - ${COMMANDS_COMMAND_DESCRIPTION}
   !${CHANNELS_COMMAND} - ${CHANNELS_COMMAND_DESCRIPTION}
   !${ACCOUNTABILITY_COMMAND} - ${ACCOUNTABILITY_COMMAND_DESCRIPTION}
   !${CHEATSHEET_COMMAND} - ${CHEATSHEET_COMMAND_DESCRIPTION}
   !${EMERGENCY_COMMAND} - ${EMERGENCY_COMMAND_DESCRIPTION}
 `;
-// !${INFO_COMMAND} - ${INFO_COMMAND_DESCRIPTION}
 // !${SET_STREAK_COMMAND} - ${SET_STREAK_COMMAND_DESCRIPTION}
 // !${PROGRESS_COMMAND} - ${PROGRESS_COMMAND_DESCRIPTION}
 
@@ -55,6 +55,27 @@ const channelListText = `
   #${ANNOUNCEMENT_CHANNEL_NAME} - ${ANNOUNCEMENT_CHANNEL_DESCRIPTION}
   #${EMERGENCY_CHANNEL_NAME} - ${EMERGENCY_CHANNEL_DESCRIPTION}
 `;
+
+const rulesMessage = new RichEmbed()
+  .setTitle('Server Rules.')
+  .setColor(0xFF0000)
+  .setDescription("Welcome to the NeverFap Deluxe Discord channel!")
+  .addField(
+    "Please only direct message Julius Reade in regards to your #accountability post.",
+    "For better or worse, my time is best spent developing strategy and driving the community, rather than helping individuals on a micro level. If you have a question in regards to your #accountability posts and how you can improve with better strategy, I am more than happy to help. Otherwise, everything else is best addressed in #general.")  
+  .addField(
+    "We have mods who are happy to help you get acquainted with the server.",
+    "Mods are those with the orange colours. Although, we're all pretty friendly!")
+  .addField(
+    "This server can't help you with your depression or other severe mental health issues.",
+    "The focus of this server is around porn addiction recovery. We are not qualified psychologists, and furthermore I value the mental health of the members on this server enough, that I don't believe they shouldn be tasked with, nor are equiped with the capacity to professionally help you. Please seek professional help.")
+  .addField(
+    "Meditation is a bare minimum requirement.",
+    "All members must commit to at least 10 minutes of meditation each day.")
+  .addField(
+    "Please learn the rules of #accountability.",
+    "We have very clear rules of how #accountability should work. Type in !accountability to learn these rules or you can check out our post ."
+  )
 
 const commandListMessage = new RichEmbed()
   .setTitle("NeverFap Deluxe Discord Command List")
@@ -117,8 +138,8 @@ const automatedMessageGeneral3  = new RichEmbed().setTitle("#general advice").se
 const automatedMessageGeneral4  = new RichEmbed().setTitle("#general advice").setDescription("This is a friendly reminder to trust the process. The process is your best friend.");
 const automatedMessageGeneral5  = new RichEmbed().setTitle("#general advice").setDescription("Relapse is nothing more than an extension of your lack of commitment.");
 const automatedMessageGeneral6  = new RichEmbed().setTitle("#general advice").setDescription("Meditation allows you to develop control over your emotions. You are not effective unless if you have control over your emotions.");
-const automatedMessageGeneral7  = new RichEmbed().setTitle("#general advice").setDescription("Needing some advice? Please check out the NeverFap Deluxe website! https://neverfapdeluxe.com/");
-const automatedMessageGeneral8  = new RichEmbed().setTitle("#general advice").setDescription("Needing some more mental health practices? Thankfully, there's a whole section of them at https://neverfapdeluxe.com/practices");
+const automatedMessageGeneral7  = new RichEmbed().setTitle("#general advice").setDescription("Need some advice? Please check out the NeverFap Deluxe website! https://neverfapdeluxe.com/");
+const automatedMessageGeneral8  = new RichEmbed().setTitle("#general advice").setDescription("Need some more mental health practices? Thankfully, there's a whole section of them at https://neverfapdeluxe.com/practices");
 const automatedMessageGeneral9  = new RichEmbed().setTitle("#general advice").setDescription("New to the whole porn recovery thing? Check out the NeverFap Deluxe 7 Day Kickstarter! https://neverfapdeluxe.com/seven-day-neverfap-deluxe-kickstarter");
 const automatedMessageGeneral10 = new RichEmbed().setTitle("#general advice").setDescription("I actually wrote a freakin' guide on how to overcome porn addiction. Check it out https://neverfapdeluxe.com/guide");
 // const automatedMessageGeneral11 = 
@@ -128,8 +149,8 @@ const automatedMessageGeneral10 = new RichEmbed().setTitle("#general advice").se
 // const automatedMessageGeneral15 = 
 // const automatedMessageGeneral16 = 
 
-const automatedMessageAccountability1  = "Don't forget to add emoji reacts to other people's #accountability posts!";
-const automatedMessageAccountability2  = "Need some help? Send the message '!cheatsheet' into the channel for a list of Healthy Coping Mechanisms.";
+const automatedMessageAccountability1 = "Don't forget to add emoji reacts to other people's #accountability posts!";
+const automatedMessageAccountability2 = "Need some help? Send the message '!cheatsheet' into the channel for a list of Healthy Coping Mechanisms.";
 // const automatedMessageAccountability3  = "";
 // const automatedMessageAccountability4  = "";
 // const automatedMessageAccountability5  = "";
@@ -140,6 +161,7 @@ const automatedMessageAccountability2  = "Need some help? Send the message '!che
 // const automatedMessageAccountability10 = "";
 
 module.exports = {
+  rulesMessage,
   welcomeMessage,
   commandListMessage,
   channelListMessage,
