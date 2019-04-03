@@ -7,7 +7,7 @@ const {
 } = require('../const/CHANNEL');
 
 const {
-  INFO_COMMAND,
+  // INFO_COMMAND,
   HELP_COMMAND,
   CHANNELS_COMMAND,
   ACCOUNTABILITY_COMMAND,
@@ -51,7 +51,7 @@ const onMessage = (client) => {
       const cmd = args[0];
     
       switch(cmd) {
-        case INFO_COMMAND: sendChannelMessageHelper(channel, infoMessage); break;
+        // case INFO_COMMAND: sendChannelMessageHelper(channel, infoMessage); break;
         case HELP_COMMAND: sendChannelMessageHelper(channel, welcomeMessage); break;
         case CHANNELS_COMMAND: sendChannelMessageHelper(channel, channelListMessage); break;
         // case ACCOUNTABILITY_COMMAND:
