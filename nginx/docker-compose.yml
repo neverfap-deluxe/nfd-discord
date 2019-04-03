@@ -36,7 +36,7 @@ services:
     ports:
       - 5432:2345
 
-  networks:
-    docker-network-discord:
-      driver: bridge
+networks:
+  docker-network-discord:
+    driver: bridge
 
