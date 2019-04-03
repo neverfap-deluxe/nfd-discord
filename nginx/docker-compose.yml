@@ -33,8 +33,6 @@ services:
       - .env
     networks:
       - docker-network-discord
-    ports:
-      - 5432:2345
 
 networks:
   docker-network-discord:
