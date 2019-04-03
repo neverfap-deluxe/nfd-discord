@@ -2,7 +2,7 @@ const { RichEmbed } = require('discord.js');
 
 const { 
   // INFO_COMMAND,
-  HELP_COMMAND,
+  COMMANDS_COMMAND,
   CHANNELS_COMMAND,
   ACCOUNTABILITY_COMMAND,
   CHEATSHEET_COMMAND,
@@ -11,7 +11,7 @@ const {
   // PROGRESS_COMMAND,
 
   // INFO_COMMAND_DESCRIPTION,
-  HELP_COMMAND_DESCRIPTION,
+  COMMANDS_COMMAND_DESCRIPTION,
   CHANNELS_COMMAND_DESCRIPTION,
   ACCOUNTABILITY_COMMAND_DESCRIPTION,
   CHEATSHEET_COMMAND_DESCRIPTION,
@@ -36,8 +36,39 @@ const {
   EMERGENCY_CHANNEL_DESCRIPTION,
 } = require('./CHANNEL');
 
-const commandListMessage = `
-  !${HELP_COMMAND} - ${HELP_COMMAND_DESCRIPTION}
+const commandListMessage = new RichEmbed()
+  .setTitle("NeverFap Deluxe Discord Channel List")
+  .setColor(0xFF0000)
+  .setDescription("These are the NeverFap Deluxe Channels.")
+  .addField("Channels", channelListText)
+
+const channelListMessage = new RichEmbed()
+  .setTitle("NeverFap Deluxe Discord Channel List")
+  .setColor(0xFF0000)
+  .setDescription("These are the NeverFap Deluxe Channels.")
+  .addField("Channels", channelListText)
+
+const accountabilityMessage = new RichEmbed()
+  .setTitle('#accountability rules')
+  .setColor(0xFF0000)
+  .setDescription("These the are the guidelines for posting in #accountability.")
+  .addField("Step 1", "Today's date. i.e. 20/01/2018")
+  .addField("Step 2", "List which Healthy Coping Mechanisms you practiced for that day.")
+  .addField("Step 3", "What you will do differently in order to improve upon that process.")
+
+const emergencyMessage = () => {
+
+};
+  
+const welcomeMessage = new RichEmbed()
+  .setTitle('Welcome to the channel!')
+  .setColor(0xFF0000)
+  .setDescription("Welcome to the NeverFap Deluxe Discord channel! I'm the NeverFap Deluxe Bot.!")
+  .addField("Command List", commandListText)
+  .addField("Channel List", channelListText)
+ 
+const commandListText = `
+  !${COMMANDS_COMMAND} - ${COMMANDS_COMMAND_DESCRIPTION}
   !${CHANNELS_COMMAND} - ${CHANNELS_COMMAND_DESCRIPTION}
   !${ACCOUNTABILITY_COMMAND} - ${ACCOUNTABILITY_COMMAND_DESCRIPTION}
   !${CHEATSHEET_COMMAND} - ${CHEATSHEET_COMMAND_DESCRIPTION}
@@ -47,7 +78,7 @@ const commandListMessage = `
 // !${SET_STREAK_COMMAND} - ${SET_STREAK_COMMAND_DESCRIPTION}
 // !${PROGRESS_COMMAND} - ${PROGRESS_COMMAND_DESCRIPTION}
 
-const channelListMessage = `
+const channelListText = `
   #${WELCOME_CHANNEL_NAME} - ${WELCOME_CHANNEL_DESCRIPTION}
   #${GENERAL_CHANNEL_NAME} - ${GENERAL_CHANNEL_DESCRIPTION}
   #${ACCOUNTABILITY_CHANNEL_NAME} - ${ACCOUNTABILITY_CHANNEL_DESCRIPTION}
@@ -55,47 +86,6 @@ const channelListMessage = `
   #${ANNOUNCEMENT_CHANNEL_NAME} - ${ANNOUNCEMENT_CHANNEL_DESCRIPTION}
   #${EMERGENCY_CHANNEL_NAME} - ${EMERGENCY_CHANNEL_DESCRIPTION}
 `;
-
-const emergencyMessage = () => {
-
-};
-
-`
-// /emergency
-// The first step is to always relax.
-//
-
-`
-
-
-const accountabilityMessage = `
-  Here is how #accountability works.
-  
-`;
-
-const infoMessage = `
-
-`;
-
-// const welcomeMessage = `
-  
-
-//   Basically, I've been designed to be a really crappy replacement for the wonderful Julius Reade. Oh man, I really love that guy. Seriously, what an absolute champ. Okay, obviously it's me writing this message, but you should totally love me.
-
-//   Please check out the command list. It will prove invaluable if you are experiencing any urges.
-
-//   ${channelListMessage}
-//   ${commandListMessage}
-// `;
-
-
-
-const welcomeMessage = new RichEmbed()
-  .setTitle('A slick little embed')
-  .setColor(0xFF0000)
-  .setDescription("Welcome to the NeverFap Deluxe Discord channel! I'm the NeverFap Deluxe Bot.!")
-  .addField("Command List", commandListMessage);
-
 
 const automatedMessageGeneral1  = "Just a friendly reminder from the NeverFap Deluxe Bot to stay positive! Otherwise, I may have to kill you ^^.";
 const automatedMessageGeneral2  = "You have a wonderful smile... the kind of smile that refuses to PMO, because you're just fantastic!";
@@ -115,7 +105,6 @@ const automatedMessageGeneral15 = "New to the whole porn recovery thing? Check o
 const automatedMessageGeneral16 = "I actually wrote a freakin' guide on how to overcome porn addiction. Check it out https://neverfapdeluxe.com/guide";
 
 module.exports = {
-  infoMessage,
   welcomeMessage,
   commandListMessage,
   channelListMessage,

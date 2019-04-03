@@ -56,7 +56,6 @@ const generalChannelAutomatedMessages = (client) => {
     case 13: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral14); break;
     case 14: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral15); break;
     case 15: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral16); break;
-
     default:
       throw new Error('generalChannelAutomatedMessages - generateRandomNumber - created an incorrect generator number')
   }
@@ -64,6 +63,7 @@ const generalChannelAutomatedMessages = (client) => {
 
 const accountabilityChannelAutomatedMessages = (client) => {
   const generalChannel = client.channels.find(channel => channel.id === ACCOUNTABILITY_CHANNEL_TEST_ID);
+  // TODO
   const num = generateRandomNumber();
 
   // Don't forget to login and give people emoji's!

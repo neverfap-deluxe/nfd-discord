@@ -8,7 +8,7 @@ const {
 
 const {
   // INFO_COMMAND,
-  HELP_COMMAND,
+  COMMANDS_COMMAND,
   CHANNELS_COMMAND,
   ACCOUNTABILITY_COMMAND,
   CHEATSHEET_COMMAND,
@@ -17,7 +17,6 @@ const {
 } = require('../const/COMMAND');
 
 const {
-  infoMessage,
   welcomeMessage,
   commandListMessage,
   channelListMessage,
@@ -26,6 +25,7 @@ const {
 
 const {
   sendChannelMessageHelper,
+  sendDirectMessageHelper,
 } = require('../util/util');
 
 const {
@@ -37,7 +37,7 @@ const onMessage = (client) => {
     const channel = message.channel;
     const messageContent = message.content;
     // const discordUser = message.user;
-    // const member = message.member;
+    const member = message.member;
    
     // const dbUser = getDbUserOtherwiseCreate(discordUser);
     // const dbUser = 'cake';
@@ -51,15 +51,27 @@ const onMessage = (client) => {
       const cmd = args[0];
     
       switch(cmd) {
-        // case INFO_COMMAND: sendChannelMessageHelper(channel, infoMessage); break;
-        case HELP_COMMAND: sendChannelMessageHelper(channel, welcomeMessage); break;
-        case CHANNELS_COMMAND: sendChannelMessageHelper(channel, channelListMessage); break;
-        // case ACCOUNTABILITY_COMMAND:
+        case COMMANDS_COMMAND:
+          sendChannelMessageHelper(channel, 'Information sent via DM!');
+          sendDirectMessageHelper(member, welcomeMessage); 
+          break;
+        case CHANNELS_COMMAND: 
+          sendChannelMessageHelper(channel, 'Information sent via DM!');
+          sendDirectMessageHelper(member, channelListMessage); 
+          break;
+        case ACCOUNTABILITY_COMMAND:
+          sendChannelMessageHelper(channel, 'Information sent via DM!');
+          sendDirectMessageHelper(member, accountabilityMessage); 
+          break;
         // case CHEATSHEET_COMMAND:
-        case EMERGENCY_COMMAND: sendChannelMessageHelper(channel, emergencyMessage); break;
+        case EMERGENCY_COMMAND: 
+          sendChannelMessageHelper(channel, 'Information sent via DM!');
+          sendDirectMessageHelper(member, emergencyMessage); 
+          break;
         // case PROGRESS_COMMAND:
-        default: sendChannelMessageHelper(channel, "Sorry, the command doesn't exist!"); break;
-        
+        default:
+          sendDirectMessageHelper(member, "Sorry, the command doesn't exist!"); 
+          break;
        }
     }
   }
