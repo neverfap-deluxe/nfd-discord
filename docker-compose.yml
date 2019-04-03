@@ -7,8 +7,8 @@ services:
       - 2000:2000
     # networks:
     #   - docker-network
-    depends_on:
-      - nfd-discord-postgres
+    # depends_on:
+    #   - nfd-discord-postgres
 
   # nfd-discord-postgres:
   #   image: postgres:alpine
