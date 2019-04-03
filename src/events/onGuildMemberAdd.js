@@ -4,7 +4,7 @@ const { WELCOME_CHANNEL_ID, WELCOME_CHANNEL_TEST } = require('../const/CHANNEL')
 const onGuildMemberAdd = (/* client */) => {
   return function(member) {
     try {
-      const channel = member.guild.channels.find(ch => ch.id === WELCOME_CHANNEL_ID);
+      const channel = member.guild.channels.find(ch => ch.id === WELCOME_CHANNEL_ID || ch.id === WELCOME_CHANNEL_TEST);
       sendChannelMessageHelper(channel, `Welcome to the server, ${member}!`);
       sendDirectMessageHelper(member, introductionMessage);
     } catch(error) {
