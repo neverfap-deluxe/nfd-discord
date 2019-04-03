@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "10"
+- '10'
 sudo: enabled
 addons:
   ssh_known_hosts: 198.199.67.180
@@ -11,7 +11,7 @@ services:
 - docker
 env:
   global:
-  - secure: "W3VmODJRBcoPG3RnAPLkM8NBr6iFCOnWl2zYQguh5rwjy8zWtJuvJqt9LpdubgJi/yKcGAVpD5E67O0Y4OIfovWZbholHz+UzSSYQBGEV/ghF4WQqHG+LrP3wuIejUOyWW/WSJMzzpb9Cnm9lMdFIe6yll5nuAXkUNMFwG0syW/vYLuo2oD8QlhVmByKzDxUR7fAE+gvdOD+frSar9dSd9DiH6tuCMB7992gUEPyrxEkBcyl5ypTlfKh31jILnCp40QCpr85zSyVkfihengiTCBrnwFP+9PoFJHiF7r3R9+hfHPskrvtJf/A9XYrYpkYTRbwAN5+EXULjXiYsh6VWftkZsc40U+Ggb8x1hZIyElvC1/CZRfBkeVdUde3O+Zf0L62Kz8mrYZtIn0avBALtq+0NMCXhtMA1JIN89jfgaa54rHJEs/IcOzZOeHVHjQ+Ry1qc2mw1kZGLE5EW9DaGhm0ahIav7EO4cORsnA1rysEblvUJ4TlGMZhzbE29coKY48aiNvBcl83ZKUFk0+rqAuPYgAeIj4fM4kqJ+oXH+rgKZ3v/3pQ99HMN/VpJsQQZm87L+FMIxC++l56Yz5c+xzzqaRaQGYiY6ZKZTSqxUmuToZ5FRzMfU7kAhyVJvWxPUujTUQNmR9OT1YZeWm46I2YuugCBnN6p3IONmnBUd4="
+  - secure: W3VmODJRBcoPG3RnAPLkM8NBr6iFCOnWl2zYQguh5rwjy8zWtJuvJqt9LpdubgJi/yKcGAVpD5E67O0Y4OIfovWZbholHz+UzSSYQBGEV/ghF4WQqHG+LrP3wuIejUOyWW/WSJMzzpb9Cnm9lMdFIe6yll5nuAXkUNMFwG0syW/vYLuo2oD8QlhVmByKzDxUR7fAE+gvdOD+frSar9dSd9DiH6tuCMB7992gUEPyrxEkBcyl5ypTlfKh31jILnCp40QCpr85zSyVkfihengiTCBrnwFP+9PoFJHiF7r3R9+hfHPskrvtJf/A9XYrYpkYTRbwAN5+EXULjXiYsh6VWftkZsc40U+Ggb8x1hZIyElvC1/CZRfBkeVdUde3O+Zf0L62Kz8mrYZtIn0avBALtq+0NMCXhtMA1JIN89jfgaa54rHJEs/IcOzZOeHVHjQ+Ry1qc2mw1kZGLE5EW9DaGhm0ahIav7EO4cORsnA1rysEblvUJ4TlGMZhzbE29coKY48aiNvBcl83ZKUFk0+rqAuPYgAeIj4fM4kqJ+oXH+rgKZ3v/3pQ99HMN/VpJsQQZm87L+FMIxC++l56Yz5c+xzzqaRaQGYiY6ZKZTSqxUmuToZ5FRzMfU7kAhyVJvWxPUujTUQNmR9OT1YZeWm46I2YuugCBnN6p3IONmnBUd4=
   - DOCKER_USERNAME=dottjt
   - SERVER_IP_ADDRESS=198.199.67.180
 before_script:
@@ -24,7 +24,7 @@ script:
 after_script:
 - docker images
 before_deploy:
-- openssl aes-256-cbc -K $encrypted_989cc8ced1db_key -iv $encrypted_989cc8ced1db_iv
+- openssl aes-256-cbc -K $encrypted_7f67c5017926_key -iv $encrypted_7f67c5017926_iv
   -in deploy_key.enc -out ./deploy_key -d
 - eval "$(ssh-agent -s)"
 - chmod 600 ./deploy_key
@@ -39,4 +39,3 @@ deploy:
   script: bash deploy.sh
   on:
     branch: master
-
