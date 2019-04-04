@@ -5,14 +5,14 @@ const {
 
 const {
   generateRandomNumber,
-  sendChannelMessageHelper,
+  sendMessageHelper,
   isLastMessageTheBot,
   fetchChannelMessagesHelper,
 } = require('../util/util');
 
 const onIntervalFiveMinutes = (client) => {
   return function (evt) {
-    cleanUpBotPosts(client.channels);
+    cleanUpNeverFapDeluxeBotPosts(client.channels);
   }
 };
 const onIntervalOneHour = (client) => {
@@ -27,38 +27,32 @@ const onIntervalTwoHours = (client) => {
 };
 const onIntervalDay = (client) => {
   return function (evt) {
-
+    
   }
 };
 
-const cleanUpBotPosts = async (channels) => {
+const cleanUpNeverFapDeluxeBotPosts = (channels) => {
   const FIVE_MINUTES = 1000 * 60 * 5;
 
-  channels.forEach(channel => {
+  // I'm not too sure about this async function
+  channels.forEach(async channel => {
     const channelMessages = await fetchChannelMessagesHelper(channel);
 
-    messages.forEach(message => {
-      // If message === advice, don't delete.
+    channelMessages.forEach(message => {
+      const messageIsAdvice = message.embeds.find(messageEmbed => messageEmbed.title === "#general advice" || messageEmbed.title === "#accountability advice");
+
+      // Don't do anything is message is advice.
+      if (messageIsAdvice) {
+        console.log('messageIsAdvice', messageIsAdvice);
+        return;
+      }
 
       // TODO: NO IDEA IF THIS WORKS, AT ALL
       if ((new Date() - FIVE_MINUTES) < new Date(message.createdAt)) {
-        message.delete()
-        message.delete()
-        .then(msg => console.log(`Deleted message from ${msg.author.username}`))
-        .catch(console.error);
-      
-
+        deleteMessageHelper(message);
       }
     });
-
-    if  {
-
-    };
-    
-
   });
-
- 
 };
 
 const generalChannelAutomatedMessages = async (channels) => {
@@ -68,22 +62,22 @@ const generalChannelAutomatedMessages = async (channels) => {
   if (lastMessageIsBot) return;
   
   switch(num) {
-    case 0:  sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral1); break;
-    case 1:  sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral2); break;
-    case 2:  sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral3); break;
-    case 3:  sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral4); break;
-    case 4:  sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral5); break;
-    case 5:  sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral6); break;
-    case 6:  sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral7); break;
-    case 7:  sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral8); break;
-    case 8:  sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral9); break;
-    case 9:  sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral10); break;
-    // case 10: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral11); break;
-    // case 11: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral12); break;
-    // case 12: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral13); break;
-    // case 13: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral14); break;
-    // case 14: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral15); break;
-    // case 15: sendChannelMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral16); break;
+    case 0:  sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral1); break;
+    case 1:  sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral2); break;
+    case 2:  sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral3); break;
+    case 3:  sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral4); break;
+    case 4:  sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral5); break;
+    case 5:  sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral6); break;
+    case 6:  sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral7); break;
+    case 7:  sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral8); break;
+    case 8:  sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral9); break;
+    case 9:  sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral10); break;
+    // case 10: sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral11); break;
+    // case 11: sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral12); break;
+    // case 12: sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral13); break;
+    // case 13: sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral14); break;
+    // case 14: sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral15); break;
+    // case 15: sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral16); break;
     default:
       throw new Error('generalChannelAutomatedMessages - generateRandomNumber - created an incorrect generator number')
   }
@@ -96,8 +90,8 @@ const accountabilityChannelAutomatedMessages = async (channels) => {
   if (lastMessageIsBot) return;
 
   switch(num) {
-    case 0: sendChannelMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageGeneral1); break;
-    case 1: sendChannelMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageGeneral2); break;
+    case 0: sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageGeneral1); break;
+    case 1: sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageGeneral2); break;
   
     default:
       throw new Error('generalChannelAutomatedMessages - generateRandomNumber - created an incorrect generator number')

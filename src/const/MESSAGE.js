@@ -98,7 +98,7 @@ const rulesMessage = new RichEmbed()
     "We have very clear rules of how #accountability should work. Type in !accountability to learn these rules or you can check out our post ."
   )
 
-// TODO: Delete message if withint date
+// TODO: SET footer for all these.
 
 const commandListMessage = new RichEmbed()
   .setTitle("Command List")
@@ -134,6 +134,8 @@ const accountabilityExampleMessage = new RichEmbed()
   .setColor(0xFF0000)
   .setDescription("Here is what an ideal #accountability post should look like.")
   .addField("Today's date.", "i.e. 20//2019 \n \n Healthy Coping Mechanisms \n - ")
+// TODO: Finish.
+
 
 
 const emergencyMessage = new RichEmbed()

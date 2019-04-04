@@ -22,13 +22,8 @@ const {
 } = require('../const/MESSAGE');
 
 const {
-  sendChannelMessageHelper,
-  sendDirectMessageHelper,
+  sendMessageHelper,
 } = require('../util/util');
-
-const {
-  whenMessageAccountabilityChannel
-} = require('../eventsWhen/onMessageWhenAccountabilityChannel');
 
 const onMessage = (client) => {
   return function (message) {
@@ -51,31 +46,31 @@ const onMessage = (client) => {
     
       switch(cmd) {
         case RULES_COMMAND:
-          sendChannelMessageHelper(channel, rulesMessage);
+          sendMessageHelper(channel, rulesMessage);
           break;
         case METHOD_COMMAND:
-          sendChannelMessageHelper(channel, methodMessage);
+          sendMessageHelper(channel, methodMessage);
           break;
         case COMMANDS_COMMAND:
-          sendChannelMessageHelper(channel, commandListMessage);
+          sendMessageHelper(channel, commandListMessage);
           break;
         case CHANNELS_COMMAND: 
-          sendChannelMessageHelper(channel, channelListMessage);
+          sendMessageHelper(channel, channelListMessage);
           break;
         case ACCOUNTABILITY_COMMAND:
-          sendChannelMessageHelper(channel, accountabilityMessage);
+          sendMessageHelper(channel, accountabilityMessage);
           break;
         case ACCOUNTABILITY_EXAMPLE_COMMAND:
-          sendChannelMessageHelper(channel, accountabilityExampleMessage);
+          sendMessageHelper(channel, accountabilityExampleMessage);
           break;
         case CHEATSHEET_COMMAND:
-          sendChannelMessageHelper(channel, cheatsheetMessage);
+          sendMessageHelper(channel, cheatsheetMessage);
           break;
         case EMERGENCY_COMMAND: 
-          sendChannelMessageHelper(channel, emergencyMessage);
+          sendMessageHelper(channel, emergencyMessage);
           break;
         default:
-          sendChannelMessageHelper(channel, "Sorry, the command doesn't exist. Please type `!commands` to show all available commands."); 
+          sendMessageHelper(channel, "Sorry, the command doesn't exist. Please type `!commands` to show all available commands."); 
           break;
        }
     }
@@ -102,10 +97,58 @@ const validateAccountabilityPost = (message) => {
   const finalEditMessage = "\n" /* + healthyCopingMechanismWarningMessage + "\n" */ + toImproveWarningMessage + "\n" + "# Please add these sections!";
  
   if (!doesContainToImproveRegEx /* || !doesContainHealthyCopingMechanismRegEx */) {
-    sendChannelMessageHelper(channel, `${messageAuthor} ${finalChannelMessage}`);
+    sendMessageHelper(channel, `${messageAuthor} ${finalChannelMessage}`);
     editChannelMessageHelper(message, `${message.content} ${finalEditMessage}`);
   }
- }
+}
+
+
+const whenMessageAccountabilityChannel = async (message, channel, discordUser, member, dbUser) => {
+  const doesMessageContainAccountabilityHash = message.content.includes("#accountability");
+  const isFirstMessageForToday = dbUser.accountabilityMessages.filter();
+
+  if (doesMessageContainAccountabilityHash && isFirstMessageForToday) {
+    const newAccountabilityMessage = await AccountabilityMessage.query().insert({ discordId: discordUser.id });
+
+    // const updatedDbUser = 
+
+    currentAccountabilityStreakConsequences(updatedDbUser);
+    totalAccountabilityConsequences(updatedDbUser);
+  }
+
+}
+
+const currentAccountabilityStreakConsequences = (dbUser) => {
+  switch(dbUser.currentAccountabilityStreak) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 10:
+    case 14:
+    case 21:
+    case 28:
+    case 35:
+    case 42:
+    case 49:
+  } 
+}
+
+const totalAccountabilityConsequences = () => {
+  switch(dbUser.currentAccountabilityStreak) {
+    case 1:
+    case 10:
+    case 20:
+    case 30:
+    case 40:
+    case 50:
+    case 60:
+    case 70:
+  }
+}
 
 
 module.exports = onMessage;

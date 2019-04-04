@@ -1,13 +1,12 @@
-
-const sendChannelMessageHelper = (channel, message) => {
+const sendMessageHelper = (channel, message) => {
   channel.send(message)
     .then(message => console.log(`Sent channel message: ${message}`))
     .catch(console.error);
 }
 
-const sendDirectMessageHelper = (member, message) => {
-  member.send(message)
-    .then(messageResp => console.log(`Sent DM message: ${messageResp}`))
+const deleteMessageHelper = (message) => {
+  message.delete()
+    .then(msg => console.log(`Deleted message from ${msg.author.username}`))
     .catch(console.error);
 }
 
@@ -36,10 +35,10 @@ const generateRandomNumber = (min, max) => {
 }
 
 module.exports = {
-  fetchChannelMessagesHelper,
-  sendChannelMessageHelper,
-  sendDirectMessageHelper,
+  sendMessageHelper,
+  deleteMessageHelper,
   configureLogger,
-  generateRandomNumber,
   isLastMessageTheBot,
+  fetchChannelMessagesHelper,
+  generateRandomNumber,
 }
