@@ -6,6 +6,7 @@ const {
   COMMANDS_COMMAND,
   CHANNELS_COMMAND,
   ACCOUNTABILITY_COMMAND,
+  ACCOUNTABILITY_EXAMPLE_COMMAND,
   CHEATSHEET_COMMAND,
   EMERGENCY_COMMAND,
   // SET_STREAK_COMMAND,
@@ -16,6 +17,7 @@ const {
   COMMANDS_COMMAND_DESCRIPTION,
   CHANNELS_COMMAND_DESCRIPTION,
   ACCOUNTABILITY_COMMAND_DESCRIPTION,
+  ACCOUNTABILITY_EXAMPLE_COMMAND_DESCRIPTION,
   CHEATSHEET_COMMAND_DESCRIPTION,
   EMERGENCY_COMMAND_DESCRIPTION,
   // SET_STREAK_COMMAND_DESCRIPTION,
@@ -47,6 +49,7 @@ const adminCommandListText = `
 const informationCommandListText = `
   !${METHOD_COMMAND} - ${METHOD_COMMAND_DESCRIPTION}
   !${ACCOUNTABILITY_COMMAND} - ${ACCOUNTABILITY_COMMAND_DESCRIPTION}
+  !${ACCOUNTABILITY_EXAMPLE_COMMAND} - ${ACCOUNTABILITY_EXAMPLE_COMMAND_DESCRIPTION}
   !${CHEATSHEET_COMMAND} - ${CHEATSHEET_COMMAND_DESCRIPTION}
 `;
 
@@ -56,16 +59,6 @@ const emergencyCommandListText = `
 
 // !${SET_STREAK_COMMAND} - ${SET_STREAK_COMMAND_DESCRIPTION}
 // !${PROGRESS_COMMAND} - ${PROGRESS_COMMAND_DESCRIPTION}
-
-const channelListText = `
-  #${WELCOME_CHANNEL_NAME} - ${WELCOME_CHANNEL_DESCRIPTION}
-  #${GENERAL_CHANNEL_NAME} - ${GENERAL_CHANNEL_DESCRIPTION}
-  #${ACCOUNTABILITY_CHANNEL_NAME} - ${ACCOUNTABILITY_CHANNEL_DESCRIPTION}
-  #${LOLFAP_CHANNEL_NAME} - ${LOLFAP_CHANNEL_DESCRIPTION}
-  #${ANNOUNCEMENT_CHANNEL_NAME} - ${ANNOUNCEMENT_CHANNEL_DESCRIPTION}
-  #${EMERGENCY_CHANNEL_NAME} - ${EMERGENCY_CHANNEL_DESCRIPTION}
-`;
-
 
 const methodMessage = new RichEmbed()
   .setTitle('The NeverFap Deluxe Method.')
@@ -105,6 +98,8 @@ const rulesMessage = new RichEmbed()
     "We have very clear rules of how #accountability should work. Type in !accountability to learn these rules or you can check out our post ."
   )
 
+// TODO: Delete message if withint date
+
 const commandListMessage = new RichEmbed()
   .setTitle("Command List")
   .setColor(0xFF0000)
@@ -133,6 +128,13 @@ const accountabilityMessage = new RichEmbed()
   .addField("List of Healthy Coping Mechanisms you practiced for that day.", ".i.e. Meditated for 10 minutes")
   .addField("How you will improve upon those Healthy Coping Mechanisms tomorrow.", ".i.e. I'm going to focus on becoming more calm throughout the day")
   .addField("Not recommended", "PMO streak.")
+
+const accountabilityExampleMessage = new RichEmbed()
+  .setTitle('#accountability example')
+  .setColor(0xFF0000)
+  .setDescription("Here is what an ideal #accountability post should look like.")
+  .addField("Today's date.", "i.e. 20//2019 \n \n Healthy Coping Mechanisms \n - ")
+
 
 const emergencyMessage = new RichEmbed()
   .setTitle("Official Emergency Process")
@@ -214,6 +216,7 @@ module.exports = {
   channelListMessage,
   emergencyMessage,
   accountabilityMessage,
+  accountabilityExampleMessage,
   cheatsheetMessage,
   automatedMessageGeneral: {
     automatedMessageGeneral1,

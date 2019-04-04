@@ -7,10 +7,12 @@ const {
   generateRandomNumber,
   sendChannelMessageHelper,
   isLastMessageTheBot,
+  fetchChannelMessagesHelper,
 } = require('../util/util');
 
-const onIntervalTenMinutes = (client) => {
+const onIntervalFiveMinutes = (client) => {
   return function (evt) {
+    cleanUpBotPosts(client.channels);
   }
 };
 const onIntervalOneHour = (client) => {
@@ -28,6 +30,37 @@ const onIntervalDay = (client) => {
 
   }
 };
+
+const cleanUpBotPosts = async (channels) => {
+  const FIVE_MINUTES = 1000 * 60 * 5;
+
+  channels.forEach(channel => {
+    const channelMessages = await fetchChannelMessagesHelper(channel);
+
+    messages.forEach(message => {
+      // If message === advice, don't delete.
+
+      // TODO: NO IDEA IF THIS WORKS, AT ALL
+      if ((new Date() - FIVE_MINUTES) < new Date(message.createdAt)) {
+        message.delete()
+        message.delete()
+        .then(msg => console.log(`Deleted message from ${msg.author.username}`))
+        .catch(console.error);
+      
+
+      }
+    });
+
+    if  {
+
+    };
+    
+
+  });
+
+ 
+};
+
 const generalChannelAutomatedMessages = async (channels) => {
   const generalChannel = channels.get(process.env.GENERAL_CHANNEL_ID);
   const num = generateRandomNumber(0, 10);
@@ -72,7 +105,7 @@ const accountabilityChannelAutomatedMessages = async (channels) => {
 }
 
 module.exports = {
-  onIntervalTenMinutes,
+  onIntervalFiveMinutes,
   onIntervalOneHour,
   onIntervalTwoHours,
   onIntervalDay,

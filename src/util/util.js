@@ -6,7 +6,6 @@ const sendChannelMessageHelper = (channel, message) => {
 }
 
 const sendDirectMessageHelper = (member, message) => {
-  console.log(message)
   member.send(message)
     .then(messageResp => console.log(`Sent DM message: ${messageResp}`))
     .catch(console.error);
@@ -25,6 +24,11 @@ const isLastMessageTheBot = async (generalChannel) => {
   return lastMessage.author.id === process.env.NEVERFAP_DELUXE_BOT_ID;
 }
 
+const fetchChannelMessagesHelper = async (channel) => {
+  const messages = await channel.fetchMessages({ limit: 15 }); // channel.fetchMessages({ limit: 10 });
+  return messages;
+}
+
 const generateRandomNumber = (min, max) => {
   const newMin = Math.ceil(min);
   const newMax = Math.floor(max);
@@ -32,6 +36,7 @@ const generateRandomNumber = (min, max) => {
 }
 
 module.exports = {
+  fetchChannelMessagesHelper,
   sendChannelMessageHelper,
   sendDirectMessageHelper,
   configureLogger,
