@@ -9,14 +9,14 @@ const EMERGENCY_COMMAND = "emergency";
 // const SET_STREAK_COMMAND = "set-streak";
 // const PROGRESS_COMMAND = "progress";
 
-const RULES_COMMAND_DESCRIPTION = "Server rules.";
-const METHOD_COMMAND_DESCRIPTION = "Learn the rules of the NeverFap Deluxe method.";
-const COMMANDS_COMMAND_DESCRIPTION = "List all commands.";
-const CHANNELS_COMMAND_DESCRIPTION = "List all channels.";
-const ACCOUNTABILITY_COMMAND_DESCRIPTION = "#accountability channel rules.";
-const CHEATSHEET_COMMAND_DESCRIPTION = "Healthy Coping Mechanism cheatsheet.";
-const EMERGENCY_COMMAND_DESCRIPTION = "Display #emergency urge procedure.";
-// const SET_STREAK_COMMAND_DESCRIPTION = "Set your current PMO streak.";
+const RULES_COMMAND_DESCRIPTION = "list server rules";
+const METHOD_COMMAND_DESCRIPTION = "learn the rules of the NeverFap Deluxe method";
+const COMMANDS_COMMAND_DESCRIPTION = "list commands";
+const CHANNELS_COMMAND_DESCRIPTION = "list channels";
+const ACCOUNTABILITY_COMMAND_DESCRIPTION = "#accountability channel rules";
+const CHEATSHEET_COMMAND_DESCRIPTION = "Healthy Coping Mechanism cheatsheet";
+const EMERGENCY_COMMAND_DESCRIPTION = "get #emergency help";
+// const SET_STREAK_COMMAND_DESCRIPTION = "Set your current PMO streak";
 // const PROGRESS_COMMAND_DESCRIPTION = 'Learn more about your progress!';
 
 module.exports = {
