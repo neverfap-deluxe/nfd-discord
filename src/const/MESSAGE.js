@@ -89,14 +89,14 @@ const rulesMessage = new RichEmbed()
   .setColor(0xFF0000)
   .setDescription("Welcome to the NeverFap Deluxe Discord channel!")
   .addField(
-    "Please only direct message Julius Reade in regards to your #accountability post.",
-    "For better or worse, my time is best spent developing strategy and driving the community, rather than helping individuals on a micro level. If you have a question in regards to your #accountability posts and how you can improve with better strategy, I am more than happy to help. Otherwise, everything else is best addressed in #general.")  
+    "Please only message Julius Reade in regards to your #accountability post.",
+    "Send me messages in regards to how you can improve your #accountability strategy. I am more than happy to help. Otherwise, everything else is best addressed in #general.")  
   .addField(
     "We have mods who are happy to help you get acquainted with the server.",
     "Mods are those with the orange colours. Although, we're all pretty friendly!")
   .addField(
-    "This server can't help you with your depression or other severe mental health issues.",
-    "The focus of this server is around porn addiction recovery. We are not qualified psychologists, and furthermore I value the mental health of the members on this server enough, that I don't believe they shouldn be tasked with, nor are equiped with the capacity to professionally help you. Please seek professional help.")
+    "We can't help you overcome severe mental health issues.",
+    "The focus of this server is around porn addiction recovery. We are not qualified therapists. Please seek professional help.")
   .addField(
     "Meditation is a bare minimum requirement.",
     "All members must commit to at least 10 minutes of meditation each day.")
@@ -106,9 +106,9 @@ const rulesMessage = new RichEmbed()
   )
 
 const commandListMessage = new RichEmbed()
-  .setTitle("NeverFap Deluxe Discord Command List")
+  .setTitle("Command List")
   .setColor(0xFF0000)
-  .setDescription("These are the NeverFap Deluxe Commands.")
+  .setDescription("These are the commands the NeverFap Deluxe Bot will respond to.")
   .addField("Admin Commands", adminCommandListText)
   .addField("Information Commands", informationCommandListText)
   .addField("Emergency Commands", emergencyCommandListText)
@@ -130,8 +130,8 @@ const accountabilityMessage = new RichEmbed()
   .setColor(0xFF0000)
   .setDescription("These the are the guidelines for posting in #accountability.")
   .addField("Today's date.", "i.e. 20/01/2018")
-  .addField("List of Healthy Coping Mechanisms you practiced for that day.", ".i.e. ")
-  .addField("How you will improve upon those Healthy Coping Mechanisms tomorrow.", ".i.e. ")
+  .addField("List of Healthy Coping Mechanisms you practiced for that day.", ".i.e. Meditated for 10 minutes")
+  .addField("How you will improve upon those Healthy Coping Mechanisms tomorrow.", ".i.e. I'm going to focus on becoming more calm throughout the day")
   .addField("Not recommended", "PMO streak.")
 
 const emergencyMessage = new RichEmbed()
