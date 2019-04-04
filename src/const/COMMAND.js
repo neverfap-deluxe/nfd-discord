@@ -1,5 +1,6 @@
 // Command list
 const RULES_COMMAND = "rules";
+const METHOD_COMMAND = "method";
 const COMMANDS_COMMAND = "commands";
 const CHANNELS_COMMAND = "channels";
 const ACCOUNTABILITY_COMMAND = "accountability";
@@ -9,6 +10,7 @@ const EMERGENCY_COMMAND = "emergency";
 // const PROGRESS_COMMAND = "progress";
 
 const RULES_COMMAND_DESCRIPTION = "Server rules.";
+const METHOD_COMMAND_DESCRIPTION = "Learn the rules of the NeverFap Deluxe method.";
 const COMMANDS_COMMAND_DESCRIPTION = "List all commands.";
 const CHANNELS_COMMAND_DESCRIPTION = "List all channels.";
 const ACCOUNTABILITY_COMMAND_DESCRIPTION = "#accountability channel rules.";
@@ -19,6 +21,7 @@ const EMERGENCY_COMMAND_DESCRIPTION = "Display #emergency urge procedure.";
 
 module.exports = {
   RULES_COMMAND,
+  METHOD_COMMAND,
   COMMANDS_COMMAND,
   CHANNELS_COMMAND,
   ACCOUNTABILITY_COMMAND,
@@ -28,6 +31,7 @@ module.exports = {
   // PROGRESS_COMMAND,
 
   RULES_COMMAND_DESCRIPTION,
+  METHOD_COMMAND_DESCRIPTION,
   COMMANDS_COMMAND_DESCRIPTION,
   CHANNELS_COMMAND_DESCRIPTION,
   ACCOUNTABILITY_COMMAND_DESCRIPTION,

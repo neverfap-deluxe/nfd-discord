@@ -1,5 +1,6 @@
 const {
   RULES_COMMAND,
+  METHOD_COMMAND,
   COMMANDS_COMMAND,
   CHANNELS_COMMAND,
   ACCOUNTABILITY_COMMAND,
@@ -9,6 +10,8 @@ const {
 } = require('../const/COMMAND');
 
 const {
+  rulesMessage,
+  methodMessage,
   commandListMessage,
   channelListMessage,
   cheatsheetMessage,
@@ -46,6 +49,9 @@ const onMessage = (client) => {
         case RULES_COMMAND:
           sendChannelMessageHelper(channel, rulesMessage);
           break;
+        case METHOD_COMMAND:
+          sendChannelMessageHelper(channel, methodMessage);
+          break;
         case COMMANDS_COMMAND:
           sendChannelMessageHelper(channel, commandListMessage);
           break;
@@ -62,7 +68,7 @@ const onMessage = (client) => {
           sendChannelMessageHelper(channel, emergencyMessage);
           break;
         default:
-          sendChannelMessageHelper(channel, "Sorry, the command doesn't exist!"); 
+          sendChannelMessageHelper(channel, "Sorry, the command doesn't exist. Please type `!commands` to show all available commands."); 
           break;
        }
     }

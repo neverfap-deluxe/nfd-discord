@@ -1,7 +1,7 @@
 
 const sendChannelMessageHelper = (channel, message) => {
   channel.send(message)
-    .then(message => console.log(`Sent channel message: ${message.content}`))
+    .then(message => console.log(`Sent channel message: ${message}`))
     .catch(console.error);
 }
 

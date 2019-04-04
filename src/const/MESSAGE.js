@@ -2,6 +2,7 @@ const { RichEmbed } = require('discord.js');
 
 const { 
   RULES_COMMAND,
+  METHOD_COMMAND,
   COMMANDS_COMMAND,
   CHANNELS_COMMAND,
   ACCOUNTABILITY_COMMAND,
@@ -11,6 +12,7 @@ const {
   // PROGRESS_COMMAND,
 
   RULES_COMMAND_DESCRIPTION,
+  METHOD_COMMAND_DESCRIPTION,
   COMMANDS_COMMAND_DESCRIPTION,
   CHANNELS_COMMAND_DESCRIPTION,
   ACCOUNTABILITY_COMMAND_DESCRIPTION,
@@ -36,14 +38,22 @@ const {
   EMERGENCY_CHANNEL_DESCRIPTION,
 } = require('./CHANNEL');
 
-const commandListText = `
+const adminCommandListText = `
   !${RULES_COMMAND} - ${RULES_COMMAND_DESCRIPTION}
   !${COMMANDS_COMMAND} - ${COMMANDS_COMMAND_DESCRIPTION}
   !${CHANNELS_COMMAND} - ${CHANNELS_COMMAND_DESCRIPTION}
+`;
+
+const informationCommandListText = `
+  !${METHOD_COMMAND} - ${METHOD_COMMAND_DESCRIPTION}
   !${ACCOUNTABILITY_COMMAND} - ${ACCOUNTABILITY_COMMAND_DESCRIPTION}
   !${CHEATSHEET_COMMAND} - ${CHEATSHEET_COMMAND_DESCRIPTION}
+`;
+
+const emergencyCommandListText = `
   !${EMERGENCY_COMMAND} - ${EMERGENCY_COMMAND_DESCRIPTION}
 `;
+
 // !${SET_STREAK_COMMAND} - ${SET_STREAK_COMMAND_DESCRIPTION}
 // !${PROGRESS_COMMAND} - ${PROGRESS_COMMAND_DESCRIPTION}
 
@@ -55,6 +65,24 @@ const channelListText = `
   #${ANNOUNCEMENT_CHANNEL_NAME} - ${ANNOUNCEMENT_CHANNEL_DESCRIPTION}
   #${EMERGENCY_CHANNEL_NAME} - ${EMERGENCY_CHANNEL_DESCRIPTION}
 `;
+
+
+const methodMessage = new RichEmbed()
+  .setTitle('The NeverFap Deluxe Method.')
+  .setColor(0xFF0000)
+  .setDescription("Here is how the process works.")
+  .addField(
+    "80% of your time you should be spent learning/practicing how to remain calm.",
+    "Calmness should be your default state of mind. It's what makes you powerful and effect, and act with intention as opposed to reaction. hen you are calm, you are in-control of your emotions"
+  )
+  .addField(
+    "20% of your time should be spent practicing your list of Healthy Coping Mechanisms.",
+    "Healthy Coping Mechanisms are designed to build your capacity for awareness, which is what allows you to remain calm."
+  )
+  .addField(
+    "Your Healthy Coping Mechanism list must include daily Meditation at a bare minimum.",
+    "Meditation is the most powerful Healthy Coping Mechanism in regards to regaining control over your emotions."
+  )
 
 const rulesMessage = new RichEmbed()
   .setTitle('Server Rules.')
@@ -81,13 +109,21 @@ const commandListMessage = new RichEmbed()
   .setTitle("NeverFap Deluxe Discord Command List")
   .setColor(0xFF0000)
   .setDescription("These are the NeverFap Deluxe Commands.")
-  .addField("Commands", commandListText)
+  .addField("Admin", adminCommandListText)
+  .addField("Information", informationCommandListText)
+  .addField("Emergency", emergencyCommandListText)
 
 const channelListMessage = new RichEmbed()
   .setTitle("NeverFap Deluxe Discord Channel List")
   .setColor(0xFF0000)
   .setDescription("These are the NeverFap Deluxe Channels.")
-  .addField("Channels", channelListText)
+  .addField(`#${WELCOME_CHANNEL_NAME}`, `${WELCOME_CHANNEL_DESCRIPTION}`)
+  .addField(`#${GENERAL_CHANNEL_NAME}`, `${GENERAL_CHANNEL_DESCRIPTION}`)
+  .setDescription("These are the NeverFap Deluxe Channels.")
+  .addField(`#${ACCOUNTABILITY_CHANNEL_NAME}`, `${ACCOUNTABILITY_CHANNEL_DESCRIPTION}`)
+  .addField(`#${LOLFAP_CHANNEL_NAME}`, `${LOLFAP_CHANNEL_DESCRIPTION}`)
+  .addField(`#${ANNOUNCEMENT_CHANNEL_NAME}`, `${ANNOUNCEMENT_CHANNEL_DESCRIPTION}`)
+  .addField(`#${EMERGENCY_CHANNEL_NAME}`, `${EMERGENCY_CHANNEL_DESCRIPTION}`)
 
 const accountabilityMessage = new RichEmbed()
   .setTitle('#accountability rules')
@@ -110,8 +146,18 @@ const welcomeMessage = new RichEmbed()
   .setTitle('Welcome to the channel!')
   .setColor(0xFF0000)
   .setDescription("Welcome to the NeverFap Deluxe Discord channel! I'm the NeverFap Deluxe Bot.!")
-  .addField("Command List", commandListText)
-  .addField("Channel List", channelListText)
+  .setDescription("These are the NeverFap Deluxe Commands.")
+  .addField("Admin", adminCommandListText)
+  .addField("Information", informationCommandListText)
+  .addField("Emergency", emergencyCommandListText)
+  .setDescription("These are the NeverFap Deluxe Channels.")
+  .addField(`#${WELCOME_CHANNEL_NAME}`, `${WELCOME_CHANNEL_DESCRIPTION}`)
+  .addField(`#${GENERAL_CHANNEL_NAME}`, `${GENERAL_CHANNEL_DESCRIPTION}`)
+  .setDescription("These are the NeverFap Deluxe Channels.")
+  .addField(`#${ACCOUNTABILITY_CHANNEL_NAME}`, `${ACCOUNTABILITY_CHANNEL_DESCRIPTION}`)
+  .addField(`#${LOLFAP_CHANNEL_NAME}`, `${LOLFAP_CHANNEL_DESCRIPTION}`)
+  .addField(`#${ANNOUNCEMENT_CHANNEL_NAME}`, `${ANNOUNCEMENT_CHANNEL_DESCRIPTION}`)
+  .addField(`#${EMERGENCY_CHANNEL_NAME}`, `${EMERGENCY_CHANNEL_DESCRIPTION}`)
 
 const cheatsheetMessage = new RichEmbed()
   .setTitle('Healthy Coping Mechanism Cheatsheet')
@@ -149,8 +195,8 @@ const automatedMessageGeneral10 = new RichEmbed().setTitle("#general advice").se
 // const automatedMessageGeneral15 = 
 // const automatedMessageGeneral16 = 
 
-const automatedMessageAccountability1 = "Don't forget to add emoji reacts to other people's #accountability posts!";
-const automatedMessageAccountability2 = "Need some help? Send the message '!cheatsheet' into the channel for a list of Healthy Coping Mechanisms.";
+const automatedMessageAccountability1 = new RichEmbed().setTitle("#accountability advice").setDescription("Don't forget to add emoji reacts to other people's #accountability posts!");
+const automatedMessageAccountability2 = new RichEmbed().setTitle("#accountability advice").setDescription("Need some help? Send the message '!cheatsheet' into the channel for a list of Healthy Coping Mechanisms.");
 // const automatedMessageAccountability3  = "";
 // const automatedMessageAccountability4  = "";
 // const automatedMessageAccountability5  = "";
@@ -162,6 +208,7 @@ const automatedMessageAccountability2 = "Need some help? Send the message '!chea
 
 module.exports = {
   rulesMessage,
+  methodMessage,
   welcomeMessage,
   commandListMessage,
   channelListMessage,
