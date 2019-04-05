@@ -2,14 +2,14 @@ const WELCOME_CHANNEL_NAME = 'welcome';
 const GENERAL_CHANNEL_NAME = 'general';
 const ACCOUNTABILITY_CHANNEL_NAME = 'accountability';
 const LOLFAP_CHANNEL_NAME = 'lolfap';
-const ANNOUNCEMENT_CHANNEL_NAME = 'accouncements';
+const ANNOUNCEMENT_CHANNEL_NAME = 'announcements';
 const EMERGENCY_CHANNEL_NAME = 'emergency';
 
 const WELCOME_CHANNEL_DESCRIPTION = 'Welcome to the channel.';
 const GENERAL_CHANNEL_DESCRIPTION = 'General chat about anything, really.';
 const ACCOUNTABILITY_CHANNEL_DESCRIPTION = "Where you'll post your daily accountability message.";
 const LOLFAP_CHANNEL_DESCRIPTION = 'Funny things related to porn recovery.';
-const ANNOUNCEMENT_CHANNEL_DESCRIPTION = 'NeverFap Deluxe related accouncements.';
+const ANNOUNCEMENT_CHANNEL_DESCRIPTION = 'NeverFap Deluxe related announcements.';
 const EMERGENCY_CHANNEL_DESCRIPTION = "Support if you're feeling urges of any kind.";
 
 module.exports = {

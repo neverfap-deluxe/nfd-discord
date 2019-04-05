@@ -62,10 +62,10 @@ const emergencyCommandListText = `
 const accountabilityMessage = (accountabilityChannel) => new RichEmbed()
   .setTitle('#accountability guidelines.')
   .setColor(0xFF0000)
-  .setDescription("Welcome to the NeverFap Deluxe process of overcoming porn addiction.\n \n The program is a verifiable process. In other words, it is verified to work if you follow it step-by-step. Whether you do that however is entirely up to you. I can only provide you with the system and the support; the rest is up to you.")
+  .setDescription(`Welcome to the NeverFap Deluxe process of overcoming porn addiction!\n \n The ${accountabilityChannel} program is a verifiable process. In other words, it is verified to work if you follow it step-by-step. Whether you do that however, is entirely up to you. I can only provide you with the system and the support; the rest is up to you.`)
   .addField(
     `The entire process takes around 90 days.`,
-    `It takes approximately 90 days to overcome porn addiction. You will only succeed if you commit to the program every single day for the next 90 days. Otherwise, you will not develop your Healthy Coping Mechanisms and your mental health will not improve.`
+    `It takes approximately 90 days to overcome porn addiction. You will only succeed if you commit to the program every single day for the next 90 days. Otherwise, you will not develop the Healthy Coping Mechanisms in order to develop control over your mind.`
   )
   .addField(
     `You must post in #${accountabilityChannel} every single day.`,
@@ -73,7 +73,7 @@ const accountabilityMessage = (accountabilityChannel) => new RichEmbed()
   )
   .addField(
     `95% of your time should be spent remaining calm.`,
-    `Calmness should be your default state of mind. It's what makes you powerful and act with intention. You can only be in-control of your thoughts, feelings and emotions when you are calm.`
+    `Calmness should be your default state of mind. It's what makes you powerful and act with intention. You can only be in-control of your thoughts, feelings and emotions when you are calm. However, you will only learn to become calm if you practice it throughout your day.`
   )
   .addField(
     `The other 5% of your time should be spent practicing Healthy Coping Mechanisms.`,
@@ -81,7 +81,7 @@ const accountabilityMessage = (accountabilityChannel) => new RichEmbed()
   )
   .addField(
     `Your Healthy Coping Mechanism list must include daily meditation.`,
-    `Meditation is the most powerful Healthy Coping Mechanism in allowing you to regain control over your emotions.`
+    `Meditation is the most powerful Healthy Coping Mechanism in allowing you to regain control over your emotions. It is a hard expectation that you begin your journey with a daily routine of meditation. Otherwise, you will fail.`
   )
   // .addField(
   //   `Users who do not stick to the process may be removed from the server.`,
@@ -102,9 +102,9 @@ const accountabilityExampleMessage = (accountabilityChannel) => new RichEmbed()
   .setTitle('#accountability rules')
   .setColor(0xFF0000)
   .setDescription(`These the are the guidelines for posting in ${accountabilityChannel}.`)
-  .addField("Today's date.", "i.e. 20/01/2018")
-  .addField("List of Healthy Coping Mechanisms you practiced for that day.", ".i.e. Meditated for 10 minutes")
-  .addField("How you will improve upon those Healthy Coping Mechanisms tomorrow.", ".i.e. I'm going to focus on becoming more calm throughout the day")
+  .addField("Today's date", "20/01/2018")
+  .addField("List of Healthy Coping Mechanisms you practiced", "Healthy Coping Mechanisms\n- Meditated for 10 minutes\n - Completed a huge squat + deadlift workout\n - Remained calm throughout the day and really practiced to keep my mind wide and open")
+  .addField("How you will improve tomorrow.", "To Improve\n - I'm going to focus on becoming more calm throughout the day\n - I want to continue learning not to take things personally, and instead take things one step at a time")
   .setFooter("This message will self-delete within 5 minutes ^^.", "https://neverfapdeluxe.com/images/logo.png")
 
 const rulesMessage = (accountabilityChannel) => new RichEmbed()
@@ -116,14 +116,14 @@ const rulesMessage = (accountabilityChannel) => new RichEmbed()
     `Send me messages in regards to how I can help you improve upon your ${accountabilityChannel} strategy. I am more than happy to help to offer strategic advice. Otherwise, everything else is best addressed in #general.`)  
   .addField(
     `We can't help you overcome severe mental health issues.`,
-    `The focus of this server is around porn addiction recovery. We are not qualified therapists, nor is it fair on everyone else. Please seek professional help if you have severe mental health issues.`)
+    `The focus of this server is around porn addiction recovery. We are not qualified therapists, nor is it fair on everyone else to expect them to listen to your trauma. Please seek professional help if you have severe mental health issues.`)
   .addField(
-    `Please learn the rules of ${accountabilityChannel}.`,
+    `Please learn the rules of #accountability.`,
     `We have very clear rules of how ${accountabilityChannel} should work. Type in \`!${ACCOUNTABILITY_COMMAND}\` to learn these rules. Those who fail to adhere to these rules may be automatically kicked by the NeverFap Deluxe Bot.`
   )
   .addField(
     `Otherwise, have fun!`,
-    'We are a friendly community. Feel free to chat and support each other.'
+    `We are a very friendly community. Feel free to chat amongst yourselves and support each other!`
   )
 
   .setFooter("This message will self-delete within 5 minutes ^^.", "https://neverfapdeluxe.com/images/logo.png")
@@ -177,20 +177,20 @@ To get started, please type in \`!accountability\` to learn what this channel is
 `;
 
 const cheatsheetMessage = new RichEmbed()
-  .setTitle('Healthy Coping Mechanism Cheatsheet')
+  .setTitle('Healthy Coping Mechanisms Cheatsheet')
   .setColor(0xFF0000)
-  .setDescription("Here are a list of healthy coping mechanisms if you're struggling to come up with things to do.")
-  .addField("Meditation", "The bare minimum you should be doing for your mental health everyday. It is a hard expectation. Aim for 10 minutes each day at a minimum. Consistency is key.")
-  .addField("Exercising", "Improve your physical health through targeted exercise. Aim to exercise at least three times each week.")
-  .addField("Cold Showers", "Train your mind to relax while facing unbearable conditions. An excellent way to learn calmness")
-  .addField("Intermittent Fasting", "Train your body to embrace .")
+  .setDescription("Here are a list of Healthy Coping Mechanisms you can practice on a daily basis if you're struggling to come up with suitable ideas. Please keep in mind that Healthy Coping Mechanisms in some way must improve your mental health. If it does not serve this function in your life, then it is not a Healthy Coping Mechanism.")
+  .addField("Meditation", "Meditation is the bare minimum you should be commiting to in order to improve your mental health everyday. It is a hard expectation for the NeverFap Deluxe process of overcoing porn addiction. Aim for 10 minutes each day, at a minimum. Remember that consistency is key.")
+  .addField("Exercising", "Improving your physical health through targeted exercise does absolute wonders for your mental health. Aim to exercise at least three times each week. Routine is vital to keeping exercise consistent and regular.")
+  .addField("Cold Showers", "Cold showers are an excellent way to train your mind to relax while facing unbearable conditions. They can teach you to remain calm during tough situations.")
+  .addField("Intermittent Fasting", "Intermittent Fasting is another great way to train the body and mind to control hunger.")
   .addField("Healthy Eating", "Attempt to eat Paleo, or embrace diets which promote ketosis.")
   .addField("Studying", "This is what you should be doing committing to when you have free time and your mind is mentally stable.")
   .addField("Reading", "Increase your intelligence and learn more about the world through literature.")
   .addField("Working", "Working is an important function which helps tremendously.")
   .addField("Socialising", "Spending time with the people you love and cherishing them.")
   .addField("Relaxation", "Includes video gaming, watching TV, napping etc. Should only be relied on if you're needing to wind down, otherwise you should be studying and learning.")
-  .addField("Helping others", "Helping others with their goals can be a great way to .")
+  .addField("Helping others", "Helping others with their goals can be a great way to learn how you can better help yourself.")
   .addField("Awareness Exercises", "Expand your mental capacity for conscious action.")
   .addField("Practicing Gratitude", "An excellent way to gain an appreciation of your own life.")
   .addField("Express Yourself", "Whether through writing, speech or art, learning to express yourself is a great way to learn more about yourself.")
