@@ -10,7 +10,7 @@ async function createDbUserSchema() {
       table.increments('id').primary();
       table.string('discord_id'); 
       table.integer('total_accountability_messages');
-      table.integer('current_accountability_streak');
+      table.integer('last_accountability_message_date');
     });
   }
 }
@@ -22,7 +22,6 @@ async function createAccountabilityMessageSchema() {
       table.increments('id').primary();
       table.string('message_id');
       table.string('content');
-      table.string('streak_no');
       table.integer('db_user_id').references('db_user.id');
     });
   }

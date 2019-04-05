@@ -1,7 +1,11 @@
-const sendMessageHelper = (channel, message) => {
-  channel.send(message)
-    .then(message => console.log(`Sent channel message: ${message}`))
-    .catch(console.error);
+const sendMessageHelper = async (channel, message) => {
+  try {
+    const sendMessage = await channel.send(message)
+    console.log(`Sent channel message: ${sendMessage}`);
+  } catch(error) {
+    console.log(message);
+    console.log(error);
+  }
 }
 
 const deleteMessageHelper = (message) => {
@@ -18,14 +22,22 @@ const configureLogger = (logger) => {
   logger.level = 'debug';
 }
 
-const isLastMessageTheBot = async (generalChannel) => {
-  const lastMessage = await generalChannel.fetchMessage(generalChannel.lastMessageID)
-  return lastMessage.author.id === process.env.NEVERFAP_DELUXE_BOT_ID;
-}
-
-const fetchChannelMessagesHelper = async (channel) => {
-  const messages = await channel.fetchMessages({ limit: 15 }); // channel.fetchMessages({ limit: 10 });
-  return messages;
+const isLastMessageTheBot = async (channel) => {
+  try {
+    if (channel && channel.lastMessageID) {
+      const lastMessage = await channel.fetchMessage(channel.lastMessageID);
+      if (
+        lastMessage && 
+        lastMessage.author && 
+        lastMessage.author.id === process.env.NEVERFAP_DELUXE_BOT_ID
+        ) {
+          return true;
+      }
+    }
+    return false;
+  } catch(error) {
+    console.log(error);
+  }
 }
 
 const generateRandomNumber = (min, max) => {
@@ -34,11 +46,33 @@ const generateRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (newMax - newMin + 1)) + newMin;
 }
 
+const generateDelayValues = (mode) => {
+  if (mode === "dev") {
+    return {
+      onIntervalFiveMinutesDelay: 1000 * 5 * 1, // every 5 seconds
+      onIntervalOneHourDelay: 1000 * 10 * 1, // every 10 seconds
+      onIntervalTwoHoursDelay: 1000 * 15 * 1, // every 15 minutes
+      onIntervalDayDelay: 1000 * 60 * 60 * 1, // every 5 minutes
+      onIntervalWeekDelay: 1000 * 60 * 60 * 1, // every 5 minutes
+    }
+  }
+  return {
+    onIntervalFiveMinutesDelay: 1000 * 60 * 5 * 1, // every five minutes
+    onIntervalOneHourDelay: 1000 * 60 * 60 * 1, // every hour
+    onIntervalTwoHoursDelay: 1000 * 60 * 60 * 2, // every 2 hours
+    onIntervalDayDelay: 1000 * 60 * 60 * 24, // every 24 hours
+    onIntervalWeekDelay: 1000 * 60 * 60 * 24 * 7, // every week
+  }
+}
+
+const isAccountabilityMessage = (content) => content.includes("/") || content.includes("19");
+
 module.exports = {
   sendMessageHelper,
   deleteMessageHelper,
   configureLogger,
   isLastMessageTheBot,
-  fetchChannelMessagesHelper,
   generateRandomNumber,
+  generateDelayValues,
+  isAccountabilityMessage,
 }
