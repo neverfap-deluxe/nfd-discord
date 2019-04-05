@@ -112,7 +112,7 @@ const rulesMessage = (accountabilityChannel) => new RichEmbed()
   .setColor(0xFF0000)
   .setDescription("Welcome to the NeverFap Deluxe Discord channel!\n \n I hope you enjoy your stay! Here are the basic rules for the channel.")
   .addField(
-    `Please only message Julius Reade in regards to your ${accountabilityChannel} post.`,
+    `Please only message Julius Reade in regards to your #accountability post.`,
     `Send me messages in regards to how I can help you improve upon your ${accountabilityChannel} strategy. I am more than happy to help to offer strategic advice. Otherwise, everything else is best addressed in #general.`)  
   .addField(
     `We can't help you overcome severe mental health issues.`,
