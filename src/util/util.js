@@ -50,16 +50,16 @@ const generateDelayValues = (mode) => {
   if (mode === "dev") {
     return {
       onIntervalFiveMinutesDelay: 1000 * 5 * 1, // every 5 seconds
-      onIntervalOneHourDelay: 1000 * 10 * 1, // every 10 seconds
-      onIntervalTwoHoursDelay: 1000 * 15 * 1, // every 15 minutes
+      onIntervalSixHoursDelay: 1000 * 10 * 1, // every 10 seconds
+      onIntervalTenHoursDelay: 1000 * 15 * 1, // every 15 minutes
       onIntervalDayDelay: 1000 * 60 * 60 * 1, // every 5 minutes
       onIntervalWeekDelay: 1000 * 60 * 60 * 1, // every 5 minutes
     }
   }
   return {
     onIntervalFiveMinutesDelay: 1000 * 60 * 5 * 1, // every five minutes
-    onIntervalOneHourDelay: 1000 * 60 * 60 * 1, // every hour
-    onIntervalTwoHoursDelay: 1000 * 60 * 60 * 2, // every 2 hours
+    onIntervalSixHoursDelay: 1000 * 60 * 60 * 6, // every six hours
+    onIntervalTenHoursDelay: 1000 * 60 * 60 * 10, // every ten hours
     onIntervalDayDelay: 1000 * 60 * 60 * 24, // every 24 hours
     onIntervalWeekDelay: 1000 * 60 * 60 * 24 * 7, // every week
   }

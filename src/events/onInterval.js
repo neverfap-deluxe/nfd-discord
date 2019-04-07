@@ -17,7 +17,7 @@ const onIntervalFiveMinutes = (client) => {
     }
   }
 };
-const onIntervalOneHour = (client) => {
+const onIntervalSixHours = (client) => {
   return function (evt) {
     if (process.env.GENERAL_CHANNEL_AUTOMATED_MESSAGES === "true") {
       generalChannelAutomatedMessages(client.channels);
@@ -27,7 +27,7 @@ const onIntervalOneHour = (client) => {
     }
   }
 };
-const onIntervalTwoHours = (client) => {
+const onIntervalTenHours = (client) => {
   return function (evt) {
     if (process.env.ACCOUNTABILITY_CHANNEL_AUTOMATED_MESSAGES === "true") {
       accountabilityChannelAutomatedMessages(client.channels);
@@ -163,8 +163,8 @@ const kickUsersWhoHaveNotCommitted = (client) => {
 
 module.exports = {
   onIntervalFiveMinutes,
-  onIntervalOneHour,
-  onIntervalTwoHours,
+  onIntervalSixHours,
+  onIntervalTenHours,
   onIntervalDay,
   onIntervalWeek,
 };
