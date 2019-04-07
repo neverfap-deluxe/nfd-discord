@@ -1,6 +1,6 @@
 const sendMessageHelper = async (channel, message) => {
   try {
-    const sendMessage = await channel.send(message)
+    const sendMessage = await channel.send(message);
     console.log(`Sent channel message: ${sendMessage}`);
   } catch(error) {
     console.log(message);
