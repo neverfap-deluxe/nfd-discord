@@ -173,7 +173,7 @@ const welcomeMessageTwo = (accountabilityChannel) => `
 Thank you for joining the NeverFap Deluxe Discord Channel!\n
 Chances are that you're here to participate in our ${accountabilityChannel} program. In that case, please read the ${accountabilityChannel} rules by typing in \`!accountability\` into the message bar and pressing enter.\n
 These rules are super important, and I will be working with you to ensure that you understand and follow them! Although we're a fun bunch, this is also a very serious program and our focus is to help you overcome porn addiction.\n
-To get started, please type in \`!accountability\` and press enter to learn what this channel is all about ^^.
+To get started, please type and enter \`!accountability\` into this direct chat to learn what this channel is all about ^^.
 `;
 
 const cheatsheetMessage = new RichEmbed()
@@ -196,33 +196,106 @@ const cheatsheetMessage = new RichEmbed()
   .addField("Express Yourself", "Whether through writing, speech or art, learning to express yourself is a great way to learn more about yourself.")
   .setFooter("This message will self-delete within 5 minutes ^^.", "https://neverfapdeluxe.com/images/logo.png")
   
-const automatedMessageGeneral1  = new RichEmbed().setTitle("#general advice").setDescription("Just a friendly reminder from the NeverFap Deluxe Bot to stay positive! Otherwise, I may have to kill you ^^.");
-const automatedMessageGeneral2  = new RichEmbed().setTitle("#general advice").setDescription("Empathy, love, kindness and gratitude are your friends. Treat yourself as you would others.");
-const automatedMessageGeneral3  = new RichEmbed().setTitle("#general advice").setDescription("our commitment to the process is the only thing that matters. Everything else is just noise.");
-const automatedMessageGeneral4  = new RichEmbed().setTitle("#general advice").setDescription("This is a friendly reminder to trust the process. The process is your best friend!");
-const automatedMessageGeneral5  = new RichEmbed().setTitle("#general advice").setDescription("Need some advice? Enter \`!commands\` to learn what I can do for you!");
-const automatedMessageGeneral6  = new RichEmbed().setTitle("#general advice").setDescription("Meditation allows you to develop control over your emotions. You are not effective unless if you have control over your emotions.");
-const automatedMessageGeneral7  = new RichEmbed().setTitle("#general advice").setDescription("Need some advice? Please check out the NeverFap Deluxe website! https://neverfapdeluxe.com/");
-const automatedMessageGeneral8  = new RichEmbed().setTitle("#general advice").setDescription("Need some more mental health practices? Thankfully, there's a whole section of them at https://neverfapdeluxe.com/practices");
-const automatedMessageGeneral9  = new RichEmbed().setTitle("#general advice").setDescription("New to the whole porn recovery thing? Check out the NeverFap Deluxe 7 Day Kickstarter! https://neverfapdeluxe.com/seven-day-neverfap-deluxe-kickstarter");
-const automatedMessageGeneral10 = new RichEmbed().setTitle("#general advice").setDescription("I actually wrote a freakin' guide on how to overcome porn addiction. Check it out https://neverfapdeluxe.com/guide");
-const automatedMessageGeneral11 = new RichEmbed().setTitle("#general advice").setDescription("Life only ever gets harder. So why not focus on making it hard for yourself now, so you can prepare for the future?");
-// const automatedMessageGeneral12 = new RichEmbed().setTitle("#general advice").setDescription("You can entertain yourself whenever you wish, but you only ever have 8-12 hours a day to better yourself");
-// const automatedMessageGeneral13 = 
-// const automatedMessageGeneral14 = 
-// const automatedMessageGeneral15 = 
-// const automatedMessageGeneral16 = 
+const automatedMessageGeneral1  = new RichEmbed().setTitle("#general advice").setDescription(
+  "Just a friendly reminder from the NeverFap Deluxe Bot to stay positive! Otherwise, I may have to kill you ^^.");
+const automatedMessageGeneral2  = new RichEmbed().setTitle("#general advice").setDescription(
+  "Empathy, love, kindness and gratitude are your friends. Treat yourself as you would others.");
+const automatedMessageGeneral3  = new RichEmbed().setTitle("#general advice").setDescription(
+  "Your commitment to the process is the only thing that matters. Once you lose that commitment, you lose everything and the sad thing is that you won't realise it until a few day later, at which point you'll feel completely lost and oblivious. Unfortunately, most people learn the hard way.");
+const automatedMessageGeneral4  = new RichEmbed().setTitle("#general advice").setDescription(
+  "This is a friendly reminder to trust the process. The process is your best friend! Much like KFC, only healthier.");
+const automatedMessageGeneral5  = new RichEmbed().setTitle("#general advice").setDescription(
+  "Wondering what purpose I actually serve? Type and enter \`!commands\` into the channel to learn what I can do for you!");
+const automatedMessageGeneral6  = new RichEmbed().setTitle("#general advice").setDescription(
+  "Meditation allows you to develop control over your emotions. You are not effective unless if you have control over your emotions. Otherwise, you are effectively leaving your porn addiction to chance, and we all know how that story goes.");
+const automatedMessageGeneral7  = new RichEmbed().setTitle("#general advice").setDescription(
+  "Wanting to learn more about the whole porn addiction recovery process? Please check out the NeverFap Deluxe website! https://neverfapdeluxe.com/");
+const automatedMessageGeneral8  = new RichEmbed().setTitle("#general advice").setDescription(
+  "Have you been craving the taste of some additional mental health practices? Thankfully, there's a whole section of them at https://neverfapdeluxe.com/practices");
+const automatedMessageGeneral9  = new RichEmbed().setTitle("#general advice").setDescription(
+  "New to the whole porn recovery thing? Check out the NeverFap Deluxe 7 Day Kickstarter! https://neverfapdeluxe.com/seven-day-neverfap-deluxe-kickstarter");
+const automatedMessageGeneral10 = new RichEmbed().setTitle("#general advice").setDescription(
+  "Looking for a comprehensive guide on how to overcome porn addiction? Well, I wrote one! Check it out https://neverfapdeluxe.com/guide");
+const automatedMessageGeneral11 = new RichEmbed().setTitle("#general advice").setDescription(
+  "Life only ever gets harder. So why not focus on making it hard for yourself now, so you can prepare for the future?");
+const automatedMessageGeneral12 = new RichEmbed().setTitle("#general advice").setDescription(
+  "Porn is not a solution to your problems. Rather, it's been the cause of all your problems for such a long time now that you've no longer been able to function in all the other areas of your life.");
+const automatedMessageGeneral13 = new RichEmbed().setTitle("#general advice").setDescription(
+  "The reason why it takes people five years' on average to overcome porn addiction, is because they choose not to commit for a good four and a half years of that period. Starting your porn recovery journey will never get any easier, so why wait?");
+const automatedMessageGeneral14 = new RichEmbed().setTitle("#general advice").setDescription(
+  "The porn recovery process takes approximately 90 days. Everytime you give up your commitment, you extend your recovery process by 90 days.");
+const automatedMessageGeneral15 = new RichEmbed().setTitle("#general advice").setDescription(
+  "Ultimately, you make your life as difficult or as easy as you want it. There are processes there for you to make it easy, just as there are processes for you to make it difficult.");
+const automatedMessageGeneral16 = new RichEmbed().setTitle("#general advice").setDescription(
+  "Porn isn't the reason why you're an addict. You're an addict because you haven't developed control over your mind. Until you learn to develop that control via meditation, you'll more-or-less be a sitting duck until your next relapse.");
+const automatedMessageGeneral17 = new RichEmbed().setTitle("#general advice").setDescription(
+  "Your mind will always believe and seek what it wants to. That is, unless if you learn to actively relax and calm it down. Make it your mission throughout the day to remain calm and collected.");
+const automatedMessageGeneral18 = new RichEmbed().setTitle("#general advice").setDescription(
+  "Your brain doesn’t know what it wants. It only knows what it feels, and if you're always feeling nervous and anxious, then it will pursue those kinds of behaviours. That is why it's important to develop control over your mind, so you can teach your brain what it actually needs.");
+const automatedMessageGeneral19 = new RichEmbed().setTitle("#general advice").setDescription(
+  "You don't develop self-control by forcing yourself into a routine. You develop self-control by letting go and allowing yourself the opportunity to relax.");
+const automatedMessageGeneral20 = new RichEmbed().setTitle("#general advice").setDescription(
+  "Don't focus on the days. Focus on the actions that are going to help you get through those days. They're the things that matter at the end of the day.");
+const automatedMessageGeneral21 = new RichEmbed().setTitle("#general advice").setDescription(
+  "Relapse isn't about PMO. Relapse is anything you do that negatively impacts your mental health, whether it be choosing to neglect the process or choosing to neglect yourself.");
+const automatedMessageGeneral22 = new RichEmbed().setTitle("#general advice").setDescription(
+  "When you neglect the process, you neglect yourself. You distrust the process, you lose. It's that simple.");
+const automatedMessageGeneral23 = new RichEmbed().setTitle("#general advice").setDescription(
+  "The more time you spend doing something, the better you're going to get at it. No one ever becomes ripped within a day. It takes months of practice to reach a point of fluency, but only if you commit today.");
+const automatedMessageGeneral24 = new RichEmbed().setTitle("#general advice").setDescription(
+  "Blame isn’t constructive. Processes on the other hand are. Learn to focus on developing process, as opposed to rationalisations for your own behaviour.");
+const automatedMessageGeneral25 = new RichEmbed().setTitle("#general advice").setDescription(
+  "Cravings don’t just happen out of nowhere. Cravings are the result of an uncalm mind. When your mind is uncalm, you lose focus, which results in losing balance, which inevitably results in relapse. Always keep on top your mental health.");
+  
+  
 
-const automatedMessageAccountability1 = (accountabilityChannel) => new RichEmbed().setTitle("#accountability advice").setDescription(`Don't forget to add emoji reacts to other people's ${accountabilityChannel} posts!`);
-const automatedMessageAccountability2 = () => new RichEmbed().setTitle("#accountability advice").setDescription("Need some help? Send the message \`!cheatsheet\` into the channel for a list of Healthy Coping Mechanisms.");
-// const automatedMessageAccountability3  = "";
-// const automatedMessageAccountability4  = "";
-// const automatedMessageAccountability5  = "";
-// const automatedMessageAccountability6  = "";
-// const automatedMessageAccountability7  = "";
-// const automatedMessageAccountability8  = "";
-// const automatedMessageAccountability9  = "";
-// const automatedMessageAccountability10 = "";
+const automatedMessageAccountability1 = (accountabilityChannel) => new RichEmbed().setTitle("#accountability advice").setDescription(
+  `Don't forget to add emoji reacts to other people's ${accountabilityChannel} posts!`);
+const automatedMessageAccountability2 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+  "Need some help? Type and enter \`!cheatsheet\` into the channel for a list of Healthy Coping Mechanisms.");
+const automatedMessageAccountability3 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+  "If you're feeling urges, it means that you've lost balance and you've failed to practice remaining calm and relaxed.");
+const automatedMessageAccountability4 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+  "Remember, remaining calm should be your default state 95% of the time, which requires active practice and a conscious effort to retain balance in our lives. This means sticking to a regular routine, going to bed on time etc.");
+const automatedMessageAccountability5 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+  "The process is there for a reason. It's there because it works and when you don't stick with the process, you work against it, which means working against yourself.");
+const automatedMessageAccountability6 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+  "Self-criticism doesn't work. When you self-criticise, you essentially give up your power for conscious action by reacting sub-consciously on an emotional level. It's possibly one of the most self-destructive things you can do as a human being in terms of developing control over your emotions.");
+const automatedMessageAccountability7 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+  "Practicing meditation is no different from going to the gym. It's only going to be effective if you practice regularly, with a high level of consistency. Otherwise, you're going to get nowhere.");
+const automatedMessageAccountability8 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+  "While the process is important, it cannot exist without you. While you have the power to make the process an important part of your life, you also have the power to make it completely irrelevant. Only you can decide how much your mental health means to you.");
+const automatedMessageAccountability9 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+  "We all make thousands of decisions each day, a huge portion of them subconscious. The idea behind awareness is to uncover these decisions, so we can better understand how we lose balance and therefore contribute towards our porn addiction.");
+const automatedMessageAccountability10 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+  "Don't fear your emotions. Embrace those uneasy feelings and learn to be comfortable with them. In other words, learn to be present with these emotions while not reacting to them. It's one of the most powerful things you can learn to do.");
+const automatedMessageAccountability11 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+  "You absolutely need to develop a list of healthy coping mechanisms for you to practice each day. It's no different to having a list of exercises we do at the gym. It will help you remain consistent.");
+const automatedMessageAccountability12 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+  "Don't React. Always Relax.");
+const automatedMessageAccountability13 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+  "What did you do to achieve peace today?");
+const automatedMessageAccountability14 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+  "Life is easy when you're calm. Remain calm and everything will literally fall into place. Lose your calm and you'll find yourself wondering how you could have been so naive.");                                                                                     
+const automatedMessageAccountability15 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+  "If your mind isn’t absolutely calm now, there's no chance you'll be able to make it calm when you're having a craving. Practice now while it's easy, so you can prepare while it's hard.");
+const automatedMessageAccountability16 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+  "You can't cheat your mind by skipping out on meditation, expecting that it won't know. It knows and it always responds appropriately, whether it be in the form of an emotional breakdown or an intense urge to watch porn. Respect your mind and it will respect you back.");
+// const automatedMessageAccountability17 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+//   "Do you have a strategy in place to not take your emotions personally?");
+// const automatedMessageAccountability18 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+//   "Are you able to quiet and calm your mind down at will?");
+// const automatedMessageAccountability19 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+//   "Are you able to let go when you’re feeling obsessed?");
+// const automatedMessageAccountability20 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+//   "");
+// const automatedMessageAccountability21 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
+//   "");
+                                                                                                                              
+                                                                                                              
+
+  
+
 
 module.exports = {
   rulesMessage,
@@ -245,24 +318,39 @@ module.exports = {
     automatedMessageGeneral8,
     automatedMessageGeneral9,
     automatedMessageGeneral10,
-    // automatedMessageGeneral11,
-    // automatedMessageGeneral12,
-    // automatedMessageGeneral13,
-    // automatedMessageGeneral14,
-    // automatedMessageGeneral15,
-    // automatedMessageGeneral16,
+    automatedMessageGeneral11,
+    automatedMessageGeneral12,
+    automatedMessageGeneral13,
+    automatedMessageGeneral14,
+    automatedMessageGeneral15,
+    automatedMessageGeneral16,
+    automatedMessageGeneral17,
+    automatedMessageGeneral18,
+    automatedMessageGeneral19,
+    automatedMessageGeneral20,
+    automatedMessageGeneral21,
+    automatedMessageGeneral22,
+    automatedMessageGeneral23,
+    automatedMessageGeneral24,
+    automatedMessageGeneral25,
   },
   automatedMessageAccountability: {
     automatedMessageAccountability1,
-    automatedMessageAccountability2,  
-    // automatedMessageAccountability3,
-    // automatedMessageAccountability4,
-    // automatedMessageAccountability5,
-    // automatedMessageAccountability6,
-    // automatedMessageAccountability7,
-    // automatedMessageAccountability8,
-    // automatedMessageAccountability9,
-    // automatedMessageAccountability10,  
+    automatedMessageAccountability2,
+    automatedMessageAccountability3,
+    automatedMessageAccountability4,
+    automatedMessageAccountability5,
+    automatedMessageAccountability6,
+    automatedMessageAccountability7,
+    automatedMessageAccountability8,
+    automatedMessageAccountability9,
+    automatedMessageAccountability10,
+    automatedMessageAccountability11,
+    automatedMessageAccountability12,
+    automatedMessageAccountability13,
+    automatedMessageAccountability14,
+    automatedMessageAccountability15,
+    automatedMessageAccountability16,
   }
 }
 

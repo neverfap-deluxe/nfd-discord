@@ -112,7 +112,7 @@ const generalChannelAutomatedMessages = async (channels) => {
     if (lastMessageIsBot) return;
   }
   
-  switch(generateRandomNumber(0, 9)) {
+  switch(generateRandomNumber(0, 24)) {
     case 0:  await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral1); break;
     case 1:  await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral2); break;
     case 2:  await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral3); break;
@@ -123,12 +123,22 @@ const generalChannelAutomatedMessages = async (channels) => {
     case 7:  await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral8); break;
     case 8:  await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral9); break;
     case 9:  await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral10); break;
-    // case 10: sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral11); break;
-    // case 11: sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral12); break;
-    // case 12: sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral13); break;
-    // case 13: sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral14); break;
-    // case 14: sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral15); break;
-    // case 15: sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral16); break;
+    case 10: await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral11); break;
+    case 11: await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral12); break;
+    case 12: await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral13); break;
+    case 13: await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral14); break;
+    case 14: await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral15); break;
+    case 15: await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral16); break;
+    case 16: await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral17); break;
+    case 17: await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral18); break;
+    case 18: await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral19); break;
+    case 19: await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral20); break;
+    case 20: await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral21); break;
+    case 21: await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral22); break;
+    case 22: await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral23); break;
+    case 23: await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral24); break;
+    case 24: await sendMessageHelper(generalChannel, automatedMessageGeneral.automatedMessageGeneral25); break;
+
     default:
       throw new Error('generalChannelAutomatedMessages - generateRandomNumber - created an incorrect generator number');
   }
@@ -144,7 +154,21 @@ const accountabilityChannelAutomatedMessages = async (channels) => {
   switch(generateRandomNumber(0, 1)) {
     case 0: await sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageAccountability1(accountabilityChannel)); break;
     case 1: await sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageAccountability2()); break;
-  
+    case 2: await sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageAccountability3()); break;
+    case 3: await sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageAccountability4()); break;
+    case 4: await sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageAccountability5()); break;
+    case 5: await sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageAccountability6()); break;
+    case 6: await sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageAccountability7()); break;
+    case 7: await sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageAccountability8()); break;
+    case 8: await sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageAccountability9()); break;
+    case 9: await sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageAccountability10()); break;
+    case 10: await sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageAccountability11()); break;
+    case 11: await sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageAccountability12()); break;
+    case 12: await sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageAccountability13()); break;
+    case 13: await sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageAccountability14()); break;
+    case 14: await sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageAccountability15()); break;
+    case 15: await sendMessageHelper(accountabilityChannel, automatedMessageAccountability.automatedMessageAccountability16()); break;
+
     default:
       throw new Error('generalChannelAutomatedMessages - generateRandomNumber - created an incorrect generator number');
   }
