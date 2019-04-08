@@ -78,7 +78,7 @@ const onMessage = (client) => {
         //   sendMessageHelper(channel, emergencyMessage);
         //   break;
         default:
-          sendMessageHelper(channel, "Sorry, the command doesn't exist. Please type `!commands` to show all available commands."); 
+          sendMessageHelper(channel, "Sorry, the command doesn't exist (perhaps you put a space inbetween the `!` and the `command`). Please type `!commands` to show all available commands."); 
           break;
        }
     }

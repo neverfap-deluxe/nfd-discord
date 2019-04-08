@@ -11,7 +11,7 @@ const onMessage = require('./events/onMessage');
 const onGuildMemberAdd = require('./events/onGuildMemberAdd');
 const { configureLogger, generateDelayValues } = require('./util/util');
 const { onIntervalFiveMinutes, onIntervalSixHours, onIntervalTenHours, onIntervalDay, onIntervalWeek } = require('./events/onInterval');
-const { onIntervalFiveMinutesDelay, onIntervalSixHoursDelay, onIntervalTenHoursDelay, onIntervalDayDelay, onIntervalWeekDelay} = generateDelayValues(process.env.MODE);
+const { onIntervalFiveMinutesDelay, onIntervalThreeHoursDelay, onIntervalFourHoursDelay, onIntervalDayDelay, onIntervalWeekDelay} = generateDelayValues(process.env.MODE);
 
 // const knex = require('./db/knex');
 
@@ -28,8 +28,8 @@ client.on('guildMemberAdd', onGuildMemberAdd(client));
 
 // automated events
 client.setInterval(onIntervalFiveMinutes(client), onIntervalFiveMinutesDelay);
-client.setInterval(onIntervalSixHours(client), onIntervalSixHoursDelay);
-client.setInterval(onIntervalTenHours(client), onIntervalTenHoursDelay);
+client.setInterval(onIntervalSixHours(client), onIntervalThreeHoursDelay);
+client.setInterval(onIntervalTenHours(client), onIntervalFourHoursDelay);
 client.setInterval(onIntervalDay(client), onIntervalDayDelay);
 client.setInterval(onIntervalWeek(client), onIntervalWeekDelay);
 
