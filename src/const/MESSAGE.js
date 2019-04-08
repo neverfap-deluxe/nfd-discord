@@ -95,7 +95,7 @@ const accountabilityMessage = (accountabilityChannel) => new RichEmbed()
     `For additional information, please check the website.`,
     `The website contain a wealth of information on how best to approach your porn addiction recovery https://neverfapdeluxe.com/` // however there is a specifc page dedicated towards ${accountabilityChannel} rules https://neverfapdeluxe.com/accountability-program/ 
   )
-  .setFooter(`This message will self-delete within 5 minutes ^^.`, `https://neverfapdeluxe.com/images/logo.png`)
+  .setFooter(`NeverFap Deluxe Bot`, `https://neverfapdeluxe.com/images/logo.png`) // This message will self-delete within 5 minutes ^^.
 
 
 const accountabilityExampleMessage = (accountabilityChannel) => new RichEmbed()
@@ -105,7 +105,7 @@ const accountabilityExampleMessage = (accountabilityChannel) => new RichEmbed()
   .addField("Today's date", "20/01/2018")
   .addField("List of Healthy Coping Mechanisms you practiced", "Healthy Coping Mechanisms\n- Meditated for 10 minutes\n - Completed a huge squat + deadlift workout\n - Remained calm throughout the day and really practiced to keep my mind wide and open")
   .addField("How you will improve tomorrow.", "To Improve\n - I'm going to focus on becoming more calm throughout the day\n - I want to continue learning not to take things personally, and instead take things one step at a time")
-  .setFooter("This message will self-delete within 5 minutes ^^.", "https://neverfapdeluxe.com/images/logo.png")
+  .setFooter("NeverFap Deluxe Bot", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
 
 const rulesMessage = (accountabilityChannel) => new RichEmbed()
   .setTitle('The NeverFap Deluxe Discord Server Rules')
@@ -126,7 +126,7 @@ const rulesMessage = (accountabilityChannel) => new RichEmbed()
     `We are a very friendly community. Feel free to chat amongst yourselves and support each other!`
   )
 
-  .setFooter("This message will self-delete within 5 minutes ^^.", "https://neverfapdeluxe.com/images/logo.png")
+  .setFooter("NeverFap Deluxe Bot", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
 
 
 const commandListMessage = new RichEmbed()
@@ -136,7 +136,7 @@ const commandListMessage = new RichEmbed()
   .addField("Admin Commands", adminCommandListText)
   .addField("Information Commands", informationCommandListText)
   .addField("Emergency Commands", emergencyCommandListText)
-  .setFooter("This message will self-delete within 5 minutes ^^.", "https://neverfapdeluxe.com/images/logo.png")
+  .setFooter("NeverFap Deluxe Bot", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
 
 const channelListMessage = new RichEmbed()
   .setTitle("NeverFap Deluxe Discord Channel List")
@@ -148,7 +148,7 @@ const channelListMessage = new RichEmbed()
   .addField(`#${LOLFAP_CHANNEL_NAME}`, `${LOLFAP_CHANNEL_DESCRIPTION}`)
   .addField(`#${ANNOUNCEMENT_CHANNEL_NAME}`, `${ANNOUNCEMENT_CHANNEL_DESCRIPTION}`)
   .addField(`#${EMERGENCY_CHANNEL_NAME}`, `${EMERGENCY_CHANNEL_DESCRIPTION}`)
-  .setFooter("This message will self-delete within 5 minutes ^^.", "https://neverfapdeluxe.com/images/logo.png")
+  .setFooter("NeverFap Deluxe Bot", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
 
 const emergencyMessage = new RichEmbed()
   .setTitle("Official Emergency Process")
@@ -157,7 +157,7 @@ const emergencyMessage = new RichEmbed()
   .addField("Step 2 - Normalise what you're feeling", "The next step is to become comfortable with your emotions. Understand not to take them personally. They mean no harm.")
   .addField("Step 3", "What are your list of healthy coping mechanisms? Have you practiced them yet? Now is the perfect time to work on that list.")
   .setColor(0xFF0000)
-  .setFooter("This message will self-delete within 5 minutes ^^.", "https://neverfapdeluxe.com/images/logo.png")
+  .setFooter("NeverFap Deluxe Bot", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
 
 const welcomeMessage = new RichEmbed()
   .setTitle('Welcome to the NeverFap Deluxe Discord!')
@@ -167,7 +167,7 @@ const welcomeMessage = new RichEmbed()
   .addField("Admin", adminCommandListText)
   .addField("Information", informationCommandListText)
   .addField("Emergency", emergencyCommandListText)
-  .setFooter("This message will self-delete within 5 minutes ^^.", "https://neverfapdeluxe.com/images/logo.png")
+  .setFooter("NeverFap Deluxe Bot", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
 
 const welcomeMessageTwo = (accountabilityChannel) => `
 Thank you for joining the NeverFap Deluxe Discord Channel!\n
@@ -194,7 +194,7 @@ const cheatsheetMessage = new RichEmbed()
   .addField("Awareness Exercises", "Expand your mental capacity for conscious action.")
   .addField("Practicing Gratitude", "An excellent way to gain an appreciation of your own life.")
   .addField("Express Yourself", "Whether through writing, speech or art, learning to express yourself is a great way to learn more about yourself.")
-  .setFooter("This message will self-delete within 5 minutes ^^.", "https://neverfapdeluxe.com/images/logo.png")
+  .setFooter("NeverFap Deluxe Bot", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
   
 const automatedMessageGeneral1  = new RichEmbed().setTitle("#general advice").setDescription(
   "Just a friendly reminder from the NeverFap Deluxe Bot to stay positive! Otherwise, I may have to kill you ^^.");
