@@ -68,7 +68,7 @@ const accountabilityMessage = (accountabilityChannel) => new RichEmbed()
     `It takes approximately 90 days to overcome porn addiction. You will only succeed if you commit to the program every single day for the next 90 days. Otherwise, you will not develop the Healthy Coping Mechanisms in order to develop control over your mind.`
   )
   .addField(
-    `You must post in #${accountabilityChannel} every single day.`,
+    `You must post in #accountability every single day.`,
     `This will prove your commitment to your porn addiction recovery, and is an excellent way to keep on-top of your progress, and therefore develop your capacity for awareness.`
   )
   .addField(
@@ -87,13 +87,13 @@ const accountabilityMessage = (accountabilityChannel) => new RichEmbed()
     `Your Healthy Coping Mechanism list must include daily meditation.`,
     `Meditation is the most powerful Healthy Coping Mechanism in allowing you to regain control over your emotions. It is a hard expectation that you begin your journey with a daily routine of meditation. Otherwise, you will fail.`
   )
-  // .addField(
-  //   `Users who do not stick to the process may be removed from the server.`,
-  //   `If you are not sticking to the process, I cannot be there to offer you advice. I can only help you if you're willing to help yourself, otherwise you will not succeed.`
-  // )
   .addField(
     `We have strict formatting for #accountability posts.`,
     `The NeverFap Deluxe Bot will validate all your ${accountabilityChannel} posts. Please type in \`!accountability-example\` in order to see what an ideal post should look like.`
+  )
+  .addField(
+    `Oh, and please don't forget to add emoji reacts to other people's posts!`,
+    `It's just a nice thing you can do for others, which helps motivate the community.`
   )
   .addField(
     `For additional information, please check the website.`,
@@ -226,19 +226,19 @@ const automatedMessageGeneral11 = new RichEmbed().setTitle("#general advice").se
 const automatedMessageGeneral12 = new RichEmbed().setTitle("#general advice").setDescription(
   "Porn is not a solution to your problems. Rather, it's been the cause of all your problems for such a long time now that you've no longer been able to function in all the other areas of your life.");
 const automatedMessageGeneral13 = new RichEmbed().setTitle("#general advice").setDescription(
-  "The reason why it takes people five years' on average to overcome porn addiction, is because they choose not to commit for a good four and a half years of that period. Starting your porn recovery journey will never get any easier, so why wait?");
+  "It takes people five years on average to overcome porn addiction, not because it is a long process but because they spend a good four and a half of those years not commiting.");
 const automatedMessageGeneral14 = new RichEmbed().setTitle("#general advice").setDescription(
-  "The porn recovery process takes approximately 90 days. Everytime you give up your commitment, you extend your recovery process by 90 days.");
+  "Tip: The porn recovery process takes approximately 90 days. Everytime you give up your commitment, you extend your recovery process by 90 days, so please don't forget that consistency really does matter!");
 const automatedMessageGeneral15 = new RichEmbed().setTitle("#general advice").setDescription(
   "Ultimately, you make your life as difficult or as easy as you want it. There are processes there for you to make it easy, just as there are processes for you to make it difficult.");
 const automatedMessageGeneral16 = new RichEmbed().setTitle("#general advice").setDescription(
-  "Porn isn't the reason why you're an addict. You're an addict because you haven't developed control over your mind. Until you learn to develop that control via meditation, you'll more-or-less be a sitting duck until your next relapse.");
+  "Porn isn't the reason why you're an addict. You're an addict because you haven't developed control over your mind. Until you learn to develop that control via healthy coping mechanisms such as meditation, you're more-or-less leaving your recovery to chance.");
 const automatedMessageGeneral17 = new RichEmbed().setTitle("#general advice").setDescription(
   "Your mind will always believe and seek what it wants to. That is, unless if you learn to actively relax and calm it down. Make it your mission throughout the day to remain calm and collected.");
 const automatedMessageGeneral18 = new RichEmbed().setTitle("#general advice").setDescription(
   "Your brain doesn’t know what it wants. It only knows what it feels, and if you're always feeling nervous and anxious, then it will pursue those kinds of behaviours. That is why it's important to develop control over your mind, so you can teach your brain what it actually needs.");
 const automatedMessageGeneral19 = new RichEmbed().setTitle("#general advice").setDescription(
-  "You don't develop self-control by forcing yourself into a routine. You develop self-control by letting go and allowing yourself the opportunity to relax.");
+  "You can't force self-control, however you can make it very easy to be in-control by letting go and remaining calm.");
 const automatedMessageGeneral20 = new RichEmbed().setTitle("#general advice").setDescription(
   "Don't focus on the days. Focus on the actions that are going to help you get through those days. They're the things that matter at the end of the day.");
 const automatedMessageGeneral21 = new RichEmbed().setTitle("#general advice").setDescription(
