@@ -2,3 +2,6 @@
 nginx/.env
 node_modules
 deploy_key
+
+knexfile.js
+

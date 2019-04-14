@@ -1,9 +1,10 @@
 // Command list
 const RULES_COMMAND = "rules";
+const HELP_COMMAND = "help";
 const COMMANDS_COMMAND = "commands";
 const CHANNELS_COMMAND = "channels";
 const ACCOUNTABILITY_COMMAND = "accountability";
-const ACCOUNTABILITY_EXAMPLE_COMMAND = "accountability-example";
+const ACCOUNTABILITY_EXAMPLE_COMMAND = "example";
 const CHEATSHEET_COMMAND = "cheatsheet";
 const EMERGENCY_COMMAND = "emergency";
 // const SET_STREAK_COMMAND = "set-streak";
@@ -21,6 +22,7 @@ const EMERGENCY_COMMAND_DESCRIPTION = "get #emergency help";
 
 module.exports = {
   RULES_COMMAND,
+  HELP_COMMAND,
   COMMANDS_COMMAND,
   CHANNELS_COMMAND,
   ACCOUNTABILITY_COMMAND,

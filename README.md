@@ -6,6 +6,15 @@ knex migrate:latest
 npm start
 
 
+TODO:
+- Test removeBotMessages for commands etc. in accountability
+- Build/Test hasUserPostedRecently 
+- Test 
+
+
+
+
+
 // Build into the backend, Discord statistics for the users.
 // Choose to connect your discord to the backend. O M F G.
 
@@ -23,7 +32,7 @@ npm start
 
 - message.channel
 - message.content
-- message.createdAt
+- message.created_at
 - message.guild
 - message.member - type GuildMember
 - message.author - type User
@@ -135,7 +144,7 @@ bot.on('message', function (message) {
 
  // message.channel
  // message.content
- // message.createdAt
+ // message.created_at
  // message.guild
  // message.member - type GuildMember
  // message.author - type User

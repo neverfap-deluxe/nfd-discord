@@ -1,42 +1,18 @@
-const sendMessageHelper = async (channel, message) => {
+const sendMessageHelper = async (channelOrUser, message, functionName) => {
   try {
-    const sendMessage = await channel.send(message);
-    console.log(`Sent channel message: ${sendMessage}`);
+    const msg = await channelOrUser.send(message);
+    console.log(`Sent channel message: ${msg.id} - ${functionName}`);
   } catch(error) {
-    console.log(message);
-    console.log(error);
+    throw new Error(`sendMessageHelper - ${error} - ${functionName}`);
   }
 }
 
-const deleteMessageHelper = (message) => {
-  message.delete()
-    .then(msg => console.log(`Deleted message from ${msg.author.username}`))
-    .catch(console.error);
-}
-
-const configureLogger = (logger) => {
-  logger.remove(logger.transports.Console);
-  logger.add(new logger.transports.Console, {
-    colorize: true
-  });
-  logger.level = 'debug';
-}
-
-const isLastMessageTheBot = async (channel) => {
+const deleteMessageHelper = async (message, functionName) => {
   try {
-    if (channel && channel.lastMessageID) {
-      const lastMessage = await channel.fetchMessage(channel.lastMessageID);
-      if (
-        lastMessage && 
-        lastMessage.author && 
-        lastMessage.author.id === process.env.NEVERFAP_DELUXE_BOT_ID
-        ) {
-          return true;
-      }
-    }
-    return false;
+    const msg = await message.delete();
+    console.log(`Deleted message from ${msg.author.username} - ${functionName}`)
   } catch(error) {
-    console.log(error);
+    throw new Error(`deleteMessageHelper - ${error} - ${functionName}`);
   }
 }
 
@@ -49,30 +25,74 @@ const generateRandomNumber = (min, max) => {
 const generateDelayValues = (mode) => {
   if (mode === "dev") {
     return {
-      onIntervalFiveMinutesDelay: 1000 * 5 * 1, // every 5 seconds
-      onIntervalThreeHoursDelay: 1000 * 10 * 1, // every 10 seconds
-      onIntervalFourHoursDelay: 1000 * 15 * 1, // every 15 minutes
-      onIntervalDayDelay: 1000 * 60 * 60 * 1, // every 5 minutes
-      onIntervalWeekDelay: 1000 * 60 * 60 * 1, // every 5 minutes
+      onIntervalTenMinutesDelay: 1000 * 2, // every 2 seconds
+      onIntervalThreeHoursDelay: 1000 * 5, // every 5 seconds
+      onIntervalFourHoursDelay: 1000 * 6, // every 6 seconds
+      onIntervalDayHalfDelay: 1000 * 10, // every 10 seconds
+      onIntervalDayDelay: 1000 * 60 * 10, // every 10 seconds
+      onIntervalWeekDelay: 1000 * 60 * 10, // every 10 seconds
     }
   }
   return {
-    onIntervalFiveMinutesDelay: 1000 * 60 * 5 * 1, // every five minutes
+    onIntervalTenMinutesDelay: 1000 * 60 * 10 * 1, // every ten minutes
     onIntervalThreeHoursDelay: 1000 * 60 * 60 * 3, // every three hours
     onIntervalFourHoursDelay: 1000 * 60 * 60 * 4, // every four hours
+    onIntervalDayHalfDelay: 1000 * 60 * 60 * 12, // every 10 seconds
     onIntervalDayDelay: 1000 * 60 * 60 * 24, // every 24 hours
     onIntervalWeekDelay: 1000 * 60 * 60 * 24 * 7, // every week
   }
 }
 
-const isAccountabilityMessage = (content) => content.includes("/") || content.includes("19");
+const isAccountabilityMessage = (content) => content.includes("/") || content.includes("19") || content.includes("#track");
+
+const configureLogger = (Winston) => {  
+  const logger = Winston.createLogger({
+    level: 'info',
+    format: Winston.format.json(),
+    defaultMeta: { service: 'user-service' },
+    transports: [
+      //
+      // - Write to all logs with level `info` and below to `combined.log` 
+      // - Write all logs error (and below) to `error.log`.
+      //
+      new Winston.transports.File({ filename: 'error.log', level: 'error' }),
+      new Winston.transports.File({ filename: 'combined.log' })
+    ]
+  });
+  
+  if (process.env.MODE === 'dev') {
+    logger.add(new Winston.transports.Console({
+      format: Winston.format.simple(),
+      colorize: true
+    }));
+    logger.level = 'debug';
+  }
+  return logger;
+}
+
+const configureTwitter = (Twit) => {
+  return new Twit({
+    consumer_key:         '...',
+    consumer_secret:      '...',
+    access_token:         '...',
+    access_token_secret:  '...',
+    timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
+    strictSSL:            true,     // optional - requires SSL certificates to be valid.
+  });
+}
+
+const configureReddit = (SnooWrap) => {
+// SnooWrap
+  return {};
+}
 
 module.exports = {
   sendMessageHelper,
   deleteMessageHelper,
   configureLogger,
-  isLastMessageTheBot,
   generateRandomNumber,
   generateDelayValues,
   isAccountabilityMessage,
+  configureTwitter,
+  configureReddit,
 }
