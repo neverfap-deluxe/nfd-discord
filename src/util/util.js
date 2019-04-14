@@ -79,6 +79,12 @@ const configureTwitter = (Twit) => {
     timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
     strictSSL:            true,     // optional - requires SSL certificates to be valid.
   });
+
+  // I believe this is 
+  // T.post('statuses/update', { status: 'hello world!' }, function(err, data, response) {
+  //   console.log(data)
+  // })
+  
 }
 
 const configureReddit = (SnooWrap) => {
