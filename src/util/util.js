@@ -88,8 +88,17 @@ const configureTwitter = (Twit) => {
 }
 
 const configureReddit = (SnooWrap) => {
-// SnooWrap
-  return {};
+  return new snoowrap({
+    userAgent: 'put your user-agent string here',
+    clientId: 'put your client id here',
+    clientSecret: 'put your client secret here',
+    refreshToken: 'put your refresh token here'
+  });
+
+  // r.getSubreddit('NeverFapDeluxe').submitLink({
+  //   title: 'Mt. Cameramanjaro',
+  //   url: 'https://i.imgur.com/n5iOc72.gifv'
+  // });  
 }
 
 module.exports = {

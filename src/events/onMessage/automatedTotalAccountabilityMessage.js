@@ -6,9 +6,7 @@ const {
 
 const accountabilityTotalMessage1 = (/* accountability */) =>
 `Day 1\n
-Although it may not seem like it, what you just did was huge.\n
-You made a commitment to your mental health and that's more than anyone can ask for.\n
-Just remember that this is a 90 day process, and that we're all here together to help support you and I will see you here again tomorrow :grin:.
+Although it may not seem like it, what you just did was huge. You committed to your mental health and that's more than anyone can ask for. :heart:\n
 `;
 
 // TODO: Talk about how you don't care about relapse. We've tracking your commitment, . 
