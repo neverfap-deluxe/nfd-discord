@@ -88,7 +88,7 @@ const configureTwitter = (Twit) => {
 }
 
 const configureReddit = (SnooWrap) => {
-  return new snoowrap({
+  return new SnooWrap({
     userAgent: 'put your user-agent string here',
     clientId: 'put your client id here',
     clientSecret: 'put your client secret here',
