@@ -72,7 +72,7 @@ const accountabilityMessage = (accountabilityChannel) => new RichEmbed()
     `This will prove your commitment to your porn addiction recovery, and it is an excellent way to keep on-top of your progress, and therefore develop your capacity for awareness.`
   )
   .addField(
-    `I cannot offer you advice if you stop posting in #${accountabilityChannel}.`,
+    `I cannot offer you advice if you stop posting in #accountability.`,
     `If you're not putting your mental health first, there's nothing I can do to help you. I am not a substitute for the process, I merely facilitate your journey.`
   )
   .addField(
