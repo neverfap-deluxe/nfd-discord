@@ -1,14 +1,10 @@
 const {
-  sendMessageHelper,
-} = require('../../util/util');
-
-const {
   ACCOUNTABILITY_EXAMPLE_COMMAND
 } = require('../../const/COMMAND');
 
 // const insertAccountabilityMessage = require('./onMessage/insertAccountabilityMessage');
 
-const validateAccountabilityPost = (client, dbUser, discordUser, channel, message, twitterClient, redditClient) => {
+const validateAccountabilityPost = async (client, dbUser, discordUser, channel, message, twitterClient, redditClient) => {
   const messageAuthor = message.author;
 
   const toImproveRegEx = new RegExp("improve", "i");
@@ -24,8 +20,13 @@ const validateAccountabilityPost = (client, dbUser, discordUser, channel, messag
   const finalChannelMessage = `Hey ${messageAuthor}! Your post needs to include ${toImproveChannelMessage} section. If you need an example of what it should look like please type and enter \`!${ACCOUNTABILITY_EXAMPLE_COMMAND}\` :heart:`; // ${finalChannelAndMessage} ${healthyCopingMechanismChannelMessage}
   
   if (!doesContainToImproveRegEx /* || !doesContainHealthyCopingMechanismRegEx */) {
-    sendMessageHelper(channel, finalChannelMessage, 'validateAccountabilityPost');
-    // sendMessageHelper(messageAuthor, `Hey buddy!\n ${finalChannelMessage}`, 'validateAccountabilityPost');
+    try {
+      const msg = await channel.send(finalChannelMessage);
+      console.log(`Sent channel message: ${msg.id} - validateAccountabilityPost`);
+    } catch(error) {
+      throw new Error(`sending message failed - send message - ${error} - validateAccountabilityPost`);
+    }
+    // send message(messageAuthor, `Hey buddy!\n ${finalChannelMessage}`, 'validateAccountabilityPost');
     
     // insertAccountabilityMessage(client, dbUser, discordUser, message, twitterClient, redditClient);
   }

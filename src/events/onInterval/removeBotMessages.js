@@ -1,7 +1,4 @@
 const _ = require('lodash');
-const {
-  deleteMessageHelper,
-} = require('../../util/util');
 
 const DELETE_COMMAND_DELAY = process.env.MODE === "dev" ? (
   1000 * 1 * 4 // 4 seconds.
@@ -31,27 +28,36 @@ const removeBotMessages = async (channels) => {
   // }
 };
 
-const deleteMessageIfCommand = (message) => {
+const deleteMessageIfCommand = async (message) => {
   const messageContent = _.get(message, '[1].content');
   if (messageContent) {
     const isCommand = messageContent.startsWith("!");
     if (isCommand) {
       if ((new(Date) - new Date(message[1].created_at)) > DELETE_COMMAND_DELAY) {
-        deleteMessageHelper(message[1], 'deleteMessageIfCommand'); 
+        try {
+          const msg = await message[1].delete();
+          console.log(`Deleted message from ${msg.author.username} - deleteMessageIfCommand`)
+        } catch(error) {
+          throw new Error(`delete message - ${error} - deleteMessageIfCommand`);
+        }
       }   
     }
   }
 };
 
-const deleteMessageIfNeverFapDeluxeBot = (message) => {
+const deleteMessageIfNeverFapDeluxeBot = async (message) => {
   const messageEmbed = _.get(message, '[1].embeds[0]');
   if (messageEmbed) {
     const messageAuthorId = _.get(message, '[1].author.id');
     if (messageAuthorId === process.env.NEVERFAP_DELUXE_BOT_ID) {
       if (messageEmbed.title !== "#general advice" && messageEmbed.title !== "#accountability advice") {
         if ((new(Date) - new Date(messageEmbed.message.created_at)) > DELETE_COMMAND_DELAY) {
-          // TODO: Make this edit message, instead of delete message
-          deleteMessageHelper(message[1], 'deleteMessageIfNeverFapDeluxeBot');    
+          try {
+            const msg = await message[1].delete();
+            console.log(`Deleted message from ${msg.author.username} - deleteMessageIfNeverFapDeluxeBot`)
+          } catch(error) {
+            throw new Error(`delete message - ${error} - deleteMessageIfNeverFapDeluxeBot`);
+          }
         }
       }
     }

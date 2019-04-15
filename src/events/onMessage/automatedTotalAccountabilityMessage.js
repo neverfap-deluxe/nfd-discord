@@ -1,9 +1,5 @@
 const knex =  require('../../db/knex');
 
-const {
-  sendMessageHelper,
-} = require('../../util/util');
-
 const accountabilityTotalMessage1 = (/* accountability */) =>
 `Although it may not seem like it, what you just did was huge. You committed to your mental health and that's more than anyone can ask for. :heart:\n
 `;
@@ -87,26 +83,96 @@ const automatedTotalAccountability = async (client, dbUser, discordUser) => {
     const accountabilityMessageCount = await knex('accountability_messages').where('db_users_id', dbUser.id).count();
 
     const count = parseInt(accountabilityMessageCount[0].count);
-    switch(count) {
-      case 1:  sendMessageHelper(discordUser, accountabilityTotalMessage1(`Day ${count}\n ${accountabilityChannel}`),  'automatedTotalAccountability'); break;
-      case 2:  sendMessageHelper(discordUser, accountabilityTotalMessage2(`Day ${count}\n ${accountabilityChannel}`),  'automatedTotalAccountability'); break;
-      case 3:  sendMessageHelper(discordUser, accountabilityTotalMessage3(`Day ${count}\n ${accountabilityChannel}`),  'automatedTotalAccountability'); break;
-      case 4:  sendMessageHelper(discordUser, accountabilityTotalMessage4(`Day ${count}\n ${accountabilityChannel}`),  'automatedTotalAccountability'); break;
-      case 5:  sendMessageHelper(discordUser, accountabilityTotalMessage5(`Day ${count}\n ${accountabilityChannel}`),  'automatedTotalAccountability'); break;
-      case 6:  sendMessageHelper(discordUser, accountabilityTotalMessage6(`Day ${count}\n ${accountabilityChannel}`),  'automatedTotalAccountability'); break;
-      case 7:  sendMessageHelper(discordUser, accountabilityTotalMessage7(`Day ${count}\n ${accountabilityChannel}`),  'automatedTotalAccountability'); break;
-      case 10: sendMessageHelper(discordUser, accountabilityTotalMessage10(`Day ${count}\n ${accountabilityChannel}`), 'automatedTotalAccountability'); break;
-      case 14: sendMessageHelper(discordUser, accountabilityTotalMessage14(`Day ${count}\n ${accountabilityChannel}`), 'automatedTotalAccountability'); break;
-      case 21: sendMessageHelper(discordUser, accountabilityTotalMessage21(`Day ${count}\n ${accountabilityChannel}`), 'automatedTotalAccountability'); break;
-      case 28: sendMessageHelper(discordUser, accountabilityTotalMessage28(`Day ${count}\n ${accountabilityChannel}`), 'automatedTotalAccountability'); break;
-      case 35: sendMessageHelper(discordUser, accountabilityTotalMessage35(`Day ${count}\n ${accountabilityChannel}`), 'automatedTotalAccountability'); break;
-      case 42: sendMessageHelper(discordUser, accountabilityTotalMessage42(`Day ${count}\n ${accountabilityChannel}`), 'automatedTotalAccountability'); break;
-      case 49: sendMessageHelper(discordUser, accountabilityTotalMessage49(`Day ${count}\n ${accountabilityChannel}`), 'automatedTotalAccountability'); break;
-      default: sendMessageHelper(discordUser, `Day ${count} :D`, 'automatedTotalAccountability'); break;
-      
-    } 
+    try {
+      switch(count) {
+        case 1: {
+          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage1(accountabilityChannel)}`);
+          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          break;
+        }
+        case 2: {
+          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage2(accountabilityChannel)}`);
+          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          break;
+        }
+        case 3: {
+          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage3(accountabilityChannel)}`);
+          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          break;
+        }
+        case 4: {
+          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage4(accountabilityChannel)}`);
+          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          break;
+        }
+        case 5: {
+          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage5(accountabilityChannel)}`);
+          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          break;
+        }
+        case 6: {
+          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage6(accountabilityChannel)}`);
+          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          break;
+        }
+        case 7: {
+          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage7(accountabilityChannel)}`);
+          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          break;
+        }
+        case 10: {
+          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage10(accountabilityChannel)}`);
+          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          break;
+        }
+        case 14: {
+          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage14(accountabilityChannel)}`);
+          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          break;
+        }
+        case 21: {
+          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage21(accountabilityChannel)}`);
+          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          break;
+        }
+        case 28: {
+          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage28(accountabilityChannel)}`);
+          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          break;
+        }
+        case 35: {
+          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage35(accountabilityChannel)}`);
+          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          break;
+        }
+        case 42: {
+          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage42(accountabilityChannel)}`);
+          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          break;
+        }
+        case 49: {
+          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage49(accountabilityChannel)}`);
+          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          break;
+        }
+        default: {
+          const msg = await discordUser.send(`Day ${count} :D`);
+          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          break; 
+        }
+      }
+      // send me a confirmation message to know that the other users recieved theirs
+
+      // const me = await client.fetchUser(db_user.discord_id);
+
+      // const client.fetchUser()
+      // const msg = await discordUser.send(`Day ${count} :D`);
+
+    } catch(error) {
+      throw new Error(`switch statement fail - send message - ${error} - automatedTotalAccountability`);
+    }
   } catch(error) {
-    console.log(`automatedTotalAccountability - ${error}`);
+    throw new Error(`automatedTotalAccountability - ${error}`);
   }
 }
 

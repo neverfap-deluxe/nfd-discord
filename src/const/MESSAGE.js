@@ -6,9 +6,9 @@ const {
   CHANNELS_COMMAND,
   ACCOUNTABILITY_COMMAND,
   ACCOUNTABILITY_EXAMPLE_COMMAND,
+  ANTI_CHEATSHEET_COMMAND,
   CHEATSHEET_COMMAND,
   EMERGENCY_COMMAND,
-  // SET_STREAK_COMMAND,
   // PROGRESS_COMMAND,
 
   RULES_COMMAND_DESCRIPTION,
@@ -16,9 +16,9 @@ const {
   CHANNELS_COMMAND_DESCRIPTION,
   ACCOUNTABILITY_COMMAND_DESCRIPTION,
   ACCOUNTABILITY_EXAMPLE_COMMAND_DESCRIPTION,
+  ANTI_CHEATSHEET_COMMAND_DESCRIPTION,
   CHEATSHEET_COMMAND_DESCRIPTION,
   EMERGENCY_COMMAND_DESCRIPTION,
-  // SET_STREAK_COMMAND_DESCRIPTION,
   // PROGRESS_COMMAND_DESCRIPTION,
 } = require('./COMMAND');
 
@@ -48,13 +48,13 @@ const informationCommandListText = `
   \`!${ACCOUNTABILITY_COMMAND}\` - ${ACCOUNTABILITY_COMMAND_DESCRIPTION}
   \`!${ACCOUNTABILITY_EXAMPLE_COMMAND}\` - ${ACCOUNTABILITY_EXAMPLE_COMMAND_DESCRIPTION}
   \`!${CHEATSHEET_COMMAND}\` - ${CHEATSHEET_COMMAND_DESCRIPTION}
+  \`!${ANTI_CHEATSHEET_COMMAND}\` - ${ANTI_CHEATSHEET_COMMAND_DESCRIPTION}
 `;
 
 const emergencyCommandListText = `
   \`!${EMERGENCY_COMMAND}\` - ${EMERGENCY_COMMAND_DESCRIPTION}
 `;
 
-// !${SET_STREAK_COMMAND} - ${SET_STREAK_COMMAND_DESCRIPTION}
 // !${PROGRESS_COMMAND} - ${PROGRESS_COMMAND_DESCRIPTION}
 
 const accountabilityMessage = (accountabilityChannel) => new RichEmbed()
@@ -137,7 +137,7 @@ const commandListMessage = new RichEmbed()
   .setDescription("These are the commands the NeverFap Deluxe Bot will respond to.")
   .addField("Admin Commands", adminCommandListText)
   .addField("Information Commands", informationCommandListText)
-  // .addField("Emergency Commands", emergencyCommandListText)
+  .addField("Emergency Commands", emergencyCommandListText)
   .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
 
 const channelListMessage = new RichEmbed()
@@ -161,11 +161,10 @@ const emergencyMessage = new RichEmbed()
   .addField("Step 2 - Focus first on letting go of all physical tension.", "While your mind may be racing at a million miles per hour, that does not mean you still do not have direct connection to your body. Let go of all the physical tension you are feeling, first in your face, then in your arms, followed by your legs and the rest of your body. Lie down on the floor if you have to.")
   .addField("Step 3 - Focus next on slowing down your breath.", "Consciously direct your breathing, remembering to relax and remain in-control of your lungs. Slow down your breathing, consciously letting go of thoughts and tension within your mind as you breathe out.")
   .addField("Step 4 - Imagine as if time and reality has physically slowed down.", "For the next few minutes I want you to imagine that time has physically slowed down. This means that your movements have become slower. Your ability to think is also moving slower. Everything surrounding your perception is now moving at a snail's pace, including your ability to react.")
-  .addField("Step 5 - Read the emergency guide", "Now that you have the basics down, continue to follow and repeat these steps where necessary and read the emergency guide at https://neverfapdeluxe.com/emergency")
+  .addField("Step 5 - For more tips and advice please read the website", "Educating yourself and understanding why the process works can be reassuring. You may visit the website at https://neverfapdeluxe.com/")
+  // .addField("Step 5 - Read the emergency guide", "Now that you have the basics down, continue to follow and repeat these steps where necessary and read the emergency guide at https://neverfapdeluxe.com/emergency")
   .setColor(0xFF0000)
   .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
-
-// TODO: Create an anti-cheatsheet, or things not to do.
 
 const cheatsheetMessage = new RichEmbed()
   .setTitle('Healthy Coping Mechanisms Cheatsheet')

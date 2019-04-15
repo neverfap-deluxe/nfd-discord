@@ -3,7 +3,6 @@ const { RichEmbed } = require('discord.js');
 
 const {
   generateRandomNumber,
-  sendMessageHelper,
 } = require('../../util/util');
 
 const emergencyMessage1 = (emergencyChannel) => new RichEmbed().setTitle("#emergency advice").setDescription(
@@ -21,17 +20,29 @@ const automatedEmergencyMessages = async (client) => {
       const lastMessage = await emergencyChannel.fetchMessage(lastMessageID);
       if (_.get(lastMessage, 'author.id') !== process.env.NEVERFAP_DELUXE_BOT_ID) {
         const randomNumber = generateRandomNumber(1, 2);
-        switch(randomNumber) {
-          case 1:  sendMessageHelper(emergencyChannel, emergencyMessage1(emergencyChannel), 'automatedEmergencyMessages'); break;
-          case 2:  sendMessageHelper(emergencyChannel, emergencyMessage2(emergencyChannel), 'automatedEmergencyMessages'); break;
-          default: throw new Error(`automatedEmergencyMessages - generateRandomNumber - created an incorrect generator number - ${randomNumber}`);
+        try {
+          switch(randomNumber) {
+            case 1: {
+              const msg = await emergencyChannel.send(emergencyMessage1(emergencyChannel));
+              console.log(`Sent channel message: ${msg.id} - automatedEmergencyMessages`);
+              break;
+            }
+            case 2: {
+              const msg = await emergencyChannel.send(emergencyMessage2(emergencyChannel));
+              console.log(`Sent channel message: ${msg.id} - automatedEmergencyMessages`);
+              break;
+            }
+            default: throw new Error(`automatedEmergencyMessages - generateRandomNumber - created an incorrect generator number - ${randomNumber}`);
+          }  
+        } catch(error) {
+          throw new Error(`switch statement fail - send message - ${error} - automatedEmergencyMessages`);
         }
       }
     }
   } catch(error) {
     // NOTE: There is an issue (okay, it's not an 'issue' in that it's breaking anything)
     // However if lastMessageID doesn't fetch anything, then it will throw an error.
-    // throw new Error(`automatedEmergencyMessages - ${error}`);
+    throw new Error(`automatedEmergencyMessages - ${error}`);
   }
 }
 

@@ -3,7 +3,6 @@ const { RichEmbed } = require('discord.js');
 
 const {
   generateRandomNumber,
-  sendMessageHelper,
 } = require('../../util/util');
 
 const relapseMessage1 = (relapseChannel) => new RichEmbed().setTitle("#relapse advice").setDescription(
@@ -19,18 +18,30 @@ const automatedRelapseMessages = async (client) => {
     if (lastMessageID) {
       const lastMessage = await relapseChannel.fetchMessage(lastMessageID);
       if (_.get(lastMessage, 'author.id') !== process.env.NEVERFAP_DELUXE_BOT_ID) {
-        const randomNumber = generateRandomNumber(1, 1);
-        switch(randomNumber) {
-          case 1:  sendMessageHelper(relapseChannel, relapseMessage1(relapseChannel), 'automatedRelapseMessages'); break;
-          case 2:  sendMessageHelper(relapseChannel, relapseMessage2(relapseChannel), 'automatedRelapseMessages'); break;
-          default: throw new Error(`automatedRelapseMessages - generateRandomNumber - created an incorrect generator number - ${randomNumber}`);
+        const randomNumber = generateRandomNumber(1, 2);
+        try {
+          switch(randomNumber) {
+            case 1: {
+              const msg = await relapseChannel.send(relapseMessage1(relapseChannel));
+              console.log(`Sent channel message: ${msg.id} - automatedRelapseMessages`);
+              break;
+            }
+            case 2: {
+              const msg = await relapseChannel.send(relapseMessage2(relapseChannel));
+              console.log(`Sent channel message: ${msg.id} - automatedRelapseMessages`);
+              break;  
+            }
+            default: throw new Error(`automatedRelapseMessages - generateRandomNumber - created an incorrect generator number - ${randomNumber}`);
+          }  
+        } catch(error) {
+          throw new Error(`switch statement fail - send message - ${error} - automatedRelapseMessages`);
         }
       }
     }
   } catch(error) {
     // NOTE: There is an issue (okay, it's not an 'issue' in that it's breaking anything)
     // However if lastMessageID doesn't fetch anything, then it will throw an error.
-    // throw new Error(`automatedRelapseMessages - ${error}`);
+    throw new Error(`automatedRelapseMessages - ${error}`);
   }
 }
 

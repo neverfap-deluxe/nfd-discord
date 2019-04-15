@@ -3,7 +3,6 @@ const { RichEmbed } = require('discord.js');
 
 const {
   generateRandomNumber,
-  sendMessageHelper,
 } = require('../../util/util');
 
 const generalMessage1  = () => new RichEmbed().setTitle("#general advice").setDescription(
@@ -79,51 +78,197 @@ const generalMessage34 = () => new RichEmbed().setTitle("#general advice").setDe
 
 
 const automatedGeneralMessages = async (client) => {
-  const generalChannel = client.channels.get(process.env.GENERAL_CHANNEL_ID);
-  const lastMessageID = _.get(generalChannel, 'lastMessageID');
-  if (lastMessageID) {
-    const lastMessage = await generalChannel.fetchMessage(lastMessageID);
-    if (_.get(lastMessage, 'author.id') !== process.env.NEVERFAP_DELUXE_BOT_ID) {
-      const randomNumber = generateRandomNumber(1, 34);
-      
-      switch(randomNumber) {
-        case 1:  sendMessageHelper(generalChannel, generalMessage1(), 'automatedGeneralMessages'); break;
-        case 2:  sendMessageHelper(generalChannel, generalMessage2(), 'automatedGeneralMessages'); break;
-        case 3:  sendMessageHelper(generalChannel, generalMessage3(), 'automatedGeneralMessages'); break;
-        case 4:  sendMessageHelper(generalChannel, generalMessage4(), 'automatedGeneralMessages'); break;
-        case 5:  sendMessageHelper(generalChannel, generalMessage5(), 'automatedGeneralMessages'); break;
-        case 6:  sendMessageHelper(generalChannel, generalMessage6(), 'automatedGeneralMessages'); break;
-        case 7:  sendMessageHelper(generalChannel, generalMessage7(), 'automatedGeneralMessages'); break;
-        case 8:  sendMessageHelper(generalChannel, generalMessage8(), 'automatedGeneralMessages'); break;
-        case 9:  sendMessageHelper(generalChannel, generalMessage9(), 'automatedGeneralMessages'); break;
-        case 10: sendMessageHelper(generalChannel, generalMessage10(), 'automatedGeneralMessages'); break;
-        case 11: sendMessageHelper(generalChannel, generalMessage11(), 'automatedGeneralMessages'); break;
-        case 12: sendMessageHelper(generalChannel, generalMessage12(), 'automatedGeneralMessages'); break;
-        case 13: sendMessageHelper(generalChannel, generalMessage13(), 'automatedGeneralMessages'); break;
-        case 14: sendMessageHelper(generalChannel, generalMessage14(), 'automatedGeneralMessages'); break;
-        case 15: sendMessageHelper(generalChannel, generalMessage15(), 'automatedGeneralMessages'); break;
-        case 16: sendMessageHelper(generalChannel, generalMessage16(), 'automatedGeneralMessages'); break;
-        case 17: sendMessageHelper(generalChannel, generalMessage17(), 'automatedGeneralMessages'); break;
-        case 18: sendMessageHelper(generalChannel, generalMessage18(), 'automatedGeneralMessages'); break;
-        case 19: sendMessageHelper(generalChannel, generalMessage19(), 'automatedGeneralMessages'); break;
-        case 20: sendMessageHelper(generalChannel, generalMessage20(), 'automatedGeneralMessages'); break;
-        case 21: sendMessageHelper(generalChannel, generalMessage21(), 'automatedGeneralMessages'); break;
-        case 22: sendMessageHelper(generalChannel, generalMessage22(), 'automatedGeneralMessages'); break;
-        case 23: sendMessageHelper(generalChannel, generalMessage23(), 'automatedGeneralMessages'); break;
-        case 24: sendMessageHelper(generalChannel, generalMessage24(), 'automatedGeneralMessages'); break;
-        case 25: sendMessageHelper(generalChannel, generalMessage25(), 'automatedGeneralMessages'); break;
-        case 26: sendMessageHelper(generalChannel, generalMessage26(), 'automatedGeneralMessages'); break;
-        case 27: sendMessageHelper(generalChannel, generalMessage27(), 'automatedGeneralMessages'); break;
-        case 28: sendMessageHelper(generalChannel, generalMessage28(), 'automatedGeneralMessages'); break;
-        case 29: sendMessageHelper(generalChannel, generalMessage29(), 'automatedGeneralMessages'); break;
-        case 30: sendMessageHelper(generalChannel, generalMessage30(), 'automatedGeneralMessages'); break;
-        case 31: sendMessageHelper(generalChannel, generalMessage31(), 'automatedGeneralMessages'); break;
-        case 32: sendMessageHelper(generalChannel, generalMessage32(), 'automatedGeneralMessages'); break;
-        case 33: sendMessageHelper(generalChannel, generalMessage33(), 'automatedGeneralMessages'); break;
-        case 34: sendMessageHelper(generalChannel, generalMessage34(), 'automatedGeneralMessages'); break;
-        default: throw new Error(`automatedGeneralMessages - generateRandomNumber - created an incorrect generator number - ${randomNumber}`);
+  try {
+    const generalChannel = client.channels.get(process.env.GENERAL_CHANNEL_ID);
+    const lastMessageID = _.get(generalChannel, 'lastMessageID');
+    if (lastMessageID) {
+      const lastMessage = await generalChannel.fetchMessage(lastMessageID);
+      if (_.get(lastMessage, 'author.id') !== process.env.NEVERFAP_DELUXE_BOT_ID) {
+        const randomNumber = generateRandomNumber(1, 34);
+        
+        try {
+          switch(randomNumber) {
+            case 1: {
+              const msg = await generalChannel.send(generalMessage1());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 2: {
+              const msg = await generalChannel.send(generalMessage2());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 3: {
+              const msg = await generalChannel.send(generalMessage3());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 4: {
+              const msg = await generalChannel.send(generalMessage4());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 5: {
+              const msg = await generalChannel.send(generalMessage5());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 6: {
+              const msg = await generalChannel.send(generalMessage6());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 7: {
+              const msg = await generalChannel.send(generalMessage7());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 8: {
+              const msg = await generalChannel.send(generalMessage8());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 9: {
+              const msg = await generalChannel.send(generalMessage9());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 10:{
+              const msg = await generalChannel.send(generalMessage10());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 11:{
+              const msg = await generalChannel.send(generalMessage11());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 12:{
+              const msg = await generalChannel.send(generalMessage12());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 13:{
+              const msg = await generalChannel.send(generalMessage13());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 14:{
+              const msg = await generalChannel.send(generalMessage14());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 15:{
+              const msg = await generalChannel.send(generalMessage15());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 16:{
+              const msg = await generalChannel.send(generalMessage16());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 17:{
+              const msg = await generalChannel.send(generalMessage17());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 18:{
+              const msg = await generalChannel.send(generalMessage18());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 19:{
+              const msg = await generalChannel.send(generalMessage19());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 20:{
+              const msg = await generalChannel.send(generalMessage20());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 21:{
+              const msg = await generalChannel.send(generalMessage21());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 22:{
+              const msg = await generalChannel.send(generalMessage22());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 23:{
+              const msg = await generalChannel.send(generalMessage23());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 24:{
+              const msg = await generalChannel.send(generalMessage24());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 25:{
+              const msg = await generalChannel.send(generalMessage25());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 26:{
+              const msg = await generalChannel.send(generalMessage26());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 27:{
+              const msg = await generalChannel.send(generalMessage27());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 28:{
+              const msg = await generalChannel.send(generalMessage28());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 29:{
+              const msg = await generalChannel.send(generalMessage29());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 30:{
+              const msg = await generalChannel.send(generalMessage30());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 31:{
+              const msg = await generalChannel.send(generalMessage31());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 32:{
+              const msg = await generalChannel.send(generalMessage32());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 33:{
+              const msg = await generalChannel.send(generalMessage33());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            case 34:{
+              const msg = await generalChannel.send(generalMessage34());
+              console.log(`Sent channel message: ${msg.id} - automatedGeneralMessages`);
+              break;
+            }
+            default: throw new Error(`automatedGeneralMessages - generateRandomNumber - created an incorrect generator number - ${randomNumber}`);
+          }
+        } catch(error) {
+          throw new Error(`switch statement fail - send message - ${error} - automatedGeneralMessages`);
+        }
       }
     }
+  } catch(error) {
+    // NOTE: There is an issue (okay, it's not an 'issue' in that it's breaking anything)
+    // However if lastMessageID doesn't fetch anything, then it will throw an error.
+    throw new Error(`automatedGeneralMessages - ${error}`);
   }
 }
 

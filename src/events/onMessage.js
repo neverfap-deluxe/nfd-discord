@@ -11,7 +11,8 @@ const {
   ACCOUNTABILITY_COMMAND,
   ACCOUNTABILITY_EXAMPLE_COMMAND,
   CHEATSHEET_COMMAND,
-  // EMERGENCY_COMMAND,
+  ANTI_CHEATSHEET_COMMAND,
+  EMERGENCY_COMMAND,
   // PROGRESS_COMMAND,
 } = require('../const/COMMAND');
 
@@ -20,13 +21,13 @@ const {
   commandListMessage,
   channelListMessage,
   cheatsheetMessage,
+  antiCheatsheetMessage,
   accountabilityMessage,
   accountabilityExampleMessage,
-  // emergencyMessage,
+  emergencyMessage,
 } = require('../const/MESSAGE');
 
 const {
-  sendMessageHelper,
   isAccountabilityMessage,
 } = require('../util/util');
 
@@ -72,7 +73,6 @@ const accountabilityChannelActions = async (client, db_user, discordUser, channe
       const lastAccountabilityMessage = await knex('accountability_messages').where('db_users_id', db_user.id).whereBetween('created_at', [sixteenHoursBefore, today]);
       
       if (lastAccountabilityMessage.length === 0) {
-        // NOTE: I still need to figure out how to co-incide this exactly with
         validateAccountabilityPost(client, db_user, discordUser, channel, message, twitterClient, redditClient);
         insertAccountabilityMessage(client, db_user, discordUser, message, twitterClient, redditClient);
       }
@@ -80,26 +80,69 @@ const accountabilityChannelActions = async (client, db_user, discordUser, channe
   }
 }
 
-const neverFapDeluxeBotCommands = (client, channel, messageContent) => {
-  const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
+const neverFapDeluxeBotCommands = async (client, channel, messageContent) => {
+  try {
+    const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
 
-  if (messageContent.substring(0, 1) == '!') {
-    const args = messageContent.substring(1).split(' ');
-    const cmd = args[0];
-  
-    switch(cmd) {
-      case HELP_COMMAND:
-      case RULES_COMMAND: sendMessageHelper(channel, rulesMessage(accountabilityChannel), 'neverFapDeluxeBotCommands'); break;
-      case COMMANDS_COMMAND: sendMessageHelper(channel, commandListMessage, 'neverFapDeluxeBotCommands'); break;
-      case CHANNELS_COMMAND: sendMessageHelper(channel, channelListMessage, 'neverFapDeluxeBotCommands'); break;
-      case ACCOUNTABILITY_COMMAND: sendMessageHelper(channel, accountabilityMessage(accountabilityChannel), 'neverFapDeluxeBotCommands'); break;
-      case ACCOUNTABILITY_EXAMPLE_COMMAND: sendMessageHelper(channel, accountabilityExampleMessage(accountabilityChannel), 'neverFapDeluxeBotCommands'); break;
-      case CHEATSHEET_COMMAND: sendMessageHelper(channel, cheatsheetMessage, 'neverFapDeluxeBotCommands'); break;
-      // case EMERGENCY_COMMAND: sendMessageHelper(channel, emergencyMessage, 'neverFapDeluxeBotCommands'); break;
-      default:
-        sendMessageHelper(channel, "Sorry, the command doesn't exist (perhaps you put a space inbetween the `!` and the `command`). Please type `!commands` to show all available commands.", 'neverFapDeluxeBotCommands');
-        break;
+    if (messageContent.substring(0, 1) == '!') {
+      const args = messageContent.substring(1).split(' ');
+      const cmd = args[0];
+    
+      try {
+        switch(cmd) {
+          case HELP_COMMAND:
+          case RULES_COMMAND: {
+            const msg = await channel.send(rulesMessage(accountabilityChannel));
+            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            break;
+          }
+          case COMMANDS_COMMAND: {
+            const msg = await channel.send(commandListMessage);
+            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            break;
+          }
+          case CHANNELS_COMMAND: {
+            const msg = await channel.send(channelListMessage);
+            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            break;
+          }
+          case ACCOUNTABILITY_COMMAND: {
+            const msg = await channel.send(accountabilityMessage(accountabilityChannel));
+            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            break;
+          }
+          case ACCOUNTABILITY_EXAMPLE_COMMAND: {
+            const msg = await channel.send(accountabilityExampleMessage(accountabilityChannel));
+            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            break;
+          }
+          case CHEATSHEET_COMMAND: {
+            const msg = await channel.send(cheatsheetMessage);
+            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            break;
+          }
+          case ANTI_CHEATSHEET_COMMAND: {
+            const msg = await channel.send(antiCheatsheetMessage);
+            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            break;
+          }
+          case EMERGENCY_COMMAND: {
+            const msg = await channel.send(emergencyMessage);
+            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            break;
+          }
+          default: {
+            const msg = await channel.send("Sorry, the command doesn't exist (perhaps you put a space inbetween the `!` and the `command`). Please type `!commands` to show all available commands.");
+            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            break;
+          }
+        }
+      } catch(error) {
+        throw new Error(`switch statement fail - send message - ${error} - automatedEmergencyMessages`);
+      }
     }
+  } catch(error) {
+    throw new Error(`neverFapDeluxeBotCommands general error - ${error}`);
   }
 }
 

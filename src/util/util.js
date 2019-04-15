@@ -1,21 +1,3 @@
-const sendMessageHelper = async (channelOrUser, message, functionName) => {
-  try {
-    const msg = await channelOrUser.send(message);
-    console.log(`Sent channel message: ${msg.id} - ${functionName}`);
-  } catch(error) {
-    throw new Error(`sendMessageHelper - ${error} - ${functionName}`);
-  }
-}
-
-const deleteMessageHelper = async (message, functionName) => {
-  try {
-    const msg = await message.delete();
-    console.log(`Deleted message from ${msg.author.username} - ${functionName}`)
-  } catch(error) {
-    throw new Error(`deleteMessageHelper - ${error} - ${functionName}`);
-  }
-}
-
 const generateRandomNumber = (min, max) => {
   const newMin = Math.ceil(min);
   const newMax = Math.floor(max);
@@ -102,8 +84,6 @@ const configureReddit = (SnooWrap) => {
 }
 
 module.exports = {
-  sendMessageHelper,
-  deleteMessageHelper,
   configureLogger,
   generateRandomNumber,
   generateDelayValues,
