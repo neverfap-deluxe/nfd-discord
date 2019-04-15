@@ -57,12 +57,10 @@ const emergencyCommandListText = `
 // !${SET_STREAK_COMMAND} - ${SET_STREAK_COMMAND_DESCRIPTION}
 // !${PROGRESS_COMMAND} - ${PROGRESS_COMMAND_DESCRIPTION}
 
-// TODO: Pass in the actual channels so that they light-up as links inside the messages.
-
 const accountabilityMessage = (accountabilityChannel) => new RichEmbed()
   .setTitle('#accountability guidelines.')
   .setColor(0xFF0000)
-  .setDescription(`Welcome to the NeverFap Deluxe process of overcoming porn addiction!\n \nThe ${accountabilityChannel} program is a verifiable process. In other words, it is verified to work if you follow it step-by-step. Whether you do that however, is entirely up to you. I can only provide you with the system and the support; the rest is up to you.`)
+  .setDescription(`Welcome to the NeverFap Deluxe process of overcoming porn addiction!\n \nOur ${accountabilityChannel} program is a verifiable process, which is verified to work if you follow it step-by-step. Whether you do that however, is entirely up to you. I can only provide you with the system and the support; the rest is up to you.`)
   .addField(
     `The entire process takes around 90 days.`,
     `It takes approximately 90 days to overcome porn addiction. You will only succeed if you commit to the program every single day for the next 90 days. Otherwise, you will not develop the Healthy Coping Mechanisms in order to develop control over your mind.`
@@ -109,9 +107,6 @@ const accountabilityExampleMessage = (accountabilityChannel) => new RichEmbed()
   .addField("Today's date", "20/01/2018")
   .addField("List of Healthy Coping Mechanisms you practiced", "Healthy Coping Mechanisms\n- Meditated for 10 minutes\n - Completed a huge squat + deadlift workout\n - Remained calm throughout the day and really practiced to keep my mind wide and open")
   .addField("How you will improve tomorrow.", "To Improve\n - I'm going to focus on becoming more calm throughout the day\n - I want to continue learning not to take things personally, and instead take things one step at a time")
-  // .addField("Full Example.", "20/01/2018\n \n Healthy Coping Mechanisms\n- Meditated for 10 minutes\n - Completed a huge squat + deadlift workout\n - Remained calm throughout the day and really practiced to keep my mind wide and open \n \n To Improve\n - I'm going to focus on becoming more calm throughout the day\n - I want to continue learning not to take things personally, and instead take things one step at a time")
-
-
   .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
 
 const rulesMessage = (accountabilityChannel) => new RichEmbed()
@@ -142,7 +137,7 @@ const commandListMessage = new RichEmbed()
   .setDescription("These are the commands the NeverFap Deluxe Bot will respond to.")
   .addField("Admin Commands", adminCommandListText)
   .addField("Information Commands", informationCommandListText)
-  .addField("Emergency Commands", emergencyCommandListText)
+  // .addField("Emergency Commands", emergencyCommandListText)
   .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
 
 const channelListMessage = new RichEmbed()
@@ -161,10 +156,12 @@ const channelListMessage = new RichEmbed()
 
 const emergencyMessage = new RichEmbed()
   .setTitle("Official Emergency Process")
-  .setDescription("What you will read is a verifiable process. In other words, it is verified to work if you follow it step-by-step.")
-  .addField("Step 1 - Relax into your mind", "No one is effective without a calm mind, whether experiencing urges or not.")
-  .addField("Step 2 - Normalise what you're feeling", "The next step is to become comfortable with your emotions. Understand not to take them personally. They mean no harm.")
-  .addField("Step 3", "What are your list of healthy coping mechanisms? Have you practiced them yet? Now is the perfect time to work on that list.")
+  .setDescription("What you will read is a verifiable process. In other words, it is verified to work if you follow it step-by-step. Of course, in order for it to work you will need to consciously engage with your brain. It's a little irrational right now, so you need to communicate with it. Please proceed.")
+  .addField("Step 1 - Your #1 priority as of this moment is to relax.", "Your primary mission at this point is to relax, and as it stands, represents 90% of the battle you're currently facing right now. Once you calm down, you're more-or-less guaranteed not to relapse. Put simply, you cannot be effective without a calm mind, whether experiencing intense urges or not. In practical terms this means you must do whatever is necessary in order to relax yourself, whether it means going for a walk or taking a cold shower. Distractions such as playing video games or eating do not count as relaxation. Failure to truly relax will inevitably result to relapse. Don't risk it. Ever.")
+  .addField("Step 2 - Focus first on letting go of all physical tension.", "While your mind may be racing at a million miles per hour, that does not mean you still do not have direct connection to your body. Let go of all the physical tension you are feeling, first in your face, then in your arms, followed by your legs and the rest of your body. Lie down on the floor if you have to.")
+  .addField("Step 3 - Focus next on slowing down your breath.", "Consciously direct your breathing, remembering to relax and remain in-control of your lungs. Slow down your breathing, consciously letting go of thoughts and tension within your mind as you breathe out.")
+  .addField("Step 4 - Imagine as if time and reality has physically slowed down.", "For the next few minutes I want you to imagine that time has physically slowed down. This means that your movements have become slower. Your ability to think is also moving slower. Everything surrounding your perception is now moving at a snail's pace, including your ability to react.")
+  .addField("Step 5 - Read the emergency guide", "Now that you have the basics down, continue to follow and repeat these steps where necessary and read the emergency guide at https://neverfapdeluxe.com/emergency")
   .setColor(0xFF0000)
   .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
 
@@ -192,6 +189,23 @@ const cheatsheetMessage = new RichEmbed()
   .addField("Stay Hydrated", "It's important that you remain hydrated throughout the day, as that will help you better regulate your health.")
   .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.                                                                                              
 
+
+const antiCheatsheetMessage = new RichEmbed()
+  .setTitle('Unhealthy Coping Mechanisms Cheatsheet')
+  .setColor(0xFF0000)
+  .setDescription("Here are a list of Unhealthy Coping Mechanisms you that you may be committing to subconsciously. It can be helpful to be aware of these behaviours, so that we can consciously stop committing to them.")
+  .addField("Escapism", "Often we can use certain activities, such as playing video games, as a distraction from reality and our feelings. It is an indirect and ineffective way of influencing our emotions, and one that is no substitute for relaxation itself.")
+  .addField("Edging", "Edging of absolutely any kind is unhealthy, no questions asked. Even if the intention is non-sexual (such as looking at clothed pictures of women on Google) the effect on our brain from a behavioural point of view is no better than watching porn itself.")
+  .addField("Self-criticism", "Any time you self-criticise or blame yourself is when you not only react emotionally (which means losing control over your emotions) however also give up your ability to act effectively. Certainly, it is no substitute for remaining calm itself.")
+  .addField("Negative emotions", "Emotions such as anger and sadness, although powerful and sometimes unavoidable, do not serve us in any way to help us develop control over our emotions.")
+  .addField("Obsession", "Obsession is the worst offender when it comes to losing control over our emotions. There is no better way to derail than consciously deciding to obsess over something, whether it be certain emotions, feelings or even people or things in our lives.")
+  .addField("Judging others", "This is the exact same thing as self-criticism, except directed towards others. In fact, they are both different sides of the same coin, which effectively reinforce each other.")
+  .addField("Incessant Rationalsation", "Overthinking is not an appropriate response to any situation. ")
+  .addField("Over working", "Pushing ourselves too hard is both a form of obsession, as well as distraction. When you push yourself too hard, not only do you lose awarenes, however you also lose balance as well - which in most cases leads to relapse. ")
+  // .addField("", "")
+  .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.                                                                                              
+
+
 module.exports = {
   rulesMessage,
   accountabilityMessage,
@@ -200,5 +214,6 @@ module.exports = {
   emergencyMessage,
   accountabilityExampleMessage,
   cheatsheetMessage,
+  antiCheatsheetMessage,
 }
 

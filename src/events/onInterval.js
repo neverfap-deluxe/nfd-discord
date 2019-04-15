@@ -10,12 +10,14 @@ const onIntervalTenMinutes = (client) => {
 };
 const onIntervalFourHours = (client) => {
   return function (/* evt */) {
-    // automatedGeneralMessages(client);
+    automatedGeneralMessages(client);
   }
 };
 const onIntervalFiveHours = (client) => {
   return function (/* evt */) {
     automatedAccountabilityMessages(client);
+    // automatedEmergencyMessages(client);
+    // automatedRelapseMessages(client);
   }
 };
 

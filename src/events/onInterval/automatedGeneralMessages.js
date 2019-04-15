@@ -78,7 +78,6 @@ const generalMessage34 = () => new RichEmbed().setTitle("#general advice").setDe
   `If you need help, then please ask. We're all more than happy to assist and show you the way of the NeverFap.`);
 
 
-
 const automatedGeneralMessages = async (client) => {
   const generalChannel = client.channels.get(process.env.GENERAL_CHANNEL_ID);
   const lastMessageID = _.get(generalChannel, 'lastMessageID');

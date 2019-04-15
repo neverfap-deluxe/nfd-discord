@@ -11,7 +11,7 @@ const accountabilityTotalMessage1 = (/* accountability */) =>
 
 const accountabilityTotalMessage2 = (accountability) =>
 `Well, well, well. You cheeky little thing! You posted again in ${accountability}!\n
-In particular, how is your meditation going? If you've read the rules for ${accountability}, you will have noticed that meditation is absolutely mandatory. If you haven't yet had the chance, please type and enter \`!accountability\` to learn the rules. If you don't meditate, you simply will not succeed. I really don't know how else to say it, so that's why we have such a huge focus on it. For more information about meditation, as well as information on the NeverFap Deluxe porn recovery process please check out the website! :earth_asia:\n
+In particular, how is your meditation going? If you've read the rules for ${accountability}, you will have noticed that meditation is absolutely mandatory. If you haven't yet had the chance, please type and enter \`!accountability\` to learn the rules. If you don't meditate, you simply will not succeed. I really don't know how else to say it, so that's why we have such a huge focus on developing our ability to meditate. For more information about meditation, as well as information on the NeverFap Deluxe porn recovery process please check out the website! :earth_asia:\n
 https://neverfapdeluxe.com/
 `;
 const accountabilityTotalMessage3 = (accountability) =>

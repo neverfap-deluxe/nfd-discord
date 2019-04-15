@@ -80,7 +80,7 @@ const automatedAccountabilityMessages = async (client) => {
     if (lastMessageID) {
       const lastMessage = await accountabilityChannel.fetchMessage(lastMessageID);
       if (_.get(lastMessage, 'author.id') !== process.env.NEVERFAP_DELUXE_BOT_ID) {
-        const randomNumber = generateRandomNumber(0, 28);
+        const randomNumber = generateRandomNumber(1, 28);
         switch(randomNumber) {
           case 1:  sendMessageHelper(accountabilityChannel, accountabilityMessage1(accountabilityChannel), 'automatedAccountabilityMessages'); break;
           case 2:  sendMessageHelper(accountabilityChannel, accountabilityMessage2(), 'automatedAccountabilityMessages'); break;
