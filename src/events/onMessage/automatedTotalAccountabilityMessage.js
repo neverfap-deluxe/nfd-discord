@@ -162,11 +162,14 @@ const automatedTotalAccountability = async (client, dbUser, discordUser) => {
         }
       }
       // send me a confirmation message to know that the other users recieved theirs
+      try {
+        const me = await client.fetchUser(process.env.JULIUS_READE_ID);
+        const msg = await me.send(`${discordUser.username} - Day ${count} :D`);
+        console.log(`Sent julius message for ${discordUser.username} - Day ${count} :D - ${msg.id}`);
+      } catch(error) {
+        throw new Error(`send Julius confirmation message - ${error} - automatedTotalAccountability`);
+      }
 
-      // const me = await client.fetchUser(db_user.discord_id);
-
-      // const client.fetchUser()
-      // const msg = await discordUser.send(`Day ${count} :D`);
 
     } catch(error) {
       throw new Error(`switch statement fail - send message - ${error} - automatedTotalAccountability`);

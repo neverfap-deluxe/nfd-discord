@@ -62,7 +62,7 @@ const generalMessage26 = () => new RichEmbed().setTitle("#general advice").setDe
 const generalMessage27 = () => new RichEmbed().setTitle("#general advice").setDescription(
   `Focus your efforts on developing processes as opposed to rationalisations. It's better to thrive than be paralyzed.`);
 const generalMessage28 = () => new RichEmbed().setTitle("#general advice").setDescription(
-  `Developing control over our mind is important because it teach our brain what it actually needs, not what it desires.`);
+  `Developing control over our mind is important because it teaches our brain what it actually needs, not what it desires.`);
 const generalMessage29 = () => new RichEmbed().setTitle("#general advice").setDescription(
   `Make it your mission throughout the day to remain calm and collected. Oh, and sexy as well.`);
 const generalMessage30 = () => new RichEmbed().setTitle("#general advice").setDescription(
