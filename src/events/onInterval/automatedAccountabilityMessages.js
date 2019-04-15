@@ -10,7 +10,7 @@ const accountabilityMessage1 = (accountabilityChannel) => new RichEmbed().setTit
 const accountabilityMessage2 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
   `Need some help? Type and enter \`!cheatsheet\` into the channel for a list of Healthy Coping Mechanisms. :closed_book:`);
 const accountabilityMessage3 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
-  `If you're feeling urges, it means that you've lost balance and you've failed to practice remaining calm and relaxed. Thankfully practice makes perfect! :relaxed:`);
+  `If you're feeling urges, it means that you've lost balance and you're failing to remain calm and relaxed. Thankfully, practice makes perfect! :relaxed:`);
 const accountabilityMessage4 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
   `Remember, remaining calm should be your default state 95% of the time. :grin:`);
 const accountabilityMessage5 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
