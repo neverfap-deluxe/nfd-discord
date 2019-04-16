@@ -6,7 +6,7 @@ services:
     ports:
       - 2000:2000
     volumes:
-    - "/docker/letsencrypt-docker-nginx/src/discord:/usr/src/app/api/logs"
+    - "/docker/letsencrypt-docker-nginx/src/discord/logs:/usr/src/app/api/logs"
     depends_on:
       - nfd-discord-postgres
     restart: always

@@ -3,4 +3,5 @@ nginx/.env
 node_modules
 deploy_key
 
-
+logs/combined.log
+logs/error.log
