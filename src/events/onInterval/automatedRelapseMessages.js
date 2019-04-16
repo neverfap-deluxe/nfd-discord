@@ -18,9 +18,9 @@ const automatedRelapseMessages = async (client) => {
     if (lastMessageID) {
       const lastMessage = await relapseChannel.fetchMessage(lastMessageID);
       if (_.get(lastMessage, 'author.id') !== process.env.NEVERFAP_DELUXE_BOT_ID) {
-        const randomNumber = generateRandomNumber(1, 2);
+        const count = generateRandomNumber(1, 2);
         try {
-          switch(randomNumber) {
+          switch(count) {
             case 1: {
               const msg = await relapseChannel.send(relapseMessage1(relapseChannel));
               console.log(`Sent channel message: ${msg.id} - automatedRelapseMessages`);
@@ -31,7 +31,7 @@ const automatedRelapseMessages = async (client) => {
               console.log(`Sent channel message: ${msg.id} - automatedRelapseMessages`);
               break;  
             }
-            default: throw new Error(`automatedRelapseMessages - generateRandomNumber - created an incorrect generator number - ${randomNumber}`);
+            default: throw new Error(`automatedRelapseMessages - generateRandomNumber - created an incorrect generator number - ${count}`);
           }  
         } catch(error) {
           throw new Error(`switch statement fail - send message - ${error} - automatedRelapseMessages`);

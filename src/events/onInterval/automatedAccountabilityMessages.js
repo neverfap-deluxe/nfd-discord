@@ -71,159 +71,162 @@ const accountabilityMessage28 = () => new RichEmbed().setTitle("#accountability 
 // const accountabilityMessage31 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
 //   ``);
   
-const automatedAccountabilityMessages = async (client) => {
+const automatedAccountabilityMessages = async (client, logger) => {
   try {
     const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
     const lastMessageID = _.get(accountabilityChannel, 'lastMessageID')
+    const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);        
     if (lastMessageID) {
       const lastMessage = await accountabilityChannel.fetchMessage(lastMessageID);
       if (_.get(lastMessage, 'author.id') !== process.env.NEVERFAP_DELUXE_BOT_ID) {
-        const randomNumber = generateRandomNumber(1, 28);
+        const count = generateRandomNumber(1, 28);
         try {
-          switch(randomNumber) {
+          switch(count) {
             case 1:{
               const msg = await accountabilityChannel.send(accountabilityMessage1(accountabilityChannel));
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 2:  {
               const msg = await accountabilityChannel.send(accountabilityMessage2());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 3:  {
               const msg = await accountabilityChannel.send(accountabilityMessage3());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 4:  {
               const msg = await accountabilityChannel.send(accountabilityMessage4());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 5:  {
               const msg = await accountabilityChannel.send(accountabilityMessage5());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 6:  {
               const msg = await accountabilityChannel.send(accountabilityMessage6());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 7:  {
               const msg = await accountabilityChannel.send(accountabilityMessage7());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 8:  {
               const msg = await accountabilityChannel.send(accountabilityMessage8());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 9:  {
               const msg = await accountabilityChannel.send(accountabilityMessage9());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 10: {
               const msg = await accountabilityChannel.send(accountabilityMessage10());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 11: {
               const msg = await accountabilityChannel.send(accountabilityMessage11());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 12: {
               const msg = await accountabilityChannel.send(accountabilityMessage12());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 13: {
               const msg = await accountabilityChannel.send(accountabilityMessage13());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 14: {
               const msg = await accountabilityChannel.send(accountabilityMessage14());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 15: {
               const msg = await accountabilityChannel.send(accountabilityMessage15());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 16: {
               const msg = await accountabilityChannel.send(accountabilityMessage16());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 17: {
               const msg = await accountabilityChannel.send(accountabilityMessage17());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 18: {
               const msg = await accountabilityChannel.send(accountabilityMessage18());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 19: {
               const msg = await accountabilityChannel.send(accountabilityMessage19());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 20: {
               const msg = await accountabilityChannel.send(accountabilityMessage20());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 21: {
               const msg = await accountabilityChannel.send(accountabilityMessage21());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 22: {
               const msg = await accountabilityChannel.send(accountabilityMessage22());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 23: {
               const msg = await accountabilityChannel.send(accountabilityMessage23());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 24: {
               const msg = await accountabilityChannel.send(accountabilityMessage24());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 25: {
               const msg = await accountabilityChannel.send(accountabilityMessage25());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 26: {
               const msg = await accountabilityChannel.send(accountabilityMessage26());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 27: {
               const msg = await accountabilityChannel.send(accountabilityMessage27());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
             case 28: {
               const msg = await accountabilityChannel.send(accountabilityMessage28());
-              console.log(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
+              logger.info(`Sent channel message: ${msg.id} - automatedAccountabilityMessages`);
               break;
             }
-            default: throw new Error(`automatedAccountabilityMessages - generateRandomNumber - created an incorrect generator number - ${randomNumber}`);
+            default: throw new Error(`automatedAccountabilityMessages - generateRandomNumber - created an incorrect generator number - ${count}`);
           }
         } catch(error) {
+          await juliusReade.send(`switch statement fail - send message - ${error} - automatedGeneralMessages`);
+          logger.info(`switch statement fail - send message - ${error} - automatedAccountabilityMessages`);
           throw new Error(`switch statement fail - send message - ${error} - automatedAccountabilityMessages`);
         }
       }

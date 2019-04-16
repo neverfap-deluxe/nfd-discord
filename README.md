@@ -5,14 +5,8 @@ npm i -S koa pm2 knex objection pg moment node-cron dotenv discord.js winston
 knex migrate:latest
 npm start
 
-
 TODO:
-- Test removeBotMessages for commands etc. in accountability
-- Build/Test hasUserPostedRecently 
-- Test 
-
-
-
+- User summary. (into announcements). 
 
 
 // Build into the backend, Discord statistics for the users.

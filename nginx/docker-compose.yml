@@ -5,6 +5,9 @@ services:
     container_name: 'nfd-discord'
     ports:
       - 2000:2000
+    volumes:
+    - "./error.log:./error.log"
+    - "./combined.log:./combined.log"
     depends_on:
       - nfd-discord-postgres
     restart: always

@@ -4,22 +4,19 @@ These rules are super important, and I will be working with you to ensure that y
 To get started, please type \`!accountability\` into this direct chat and press enter, to learn all about the wonderful world of ${accountabilityChannel} ^^.
 `;
 
-const onGuildMemberAdd = (/* client */) => {
+const onGuildMemberAdd = (client, logger) => {
   return async function(member) {
     const channel = member.guild.channels.find(ch => ch.id === process.env.WELCOME_CHANNEL_ID);
     const accountabilityChannel = member.guild.channels.find(ch => ch.id === process.env.ACCOUNTABILITY_CHANNEL_ID);
 
     try {
       const msg = await channel.send(`Welcome to the server, ${member}!`);
-      console.log(`Sent channel message: ${msg.id} - onGuildMemberAdd - welcome channel message`);
+      logger.info(`Sent channel message: ${msg.id} - onGuildMemberAdd - welcome channel message`);
+      const msg2 = await member.send(welcomeMessage(accountabilityChannel));
+      logger.info(`Sent channel message: ${msg2.id} - onGuildMemberAdd - welcome user message`);
     } catch(error) {
-      throw new Error(`send message - ${error} - onGuildMemberAdd - welcome channel message`);
-    }
-    try {
-      const msg = await member.send(welcomeMessage(accountabilityChannel));
-      console.log(`Sent channel message: ${msg.id} - onGuildMemberAdd - welcome user message`);
-    } catch(error) {
-      throw new Error(`send message - ${error} - onGuildMemberAdd - welcome user message`);
+      logger.error(`send message - ${error} - onGuildMemberAdd`);
+      throw new Error(`send message - ${error} - onGuildMemberAdd`);
     }
   }
 }

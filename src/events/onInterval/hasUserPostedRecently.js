@@ -30,8 +30,7 @@ For further advice, please type and enter \`!help\`.
 // 72 hour messages
 const notPostedRecentlyMessage_72_1 = (db_user, accountability) => 
 `Hey ${db_user}!\n
-I hope everything is truly okay! It's the bot again. You know, that thing which will probably turn into Skynet one day and destroy the world.\n
-I'm sorry you haven't felt compelled to come back. I know it can be hard, and I respect your decision.\n
+I hope everything is truly okay! It's the bot again. You know, that thing which will probably turn into Skynet one day and destroy the world. I'm sorry you haven't felt compelled to come back. I know it can be hard, and I respect your decision.\n
 Regardless, if you're ever around, myself and the community are more-than happy to help you with your journey :D\n
 *needlessly karate chops table*\n
 For further advice, please type and enter \`!help\`.
@@ -52,8 +51,9 @@ If you ever need help with anything please contact your good mate Julius Reade. 
 For further advice, please type and enter \`!help\`.
 `;
 
-const hasUserPostedRecently = async (client) => {
+const hasUserPostedRecently = async (client, logger) => {
   try {
+    const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);  
     const db_users = await knex('db_users').select('id', 'discord_id', 'sent36HourMessage', 'sent72HourMessage');
 
     for (const db_user of db_users) {
@@ -76,32 +76,40 @@ const hasUserPostedRecently = async (client) => {
             if (accountabilityMessages.length === 0) {
               const discordUser = await client.fetchUser(db_user.discord_id);
 
-              // Update sent36HourMessage on user
-              await knex('db_users').where('id', db_user.id).update({sent36HourMessage: true});
+              if (discordUser) {
+                // Update sent36HourMessage on user
+                await knex('db_users').where('id', db_user.id).update({sent36HourMessage: true});
 
-              const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
-              const randomNumber = generateRandomNumber(1, 3);
-              try {
-                switch(randomNumber) {
-                  case 1: {
-                    const msg = await discordUser.send(notPostedRecentlyMessage_36_1(discordUser, accountabilityChannel));
-                    console.log(`Sent channel message: ${msg.id} - hasUserPostedRecently`);
-                    break;
+                const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
+                const count = generateRandomNumber(1, 3);
+                try {
+                  switch(count) {
+                    case 1: {
+                      const msg = await discordUser.send(notPostedRecentlyMessage_36_1(discordUser, accountabilityChannel));
+                      logger.info(`Sent channel message: ${msg.id} - hasUserPostedRecently`);
+                      break;
+                    }
+                    case 2: {
+                      const msg = await discordUser.send(notPostedRecentlyMessage_36_2(discordUser, accountabilityChannel));
+                      logger.info(`Sent channel message: ${msg.id} - hasUserPostedRecently`);
+                      break;
+                    }
+                    case 3: {
+                      const msg = await discordUser.send(notPostedRecentlyMessage_36_3(discordUser, accountabilityChannel));
+                      logger.info(`Sent channel message: ${msg.id} - hasUserPostedRecently`);
+                      break;
+                    }
+                    default: throw new Error(`hasUserPostedRecently - 36 hours - generateRandomNumber - created an incorrect generator number - ${count}`);
                   }
-                  case 2: {
-                    const msg = await discordUser.send(notPostedRecentlyMessage_36_2(discordUser, accountabilityChannel));
-                    console.log(`Sent channel message: ${msg.id} - hasUserPostedRecently`);
-                    break;
-                  }
-                  case 3: {
-                    const msg = await discordUser.send(notPostedRecentlyMessage_36_3(discordUser, accountabilityChannel));
-                    console.log(`Sent channel message: ${msg.id} - hasUserPostedRecently`);
-                    break;
-                  }
-                  default: throw new Error(`hasUserPostedRecently - 36 hours - generateRandomNumber - created an incorrect generator number - ${randomNumber}`);
-                }  
-              } catch(error) {
-                throw new Error(`switch statement fail - send message - ${error} - 36 hours - hasUserPostedRecently`);
+                  
+                  await juliusReade.send(`hasUserPostedRecently - ${discordUser.username} - 36 hours`);
+                  logger.info(`hasUserPostedRecently - ${discordUser.username} - 36 hours`);
+
+                } catch(error) {
+                  await juliusReade.send(`switch statement fail - send message - ${error} - 36 hours - hasUserPostedRecently`);
+                  logger.error(`switch statement fail - send message - ${error} - 36 hours - hasUserPostedRecently`);
+                  throw new Error(`switch statement fail - send message - ${error} - 36 hours - hasUserPostedRecently`);
+                }
               }
             }
           }
@@ -110,7 +118,7 @@ const hasUserPostedRecently = async (client) => {
             // Next, see if they've posted in the past 72 hours.
             const today = moment().format();
             const seventyTwoHoursBeforeToday =  process.env.MODE === 'dev' ? (
-              moment().subtract(20, 'seconds')
+              moment().subtract(15, 'seconds')
             ) : (
               moment().subtract(72, 'hours')
             );
@@ -119,40 +127,52 @@ const hasUserPostedRecently = async (client) => {
 
             if (accountabilityMessages.length === 0) {
               const discordUser = await client.fetchUser(db_user.discord_id);
+              if (discordUser) {
 
-              // Update sent72HourMessage on user
-              await knex('db_users').where('id', db_user.id).update({sent72HourMessage: true});
+                // Update sent72HourMessage on user
+                await knex('db_users').where('id', db_user.id).update({sent72HourMessage: true});
 
-              const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
-              const randomNumber = generateRandomNumber(1, 3);
-              try {
-                switch(randomNumber) {
-                  case 1: {
-                    const msg = await discordUser.send(notPostedRecentlyMessage_72_1(discordUser, accountabilityChannel));
-                    console.log(`Sent channel message: ${msg.id} - hasUserPostedRecently`);
-                    break;
-                  }
-                  case 2: {
-                    const msg = await discordUser.send(notPostedRecentlyMessage_72_2(discordUser, accountabilityChannel));
-                    console.log(`Sent channel message: ${msg.id} - hasUserPostedRecently`);
-                    break;
-                  }
-                  case 3: {
-                    const msg = await discordUser.send(notPostedRecentlyMessage_72_3(discordUser, accountabilityChannel));
-                    console.log(`Sent channel message: ${msg.id} - hasUserPostedRecently`);
-                    break;
-                  }
-                  default: throw new Error(`hasUserPostedRecently - 72 hours - generateRandomNumber - created an incorrect generator number - ${randomNumber}`);
+                const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
+                const count = generateRandomNumber(1, 3);
+
+                try {
+                  switch(count) {
+                    case 1: {
+                      const msg = await discordUser.send(notPostedRecentlyMessage_72_1(discordUser, accountabilityChannel));
+                      logger.info(`Sent channel message: ${msg.id} - hasUserPostedRecently`);
+                      break;
+                    }
+                    case 2: {
+                      const msg = await discordUser.send(notPostedRecentlyMessage_72_2(discordUser, accountabilityChannel));
+                      logger.info(`Sent channel message: ${msg.id} - hasUserPostedRecently`);
+                      break;
+                    }
+                    case 3: {
+                      const msg = await discordUser.send(notPostedRecentlyMessage_72_3(discordUser, accountabilityChannel));
+                      logger.info(`Sent channel message: ${msg.id} - hasUserPostedRecently`);
+                      break;
+                    }
+                    default: throw new Error(`hasUserPostedRecently - 72 hours - generateRandomNumber - created an incorrect generator number - ${count}`);
+                  } 
+
+                  await juliusReade.send(`hasUserPostedRecently - ${discordUser.username} - 72 hours`);
+                  logger.info(`hasUserPostedRecently - ${discordUser.username} - 72 hours`);
+
+                } catch(error) {
+                  await juliusReade.send(`switch statement fail - send message - ${error} - 72 hours - hasUserPostedRecently`);
+                  logger.error(`switch statement fail - send message - ${error} - 72 hours - hasUserPostedRecently`);
+                  throw new Error(`switch statement fail - send message - ${error} - 72 hours - hasUserPostedRecently`);
                 }  
-              } catch(error) {
-                throw new Error(`switch statement fail - send message - ${error} - 72 hours - hasUserPostedRecently`);
-              }          
+              }        
             }
           }
         }
       }
     }
   } catch(error) {
+    const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
+    await juliusReade.send(`hasUserPostedRecently - ${error}`);
+    logger.error(`hasUserPostedRecently - ${error}`);
     throw new Error(`hasUserPostedRecently - ${error}`);
   }
 }

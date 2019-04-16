@@ -12,16 +12,16 @@ const emergencyMessage2 = (emergencyChannel) => new RichEmbed().setTitle("#emerg
   `You've got this buddy! Type and enter \`!emergency\` for a step-by-step guide on relaxing and calming down.`);
   
 
-const automatedEmergencyMessages = async (client) => {
+const automatedEmergencyMessages = async (client, juliusReade) => {
   try {
     const emergencyChannel = client.channels.get(process.env.EMERGENCY_CHANNEL_ID);
     const lastMessageID = _.get(emergencyChannel, 'lastMessageID')
     if (lastMessageID) {
       const lastMessage = await emergencyChannel.fetchMessage(lastMessageID);
       if (_.get(lastMessage, 'author.id') !== process.env.NEVERFAP_DELUXE_BOT_ID) {
-        const randomNumber = generateRandomNumber(1, 2);
+        const count = generateRandomNumber(1, 2);
         try {
-          switch(randomNumber) {
+          switch(count) {
             case 1: {
               const msg = await emergencyChannel.send(emergencyMessage1(emergencyChannel));
               console.log(`Sent channel message: ${msg.id} - automatedEmergencyMessages`);
@@ -32,7 +32,7 @@ const automatedEmergencyMessages = async (client) => {
               console.log(`Sent channel message: ${msg.id} - automatedEmergencyMessages`);
               break;
             }
-            default: throw new Error(`automatedEmergencyMessages - generateRandomNumber - created an incorrect generator number - ${randomNumber}`);
+            default: throw new Error(`automatedEmergencyMessages - generateRandomNumber - created an incorrect generator number - ${count}`);
           }  
         } catch(error) {
           throw new Error(`switch statement fail - send message - ${error} - automatedEmergencyMessages`);

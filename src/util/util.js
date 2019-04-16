@@ -53,29 +53,31 @@ const configureLogger = (Winston) => {
 }
 
 const configureTwitter = (Twit) => {
-  return new Twit({
-    consumer_key:         '...',
-    consumer_secret:      '...',
-    access_token:         '...',
-    access_token_secret:  '...',
-    timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
-    strictSSL:            true,     // optional - requires SSL certificates to be valid.
-  });
+  // return new Twit({
+  //   consumer_key:         '...',
+  //   consumer_secret:      '...',
+  //   access_token:         '...',
+  //   access_token_secret:  '...',
+  //   timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
+  //   strictSSL:            true,     // optional - requires SSL certificates to be valid.
+  // });
+  return {};
 
   // I believe this is 
   // T.post('statuses/update', { status: 'hello world!' }, function(err, data, response) {
   //   console.log(data)
   // })
-  
 }
 
 const configureReddit = (SnooWrap) => {
-  return new SnooWrap({
-    userAgent: 'put your user-agent string here',
-    clientId: 'put your client id here',
-    clientSecret: 'put your client secret here',
-    refreshToken: 'put your refresh token here'
-  });
+  // return new SnooWrap({
+  //   userAgent: 'put your user-agent string here',
+  //   clientId: 'put your client id here',
+  //   clientSecret: 'put your client secret here',
+  //   refreshToken: 'put your refresh token here'
+  // });
+
+  return {};
 
   // r.getSubreddit('NeverFapDeluxe').submitLink({
   //   title: 'Mt. Cameramanjaro',

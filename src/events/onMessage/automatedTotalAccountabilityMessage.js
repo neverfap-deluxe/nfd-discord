@@ -7,7 +7,8 @@ const accountabilityTotalMessage1 = (/* accountability */) =>
 
 const accountabilityTotalMessage2 = (accountability) =>
 `Well, well, well. You cheeky little thing! You posted again in ${accountability}!\n
-In particular, how is your meditation going? If you've read the rules for ${accountability}, you will have noticed that meditation is absolutely mandatory. If you haven't yet had the chance, please type and enter \`!accountability\` to learn the rules. If you don't meditate, you simply will not succeed. I really don't know how else to say it, so that's why we have such a huge focus on developing our ability to meditate. For more information about meditation, as well as information on the NeverFap Deluxe porn recovery process please check out the website! :earth_asia:\n
+In particular, how is your meditation going? If you've read the rules for ${accountability}, you will have noticed that meditation is absolutely mandatory. If you haven't yet had the chance, please type and enter \`!accountability\` to learn the rules.\n 
+Put simply, if you don't meditate you will not succeed. That's why we have such a huge focus on developing our ability to meditate. For more information about meditation, as well as information on the NeverFap Deluxe porn recovery process please check out the website! :earth_asia:\n
 https://neverfapdeluxe.com/
 `;
 const accountabilityTotalMessage3 = (accountability) =>
@@ -77,7 +78,7 @@ Well, much like that distant past, this is much what it's going to feel like onc
 `;
 
 
-const automatedTotalAccountability = async (client, dbUser, discordUser) => {
+const automatedTotalAccountability = async (client, logger, dbUser, discordUser, juliusReade) => {
   try {
     const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
     const accountabilityMessageCount = await knex('accountability_messages').where('db_users_id', dbUser.id).count();
@@ -86,96 +87,94 @@ const automatedTotalAccountability = async (client, dbUser, discordUser) => {
     try {
       switch(count) {
         case 1: {
-          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage1(accountabilityChannel)}`);
-          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          const msg = await discordUser.send(`Day ${count}\n${accountabilityTotalMessage1(accountabilityChannel)}`);
+          logger.info(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
           break;
         }
         case 2: {
-          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage2(accountabilityChannel)}`);
-          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          const msg = await discordUser.send(`Day ${count}\n${accountabilityTotalMessage2(accountabilityChannel)}`);
+          logger.info(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
           break;
         }
         case 3: {
-          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage3(accountabilityChannel)}`);
-          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          const msg = await discordUser.send(`Day ${count}\n${accountabilityTotalMessage3(accountabilityChannel)}`);
+          logger.info(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
           break;
         }
         case 4: {
-          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage4(accountabilityChannel)}`);
-          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          const msg = await discordUser.send(`Day ${count}\n${accountabilityTotalMessage4(accountabilityChannel)}`);
+          logger.info(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
           break;
         }
         case 5: {
-          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage5(accountabilityChannel)}`);
-          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          const msg = await discordUser.send(`Day ${count}\n${accountabilityTotalMessage5(accountabilityChannel)}`);
+          logger.info(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
           break;
         }
         case 6: {
-          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage6(accountabilityChannel)}`);
-          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          const msg = await discordUser.send(`Day ${count}\n${accountabilityTotalMessage6(accountabilityChannel)}`);
+          logger.info(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
           break;
         }
         case 7: {
-          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage7(accountabilityChannel)}`);
-          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          const msg = await discordUser.send(`Day ${count}\n${accountabilityTotalMessage7(accountabilityChannel)}`);
+          logger.info(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
           break;
         }
         case 10: {
-          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage10(accountabilityChannel)}`);
-          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          const msg = await discordUser.send(`Day ${count}\n${accountabilityTotalMessage10(accountabilityChannel)}`);
+          logger.info(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
           break;
         }
         case 14: {
-          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage14(accountabilityChannel)}`);
-          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          const msg = await discordUser.send(`Day ${count}\n${accountabilityTotalMessage14(accountabilityChannel)}`);
+          logger.info(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
           break;
         }
         case 21: {
-          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage21(accountabilityChannel)}`);
-          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          const msg = await discordUser.send(`Day ${count}\n${accountabilityTotalMessage21(accountabilityChannel)}`);
+          logger.info(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
           break;
         }
         case 28: {
-          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage28(accountabilityChannel)}`);
-          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          const msg = await discordUser.send(`Day ${count}\n${accountabilityTotalMessage28(accountabilityChannel)}`);
+          logger.info(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
           break;
         }
         case 35: {
-          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage35(accountabilityChannel)}`);
-          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          const msg = await discordUser.send(`Day ${count}\n${accountabilityTotalMessage35(accountabilityChannel)}`);
+          logger.info(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
           break;
         }
         case 42: {
-          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage42(accountabilityChannel)}`);
-          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          const msg = await discordUser.send(`Day ${count}\n${accountabilityTotalMessage42(accountabilityChannel)}`);
+          logger.info(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
           break;
         }
         case 49: {
-          const msg = await discordUser.send(`Day ${count}\n ${accountabilityTotalMessage49(accountabilityChannel)}`);
-          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          const msg = await discordUser.send(`Day ${count}\n${accountabilityTotalMessage49(accountabilityChannel)}`);
+          logger.info(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
           break;
         }
         default: {
           const msg = await discordUser.send(`Day ${count} :D`);
-          console.log(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
-          break; 
+          logger.info(`Sent channel message: ${msg.id} - automatedTotalAccountability`);
+          break;
         }
       }
-      // send me a confirmation message to know that the other users recieved theirs
-      try {
-        const me = await client.fetchUser(process.env.JULIUS_READE_ID);
-        const msg = await me.send(`${discordUser.username} - Day ${count} :D`);
-        console.log(`Sent julius message for ${discordUser.username} - Day ${count} :D - ${msg.id}`);
-      } catch(error) {
-        throw new Error(`send Julius confirmation message - ${error} - automatedTotalAccountability`);
-      }
-
+      
+      await juliusReade.send(`${discordUser.username} - Day ${count} :D`);
+      logger.info(`Sent julius message for ${discordUser.username} - Day ${count} :D`);
 
     } catch(error) {
-      throw new Error(`switch statement fail - send message - ${error} - automatedTotalAccountability`);
+      await juliusReade.send(`${discordUser.username} - switch statement fail - send message - ${error} - automatedTotalAccountability`);
+      logger.error(`${discordUser.username} - Outer 1 - switch statement fail - send message - ${error} - automatedTotalAccountability`);
+      throw new Error(`${discordUser.username} - Outer 1 - switch statement fail - send message - ${error} - automatedTotalAccountability`);
     }
   } catch(error) {
-    throw new Error(`automatedTotalAccountability - ${error}`);
+    await juliusReade.send(`${discordUser.username} - Outer 0 - automatedTotalAccountability - ${error}`);
+    logger.error(`${discordUser.username} - Outer 0 - automatedTotalAccountability - ${error}`);
+    throw new Error(`${discordUser.username} - Outer 0 - automatedTotalAccountability - ${error}`);
   }
 }
 

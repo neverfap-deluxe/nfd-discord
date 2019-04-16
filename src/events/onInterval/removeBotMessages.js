@@ -6,7 +6,7 @@ const DELETE_COMMAND_DELAY = process.env.MODE === "dev" ? (
   1000 * 60 * 10 // Ten minutes.
 );
 
-const removeBotMessages = async (channels) => {
+const removeBotMessages = async (channels, logger) => {
   // NOTE: This code is if we want to remove the bot messages from EVERY channel.
   // for (const channelCollection of channels) {
   //   const channel = channelCollection[1];
@@ -18,8 +18,8 @@ const removeBotMessages = async (channels) => {
 
         if (channelMessages) {
           for (const message of channelMessages) {
-            deleteMessageIfCommand(message);
-            deleteMessageIfNeverFapDeluxeBot(message);
+            deleteMessageIfCommand(message, logger);
+            deleteMessageIfNeverFapDeluxeBot(message, logger);
           }
         }
       }
@@ -28,7 +28,7 @@ const removeBotMessages = async (channels) => {
   // }
 };
 
-const deleteMessageIfCommand = async (message) => {
+const deleteMessageIfCommand = async (message, logger) => {
   const messageContent = _.get(message, '[1].content');
   if (messageContent) {
     const isCommand = messageContent.startsWith("!");
@@ -36,7 +36,7 @@ const deleteMessageIfCommand = async (message) => {
       if ((new(Date) - new Date(message[1].created_at)) > DELETE_COMMAND_DELAY) {
         try {
           const msg = await message[1].delete();
-          console.log(`Deleted message from ${msg.author.username} - deleteMessageIfCommand`)
+          logger.info(`Deleted message from ${msg.author.username} - deleteMessageIfCommand`)
         } catch(error) {
           throw new Error(`delete message - ${error} - deleteMessageIfCommand`);
         }
@@ -45,7 +45,7 @@ const deleteMessageIfCommand = async (message) => {
   }
 };
 
-const deleteMessageIfNeverFapDeluxeBot = async (message) => {
+const deleteMessageIfNeverFapDeluxeBot = async (message, logger) => {
   const messageEmbed = _.get(message, '[1].embeds[0]');
   if (messageEmbed) {
     const messageAuthorId = _.get(message, '[1].author.id');
@@ -54,7 +54,7 @@ const deleteMessageIfNeverFapDeluxeBot = async (message) => {
         if ((new(Date) - new Date(messageEmbed.message.created_at)) > DELETE_COMMAND_DELAY) {
           try {
             const msg = await message[1].delete();
-            console.log(`Deleted message from ${msg.author.username} - deleteMessageIfNeverFapDeluxeBot`)
+            logger.info(`Deleted message from ${msg.author.username} - deleteMessageIfNeverFapDeluxeBot`)
           } catch(error) {
             throw new Error(`delete message - ${error} - deleteMessageIfNeverFapDeluxeBot`);
           }

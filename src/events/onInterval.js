@@ -2,35 +2,41 @@ const automatedAccountabilityMessages = require('./onInterval/automatedAccountab
 const automatedGeneralMessages = require('./onInterval/automatedGeneralMessages');
 const hasUserPostedRecently = require('./onInterval/hasUserPostedRecently');
 const removeBotMessages = require('./onInterval/removeBotMessages');
+// const theseUsersPostedToday = require('./onInterval/theseUsersPostedToday');
 
-const onIntervalTenMinutes = (client) => {
+const onIntervalTenMinutes = (client, logger) => {
   return function (/* evt */) {
-    removeBotMessages(client.channels);
+    removeBotMessages(client.channels, logger);
   }
 };
-const onIntervalFourHours = (client) => {
+
+const onIntervalFourHours = (client, logger) => {
   return function (/* evt */) {
-    automatedGeneralMessages(client);
+    automatedGeneralMessages(client, logger);
   }
 };
-const onIntervalFiveHours = (client) => {
+
+const onIntervalFiveHours = (client, logger) => {
   return function (/* evt */) {
-    automatedAccountabilityMessages(client);
+    automatedAccountabilityMessages(client, logger);
     // automatedEmergencyMessages(client);
     // automatedRelapseMessages(client);
   }
 };
 
-const onIntervalDayHalf = (client) => {
+const onIntervalDayHalf = (client, logger) => {
   return function (/* evt */) {
-    hasUserPostedRecently(client);
+    hasUserPostedRecently(client, logger);
   }
 };
 
-const onIntervalDay = (/* client */) => {
+const onIntervalDay = (/* client, logger */) => {
   return function (/* evt */) {
+    // const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);        
+    // theseUsersPostedToday(client, juliusReade);
   }
 };
+
 const onIntervalWeek = (/* client */) => {
   return function (/* evt */) {
   }

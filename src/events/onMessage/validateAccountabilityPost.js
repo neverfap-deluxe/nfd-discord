@@ -4,7 +4,7 @@ const {
 
 // const insertAccountabilityMessage = require('./onMessage/insertAccountabilityMessage');
 
-const validateAccountabilityPost = async (client, dbUser, discordUser, channel, message, twitterClient, redditClient) => {
+const validateAccountabilityPost = async (client, logger, dbUser, discordUser, channel, message, twitterClient, redditClient) => {
   const messageAuthor = message.author;
 
   const toImproveRegEx = new RegExp("improve", "i");
@@ -22,8 +22,9 @@ const validateAccountabilityPost = async (client, dbUser, discordUser, channel, 
   if (!doesContainToImproveRegEx /* || !doesContainHealthyCopingMechanismRegEx */) {
     try {
       const msg = await channel.send(finalChannelMessage);
-      console.log(`Sent channel message: ${msg.id} - validateAccountabilityPost`);
+      logger.info(`Sent channel message: ${msg.id} - validateAccountabilityPost`);
     } catch(error) {
+      logger.error(`sending message failed - send message - ${error} - validateAccountabilityPost`);
       throw new Error(`sending message failed - send message - ${error} - validateAccountabilityPost`);
     }
     // send message(messageAuthor, `Hey buddy!\n ${finalChannelMessage}`, 'validateAccountabilityPost');

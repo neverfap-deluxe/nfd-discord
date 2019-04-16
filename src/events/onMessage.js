@@ -34,53 +34,58 @@ const {
 const validateAccountabilityPost = require('./onMessage/validateAccountabilityPost');
 const insertAccountabilityMessage = require('./onMessage/insertAccountabilityMessage');
 
-const onMessage = (client, twitterClient, redditClient) => {
+const onMessage = (client, logger, twitterClient, redditClient) => {
   return async function (message) {
     const channel = _.get(message, 'channel');
     const messageContent = _.get(message, 'content');
     const discordUser = _.get(message, 'author');
 
-    if (channel && discordUser) {
+    if (channel && discordUser && discordUser.id !== process.env.NEVERFAP_DELUXE_BOT_ID) {
       try {
         const dbUser = await knex('db_users').where('discord_id', discordUser.id).first();
 
         if (dbUser) {
-          accountabilityChannelActions(client, dbUser, discordUser, channel, message, twitterClient, redditClient);
-          neverFapDeluxeBotCommands(client, channel, messageContent);
+          accountabilityChannelActions(client, logger, dbUser, discordUser, channel, message, twitterClient, redditClient);
+          neverFapDeluxeBotCommands(client, logger, channel, messageContent);
         } else {
           const primary_id = uuidv4();
-          const createdDbUser = await knex('db_users').returning('*').insert({ id: primary_id, discord_id: discordUser.id });
-          accountabilityChannelActions(client, createdDbUser[0], discordUser, channel, message, twitterClient, redditClient);
-          neverFapDeluxeBotCommands(client, channel, messageContent);
+          const createdDbUser = await knex('db_users').returning('*').insert({ id: primary_id, discord_id: discordUser.id, username: discordUser.username });
+          accountabilityChannelActions(client, logger, createdDbUser[0], discordUser, channel, message, twitterClient, redditClient);
+          neverFapDeluxeBotCommands(client, logger, channel, messageContent);
         }
       } catch(error) {
+        logger.error(`onMessage - ${error}`);
         throw new Error(`onMessage - ${error}`);
       }  
     }
   }
 }
 
-const accountabilityChannelActions = async (client, db_user, discordUser, channel, message, twitterClient, redditClient) => {
+const accountabilityChannelActions = async (client, logger, db_user, discordUser, channel, message, twitterClient, redditClient) => {
   if (channel.id === process.env.ACCOUNTABILITY_CHANNEL_ID) {
     if (isAccountabilityMessage(message.content)) {
       const today = moment().format();
-      const sixteenHoursBefore =  process.env.MODE === 'dev' ? (
+      const twelveHoursBefore =  process.env.MODE === 'dev' ? (
         moment().subtract(100, 'seconds')
       ) : (
-        moment().subtract(16, 'hours')
+        moment().subtract(12, 'hours')
       );
     
-      const lastAccountabilityMessage = await knex('accountability_messages').where('db_users_id', db_user.id).whereBetween('created_at', [sixteenHoursBefore, today]);
-      
-      if (lastAccountabilityMessage.length === 0) {
-        validateAccountabilityPost(client, db_user, discordUser, channel, message, twitterClient, redditClient);
-        insertAccountabilityMessage(client, db_user, discordUser, message, twitterClient, redditClient);
+      const reccentAccountabilityMessages = await knex('accountability_messages').where('db_users_id', db_user.id).whereBetween('created_at', [twelveHoursBefore, today]);
+      const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
+
+      if (reccentAccountabilityMessages.length === 0) {
+        validateAccountabilityPost(client, logger, db_user, discordUser, channel, message, twitterClient, redditClient);
+        insertAccountabilityMessage(client, logger, db_user, discordUser, message, twitterClient, redditClient, juliusReade);
+      } else {
+        logger.error(`posted in accountability too soon - ${discordUser.username}`);
+        await juliusReade.send(`posted in accountability too soon - ${discordUser.username}`);
       }
     }
   }
 }
 
-const neverFapDeluxeBotCommands = async (client, channel, messageContent) => {
+const neverFapDeluxeBotCommands = async (client, logger, channel, messageContent) => {
   try {
     const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
 
@@ -90,58 +95,60 @@ const neverFapDeluxeBotCommands = async (client, channel, messageContent) => {
     
       try {
         switch(cmd) {
-          case HELP_COMMAND:
           case RULES_COMMAND: {
             const msg = await channel.send(rulesMessage(accountabilityChannel));
-            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
             break;
           }
+          case HELP_COMMAND:
           case COMMANDS_COMMAND: {
             const msg = await channel.send(commandListMessage);
-            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
             break;
           }
           case CHANNELS_COMMAND: {
             const msg = await channel.send(channelListMessage);
-            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
             break;
           }
           case ACCOUNTABILITY_COMMAND: {
             const msg = await channel.send(accountabilityMessage(accountabilityChannel));
-            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
             break;
           }
           case ACCOUNTABILITY_EXAMPLE_COMMAND: {
             const msg = await channel.send(accountabilityExampleMessage(accountabilityChannel));
-            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
             break;
           }
           case CHEATSHEET_COMMAND: {
             const msg = await channel.send(cheatsheetMessage);
-            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
             break;
           }
           case ANTI_CHEATSHEET_COMMAND: {
             const msg = await channel.send(antiCheatsheetMessage);
-            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
             break;
           }
           case EMERGENCY_COMMAND: {
             const msg = await channel.send(emergencyMessage);
-            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
             break;
           }
           default: {
             const msg = await channel.send("Sorry, the command doesn't exist (perhaps you put a space inbetween the `!` and the `command`). Please type `!commands` to show all available commands.");
-            console.log(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
             break;
           }
         }
       } catch(error) {
+        logger.error(`switch statement fail - send message - ${error} - automatedEmergencyMessages`);
         throw new Error(`switch statement fail - send message - ${error} - automatedEmergencyMessages`);
       }
     }
   } catch(error) {
+    logger.error(`neverFapDeluxeBotCommands general error - ${error}`);
     throw new Error(`neverFapDeluxeBotCommands general error - ${error}`);
   }
 }

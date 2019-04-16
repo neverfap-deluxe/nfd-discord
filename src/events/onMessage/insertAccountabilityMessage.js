@@ -3,7 +3,7 @@ const uuidv4 = require('uuid/v4');
 
 const automatedTotalAccountabilityMessage = require('./automatedTotalAccountabilityMessage');
 
-const insertAccountabilityMessage = async (client, db_user, discordUser, message, twitterClient, redditClient) => {
+const insertAccountabilityMessage = async (client, logger, db_user, discordUser, message, twitterClient, redditClient, juliusReade) => {
   try {
     if (db_user.sent36HourMessage) {
       await knex('db_users').update({sent36HourMessage: false});
@@ -18,12 +18,14 @@ const insertAccountabilityMessage = async (client, db_user, discordUser, message
       message_id: message.id,
       db_users_id: db_user.id,
       content: message.content,
+      username: discordUser.username,
     };
 
-    const msg = await knex('accountability_messages').returning('content').insert(accountabilityObject);
-    console.log(`accountabilityMessage added to database - ${msg[0]}`);
+    await knex('accountability_messages').returning('content').insert(accountabilityObject);
+    logger.info(`accountabilityMessage added to database - ${discordUser.username}`);
+    await juliusReade.send(`accountabilityMessage added to database - ${discordUser.username}`);
 
-    automatedTotalAccountabilityMessage(client, db_user, discordUser);
+    automatedTotalAccountabilityMessage(client, logger, db_user, discordUser, juliusReade);
     
     // TODO: A function which:
     // twitterClient, redditClient
@@ -32,6 +34,8 @@ const insertAccountabilityMessage = async (client, db_user, discordUser, message
     // - Send update on my personal Twitter!
     // - Create Reddit Post All the stuff there.
   } catch(error) {
+    await juliusReade.send(`accountabilityMessage failed to add to database - ${discordUser.username} - ${error}`);
+    logger.error(`insertAccountabilityMessage - ${error}`);
     throw new Error(`insertAccountabilityMessage - ${error}`);
   }
 }
