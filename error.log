@@ -1,5 +1,0 @@
-{"message":"insertAccountabilityMessage - error: insert into \"accountability_messages\" (\"content\", \"db_users_id\", \"id\", \"message_id\", \"username\") values ($1, $2, $3, $4, $5) returning \"content\" - column \"username\" of relation \"accountability_messages\" does not exist","level":"error","service":"user-service"}
-{"message":"onMessage - error: insert into \"db_users\" (\"discord_id\", \"id\", \"username\") values ($1, $2, $3) returning * - column \"username\" of relation \"db_users\" does not exist","level":"error","service":"user-service"}
-{"message":"posted in accountability too soon - Julius Reade","level":"error","service":"user-service"}
-{"message":"posted in accountability too soon - Julius Reade","level":"error","service":"user-service"}
-{"message":"insertAccountabilityMessage - error: insert into \"accountability_messages\" (\"content\", \"db_users_id\", \"id\", \"message_id\", \"username\") values ($1, $2, $3, $4, $5) returning \"content\" - value too long for type character varying(255)","level":"error","service":"user-service"}
