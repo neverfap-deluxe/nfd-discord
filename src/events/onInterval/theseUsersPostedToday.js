@@ -26,11 +26,11 @@ const theseUsersPostedToday = async (client, logger, juliusReade) => {
   
         switch(count) {
           case 1: 
-            finalMessage += `${discordUser} - Day ${count} - First Day Dynamite!\n`; break;
+            finalMessage += `${discordUser} - Day ${count} - First Day Dynamite! :boom:\n`; break;
           case 3: 
-            finalMessage += `${discordUser} - Day ${count} - Triple Threat!\n`; break;
+            finalMessage += `${discordUser} - Day ${count} - Triple Threat!\n :stuck_out_tongue_closed_eyes:`; break;
           case 7:
-            finalMessage += `${discordUser} - Day ${count} - One Week Champion!\n`; break;
+            finalMessage += `${discordUser} - Day ${count} - One Week Champion! :lifter:\n`; break;
           case 10: 
             finalMessage += `${discordUser} - Day ${count} - 10 Day Mania!\n`; break;
           case 14: 
@@ -40,13 +40,13 @@ const theseUsersPostedToday = async (client, logger, juliusReade) => {
           case 21: 
             finalMessage += `${discordUser} - Day ${count} - 3 Week Hedonist!\n`; break;
           case 25: 
-            finalMessage += `${discordUser} - Day ${count} - Quarter Master!\n`; break;
+            finalMessage += `${discordUser} - Day ${count} - Quarter Master! :gem:\n`; break;
           case 28: 
-            finalMessage += `${discordUser} - Day ${count} - 4 Week OMFG!\n`; break;
+            finalMessage += `${discordUser} - Day ${count} - 4 Week OMFG! :bangbang:\n`; break;
           case 30: 
             finalMessage += `${discordUser} - Day ${count} - 30 Day Craze!\n`; break;
           case 35: 
-            finalMessage += `${discordUser} - Day ${count} - 5 Week Wowzer!\n`; break;
+            finalMessage += `${discordUser} - Day ${count} - 5 Week Wowzer! :punch:\n`; break;
           case 40:
             finalMessage += `${discordUser} - Day ${count} - 40 Day Domination!\n`; break;
           case 42:
@@ -54,7 +54,7 @@ const theseUsersPostedToday = async (client, logger, juliusReade) => {
           case 49:
             finalMessage += `${discordUser} - Day ${count} - 7 Week Emperor!\n`; break;
           case 50:
-            finalMessage += `${discordUser} - Day ${count} - HALF A BLOODY CENTURY!\n`; break;
+            finalMessage += `${discordUser} - Day ${count} - HALF A BLOODY CENTURY! :statue_of_liberty:\n`; break;
           default:
             finalMessage += `${discordUser} - Day ${count}\n`;
         }
@@ -64,7 +64,7 @@ const theseUsersPostedToday = async (client, logger, juliusReade) => {
     const dailyMilestonesChannel = client.channels.get(process.env.DAILY_MILESTONES_CHANNEL_ID);
     await dailyMilestonesChannel.send(finalMessage);
 
-    theseUsersReactedToday(client, logger, juliusReade);
+    // theseUsersReactedToday(client, logger, juliusReade);
 
   } catch(error) {
     await juliusReade.send(`theseUsersPostedToday - ${error}`);

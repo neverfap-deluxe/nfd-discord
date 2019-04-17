@@ -21,13 +21,18 @@ const theseUsersReactedToday = async (client, logger, juliusReade) => {
       if (db_user) {
         const discordUser = await client.fetchUser(db_user.discord_id);
 
-        // TODO, still get 24 hour time frame, not total
         const accountabilityReactCount = await knex('accountability_reacts').where('db_users_id', db_user.id).whereBetween('created_at', [twentyFourHoursBeforeToday, today]).count();
         const count = parseInt(accountabilityReactCount[0].count);
         
-        // const reactedEmojis = accountabilityReactCount.map(react => react.name);
-
-        finalMessage += `${discordUser} - ${count} reacts!\n`;  
+        // so, it actually will 
+        
+        const reactedEmojis = accountabilityReactCount.map(react => react.name).join("");
+        switch(count) {
+          case 1:
+            finalMessage += `${discordUser} - ${count} emoji react! ${reactedEmojis}\n`; break;
+          default:
+            finalMessage += `${discordUser} - ${count} emoji reacts! ${reactedEmojis}\n`;
+        }
       }
     }
     
