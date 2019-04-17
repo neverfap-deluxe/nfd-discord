@@ -29,8 +29,6 @@ const insertReact = async (client, logger, db_user, discordUser, juliusReade, me
     logger.info(`accountabilityReact added to database - ${discordUser.username} sent emoji`);
     await juliusReade.send(`accountabilityReact added to database - ${discordUser.username}`);
     
-
-    // // TODO: Maybe a function that notifies the user that someone has put an emoji on their post ^^
     const discordUserReactedTo = await client.fetchUser(_.get(db_user_reacted_to, 'discord_id'));
     discordUserReactedTo && userReactedToYourAccountabilityPost(client, logger, discordUser, discordUserReactedTo, juliusReade, emojiName);
   

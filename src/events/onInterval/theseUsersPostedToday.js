@@ -64,7 +64,7 @@ const theseUsersPostedToday = async (client, logger, juliusReade) => {
     const dailyMilestonesChannel = client.channels.get(process.env.DAILY_MILESTONES_CHANNEL_ID);
     await dailyMilestonesChannel.send(finalMessage);
 
-    // theseUsersReactedToday(client, logger, juliusReade);
+    theseUsersReactedToday(client, logger, juliusReade);
 
   } catch(error) {
     await juliusReade.send(`theseUsersPostedToday - ${error}`);

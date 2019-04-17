@@ -12,21 +12,18 @@ const theseUsersReactedToday = async (client, logger, juliusReade) => {
       moment().subtract(24, 'hours')
     );
 
-    const messageReacts = await knex('accountability_reacts').whereBetween('created_at', [twentyFourHoursBeforeToday, today]);
+    const db_users = await knex('db_users').select('id', 'discord_id');
     const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
     let finalMessage = `Oh, and an ${accountabilityChannel} emoji react update as well!\n\n`;
 
-    for (const react of messageReacts) {
-      const db_user = await knex('db_users').where('id', react.db_users_id).select('id', 'discord_id').first();
-      if (db_user) {
-        const discordUser = await client.fetchUser(db_user.discord_id);
+    for (const db_user of db_users) {
+      const discordUser = await client.fetchUser(db_user.discord_id);
+      const messageReacts = await knex('accountability_reacts').where('db_users_id', db_user.id).whereBetween('created_at', [twentyFourHoursBeforeToday, today]);
+      if (messageReacts.length > 0) {
+        const count = messageReacts.length;
 
-        const accountabilityReactCount = await knex('accountability_reacts').where('db_users_id', db_user.id).whereBetween('created_at', [twentyFourHoursBeforeToday, today]).count();
-        const count = parseInt(accountabilityReactCount[0].count);
-        
-        // so, it actually will 
-        
-        const reactedEmojis = accountabilityReactCount.map(react => react.name).join("");
+        const reactedEmojis = messageReacts.map(react => react.emoji_name).join("");
+
         switch(count) {
           case 1:
             finalMessage += `${discordUser} - ${count} emoji react! ${reactedEmojis}\n`; break;
@@ -35,9 +32,8 @@ const theseUsersReactedToday = async (client, logger, juliusReade) => {
         }
       }
     }
-    
-    const dailyMilestonesChannel = client.channels.get(process.env.DAILY_MILESTONES_CHANNEL_ID);
 
+    const dailyMilestonesChannel = client.channels.get(process.env.DAILY_MILESTONES_CHANNEL_ID);
     await dailyMilestonesChannel.send(finalMessage);
 
   } catch(error) {
