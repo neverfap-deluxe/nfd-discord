@@ -8,7 +8,6 @@ npm start
 TODO:
 - User summary. (into announcements). 
 
-
 // that is obviously what this is about.
    // a webpage for the neverfap
 
@@ -82,8 +81,6 @@ TODO:
 - .then(console.log)
 - .catch(console.error);
 
-// automated list
-// automated message which sends to #emergency if someone is posting in there for the first time within an hour, and that message hasn't yet been posted.
 
 
 // const cron = require('node-cron');
@@ -92,13 +89,6 @@ TODO:
 //   console.log('running a task every minute');
 // });
 
-
-
-
-# IDEAS
-
-- Send people messages, asking them if they meditated that day?
-- Input DM bot.
 
 
 
@@ -135,39 +125,6 @@ nfd_discord
 // send congratulations for starting their first streak!
 // send congratulations for starting their seven day streak!
 
-
-
-const accountabilityChannelId = ;
-const welcomeChannelId = ;
-const generalChannelId = ;
-const lolfapChannelId = ;
-const updatesChannelId = ;
-
-var Discord = require('discord.js');
-var logger = require('winston');
-var auth = require('./auth.json');
-
-// Configure logger settings
-logger.remove(logger.transports.Console);
-logger.add(new logger.transports.Console, {
-   colorize: true
-});
-logger.level = 'debug';
-
-// Initialize Discord Bot
-var bot = new Discord.Client({
-  token: auth.token,
-  autorun: true
-});
-
-bot.on('ready', function (evt) {
-   logger.info('Connected');
-   logger.info('Logged in as: ');
-   logger.info(bot.username + ' - (' + bot.id + ')');
-});
-
-bot.on('message', function (message) {
- // properties
 
  // message.channel
  // message.content
