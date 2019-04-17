@@ -26,7 +26,7 @@ const theseUsersPostedToday = async (client, logger, juliusReade) => {
   
         switch(count) {
           case 1: 
-            finalMessage += `${discordUser} - Day ${count} - First Day Domination!\n`; break;
+            finalMessage += `${discordUser} - Day ${count} - First Day Dynamite!\n`; break;
           case 3: 
             finalMessage += `${discordUser} - Day ${count} - Triple Threat!\n`; break;
           case 7:
@@ -48,7 +48,7 @@ const theseUsersPostedToday = async (client, logger, juliusReade) => {
           case 35: 
             finalMessage += `${discordUser} - Day ${count} - 5 Week Wowzer!\n`; break;
           case 40:
-            finalMessage += `${discordUser} - Day ${count} - 40 Day Dynamite!\n`; break;
+            finalMessage += `${discordUser} - Day ${count} - 40 Day Domination!\n`; break;
           case 42:
             finalMessage += `${discordUser} - Day ${count} - 6 Week Kaiser!\n`; break;
           case 49:
@@ -61,8 +61,8 @@ const theseUsersPostedToday = async (client, logger, juliusReade) => {
       }
     }
     
-    const announcementsChannel = client.channels.get(process.env.ANNOUNCEMENT_CHANNEL_ID);
-    await announcementsChannel.send(finalMessage);
+    const dailyMilestonesChannel = client.channels.get(process.env.DAILY_MILESTONES_CHANNEL_ID);
+    await dailyMilestonesChannel.send(finalMessage);
 
     theseUsersReactedToday(client, logger, juliusReade);
 

@@ -25,15 +25,15 @@ const theseUsersReactedToday = async (client, logger, juliusReade) => {
         const accountabilityReactCount = await knex('accountability_reacts').where('db_users_id', db_user.id).whereBetween('created_at', [twentyFourHoursBeforeToday, today]).count();
         const count = parseInt(accountabilityReactCount[0].count);
         
-        const reactedEmojis = accountabilityReactCount.map(react => react.name);
+        // const reactedEmojis = accountabilityReactCount.map(react => react.name);
 
         finalMessage += `${discordUser} - ${count} reacts!\n`;  
       }
     }
     
-    const announcementsChannel = client.channels.get(process.env.ANNOUNCEMENT_CHANNEL_ID);
+    const dailyMilestonesChannel = client.channels.get(process.env.DAILY_MILESTONES_CHANNEL_ID);
 
-    await announcementsChannel.send(finalMessage);
+    await dailyMilestonesChannel.send(finalMessage);
 
   } catch(error) {
     await juliusReade.send(`theseUsersReactedToday - ${error}`);

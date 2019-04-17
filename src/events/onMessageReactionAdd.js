@@ -8,9 +8,6 @@ const insertReact = require('./onMessageReactionAdd/insertReact');
 const onMessageReactionAdd = (client, logger) => {
   return async function (messageReaction, discordUser) { // user that applied the emoji
     try {
-      // TODO: Before we continue, we need to check if this 
-      // is a react to an accountability post. so check channel and message . 
-
       const db_user = await knex('db_users').where('discord_id', discordUser.id).first();
       const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
 
