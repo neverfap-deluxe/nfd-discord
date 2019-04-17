@@ -29,38 +29,40 @@ const removeBotMessages = async (channels, logger) => {
 };
 
 const deleteMessageIfCommand = async (message, logger) => {
-  const messageContent = _.get(message, '[1].content');
-  if (messageContent) {
-    const isCommand = messageContent.startsWith("!");
-    if (isCommand) {
-      if ((new(Date) - new Date(message[1].created_at)) > DELETE_COMMAND_DELAY) {
-        try {
-          const msg = await message[1].delete();
-          logger.info(`Deleted message from ${msg.author.username} - deleteMessageIfCommand`)
-        } catch(error) {
-          throw new Error(`delete message - ${error} - deleteMessageIfCommand`);
-        }
-      }   
+  try {
+    const messageContent = _.get(message, '[1].content');
+    if (messageContent) {
+      const isCommand = messageContent.startsWith("!");
+      if (isCommand) {
+        if ((new(Date) - new Date(message[1].created_at)) > DELETE_COMMAND_DELAY) {
+            const msg = await message[1].delete();
+            logger.info(`Deleted message from ${msg.author.username} - deleteMessageIfCommand`)
+        }   
+      }
     }
+  } catch(error) {
+    logger.error(`deleteMessageIfCommand - ${error}`);
+    throw new Error(`deleteMessageIfCommand - ${error}`);
   }
 };
 
 const deleteMessageIfNeverFapDeluxeBot = async (message, logger) => {
-  const messageEmbed = _.get(message, '[1].embeds[0]');
-  if (messageEmbed) {
-    const messageAuthorId = _.get(message, '[1].author.id');
-    if (messageAuthorId === process.env.NEVERFAP_DELUXE_BOT_ID) {
-      if (messageEmbed.title !== "#general advice" && messageEmbed.title !== "#accountability advice") {
-        if ((new(Date) - new Date(messageEmbed.message.created_at)) > DELETE_COMMAND_DELAY) {
-          try {
+  try {
+    const messageEmbed = _.get(message, '[1].embeds[0]');
+    if (messageEmbed) {
+      const messageAuthorId = _.get(message, '[1].author.id');
+      if (messageAuthorId === process.env.NEVERFAP_DELUXE_BOT_ID) {
+        if (messageEmbed.title !== "#general advice" && messageEmbed.title !== "#accountability advice") {
+          if ((new(Date) - new Date(messageEmbed.message.created_at)) > DELETE_COMMAND_DELAY) {
             const msg = await message[1].delete();
             logger.info(`Deleted message from ${msg.author.username} - deleteMessageIfNeverFapDeluxeBot`)
-          } catch(error) {
-            throw new Error(`delete message - ${error} - deleteMessageIfNeverFapDeluxeBot`);
           }
         }
       }
     }
+  } catch(error) {
+    logger.error(`deleteMessageIfCommand - ${error}`);
+    throw new Error(`deleteMessageIfNeverFapDeluxeBot - ${error}`);
   }
 };
 

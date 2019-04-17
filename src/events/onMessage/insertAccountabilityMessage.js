@@ -1,7 +1,7 @@
 const knex = require('../../db/knex');
 const uuidv4 = require('uuid/v4');
 
-const automatedTotalAccountabilityMessage = require('./automatedTotalAccountabilityMessage');
+const automatedCommitmentTallyMessages = require('./automatedCommitmentTallyMessages');
 
 const insertAccountabilityMessage = async (client, logger, db_user, discordUser, message, twitterClient, redditClient, juliusReade) => {
   try {
@@ -10,6 +10,9 @@ const insertAccountabilityMessage = async (client, logger, db_user, discordUser,
     }
     if (db_user.sent72HourMessage) {
       await knex('db_users').update({sent72HourMessage: false});
+    }
+    if (db_user.sentYesterdayPostMessage) {
+      await knex('db_users').update({sentYesterdayPostMessage: false});
     }
     
     const primary_id = uuidv4();
@@ -25,7 +28,7 @@ const insertAccountabilityMessage = async (client, logger, db_user, discordUser,
     logger.info(`accountabilityMessage added to database - ${discordUser.username}`);
     await juliusReade.send(`accountabilityMessage added to database - ${discordUser.username}`);
 
-    automatedTotalAccountabilityMessage(client, logger, db_user, discordUser, juliusReade);
+    automatedCommitmentTallyMessages(client, logger, db_user, discordUser, juliusReade);
     
     // TODO: A function which:
     // twitterClient, redditClient

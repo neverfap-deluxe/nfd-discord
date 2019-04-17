@@ -20,22 +20,18 @@ const automatedEmergencyMessages = async (client, juliusReade) => {
       const lastMessage = await emergencyChannel.fetchMessage(lastMessageID);
       if (_.get(lastMessage, 'author.id') !== process.env.NEVERFAP_DELUXE_BOT_ID) {
         const count = generateRandomNumber(1, 2);
-        try {
-          switch(count) {
-            case 1: {
-              const msg = await emergencyChannel.send(emergencyMessage1(emergencyChannel));
-              console.log(`Sent channel message: ${msg.id} - automatedEmergencyMessages`);
-              break;
-            }
-            case 2: {
-              const msg = await emergencyChannel.send(emergencyMessage2(emergencyChannel));
-              console.log(`Sent channel message: ${msg.id} - automatedEmergencyMessages`);
-              break;
-            }
-            default: throw new Error(`automatedEmergencyMessages - generateRandomNumber - created an incorrect generator number - ${count}`);
-          }  
-        } catch(error) {
-          throw new Error(`switch statement fail - send message - ${error} - automatedEmergencyMessages`);
+        switch(count) {
+          case 1: {
+            const msg = await emergencyChannel.send(emergencyMessage1(emergencyChannel));
+            console.log(`Sent channel message: ${msg.id} - automatedEmergencyMessages`);
+            break;
+          }
+          case 2: {
+            const msg = await emergencyChannel.send(emergencyMessage2(emergencyChannel));
+            console.log(`Sent channel message: ${msg.id} - automatedEmergencyMessages`);
+            break;
+          }
+          default: throw new Error(`automatedEmergencyMessages - generateRandomNumber - created an incorrect generator number - ${count}`);
         }
       }
     }

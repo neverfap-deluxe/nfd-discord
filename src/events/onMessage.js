@@ -66,7 +66,7 @@ const accountabilityChannelActions = async (client, logger, db_user, discordUser
     if (isAccountabilityMessage(message.content)) {
       const today = moment().format();
       const twelveHoursBefore =  process.env.MODE === 'dev' ? (
-        moment().subtract(100, 'seconds')
+        moment().subtract(10, 'seconds')
       ) : (
         moment().subtract(12, 'hours')
       );
@@ -78,8 +78,8 @@ const accountabilityChannelActions = async (client, logger, db_user, discordUser
         validateAccountabilityPost(client, logger, db_user, discordUser, channel, message, twitterClient, redditClient);
         insertAccountabilityMessage(client, logger, db_user, discordUser, message, twitterClient, redditClient, juliusReade);
       } else {
-        logger.error(`posted in accountability too soon - ${discordUser.username}`);
-        await juliusReade.send(`posted in accountability too soon - ${discordUser.username}`);
+        logger.error(`posted in accountability too soon, so didn't go into database - ${discordUser.username}`);
+        await juliusReade.send(`posted in accountability too soon, so didn't go into database - ${discordUser.username}`);
       }
     }
   }
@@ -93,63 +93,58 @@ const neverFapDeluxeBotCommands = async (client, logger, channel, messageContent
       const args = messageContent.substring(1).split(' ');
       const cmd = args[0];
     
-      try {
-        switch(cmd) {
-          case RULES_COMMAND: {
-            const msg = await channel.send(rulesMessage(accountabilityChannel));
-            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
-            break;
-          }
-          case HELP_COMMAND:
-          case COMMANDS_COMMAND: {
-            const msg = await channel.send(commandListMessage);
-            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
-            break;
-          }
-          case CHANNELS_COMMAND: {
-            const msg = await channel.send(channelListMessage);
-            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
-            break;
-          }
-          case ACCOUNTABILITY_COMMAND: {
-            const msg = await channel.send(accountabilityMessage(accountabilityChannel));
-            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
-            break;
-          }
-          case ACCOUNTABILITY_EXAMPLE_COMMAND: {
-            const msg = await channel.send(accountabilityExampleMessage(accountabilityChannel));
-            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
-            break;
-          }
-          case CHEATSHEET_COMMAND: {
-            const msg = await channel.send(cheatsheetMessage);
-            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
-            break;
-          }
-          case ANTI_CHEATSHEET_COMMAND: {
-            const msg = await channel.send(antiCheatsheetMessage);
-            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
-            break;
-          }
-          case EMERGENCY_COMMAND: {
-            const msg = await channel.send(emergencyMessage);
-            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
-            break;
-          }
-          default: {
-            const msg = await channel.send("Sorry, the command doesn't exist (perhaps you put a space inbetween the `!` and the `command`). Please type `!commands` to show all available commands.");
-            logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
-            break;
-          }
+      switch(cmd) {
+        case RULES_COMMAND: {
+          const msg = await channel.send(rulesMessage(accountabilityChannel));
+          logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+          break;
         }
-      } catch(error) {
-        logger.error(`switch statement fail - send message - ${error} - automatedEmergencyMessages`);
-        throw new Error(`switch statement fail - send message - ${error} - automatedEmergencyMessages`);
+        case HELP_COMMAND:
+        case COMMANDS_COMMAND: {
+          const msg = await channel.send(commandListMessage);
+          logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+          break;
+        }
+        case CHANNELS_COMMAND: {
+          const msg = await channel.send(channelListMessage);
+          logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+          break;
+        }
+        case ACCOUNTABILITY_COMMAND: {
+          const msg = await channel.send(accountabilityMessage(accountabilityChannel));
+          logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+          break;
+        }
+        case ACCOUNTABILITY_EXAMPLE_COMMAND: {
+          const msg = await channel.send(accountabilityExampleMessage(accountabilityChannel));
+          logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+          break;
+        }
+        case CHEATSHEET_COMMAND: {
+          const msg = await channel.send(cheatsheetMessage);
+          logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+          break;
+        }
+        case ANTI_CHEATSHEET_COMMAND: {
+          const msg = await channel.send(antiCheatsheetMessage);
+          logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+          break;
+        }
+        case EMERGENCY_COMMAND: {
+          const msg = await channel.send(emergencyMessage);
+          logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+          break;
+        }
+        default: {
+          const msg = await channel.send("Sorry, the command doesn't exist (perhaps you put a space inbetween the `!` and the `command`). Please type `!commands` to show all available commands.");
+          logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+          break;
+        }
       }
     }
   } catch(error) {
-    logger.error(`neverFapDeluxeBotCommands general error - ${error}`);
-    throw new Error(`neverFapDeluxeBotCommands general error - ${error}`);
+    logger.error(`neverFapDeluxeBotCommands - ${error}`);
+    throw new Error(`neverFapDeluxeBotCommands - ${error}`);
   }
 }
 

@@ -24,18 +24,24 @@ const {
 
 const {
   WELCOME_CHANNEL_NAME,
-  GENERAL_CHANNEL_NAME,
+  RECOVERY_CHANNEL_NAME,
+  RANDOM_CHANNEL_NAME,
   ACCOUNTABILITY_CHANNEL_NAME,
-  LOLFAP_CHANNEL_NAME,
+  ASK_JULIUS_CHANNEL_NAME,
   ANNOUNCEMENT_CHANNEL_NAME,
+  POST_RELAPSE_CHANNEL_NAME,
   EMERGENCY_CHANNEL_NAME,
+  SERVER_SUGGESTIONS_CHANNEL_NAME,
 
   WELCOME_CHANNEL_DESCRIPTION,
-  GENERAL_CHANNEL_DESCRIPTION,
+  RECOVERY_CHANNEL_DESCRIPTION,
+  RANDOM_CHANNEL_DESCRIPTION,
   ACCOUNTABILITY_CHANNEL_DESCRIPTION,
-  LOLFAP_CHANNEL_DESCRIPTION,
+  ASK_JULIUS_CHANNEL_DESCRIPTION,
   ANNOUNCEMENT_CHANNEL_DESCRIPTION,
+  POST_RELAPSE_CHANNEL_DESCRIPTION,
   EMERGENCY_CHANNEL_DESCRIPTION,
+  SERVER_SUGGESTIONS_CHANNEL_DESCRIPTION,
 } = require('./CHANNEL');
 
 const adminCommandListText = `
@@ -56,6 +62,33 @@ const emergencyCommandListText = `
 `;
 
 // !${PROGRESS_COMMAND} - ${PROGRESS_COMMAND_DESCRIPTION}
+
+
+const commandListMessage = new RichEmbed()
+  .setTitle("Command List")
+  .setColor(0xFF0000)
+  .setDescription("These are the commands the NeverFap Deluxe Bot will respond to.")
+  .addField("Admin Commands", adminCommandListText)
+  .addField("Information Commands", informationCommandListText)
+  .addField("Emergency Commands", emergencyCommandListText)
+  .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
+
+
+const channelListMessage = new RichEmbed()
+  .setTitle("NeverFap Deluxe Discord Channel List")
+  .setColor(0xFF0000)
+  .setDescription("These are the NeverFap Deluxe Channels.")
+  .addField(`#${WELCOME_CHANNEL_NAME}`, `${WELCOME_CHANNEL_DESCRIPTION}`)
+  .addField(`#${RECOVERY_CHANNEL_NAME}`, `${RECOVERY_CHANNEL_DESCRIPTION}`)
+  .addField(`#${RANDOM_CHANNEL_NAME}`, `${RANDOM_CHANNEL_DESCRIPTION}`)
+  .addField(`#${ACCOUNTABILITY_CHANNEL_NAME}`, `${ACCOUNTABILITY_CHANNEL_DESCRIPTION}`)
+  .addField(`#${ASK_JULIUS_CHANNEL_NAME}`, `${ASK_JULIUS_CHANNEL_DESCRIPTION}`)
+  .addField(`#${ANNOUNCEMENT_CHANNEL_NAME}`, `${ANNOUNCEMENT_CHANNEL_DESCRIPTION}`)
+  .addField(`#${POST_RELAPSE_CHANNEL_NAME}`, `${POST_RELAPSE_CHANNEL_DESCRIPTION}`)
+  .addField(`#${EMERGENCY_CHANNEL_NAME}`, `${EMERGENCY_CHANNEL_DESCRIPTION}`)
+  .addField(`#${SERVER_SUGGESTIONS_CHANNEL_NAME}`, `${SERVER_SUGGESTIONS_CHANNEL_DESCRIPTION}`)
+  .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
+
 
 const accountabilityMessage = (accountabilityChannel) => new RichEmbed()
   .setTitle('#accountability guidelines.')
@@ -109,6 +142,7 @@ const accountabilityExampleMessage = (accountabilityChannel) => new RichEmbed()
   .addField("How you will improve tomorrow.", "To Improve\n - I'm going to focus on becoming more calm throughout the day\n - I want to continue learning not to take things personally, and instead take things one step at a time")
   .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
 
+
 const rulesMessage = (accountabilityChannel) => new RichEmbed()
   .setTitle('The NeverFap Deluxe Discord Server Rules')
   .setColor(0xFF0000)
@@ -127,33 +161,9 @@ const rulesMessage = (accountabilityChannel) => new RichEmbed()
     `Otherwise, have fun!`,
     `We are a very friendly community. Feel free to chat amongst yourselves and support each other!`
   )
-
   .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
 
-
-const commandListMessage = new RichEmbed()
-  .setTitle("Command List")
-  .setColor(0xFF0000)
-  .setDescription("These are the commands the NeverFap Deluxe Bot will respond to.")
-  .addField("Admin Commands", adminCommandListText)
-  .addField("Information Commands", informationCommandListText)
-  .addField("Emergency Commands", emergencyCommandListText)
-  .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
-
-const channelListMessage = new RichEmbed()
-  .setTitle("NeverFap Deluxe Discord Channel List")
-  .setColor(0xFF0000)
-  .setDescription("These are the NeverFap Deluxe Channels.")
-  .addField(`#${WELCOME_CHANNEL_NAME}`, `${WELCOME_CHANNEL_DESCRIPTION}`)
-  .addField(`#${GENERAL_CHANNEL_NAME}`, `${GENERAL_CHANNEL_DESCRIPTION}`)
-  .addField(`#${ACCOUNTABILITY_CHANNEL_NAME}`, `${ACCOUNTABILITY_CHANNEL_DESCRIPTION}`)
-  .addField(`#${LOLFAP_CHANNEL_NAME}`, `${LOLFAP_CHANNEL_DESCRIPTION}`)
-  .addField(`#${ANNOUNCEMENT_CHANNEL_NAME}`, `${ANNOUNCEMENT_CHANNEL_DESCRIPTION}`)
-  .addField(`#${EMERGENCY_CHANNEL_NAME}`, `${EMERGENCY_CHANNEL_DESCRIPTION}`)
-  .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
-
-// TODO: Proper emergency message
-
+  
 const emergencyMessage = new RichEmbed()
   .setTitle("Official Emergency Process")
   .setDescription("What you will read is a verifiable process. In other words, it is verified to work if you follow it step-by-step. Of course, in order for it to work you will need to consciously engage with your brain. It's a little irrational right now, so you need to communicate with it. Please proceed.")
@@ -165,6 +175,7 @@ const emergencyMessage = new RichEmbed()
   // .addField("Step 5 - Read the emergency guide", "Now that you have the basics down, continue to follow and repeat these steps where necessary and read the emergency guide at https://neverfapdeluxe.com/emergency")
   .setColor(0xFF0000)
   .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
+
 
 const cheatsheetMessage = new RichEmbed()
   .setTitle('Healthy Coping Mechanisms Cheatsheet')
@@ -200,8 +211,7 @@ const antiCheatsheetMessage = new RichEmbed()
   .addField("Obsession", "Obsession is the worst offender when it comes to losing control over our emotions. There is no better way to derail than consciously deciding to obsess over something, whether it be certain emotions, feelings or even people or things in our lives.")
   .addField("Judging others", "This is the exact same thing as self-criticism, except directed towards others. In fact, they are both different sides of the same coin, which effectively reinforce each other.")
   .addField("Incessant Rationalsation", "Overthinking is not an appropriate response to any situation. ")
-  .addField("Over working", "Pushing ourselves too hard is both a form of obsession, as well as distraction. When you push yourself too hard, not only do you lose awarenes, however you also lose balance as well - which in most cases leads to relapse. ")
-  // .addField("", "")
+  .addField("Overworking", "Pushing ourselves too hard is both a form of obsession, as well as distraction. When you push yourself too hard, not only do you lose awarenes, however you also lose balance as well - which in most cases leads to relapse. ")
   .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.                                                                                              
 
 

@@ -3,20 +3,26 @@
 const uuidv4 = require('uuid/v4');
 const knex = require('../db/knex');
 
-const onMessageReactionAdd = (client) => {
-  return async function (messageReaction, discordUser) {
-    try {
-      // user that applied the emoji
-      const dbUser = await knex('db_users').where('discord_id', discordUser.id).first();
+const insertReact = require('./onMessageReactionAdd/insertReact');
 
-      if (dbUser) {
-        // add them to database.
+const onMessageReactionAdd = (client, logger) => {
+  return async function (messageReaction, discordUser) { // user that applied the emoji
+    try {
+      // TODO: Before we continue, we need to check if this 
+      // is a react to an accountability post. so check channel and message . 
+
+      const db_user = await knex('db_users').where('discord_id', discordUser.id).first();
+      const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
+
+      if (db_user) {
+        insertReact(client, logger, db_user, discordUser, juliusReade, messageReaction);
       } else {
-      const primary_id = uuidv4();
-      const createdDbUser = await knex('db_users').returning('*').insert({ id: primary_id, discord_id: discordUser.id });
-        // add them to database.
+        const primary_id = uuidv4();
+        const created_db_user = await knex('db_users').returning('*').insert({ id: primary_id, discord_id: discordUser.id, username: discordUser.username });
+        insertReact(client, logger, created_db_user, discordUser, juliusReade, messageReaction);
       }
     } catch(error) {
+      logger.error(`onMessageReactionAdd - ${error}`);
       throw new Error(`onMessageReactionAdd - ${error}`);
     }  
   }

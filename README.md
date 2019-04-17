@@ -1,12 +1,45 @@
 # nfd_discord
 
-npm i -S koa pm2 knex objection pg moment node-cron dotenv discord.js winston
+npm i -S koa pm2 knex objection pg moment node-cron dotenv discord.js winston koa-static nodemailer aws-sdk
 
 knex migrate:latest
 npm start
 
 TODO:
 - User summary. (into announcements). 
+
+
+// that is obviously what this is about.
+   // a webpage for the neverfap
+
+   // Emergency page needs to be created.
+   // Post-Relapse page needs to be created.
+   
+   discord-bot.neverfapdeluxe.com/
+   // setup SSL for domain.
+   // setup amazon SES
+   // koa can return a single webpage.
+   // nodemailer.
+
+   // setup a domain.
+   // create a hugo website for
+   // setup with netlify.
+   // marko with
+   // Welcome message needs to include the website link
+
+   // Users can provide their email, for updates.
+   // so the bot captures keeps a tally of milestones.
+   // reminder to post emoji's onto people's posts. If they haven't done it in a while.
+   // at a certain point, it'll just start
+
+   // random-chat automated Messages. Hmmm,
+
+   // Does anyone want some candy? *creepily licks lips*
+   // Hey! Hands away from those pants! I know where you live buddy, so don't make me get all chop-suey on you! *hiiiiii-yaaa*
+   // Addiction is hard, but remaining an addict is even harder. Meditate today and set yourself free.
+   // If you're struggling to meditate, I would highly recommend checking out some guided meditations. There's a heap of different resources out there, however I personally
+   // If you struggle to relax, then that within itself is the problem.
+
 
 
 // Build into the backend, Discord statistics for the users.
