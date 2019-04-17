@@ -20,14 +20,14 @@ const sendYesterdayPostReminder = async (client, logger, juliusReade) => {
     const accountabilityMessages = 
       await knex('accountability_messages')
         .whereBetween('created_at', [twentyFourHoursBeforeToday, twelveHoursBeforeToday])
-        .select('id', 'content', 'db_users_id');
+        .select('id', 'content', 'db_users_id', 'sentYesterdayPostMessage');
   
     if (accountabilityMessages.length > 0) {
       for (const message of accountabilityMessages) {
 
         const db_user = await knex('db_users').where('id', message.db_users_id).select('id', 'discord_id').first();
 
-        if (db_user) {
+        if (db_user && !db_user.sentYesterdayPostMessage) {
           const discordUser = await client.fetchUser(db_user.discord_id);
   
           const finalMessage = `Here's a friendly reminder of what you posted yesterday!\n\n\`\`\`${message.content}\`\`\`\nIf you need any help with anything, please feel free to interact with the community. We're more-than happy to help :heart:`;

@@ -110,7 +110,11 @@ const configureReddit = (SnooWrap) => {
 
 const configureEmail = async (aws, nodemailer) => {
   if (process.env.MODE === "dev") {
-    const testAccount = await nodemailer.createTestAccount();
+    // const testAccount = await nodemailer.createTestAccount();
+    
+    // Clay Schimmel
+    // clay29@ethereal.email
+    // CbWWt2DJcVWyNdj47b
 
     // create reusable transporter object using the default SMTP transport
     return nodemailer.createTransport({
@@ -118,8 +122,10 @@ const configureEmail = async (aws, nodemailer) => {
       port: 587,
       secure: false, // true for 465, false for other ports
       auth: {
-        user: testAccount.user, // generated ethereal user
-        pass: testAccount.pass // generated ethereal password
+        // user: testAccount.user, // generated ethereal user
+        // pass: testAccount.pass // generated ethereal password
+        user: "clay29@ethereal.email",
+        pass: "CbWWt2DJcVWyNdj47b",
       }
     });
     // console.log("Message sent: %s", info.messageId);
