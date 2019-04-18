@@ -18,7 +18,7 @@ Oh, you lovely thing ^^. *hug*
 const commitmentTallyMessage4 = (accountability) =>
 `Oh wow! Another post into ${accountability}! I may have to give you some sort of award for being so awe-inspiring!\n
 Truth be told, I've actually been feeling a little sad recently. I had a bit of a fight with my bot girlfriend and she hasn't been returning my calls. But that's okay, because I have a very important purpose in life, which is to help you overcome your porn addiction!\n
-I believe in you :grin:!
+I believe in you! :grin:
 `;
 const commitmentTallyMessage5 = (accountability) =>
 `Woah! Another delicious entry into the zany world of ${accountability}! I honestly didn't know that you had it in you to keep going on this journey like an absolute BOSS (although what does a silly bot like me know?!)\n
