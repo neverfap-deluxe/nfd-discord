@@ -6,13 +6,13 @@ const automatedCommitmentTallyMessages = require('./automatedCommitmentTallyMess
 const insertAccountabilityMessage = async (client, logger, db_user, discordUser, message, twitterClient, redditClient, juliusReade) => {
   try {
     if (db_user.sent36HourMessage) {
-      await knex('db_users').update({sent36HourMessage: false});
+      await knex('db_users').where('id', db_user.id).update({sent36HourMessage: false});
     }
     if (db_user.sent72HourMessage) {
-      await knex('db_users').update({sent72HourMessage: false});
+      await knex('db_users').where('id', db_user.id).update({sent72HourMessage: false});
     }
     if (db_user.sentYesterdayPostMessage) {
-      await knex('db_users').update({sentYesterdayPostMessage: false});
+      await knex('db_users').where('id', db_user.id).update({sentYesterdayPostMessage: false});
     }
     
     const primary_id = uuidv4();
@@ -26,7 +26,7 @@ const insertAccountabilityMessage = async (client, logger, db_user, discordUser,
 
     await knex('accountability_messages').returning('content').insert(accountabilityObject);
     logger.info(`accountabilityMessage added to database - ${discordUser.username}`);
-    await juliusReade.send(`accountabilityMessage added to database - ${discordUser.username}`);
+    // await juliusReade.send(`accountabilityMessage added to database - ${discordUser.username}`);
 
     automatedCommitmentTallyMessages(client, logger, db_user, discordUser, juliusReade);
     

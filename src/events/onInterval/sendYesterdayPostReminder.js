@@ -28,15 +28,14 @@ const sendYesterdayPostReminder = async (client, logger, juliusReade) => {
         const db_user = await knex('db_users').where('id', message.db_users_id).select('id', 'discord_id', 'sentYesterdayPostMessage').first();
 
         if (db_user && !db_user.sentYesterdayPostMessage) {
-          const discordUser = await client.fetchUser(db_user.discord_id);
-  
+          await knex('db_users').where('id', db_user.id).update({sentYesterdayPostMessage: true});  
+
+          const discordUser = await client.fetchUser(db_user.discord_id);  
           const finalMessage = `Here's a friendly reminder of what you posted yesterday!\n\n\`\`\`${message.content}\`\`\`\nIf you need any help with anything, please feel free to interact with the community. We're more-than happy to help :heart:`;
     
           await discordUser.send(finalMessage)
           await juliusReade.send(`${discordUser.username} - yesterday post sent`);
           logger.info(`${discordUser.username} - yesterday post sent`)
-    
-          await knex('db_users').where('id', db_user.id).update({sentYesterdayPostMessage: true});  
         } 
       }  
     }
