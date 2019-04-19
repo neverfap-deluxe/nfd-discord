@@ -59,7 +59,7 @@ const processUsersPostedToday = async (client, logger, juliusReade, today1128, t
         case 1: 
           finalMessage += `${discordUser} - Day ${count} - First Day Dynamite! :boom:\n`; break;
         case 3: 
-          finalMessage += `${discordUser} - Day ${count} - Triple Threat!\n :stuck_out_tongue_closed_eyes:`; break;
+          finalMessage += `${discordUser} - Day ${count} - Triple Threat! :stuck_out_tongue_closed_eyes:\n`; break;
         case 7:
           finalMessage += `${discordUser} - Day ${count} - One Week Champion! :lifter:\n`; break;
         case 10: 

@@ -47,8 +47,7 @@ Seriously, you're now in the top 5% of the people participating in this program,
 Regardless, you're excellent :D 
 `;
 const commitmentTallyMessage21 = (accountability) =>
-// TODO Check leaf emoji.
-`Wow! You've now been at this for 3 weeks now! That's absolutely outstanding! I'd buy you a Pizza to celebrate, but we're all about healthy coping mechanisms and so unfortunately, you get this lettuce leaf instead. :leaf:\n
+`Wow! You've now been at this for 3 weeks now! That's absolutely outstanding! I'd buy you a Pizza to celebrate, but we're all about healthy coping mechanisms and so unfortunately, you get this lettuce leaf instead. :leaves:\n
 In particular, how are you feeling now that you've been committing to these practices for a few weeks now? Do you feel more in control of your emotions? Do you want to just sell everything and give it all to Julius Reade?\n
 Yes. You have put too much faith into me, and I am now in control of your mind. You will do everything I say. I want you to proceed to sell the house and give all the dollars to Julius Reade. Yes. Give it all! Give it all to me!!! Muahahahaa...\n
 I'm just joshin' around. You're doing great, kid.

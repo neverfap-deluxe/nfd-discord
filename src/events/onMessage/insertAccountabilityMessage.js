@@ -2,6 +2,7 @@ const knex = require('../../db/knex');
 const uuidv4 = require('uuid/v4');
 
 const automatedCommitmentTallyMessages = require('./automatedCommitmentTallyMessages');
+// const automatedUpvotePost = require('./automatedUpvotePost');
 
 const insertAccountabilityMessage = async (client, logger, db_user, discordUser, message, twitterClient, redditClient, juliusReade) => {
   try {
@@ -29,7 +30,8 @@ const insertAccountabilityMessage = async (client, logger, db_user, discordUser,
     // await juliusReade.send(`accountabilityMessage added to database - ${discordUser.username}`);
 
     automatedCommitmentTallyMessages(client, logger, db_user, discordUser, juliusReade);
-    
+    // automatedUpvotePost
+
     // TODO: A function which:
     // twitterClient, redditClient
     // - Check total messages of the user.

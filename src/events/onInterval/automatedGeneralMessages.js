@@ -55,8 +55,6 @@ const generalMessage24 = () => new RichEmbed().setTitle("#general advice").setDe
   `Blame isn’t a constructive method of self-improvement. Processes on the other hand are. :date:`);
 const generalMessage25 = () => new RichEmbed().setTitle("#general advice").setDescription(
   `Cravings don’t just appear out of thin air. Cravings are the result of an uncalm mind. :sweat:`);
-
-// TODO: Emojis
 const generalMessage26 = () => new RichEmbed().setTitle("#general advice").setDescription(
   `When your mind is uncalm you lose focus. Which results in losing balance, which inevitably results in relapse. Focus on your mental health and everything else will follow. :yum:`);
 const generalMessage27 = () => new RichEmbed().setTitle("#general advice").setDescription(
@@ -88,9 +86,11 @@ const generalMessage34 = () => new RichEmbed().setTitle("#general advice").setDe
 // const generalMessage40 = () => new RichEmbed().setTitle("#general advice").setDescription(
 //   ``);
 
-
 const automatedGeneralMessages = async (client, logger, juliusReade) => {
   try {
+    // TODO: Switch statement util which returns all channel IDs depending on channel_type
+    // TODO: Sending messages in both random and recovery.
+
     const generalChannel = client.channels.get(process.env.RECOVERY_CHANNEL_ID);
     const lastMessageID = _.get(generalChannel, 'lastMessageID');
     if (lastMessageID) {
