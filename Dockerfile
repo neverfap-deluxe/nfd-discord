@@ -1,4 +1,5 @@
-FROM node:10.12.0-alpine as build-deps
+# FROM node:10.12.0-alpine as build-deps
+FROM keymetrics/pm2:latest-alpine as build-deps
 
 ENV NODE_ENV=production
 ENV NODE_PATH=/usr/src/app/api/node_modules
