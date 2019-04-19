@@ -7,7 +7,7 @@
     "start": "node src/index.js",
     "debug": "node --inspect src/index.js",
     "other-deploy": "node src/index.js",
-    "deploy": "ls && npx knex migrate:latest --knexfile=./knexfile.js --env production && pm2-runtime start ecosystem.config.js",
+    "deploy": "ls && npx knex migrate:latest --knexfile=./knexfile.js --env production && npx pm2-runtime start ecosystem.config.js",
     "lint": "npx eslint src/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
