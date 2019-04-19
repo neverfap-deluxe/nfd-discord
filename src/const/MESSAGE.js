@@ -130,7 +130,7 @@ const accountabilityMessage = (accountabilityChannel) => new RichEmbed()
     `For additional information, please check the website.`,
     `The website contain a wealth of information on how best to approach your porn addiction recovery https://neverfapdeluxe.com/` // however there is a specifc page dedicated towards ${accountabilityChannel} rules https://neverfapdeluxe.com/accountability-program/ 
   )
-  .setFooter(`NeverFap Deluxe Bot`, `https://neverfapdeluxe.com/images/logo.png`) // This message will self-delete within 5 minutes ^^.
+  .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
 
 
 const accountabilityExampleMessage = (accountabilityChannel) => new RichEmbed()

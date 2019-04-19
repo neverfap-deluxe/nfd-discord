@@ -14,8 +14,9 @@ const onIntervalTenMinutes = (client, logger) => {
 
 const onIntervalOneHour = (client, logger) => {
   return async function (/* evt */) {
-    // const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
-    // sendYesterdayPostReminder(client, logger, juliusReade);
+    const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
+    sendYesterdayPostReminder(client, logger, juliusReade);
+    theseUsersPostedToday(client, logger, juliusReade);
   }
 };
 
@@ -44,8 +45,7 @@ const onIntervalDayHalf = (client, logger) => {
 
 const onIntervalDay = (client, logger) => {
   return async function (/* evt */) {
-    const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
-    theseUsersPostedToday(client, logger, juliusReade);
+    // const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
   }
 };
 

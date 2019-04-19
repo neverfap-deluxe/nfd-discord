@@ -1,9 +1,10 @@
 // const _ = require('lodash');
 const moment = require('moment');
+const uuidv4 = require('uuid/v4');
 
 const knex = require('../../db/knex');
 
-const theseUsersReactedToday = async (client, logger, juliusReade) => {
+const theseUsersReactedToday = async (client, logger, juliusReade, today1128, today1232) => {
   try {
     const today = moment().format();
     const twentyFourHoursBeforeToday =  process.env.MODE === 'dev' ? (
@@ -35,6 +36,13 @@ const theseUsersReactedToday = async (client, logger, juliusReade) => {
 
     const dailyMilestonesChannel = client.channels.get(process.env.DAILY_MILESTONES_CHANNEL_ID);
     await dailyMilestonesChannel.send(finalMessage);
+
+    await knex('accountability_tally').whereBetween('tally_date', [today1128, today1232]).update({react_message: finalMessage});
+    await juliusReade.send(`Accountability react tally posted for today.`);
+
+    // create for tomorrow
+    const tomorrow1200 = moment('12:00','HH:mm').add(1, 'day').format();
+    await knex('accountability_tally').insert({id: uuidv4(), tally_date: tomorrow1200});
 
   } catch(error) {
     await juliusReade.send(`theseUsersReactedToday - ${error}`);
