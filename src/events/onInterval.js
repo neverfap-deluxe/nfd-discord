@@ -20,6 +20,12 @@ const onIntervalOneHour = (client, logger) => {
   }
 };
 
+// TODO: Introduction Format
+// Name:
+// What triggers you to relapse: 
+// How long have you been a victim: 
+// Introduction: Is there anything else you want us to know about you
+
 const onIntervalFourHours = (client, logger) => {
   return async function (/* evt */) {
     const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);

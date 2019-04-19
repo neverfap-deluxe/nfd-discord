@@ -12,17 +12,14 @@ const theseUsersPostedToday = async (client, logger, juliusReade) => {
 
     const normalTallyDate = process.env.MODE === 'dev' ? moment('11:00', 'HH:mm') : moment('12:00', 'HH:mm')
 
-    // See if it's time to post
     if (moment().isBetween(today1128, today1232)) {
       const accountability_tally = await knex('accountability_tally').whereBetween('tally_date', [today1128, today1232]).first();
       
       if (accountability_tally) {
         if (!accountability_tally.completed) {
-          // If you can get an accountability tally, proceed.
           processUsersPostedToday(client, logger, juliusReade, today1128, today1232);
         }
       } else {
-        // If you can't get an accountability tally for today, create one.
         await knex('accountability_tally').insert({id: uuidv4(), tally_date: normalTallyDate.format()});
 
         logger.info(`theseUsersPostedToday - created accountability tally for today.`);

@@ -39,31 +39,29 @@ const accountabilityMessage16 = () => new RichEmbed().setTitle("#accountability 
   `You can't cheat your mind by skipping out on meditation, expecting that it won't know. It knows and it always responds appropriately. :ok_hand:`);
 
 const accountabilityMessage17 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
-  `Do you have a strategy in place to not take your emotions personally? :smile:`);
+  `Do you have a strategy in place to not take your emotions personally? :grin:`);
 const accountabilityMessage18 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
-  `Are you able to quiet and calm your mind down at will? It's part of the reason why we have a strong focus on meditation :smile:`);
+  `Are you able to quiet and calm your mind down at will? It's part of the reason why we have a strong focus on meditation :helmet_with_cross:`);
 const accountabilityMessage19 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
-  `Are you able to let go when you’re feeling obsessed? Without this ability, you're going to have a hard time detaching yourself from urges when they arise :smile:`);
+  `Are you able to let go when you’re feeling obsessed? Without this ability, you're going to have a hard time detaching yourself from urges when they arise :grimacing:`);
 const accountabilityMessage20 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
-  `It requires an active and conscious effort to retain balance in our lives. :smile:`);
+  `It requires an active and conscious effort to retain balance in our lives. :point_up:`);
 const accountabilityMessage21 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
   `Are you sticking to a regular routine? Going to bed on time each day is one of the most productive things you can do for your mental health. :bed:`);
-
-// TODO: These will need emojis
 const accountabilityMessage22 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
-  `Like all things in life, consistency is key. The moment you stop being consistency is the moment you leave your recovery to chance.`);
+  `Like all things in life, consistency is key. The moment you stop being consistency is the moment you leave your recovery to chance. :ski:`);
 const accountabilityMessage23 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
-  `The process is there for a reason. If you embrace it then you allow yourself that reason. If you ignore it you remove that reason from your life.`);
+  `The process is there for a reason. If you embrace it then you allow yourself that reason. If you ignore it, you remove that reason from your life. :golfer:`);
 const accountabilityMessage24 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
-  `Self-criticism is possibly one of the most self-destructive things you can do as a human being in terms of developing control over your emotions.`);
+  `Self-criticism is possibly one of the most self-destructive things you can do as a human being in terms of developing control over your emotions. :laughing:`);
 const accountabilityMessage25 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
   `Only you can decide how much your mental health means to you. :grin:`);
 const accountabilityMessage26 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
-  `The idea behind self-awareness is to uncover our hidden agreements, so we can better understand how we lose balance and therefore contribute towards our porn addiction.`);
+  `The idea behind self-awareness is to uncover our hidden agreements, so we can better understand how we lose balance and therefore contribute towards our porn addiction. :flushed:`);
 const accountabilityMessage27 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
-  `Don't fear your emotions. They are just signals flowing through your brain. Ultimately, you are always in-control.`);
+  `Don't fear your emotions. They are just signals flowing through your brain. Ultimately, you are always in-control if you practice the right technique. :sushi:`);
 const accountabilityMessage28 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
-  `Respect your mind and it will respect you back.`);
+  `Respect your mind and it will respect you back. :bow:`);
 // const accountabilityMessage29 = () => new RichEmbed().setTitle("#accountability advice").setDescription(
 //   ``);
 // const accountabilityMessage30 = () => new RichEmbed().setTitle("#accountability advice").setDescription(

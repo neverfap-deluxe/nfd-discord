@@ -58,23 +58,23 @@ const generalMessage25 = () => new RichEmbed().setTitle("#general advice").setDe
 
 // TODO: Emojis
 const generalMessage26 = () => new RichEmbed().setTitle("#general advice").setDescription(
-  `When your mind is uncalm you lose focus. Which results in losing balance, which inevitably results in relapse. Focus on your mental health and everything else will follow.`);
+  `When your mind is uncalm you lose focus. Which results in losing balance, which inevitably results in relapse. Focus on your mental health and everything else will follow. :yum:`);
 const generalMessage27 = () => new RichEmbed().setTitle("#general advice").setDescription(
-  `Focus your efforts on developing processes as opposed to rationalisations. It's better to thrive than be paralyzed in an endless string of indecision.`);
+  `Focus your efforts on developing processes as opposed to rationalisations. It's better to thrive than be paralyzed in an endless string of indecision. :thinking:`);
 const generalMessage28 = () => new RichEmbed().setTitle("#general advice").setDescription(
-  `Developing control over your mind is important because it teaches your brain what it actually needs, as opposed to what it desires.`);
+  `Developing control over your mind is important because it teaches your brain what it actually needs, as opposed to what it desires. :candy:`);
 const generalMessage29 = () => new RichEmbed().setTitle("#general advice").setDescription(
-  `Make it your mission throughout the day to remain calm and collected. Oh, and deliriously sexy as well.`);
+  `Make it your mission throughout the day to remain calm and collected. Oh, and deliriously sexy as well. :herb:`);
 const generalMessage30 = () => new RichEmbed().setTitle("#general advice").setDescription(
-  `Until you learn to develop control over your mind via healthy coping mechanisms such as meditation, you're more-or-less leaving your recovery to chance.`);
+  `Until you learn to develop control over your mind via healthy coping mechanisms such as meditation, you're more-or-less leaving your recovery to chance. :heart_decoration:`);
 const generalMessage31 = () => new RichEmbed().setTitle("#general advice").setDescription(
   `The porn recovery process takes approximately 90 days. That's probably also the amount of time you've spent watching porn up until now. :date:`);
 const generalMessage32 = () => new RichEmbed().setTitle("#general advice").setDescription(
-  `You won't realise how special it was until you lose it. Once your commitment is gone, it truly is ...gone. Cherish it and remember to never let go.`);                              
+  `You won't realise how special it was until you lose it. Once your commitment is gone, it truly is ...gone. Cherish it and remember to never let go. :relaxed:`);                              
 const generalMessage33 = () => new RichEmbed().setTitle("#general advice").setDescription(
-  `When you think about it Healthy Coping Mechanisms are a very positive form of self-love, and so feel free to love yourself daily.`);
+  `When you think about it Healthy Coping Mechanisms are a very positive form of self-love, and so feel free to love yourself daily. :revolving_hearts:`);
 const generalMessage34 = () => new RichEmbed().setTitle("#general advice").setDescription(
-  `If you need help, then please ask one of our lovely members. We're all more than happy to assist and show you the way of the NeverFap Deluxe.`);
+  `If you need help, then please ask one of our lovely members. We're all more than happy to assist and show you the way of the NeverFap Deluxe. :family_mwgb:`);
 // const generalMessage35 = () => new RichEmbed().setTitle("#general advice").setDescription(
 //   ``);
 // const generalMessage36 = () => new RichEmbed().setTitle("#general advice").setDescription(
