@@ -28,6 +28,7 @@ const accountabilityTallyCountdown = async (client, logger, juliusReade) => {
     const milestoneChannel = client.channels.get(process.env.DAILY_MILESTONES_CHANNEL_ID);
     const generalChannel = client.channels.get(process.env.RECOVERY_CHANNEL_ID);
 
+    // TODO: okay, this is fundamentally broken, because the message has the potential to show twice. Will need to rethink this approach.
     if (now.isBetween(moment('23:54', 'HH:mm'), moment('00:06', 'HH:mm'))) { // 12 hours before
       milestoneChannel.send(twelveHoursBeforeMessage(accountabilityChannel, milestoneChannel));
     } else if (now.isBetween(moment('07:54', 'HH:mm'), moment('08:06', 'HH:mm'))) { // four hours before

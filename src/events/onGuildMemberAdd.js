@@ -16,6 +16,8 @@ const welcomeMessageChannel = (member) =>
 // How long have you been a victim: 
 // Introduction: Is there anything else you want us to know about you
 
+// I'm not sure if this should be an automated message. 
+
 const onGuildMemberAdd = (client, logger) => {
   return async function(member) {
     try {

@@ -50,6 +50,14 @@ client.setInterval(onIntervalWeek(client, logger), onIntervalWeekDelay);
 //   ctx.body = 'Hello World';
 // });
 
+// TODO CRON
+
+// const cron = require('node-cron');
+
+// cron.schedule('* * * * *', () => {
+//   console.log('running a task every minute');
+// });
+
 
 // Login Bot
 client.login(process.env.DISCORD_NFD_BOT_TOKEN);

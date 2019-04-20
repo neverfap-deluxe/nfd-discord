@@ -4,14 +4,14 @@ const hasNotPostedRecently = require('./onInterval/hasNotPostedRecently');
 const removeBotMessages = require('./onInterval/removeBotMessages');
 const theseUsersPostedToday = require('./onInterval/theseUsersPostedToday');
 const sendYesterdayPostReminder = require('./onInterval/sendYesterdayPostReminder');
-const accountabilityTallyCountdown = require('./onInterval/accountabilityTallyCountdown');
+// const accountabilityTallyCountdown = require('./onInterval/accountabilityTallyCountdown');
 
 const onIntervalTenMinutes = (client, logger) => {
   return async function (/* evt */) {
     const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
     removeBotMessages(client.channels, logger);
     theseUsersPostedToday(client, logger, juliusReade);
-    accountabilityTallyCountdown(client, logger, juliusReade);
+    // accountabilityTallyCountdown(client, logger, juliusReade);
   }
 };
 
