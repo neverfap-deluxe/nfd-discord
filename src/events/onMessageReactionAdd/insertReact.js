@@ -32,7 +32,13 @@ const insertReact = async (client, logger, db_user, discordUser, juliusReade, me
     const discordUserReactedTo = await client.fetchUser(_.get(db_user_reacted_to, 'discord_id'));
     discordUserReactedTo && userReactedToYourAccountabilityPost(client, logger, discordUser, discordUserReactedTo, juliusReade, emojiName);
   
-    // TODO: Make a tally that sends a message into #accountability everytime we hit a certain threshold in terms of reacts and posts. So if we hit 50 reacts, we say "50 reacts hit today!";
+    
+
+    // TODO: Make a tally that sends a message into #accountability everytime we hit a certain threshold in terms of reacts and posts. 
+    // So if we hit 50 reacts, we say "50 reacts hit today!";
+
+    // TODO: Send out notifications based on when we react emoji reactive milestones.
+
 
   } catch(error) {
     await juliusReade.send(`insertReact - ${discordUser.username} - ${error}`);

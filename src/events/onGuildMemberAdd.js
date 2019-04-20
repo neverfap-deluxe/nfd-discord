@@ -1,9 +1,20 @@
-const welcomeMessage = (accountabilityChannel) => `Thank you for joining the NeverFap Deluxe Discord Channel!\n
+const welcomeMessageUser = (accountabilityChannel) => `Thank you for joining the NeverFap Deluxe Discord Channel!\n
 Chances are that you're here to participate in our ${accountabilityChannel} program. In that case, please read the ${accountabilityChannel} rules by typing \`!accountability\` into the message bar and pressing enter.\n
 These rules are super important, and I will be working with you to ensure that you understand and follow them! Although we're a fun bunch, this is also a very serious program and our focus is to help you overcome porn addiction.\n
 In addition, please check out the website if you have not yet had the chance. The homepage along with the guide, will explain 90% of what you need to know to overcome your porn addiction https://neverfapdeluxe.com/\n
 To get started, please type \`!accountability\` into this direct chat and press enter, to learn more about the wonderful world of ${accountabilityChannel} ^^.\n
 `;
+
+const welcomeMessageChannel = (member) => 
+`Welcome to the server, ${member}!`
+
+// TODO: Change User summary. (into announcements). 
+
+// TODO: Introduction Format
+// Name:
+// What triggers you to relapse: 
+// How long have you been a victim: 
+// Introduction: Is there anything else you want us to know about you
 
 const onGuildMemberAdd = (client, logger) => {
   return async function(member) {
@@ -11,9 +22,9 @@ const onGuildMemberAdd = (client, logger) => {
       const channel = member.guild.channels.find(ch => ch.id === process.env.WELCOME_CHANNEL_ID);
       const accountabilityChannel = member.guild.channels.find(ch => ch.id === process.env.ACCOUNTABILITY_CHANNEL_ID);
       
-      const msg = await channel.send(`Welcome to the server, ${member}!`);
+      const msg = await channel.send(welcomeMessageChannel(member));
       logger.info(`Sent channel message: ${msg.id} - onGuildMemberAdd - welcome channel message`);
-      const msg2 = await member.send(welcomeMessage(accountabilityChannel));
+      const msg2 = await member.send(welcomeMessageUser(accountabilityChannel));
       logger.info(`Sent channel message: ${msg2.id} - onGuildMemberAdd - welcome user message`);
     } catch(error) {
       logger.error(`send message - ${error} - onGuildMemberAdd`);

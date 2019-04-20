@@ -5,8 +5,10 @@ npm i -S koa pm2 knex objection pg moment node-cron dotenv discord.js winston ko
 knex migrate:latest
 npm start
 
-TODO:
-- User summary. (into announcements). 
+- Memes chat
+
+
+
 
 // that is obviously what this is about.
    // a webpage for the neverfap

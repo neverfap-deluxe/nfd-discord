@@ -32,6 +32,9 @@ const insertAccountabilityMessage = async (client, logger, db_user, discordUser,
     automatedCommitmentTallyMessages(client, logger, db_user, discordUser, juliusReade);
     // automatedUpvotePost
 
+    // TODO: On key milestones of people posting, post in the other channels!
+
+
     // TODO: A function which:
     // twitterClient, redditClient
     // - Check total messages of the user.

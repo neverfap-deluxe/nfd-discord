@@ -4,11 +4,14 @@ const hasNotPostedRecently = require('./onInterval/hasNotPostedRecently');
 const removeBotMessages = require('./onInterval/removeBotMessages');
 const theseUsersPostedToday = require('./onInterval/theseUsersPostedToday');
 const sendYesterdayPostReminder = require('./onInterval/sendYesterdayPostReminder');
+const accountabilityTallyCountdown = require('./onInterval/accountabilityTallyCountdown');
 
 const onIntervalTenMinutes = (client, logger) => {
   return async function (/* evt */) {
-    // const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
+    const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
     removeBotMessages(client.channels, logger);
+    theseUsersPostedToday(client, logger, juliusReade);
+    accountabilityTallyCountdown(client, logger, juliusReade);
   }
 };
 
@@ -16,15 +19,8 @@ const onIntervalOneHour = (client, logger) => {
   return async function (/* evt */) {
     const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
     sendYesterdayPostReminder(client, logger, juliusReade);
-    theseUsersPostedToday(client, logger, juliusReade);
   }
 };
-
-// TODO: Introduction Format
-// Name:
-// What triggers you to relapse: 
-// How long have you been a victim: 
-// Introduction: Is there anything else you want us to know about you
 
 const onIntervalFourHours = (client, logger) => {
   return async function (/* evt */) {

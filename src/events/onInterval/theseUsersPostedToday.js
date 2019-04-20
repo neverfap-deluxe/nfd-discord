@@ -7,17 +7,17 @@ const theseUsersReactedToday = require('./theseUsersReactedToday');
 
 const theseUsersPostedToday = async (client, logger, juliusReade) => {
   try {
-    const today1128 = process.env.MODE === 'dev' ? moment('9:28', 'HH:mm') : moment('11:28', 'HH:mm');
-    const today1232 = process.env.MODE === 'dev' ? moment('11:30', 'HH:mm') : moment('12:32', 'HH:mm');
+    const today1153 = process.env.MODE === 'dev' ? moment('9:28', 'HH:mm') : moment('11:53', 'HH:mm');
+    const today1207 = process.env.MODE === 'dev' ? moment('11:30', 'HH:mm') : moment('12:07', 'HH:mm');
 
     const normalTallyDate = process.env.MODE === 'dev' ? moment('11:00', 'HH:mm') : moment('12:00', 'HH:mm')
 
-    if (moment().isBetween(today1128, today1232)) {
-      const accountability_tally = await knex('accountability_tally').whereBetween('tally_date', [today1128, today1232]).first();
+    if (moment().isBetween(today1153, today1207)) {
+      const accountability_tally = await knex('accountability_tally').whereBetween('tally_date', [today1153, today1207]).first();
       
       if (accountability_tally) {
         if (!accountability_tally.completed) {
-          processUsersPostedToday(client, logger, juliusReade, today1128, today1232);
+          processUsersPostedToday(client, logger, juliusReade, today1153, today1207);
         }
       } else {
         await knex('accountability_tally').insert({id: uuidv4(), tally_date: normalTallyDate.format()});
@@ -25,7 +25,7 @@ const theseUsersPostedToday = async (client, logger, juliusReade) => {
         logger.info(`theseUsersPostedToday - created accountability tally for today.`);
         await juliusReade.send(`theseUsersPostedToday - created accountability tally for today.`);
 
-        processUsersPostedToday(client, logger, juliusReade, today1128, today1232);
+        processUsersPostedToday(client, logger, juliusReade, today1153, today1207);
       }
     }
   } catch(error) {
@@ -35,7 +35,7 @@ const theseUsersPostedToday = async (client, logger, juliusReade) => {
   }
 };
 
-const processUsersPostedToday = async (client, logger, juliusReade, today1128, today1232) => {
+const processUsersPostedToday = async (client, logger, juliusReade, today1153, today1207) => {
 
   const today = moment().format();
   const twentyFourHoursBeforeToday = process.env.MODE === 'dev' ? (
@@ -98,9 +98,9 @@ const processUsersPostedToday = async (client, logger, juliusReade, today1128, t
   logger.info(`Accountability tally posted for today.`);
   await juliusReade.send(`Accountability tally posted for today.`);
 
-  await knex('accountability_tally').whereBetween('tally_date', [today1128, today1232]).update({post_message: finalMessage, completed: true});
+  await knex('accountability_tally').whereBetween('tally_date', [today1153, today1207]).update({post_message: finalMessage, completed: true});
 
-  theseUsersReactedToday(client, logger, juliusReade, today1128, today1232);
+  theseUsersReactedToday(client, logger, juliusReade, today1153, today1207);
 }
 
 
