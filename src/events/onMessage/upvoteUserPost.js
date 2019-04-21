@@ -56,69 +56,26 @@ const upvoteUserPost = async (client, logger, db_user, discordUser, message, jul
     const count = parseInt(accountabilityMessageCount[0].count);
 
     switch(count) {
-      case 1:
-        milestonesChannel.send(upvoteUserPost1(discordUser, accountabilityChannel));
-        logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
-        break;
-      case 3:
-        milestonesChannel.send(upvoteUserPost3(discordUser, accountabilityChannel));
-        logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
-        break;
-      case 7:
-        milestonesChannel.send(upvoteUserPost7(discordUser, accountabilityChannel));
-        logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
-        break;
-      case 10:
-        milestonesChannel.send(upvoteUserPost10(discordUser, accountabilityChannel));
-        logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
-        break;
-      case 14:
-        milestonesChannel.send(upvoteUserPost14(discordUser, accountabilityChannel));
-        logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
-        break;
-      case 20: 
-        milestonesChannel.send(upvoteUserPost20(discordUser, accountabilityChannel));
-        logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
-        break;
-      case 21: 
-        milestonesChannel.send(upvoteUserPost21(discordUser, accountabilityChannel));
-        logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
-        break;
-      case 25: 
-        milestonesChannel.send(upvoteUserPost25(discordUser, accountabilityChannel));
-        logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
-        break;
-      case 28: 
-        milestonesChannel.send(upvoteUserPost28(discordUser, accountabilityChannel));
-        logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
-        break;
-      case 30: 
-        milestonesChannel.send(upvoteUserPost30(discordUser, accountabilityChannel));
-        logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
-        break;
-      case 35: 
-        milestonesChannel.send(upvoteUserPost35(discordUser, accountabilityChannel));
-        logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
-        break;
-      case 40:
-        milestonesChannel.send(upvoteUserPost40(discordUser, accountabilityChannel));
-        logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
-        break;
-      case 42:
-        milestonesChannel.send(upvoteUserPost42(discordUser, accountabilityChannel));
-        logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
-        break;
-      case 49:
-        milestonesChannel.send(upvoteUserPost49(discordUser, accountabilityChannel));
-        logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
-        break;
-      case 50:
-        milestonesChannel.send(upvoteUserPost50(discordUser, accountabilityChannel));
-        logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
-        break;
-      default:
-        return null;
+      case 1:  milestonesChannel.send(upvoteUserPost1(discordUser, accountabilityChannel)); break;
+      case 3:  milestonesChannel.send(upvoteUserPost3(discordUser, accountabilityChannel)); break;
+      case 7:  milestonesChannel.send(upvoteUserPost7(discordUser, accountabilityChannel)); break;
+      case 10: milestonesChannel.send(upvoteUserPost10(discordUser, accountabilityChannel)); break;
+      case 14: milestonesChannel.send(upvoteUserPost14(discordUser, accountabilityChannel)); break;
+      case 20: milestonesChannel.send(upvoteUserPost20(discordUser, accountabilityChannel)); break;
+      case 21: milestonesChannel.send(upvoteUserPost21(discordUser, accountabilityChannel)); break;
+      case 25: milestonesChannel.send(upvoteUserPost25(discordUser, accountabilityChannel)); break;
+      case 28: milestonesChannel.send(upvoteUserPost28(discordUser, accountabilityChannel)); break;
+      case 30: milestonesChannel.send(upvoteUserPost30(discordUser, accountabilityChannel)); break;
+      case 35: milestonesChannel.send(upvoteUserPost35(discordUser, accountabilityChannel)); break;
+      case 40: milestonesChannel.send(upvoteUserPost40(discordUser, accountabilityChannel)); break;
+      case 42: milestonesChannel.send(upvoteUserPost42(discordUser, accountabilityChannel)); break;
+      case 49: milestonesChannel.send(upvoteUserPost49(discordUser, accountabilityChannel)); break;
+      case 50: milestonesChannel.send(upvoteUserPost50(discordUser, accountabilityChannel)); break;
+      default: return null;
     }
+
+    logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
+
   } catch(error) {
     await juliusReade.send(`upvoteUserPost - ${discordUser.username} - ${error}`);
     logger.error(`upvoteUserPost - ${error}`);

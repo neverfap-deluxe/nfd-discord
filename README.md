@@ -5,6 +5,9 @@ npm i -S koa pm2 knex objection pg moment node-cron dotenv discord.js winston ko
 knex migrate:latest
 npm start
 
+SSL FOR THIS https://tecadmin.net/install-lets-encrypt-create-ssl-ubuntu/
+
+
 - Memes chat
 
 

@@ -1,17 +1,17 @@
 const welcomeMessageUser = (accountabilityChannel) => `Thank you for joining the NeverFap Deluxe Discord Channel!\n
-Chances are that you're here to participate in our ${accountabilityChannel} program. In that case, please read the ${accountabilityChannel} rules by typing \`!accountability\` into the message bar and pressing enter.\n
-These rules are super important, and I will be working with you to ensure that you understand and follow them! Although we're a fun bunch, this is also a very serious program and our focus is to help you overcome porn addiction.\n
-In addition, please check out the website if you have not yet had the chance. The homepage along with the guide, will explain 90% of what you need to know to overcome your porn addiction https://neverfapdeluxe.com/\n
-To get started, please type \`!accountability\` into this direct chat and press enter, to learn more about the wonderful world of ${accountabilityChannel} ^^.\n
+Before participating it is mandatory that you read the NeverFap Deluxe website! The homepage and guide should explain 90% of what this server is about! https://neverfapdeluxe.com/\n
+Next up is our ${accountabilityChannel} program which is most likely why you're here! Please enter \`!accountability\` into this direct chat to understand the rules of how it all works! :heart:\n
+Lastly, feel free to send \`Julius Reade\` a private message to as he is the creator of this program, and is MORE THAN HAPPY to help you with your journey! :peach: :grapes: :cherries:\n
+...aaaaaand that's about it! Have fun and enjoy your stay ^^.\n
 `;
 
 const welcomeMessageChannel = (member, welcomeChannel) => 
-`Welcome to the server, ${member}! :grin:\n
-Feel free to introduce yourself to everyone in ${welcomeChannel}!\n
-- Who you are?\n
-- How long have you been victim?\n
-- What are your triggers?\n
-- Anything else you'd like to share! :sweat_smile:
+`Welcome to the server, ${member}! :confetti_ball::tada::confetti_ball:\n 
+Feel free to introduce yourself to everyone here in ${welcomeChannel}, I promise we're all a super receptive and friendly bunch! :sweat_smile:\n
+- Who you are?
+- How long have you been an addict for?
+- What are your main difficulties/triggers?
+- Anything else you'd like to share! *posts random selfie*
 `;
 
 

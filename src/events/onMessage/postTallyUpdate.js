@@ -3,22 +3,22 @@ const knex = require('../../db/knex');
 
 const { RichEmbed } = require('discord.js');
 
-const message1 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("1st #accountability message posted").setDescription(
+const message1 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("1st #accountability post!").setDescription(
 `1st ${accountabilityChannel} message for the tally was posted by ${discordUser}! :apple:`
 );
-const message5 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("5th #accountability message posted").setDescription(
+const message5 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("5th #accountability post!").setDescription(
 `We're up to 5 ${accountabilityChannel} posts for today! Thank you ${discordUser}! :smile:`
 );
-const message10 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("10th #accountability message posted").setDescription(
+const message10 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("10th #accountability post!").setDescription(
 `Another ${accountabilityChannel} post was just submitted by ${discordUser}! That brings us up to a total of 10 participants today! :ok_hand:`
 );
-const message15 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("15th #accountability message posted").setDescription(
+const message15 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("15th #accountability post!").setDescription(
 `Woah! 15 posts into ${accountabilityChannel}! Incredible effort everyone! :candy:`
 );
-const message20 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("20th #accountability message posted").setDescription(
+const message20 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("20th #accountability post!").setDescription(
 `We officially have 20 posts in today's ${accountabilityChannel} tally! Keep up the great work folks! :stuck_out_tongue_closed_eyes:`
 );
-const message25 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("25th #accountability message posted").setDescription(
+const message25 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("25th #accountability post!").setDescription(
 `Incredible! 25 people have posted in ${accountabilityChannel} today, what an effort! :military_medal:`
 );
 // FUTURE: Finish these messages.
