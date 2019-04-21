@@ -35,8 +35,8 @@ const deleteMessageIfCommand = async (message, logger) => {
       const isCommand = messageContent.startsWith("!");
       if (isCommand) {
         if ((new(Date) - new Date(message[1].created_at)) > DELETE_COMMAND_DELAY) {
-            const msg = await message[1].delete();
-            logger.info(`Deleted message from ${msg.author.username} - deleteMessageIfCommand`)
+          const msg = await message[1].delete();
+          logger.info(`Deleted message from ${msg.author.username} - deleteMessageIfCommand`)
         }   
       }
     }

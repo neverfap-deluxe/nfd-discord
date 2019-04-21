@@ -26,9 +26,6 @@ const accountabilityTallyCountdown = async (client, logger, juliusReade, type) =
   try {
     const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
     const milestoneChannel = client.channels.get(process.env.DAILY_MILESTONES_CHANNEL_ID);
-    const recoveryChannel = client.channels.get(process.env.RECOVERY_CHANNEL_ID);
-
-    // MAYBE: Add tally information into these posts! 
 
     switch(type) {
       case "twelveHoursBeforeMessage": 
@@ -45,15 +42,12 @@ const accountabilityTallyCountdown = async (client, logger, juliusReade, type) =
         break;
       case "thirtyMinutesBeforeMessage": 
         milestoneChannel.send(thirtyMinutesBeforeMessage(accountabilityChannel, milestoneChannel));
-        recoveryChannel.send(thirtyMinutesBeforeMessage(accountabilityChannel, milestoneChannel));
         break;
       case "fiveMinutesBeforeMessage": 
         milestoneChannel.send(fiveMinutesBeforeMessage(accountabilityChannel, milestoneChannel));
-        recoveryChannel.send(fiveMinutesBeforeMessage(accountabilityChannel, milestoneChannel));
         break;
       case "oneMinuteBeforeMessage": 
         milestoneChannel.send(oneMinuteBeforeMessage(accountabilityChannel, milestoneChannel));
-        recoveryChannel.send(oneMinuteBeforeMessage(accountabilityChannel, milestoneChannel));
         break;
       default: 
         await juliusReade.send(`accountabilityTallyCountdown - the switch was given a type that does not exist`);

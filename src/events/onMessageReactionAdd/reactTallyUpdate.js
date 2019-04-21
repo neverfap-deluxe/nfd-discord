@@ -3,56 +3,66 @@ const { RichEmbed } = require('discord.js');
 
 const knex = require('../../db/knex');
 
-// const message1 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("#daily-milestones update").setDescription(
+// const message1 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("1st #accountability react today").setDescription(
 // `${discordUser} just posted our first ${accountabilityChannel} react for today! Hooray! :grin:`
 // );
-const message50 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("#daily-milestones update").setDescription(
+const message50 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("50th #accountability react today").setDescription(
 `We just reached 50 emoji reacts in ${accountabilityChannel}! Thank you ${discordUser} for the 50th one! :smile:`
 );
-const message100 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("#daily-milestones update").setDescription(
+const message100 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("100th #accountability react today").setDescription(
 `OMG 100 emoji reacts in ${accountabilityChannel}! What a time to be alive! :white_sun_rain_cloud:`
 );
-const message150 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("#daily-milestones update").setDescription(
+const message150 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("150th #accountability react today").setDescription(
 `I can't believe it but we reached 150 emoji reacts today in ${accountabilityChannel}! :yum:`
 );
-const message200 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("#daily-milestones update").setDescription(
+const message200 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("200th #accountability react today").setDescription(
 `Did someone just order 200 emoji reacts in ${accountabilityChannel}!?!??!! :pizza:`
 );
-const message250 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("#daily-milestones update").setDescription(
+const message250 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("250th #accountability react today").setDescription(
 `We're up to 250 emoji reacts in ${accountabilityChannel}! Wowweee!!!! :stuck_out_tongue_winking_eye:`
 );
-const message300 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("#daily-milestones update").setDescription(
+const message300 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("300th #accountability react today").setDescription(
 `It looks like we have 300 emoji reacts in ${accountabilityChannel}! How on earth did we do it! :innocent:`
 );
-const message350 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("#daily-milestones update").setDescription(
+const message350 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("350th #accountability react today").setDescription(
 `OMFG 350 emoji reacts in ${accountabilityChannel}! Surely I'm halucinating right now! :rainbow:`
 );
-const message400 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("#daily-milestones update").setDescription(
+const message400 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("400th #accountability react today").setDescription(
 `The database is telling me that we're currently at 400 emoji reacts in ${accountabilityChannel} for today! WTF! :neutral_face:`
 );
-const message450 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("#daily-milestones update").setDescription(
+const message450 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("450th #accountability react today").setDescription(
 `Could it be!?!?! Obviously, because this is an automated message and I'm the all-knowing all-seeing bot, but we just hit 450 emoji reacts in ${accountabilityChannel}! :game_die:`
 );
-const message500 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("#daily-milestones update").setDescription(
+const message500 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("500th #accountability react today").setDescription(
 `Thank you ${discordUser} for reacting with our 500th emoji today in ${accountabilityChannel}! :bow:`
 );
-const message550 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("#daily-milestones update").setDescription(
+const message550 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("550th #accountability react today").setDescription(
 `Wow! 550 emojis reacted with today in ${accountabilityChannel}! You amazing people really have to stop hehe :doughnut:`
 );
-const message600 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("#daily-milestones update").setDescription(
+const message600 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("600th #accountability react today").setDescription(
 `I actually can't believe it! 600 emoji reacts in ${accountabilityChannel}, did I just die and go to heaven!?!?! :star2:`
 );
-const message650 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("#daily-milestones update").setDescription(
+const message650 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("650th #accountability react today").setDescription(
 `Surely this is just an illusion... 650 emoji reacts in ${accountabilityChannel} and counting! :stuck_out_tongue_closed_eyes:`
 );
-const message700 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("#daily-milestones update").setDescription(
+const message700 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("700th #accountability react today").setDescription(
 `We did it folks! We hit 700 emoji reacts in ${accountabilityChannel} and I haven't written anymore of these messages! Well done! :trophy:`
 );
 
 const reactTallyUpdate = async (client, logger, db_user, discordUser, discordUserReactedTo, juliusReade, emojiName) => {
   try {
-    const startOfTally = moment().subtract(1,'days').endOf('day');
-    const endOfTally = moment().subtract(1,'days').endOf('day').add(1, 'days');
+    const isAfterMidday = moment().hour() > 12;
+    const { startOfTally, endOfTally } = isAfterMidday ? (
+      {
+        startOfTally: moment().endOf('day').subtract(12,'hours'),
+        endOfTally: moment().endOf('day').add(12,'hours')
+      }
+    ) : (
+      { 
+        startOfTally: moment().startOf('day').subtract(12,'hours'),
+        endOfTally: moment().startOf('day').add(12,'hours')
+      }
+    );
   
     const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
     const dailyMilestonesChannel = client.channels.get(process.env.DAILY_MILESTONES_CHANNEL_ID);

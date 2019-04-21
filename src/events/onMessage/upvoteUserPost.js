@@ -49,70 +49,71 @@ const upvoteUserPost50 = (discordUser, accountabilityChannel) => new RichEmbed()
 
 const upvoteUserPost = async (client, logger, db_user, discordUser, message, juliusReade) => {
   try {
-    const recoveryChannel = client.channels.get(process.env.RECOVERY_CHANNEL_ID);
+    // const recoveryChannel = client.channels.get(process.env.RECOVERY_CHANNEL_ID);
+    const milestonesChannel = client.channels.get(process.env.DAILY_MILESTONES_CHANNEL_ID);
     const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
     const accountabilityMessageCount = await knex('accountability_messages').where('db_users_id', db_user.id).count();
     const count = parseInt(accountabilityMessageCount[0].count);
 
     switch(count) {
       case 1:
-        recoveryChannel.send(upvoteUserPost1(discordUser, accountabilityChannel));
+        milestonesChannel.send(upvoteUserPost1(discordUser, accountabilityChannel));
         logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
         break;
       case 3:
-        recoveryChannel.send(upvoteUserPost3(discordUser, accountabilityChannel));
+        milestonesChannel.send(upvoteUserPost3(discordUser, accountabilityChannel));
         logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
         break;
       case 7:
-        recoveryChannel.send(upvoteUserPost7(discordUser, accountabilityChannel));
+        milestonesChannel.send(upvoteUserPost7(discordUser, accountabilityChannel));
         logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
         break;
       case 10:
-        recoveryChannel.send(upvoteUserPost10(discordUser, accountabilityChannel));
+        milestonesChannel.send(upvoteUserPost10(discordUser, accountabilityChannel));
         logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
         break;
       case 14:
-        recoveryChannel.send(upvoteUserPost14(discordUser, accountabilityChannel));
+        milestonesChannel.send(upvoteUserPost14(discordUser, accountabilityChannel));
         logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
         break;
       case 20: 
-        recoveryChannel.send(upvoteUserPost20(discordUser, accountabilityChannel));
+        milestonesChannel.send(upvoteUserPost20(discordUser, accountabilityChannel));
         logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
         break;
       case 21: 
-        recoveryChannel.send(upvoteUserPost21(discordUser, accountabilityChannel));
+        milestonesChannel.send(upvoteUserPost21(discordUser, accountabilityChannel));
         logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
         break;
       case 25: 
-        recoveryChannel.send(upvoteUserPost25(discordUser, accountabilityChannel));
+        milestonesChannel.send(upvoteUserPost25(discordUser, accountabilityChannel));
         logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
         break;
       case 28: 
-        recoveryChannel.send(upvoteUserPost28(discordUser, accountabilityChannel));
+        milestonesChannel.send(upvoteUserPost28(discordUser, accountabilityChannel));
         logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
         break;
       case 30: 
-        recoveryChannel.send(upvoteUserPost30(discordUser, accountabilityChannel));
+        milestonesChannel.send(upvoteUserPost30(discordUser, accountabilityChannel));
         logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
         break;
       case 35: 
-        recoveryChannel.send(upvoteUserPost35(discordUser, accountabilityChannel));
+        milestonesChannel.send(upvoteUserPost35(discordUser, accountabilityChannel));
         logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
         break;
       case 40:
-        recoveryChannel.send(upvoteUserPost40(discordUser, accountabilityChannel));
+        milestonesChannel.send(upvoteUserPost40(discordUser, accountabilityChannel));
         logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
         break;
       case 42:
-        recoveryChannel.send(upvoteUserPost42(discordUser, accountabilityChannel));
+        milestonesChannel.send(upvoteUserPost42(discordUser, accountabilityChannel));
         logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
         break;
       case 49:
-        recoveryChannel.send(upvoteUserPost49(discordUser, accountabilityChannel));
+        milestonesChannel.send(upvoteUserPost49(discordUser, accountabilityChannel));
         logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
         break;
       case 50:
-        recoveryChannel.send(upvoteUserPost50(discordUser, accountabilityChannel));
+        milestonesChannel.send(upvoteUserPost50(discordUser, accountabilityChannel));
         logger.info(`upvoteUserPost1 message sent - ${count} - ${discordUser.username}`);
         break;
       default:

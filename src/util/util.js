@@ -87,7 +87,21 @@ const configureReddit = (SnooWrap) => {
   // });  
 }
 
-    // TODO: Switch statement util which returns all channel IDs depending on channel_type
+const getChannel = (client, channelType) => {
+  switch(channelType) {
+    case "welcome": return client.channels.get(process.env.WELCOME_CHANNEL_ID);
+    case "recovery": return client.channels.get(process.env.RECOVERY_CHANNEL_ID);
+    case "random": return client.channels.get(process.env.RANDOM_CHANNEL_ID);
+    case "accountability": return client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
+    case "daily_milestones": return client.channels.get(process.env.DAILY_MILESTONES_CHANNEL_ID);
+    case "announcement": return client.channels.get(process.env.ANNOUNCEMENT_CHANNEL_ID);
+    case "ask_julius": return client.channels.get(process.env.ASK_JULIUS_CHANNEL_ID);
+    case "relapse": return client.channels.get(process.env.RELAPSE_CHANNEL_ID);
+    case "emergency": return client.channels.get(process.env.EMERGENCY_CHANNEL_ID);
+    case "suggestions": return client.channels.get(process.env.SUGGESTIONS_CHANNEL_ID);
+    default: throw new Error('Incorrect channel type provided');
+  }
+}
 
 
 // still need to set policy
@@ -189,4 +203,5 @@ module.exports = {
   configureReddit,
   configureEmail,
   createEmailObject,
+  getChannel,
 }

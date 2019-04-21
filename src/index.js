@@ -29,24 +29,18 @@ const app = new Koa();
 const client = new Discord.Client();
 const logger = configureLogger(Winston);
 const twitterClient = configureTwitter(Twit); 
-const redditClient = configureReddit(SnooWrap); 
+const redditClient = configureReddit(SnooWrap);
+const router = require('./routes');
 // const email = configureEmail(aws, nodemailer);
 
 // Handle Middleware
 const views = require('koa-views');
-
-// app.use(require('koa-static')('/public', {}));
+const serve = require('koa-static');
+app.use(serve(__dirname + '/views/css'));
 app.use(views(__dirname + '/views', {
   extension: 'mustache'
 }));
-
-// Render Views
-app.use(async function (ctx) {
-  await ctx.render('index', {
-    // user: 'John'
-  });
-});
-
+app.use(router.routes())
 
 // Incoming Events
 client.on('ready', onReady(client, logger));
@@ -72,7 +66,7 @@ cron.schedule('0 12 * * *', async () => {
 });
 cron.schedule('59 11 * * *', async () => {
   const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
-  accountabilityTallyCountdown(client, logger, juliusReade, "fiveMinutesBeforeMessage");
+  accountabilityTallyCountdown(client, logger, juliusReade, "oneMinuteBeforeMessage");
 });
 cron.schedule('55 11 * * *', async () => {
   const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
