@@ -2,7 +2,8 @@ const knex = require('../../db/knex');
 const uuidv4 = require('uuid/v4');
 
 const automatedCommitmentTallyMessages = require('./automatedCommitmentTallyMessages');
-// const automatedUpvotePost = require('./automatedUpvotePost');
+const postTallyUpdate = require('./postTallyUpdate');
+const upvoteUserPost = require('./upvoteUserPost');
 
 const insertAccountabilityMessage = async (client, logger, db_user, discordUser, message, twitterClient, redditClient, juliusReade) => {
   try {
@@ -27,15 +28,12 @@ const insertAccountabilityMessage = async (client, logger, db_user, discordUser,
 
     await knex('accountability_messages').returning('content').insert(accountabilityObject);
     logger.info(`accountabilityMessage added to database - ${discordUser.username}`);
-    // await juliusReade.send(`accountabilityMessage added to database - ${discordUser.username}`);
 
     automatedCommitmentTallyMessages(client, logger, db_user, discordUser, juliusReade);
-    // automatedUpvotePost
+    upvoteUserPost(client, logger, db_user, discordUser, message, juliusReade);
+    postTallyUpdate(client, logger, db_user, discordUser, juliusReade);
 
-    // TODO: On key milestones of people posting, post in the other channels!
-
-
-    // TODO: A function which:
+    // FUTURE: A function which:
     // twitterClient, redditClient
     // - Check total messages of the user.
     // - If total messages is a certain number, create a post. 

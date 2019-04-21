@@ -1,6 +1,6 @@
 # nfd_discord
 
-npm i -S koa pm2 knex objection pg moment node-cron dotenv discord.js winston koa-static nodemailer aws-sdk
+npm i -S koa pm2 knex objection pg moment node-cron dotenv discord.js winston koa-static koa-views nodemailer aws-sdk 
 
 knex migrate:latest
 npm start
@@ -10,13 +10,28 @@ npm start
 
 
 
+
+<!-- // Render Views
+app.use(async function (ctx) {
+  ctx.state = {
+    session: this.session,
+    title: 'app'
+  };
+
+  await ctx.render('user', {
+    user: 'John'
+  });
+}); -->
+
+
+
 // that is obviously what this is about.
    // a webpage for the neverfap
 
    // Emergency page needs to be created.
    // Post-Relapse page needs to be created.
    
-   discord-bot.neverfapdeluxe.com/
+   league.neverfapdeluxe.com/
    // setup SSL for domain.
    // setup amazon SES
    // koa can return a single webpage.

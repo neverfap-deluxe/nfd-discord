@@ -136,6 +136,7 @@ const neverFapDeluxeBotCommands = async (client, logger, channel, messageContent
           break;
         }
         case 'disboard': break;
+        case 'd': break;
         default: {
           const msg = await channel.send("Sorry, the command doesn't exist (perhaps you put a space inbetween the `!` and the `command`). Please type `!commands` to show all available commands.");
           logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);

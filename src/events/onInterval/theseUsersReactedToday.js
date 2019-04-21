@@ -15,25 +15,32 @@ const theseUsersReactedToday = async (client, logger, juliusReade, today1153, to
 
     const db_users = await knex('db_users').select('id', 'discord_id');
     const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
-    let finalMessage = `Oh, and an ${accountabilityChannel} emoji react update as well!\n\n`;
-
+    let finalMessageTitle = `Oh, and an ${accountabilityChannel} emoji react update as well!\n\n`;
+    let finalMessageCount = 0;
+    let finalMessageBody = '';
+  
     for (const db_user of db_users) {
       const discordUser = await client.fetchUser(db_user.discord_id);
       const messageReacts = await knex('accountability_reacts').where('db_users_id', db_user.id).whereBetween('created_at', [twentyFourHoursBeforeToday, today]);
       if (messageReacts.length > 0) {
         const count = messageReacts.length;
 
+        finalMessageCount += count;
+
         const reactedEmojis = messageReacts.map(react => react.emoji_name).join("");
 
         switch(count) {
           case 1:
-            finalMessage += `${discordUser} - ${count} emoji react! ${reactedEmojis}\n`; break;
+            finalMessageBody += `${discordUser} - ${count} emoji react! ${reactedEmojis}\n`; break;
           default:
-            finalMessage += `${discordUser} - ${count} emoji reacts! ${reactedEmojis}\n`;
+            finalMessageBody += `${discordUser} - ${count} emoji reacts! ${reactedEmojis}\n`;
         }
       }
     }
 
+    const finalMessageCountFull = `~~Total accountability reacts: ${finalMessageCount}~~\n\n`;
+    const finalMessage = finalMessageTitle + finalMessageCountFull + finalMessageBody;
+  
     const dailyMilestonesChannel = client.channels.get(process.env.DAILY_MILESTONES_CHANNEL_ID);
     await dailyMilestonesChannel.send(finalMessage);
 

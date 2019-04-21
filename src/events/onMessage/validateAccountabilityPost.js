@@ -11,7 +11,7 @@ const validateAccountabilityPost = async (client, logger, dbUser, discordUser, c
 
   const finalChannelMessage = `Hey ${messageAuthor}! Your post needs to include ${toImproveChannelMessage} section. If you need an example of what it should look like please type and enter \`!${ACCOUNTABILITY_EXAMPLE_COMMAND}\` :heart:`; // ${finalChannelAndMessage} ${healthyCopingMechanismChannelMessage}
   
-  // POSSIBLE - Maybe check to see if the word 'meditation' was used.
+  // TODO - Maybe check if the word 'meditation' was used. and prompt the user about it.
 
   if (!doesContainToImproveRegEx) {
     try {

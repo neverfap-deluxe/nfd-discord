@@ -87,6 +87,9 @@ const configureReddit = (SnooWrap) => {
   // });  
 }
 
+    // TODO: Switch statement util which returns all channel IDs depending on channel_type
+
+
 // still need to set policy
 
 // {

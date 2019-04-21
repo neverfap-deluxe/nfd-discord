@@ -5,26 +5,33 @@ In addition, please check out the website if you have not yet had the chance. Th
 To get started, please type \`!accountability\` into this direct chat and press enter, to learn more about the wonderful world of ${accountabilityChannel} ^^.\n
 `;
 
-const welcomeMessageChannel = (member) => 
-`Welcome to the server, ${member}!`
+const welcomeMessageChannel = (member, welcomeChannel) => 
+`Welcome to the server, ${member}! :grin:\n
+Feel free to introduce yourself to everyone in ${welcomeChannel}!\n
+- Who you are?\n
+- How long have you been victim?\n
+- What are your triggers?\n
+- Anything else you'd like to share! :sweat_smile:
+`;
 
-// TODO: Change User summary. (into announcements). 
 
-// TODO: Introduction Format
-// Name:
-// What triggers you to relapse: 
-// How long have you been a victim: 
-// Introduction: Is there anything else you want us to know about you
+// YO
+// DUDE
+// WELCOME TO NEVERFAP
+// HERE WE NEVERFAP (HENCE THE TITLE)
+// IF YOU DO
+// WE KILL YOU
+// Jk
+// !accountability
 
-// I'm not sure if this should be an automated message. 
 
 const onGuildMemberAdd = (client, logger) => {
   return async function(member) {
     try {
-      const channel = member.guild.channels.find(ch => ch.id === process.env.WELCOME_CHANNEL_ID);
+      const welcomeChannel = member.guild.channels.find(ch => ch.id === process.env.WELCOME_CHANNEL_ID);
       const accountabilityChannel = member.guild.channels.find(ch => ch.id === process.env.ACCOUNTABILITY_CHANNEL_ID);
       
-      const msg = await channel.send(welcomeMessageChannel(member));
+      const msg = await welcomeChannel.send(welcomeMessageChannel(member, welcomeChannel));
       logger.info(`Sent channel message: ${msg.id} - onGuildMemberAdd - welcome channel message`);
       const msg2 = await member.send(welcomeMessageUser(accountabilityChannel));
       logger.info(`Sent channel message: ${msg2.id} - onGuildMemberAdd - welcome user message`);

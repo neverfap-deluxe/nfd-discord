@@ -6,6 +6,7 @@ const Discord = require('discord.js');
 const Winston = require('winston');
 const Twit = require('twit');
 const SnooWrap = require('snoowrap');
+const cron = require('node-cron');
 // const nodemailer = require("nodemailer");
 // const aws = require('aws-sdk');
 
@@ -19,6 +20,10 @@ const { configureLogger, configureTwitter, configureReddit, configureEmail, gene
 const { onIntervalTenMinutes, onIntervalOneHour, onIntervalFourHours, onIntervalFiveHours, onIntervalDayHalf, onIntervalDay, onIntervalWeek } = require('./events/onInterval');
 const { onIntervalTenMinutesDelay, onIntervalOneHourDelay, onIntervalThreeHoursDelay, onIntervalFourHoursDelay, onIntervalDayHalfDelay, onIntervalDayDelay, onIntervalWeekDelay} = generateDelayValues(process.env.MODE);
 
+// CRON Functions
+const theseUsersPostedToday = require('./events/cron/theseUsersPostedToday');
+const accountabilityTallyCountdown = require('./events/cron/accountabilityTallyCountdown');
+
 // Application Setup
 const app = new Koa();
 const client = new Discord.Client();
@@ -26,7 +31,22 @@ const logger = configureLogger(Winston);
 const twitterClient = configureTwitter(Twit); 
 const redditClient = configureReddit(SnooWrap); 
 // const email = configureEmail(aws, nodemailer);
-// app.use(require('koa-static')('/', {}));
+
+// Handle Middleware
+const views = require('koa-views');
+
+// app.use(require('koa-static')('/public', {}));
+app.use(views(__dirname + '/views', {
+  extension: 'mustache'
+}));
+
+// Render Views
+app.use(async function (ctx) {
+  await ctx.render('index', {
+    // user: 'John'
+  });
+});
+
 
 // Incoming Events
 client.on('ready', onReady(client, logger));
@@ -45,19 +65,39 @@ client.setInterval(onIntervalDayHalf(client, logger), onIntervalDayHalfDelay);
 client.setInterval(onIntervalDay(client, logger), onIntervalDayDelay);
 client.setInterval(onIntervalWeek(client, logger), onIntervalWeekDelay);
 
-
-// app.use(async ctx => {
-//   ctx.body = 'Hello World';
-// });
-
-// TODO CRON
-
-// const cron = require('node-cron');
-
-// cron.schedule('* * * * *', () => {
-//   console.log('running a task every minute');
-// });
-
+// CRON
+cron.schedule('0 12 * * *', async () => {
+  const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
+  theseUsersPostedToday(client, logger, juliusReade);
+});
+cron.schedule('59 11 * * *', async () => {
+  const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
+  accountabilityTallyCountdown(client, logger, juliusReade, "fiveMinutesBeforeMessage");
+});
+cron.schedule('55 11 * * *', async () => {
+  const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
+  accountabilityTallyCountdown(client, logger, juliusReade, "fiveMinutesBeforeMessage");
+});
+cron.schedule('30 11 * * *', async () => {
+  const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
+  accountabilityTallyCountdown(client, logger, juliusReade, "thirtyMinutesBeforeMessage");
+});
+cron.schedule('0 11 * * *', async () => {
+  const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
+  accountabilityTallyCountdown(client, logger, juliusReade, "oneHourBeforeMessage");
+});
+cron.schedule('0 10 * * *', async () => {
+  const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
+  accountabilityTallyCountdown(client, logger, juliusReade, "oneTwoHoursBeforeMessage");
+});
+cron.schedule('0 8 * * *', async () => {
+  const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
+  accountabilityTallyCountdown(client, logger, juliusReade, "oneFourHoursBeforeMessage");
+});
+cron.schedule('0 0 * * *', async () => {
+  const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
+  accountabilityTallyCountdown(client, logger, juliusReade, "twelveHoursBeforeMessage");
+});
 
 // Login Bot
 client.login(process.env.DISCORD_NFD_BOT_TOKEN);
