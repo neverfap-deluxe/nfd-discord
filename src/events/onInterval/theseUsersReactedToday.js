@@ -43,6 +43,8 @@ const theseUsersReactedToday = async (client, logger, juliusReade, today1153, to
       }
     }
 
+    await dailyMilestonesChannel.send(finalMessageBody);
+
     const finalMessageCountFull = `Total accountability reacts: ${finalMessageCount}\n\n`;
     await dailyMilestonesChannel.send(finalMessageCountFull);
 

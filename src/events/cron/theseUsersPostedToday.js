@@ -90,6 +90,8 @@ const processUsersPostedToday = async (client, logger, juliusReade, today1153, t
       }
     }
   }
+
+  await dailyMilestonesChannel.send(finalMessageBody);
   
   const finalMessageCountFull = `Total accountability messages: ${finalMessageCount}\n\n`;
   await dailyMilestonesChannel.send(finalMessageCountFull);
