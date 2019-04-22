@@ -9,16 +9,16 @@ const message1 = (discordUser, accountabilityChannel, hoursTillCountdown) => new
 const message5 = (discordUser, accountabilityChannel, hoursTillCountdown) => new RichEmbed().setTitle(`We received our 5th #accountability post for the day! Only ${hoursTillCountdown} to go!`).setDescription(
 `We're up to 5 ${accountabilityChannel} posts for today! Thank you ${discordUser}! :smile:`
 );
-const message10 = (discordUser, accountabilityChannel, hoursTillCountdown) => new RichEmbed().setTitle(`1We received our 0th #accountability post for the day! Only ${hoursTillCountdown} to go!`).setDescription(
+const message10 = (discordUser, accountabilityChannel, hoursTillCountdown) => new RichEmbed().setTitle(`We received our 10th #accountability post for the day! Only ${hoursTillCountdown} to go!`).setDescription(
 `Another ${accountabilityChannel} post was just submitted by ${discordUser}! That brings us up to a total of 10 participants today! :ok_hand:`
 );
-const message15 = (discordUser, accountabilityChannel, hoursTillCountdown) => new RichEmbed().setTitle(`1We received our 5th #accountability post for the day! Only ${hoursTillCountdown} to go!`).setDescription(
+const message15 = (discordUser, accountabilityChannel, hoursTillCountdown) => new RichEmbed().setTitle(`1We received our 15th #accountability post for the day! Only ${hoursTillCountdown} to go!`).setDescription(
 `Woah! 15 posts into ${accountabilityChannel}! Incredible effort everyone! :candy:`
 );
-const message20 = (discordUser, accountabilityChannel, hoursTillCountdown) => new RichEmbed().setTitle(`2We received our 0th #accountability post for the day! Only ${hoursTillCountdown} to go!`).setDescription(
+const message20 = (discordUser, accountabilityChannel, hoursTillCountdown) => new RichEmbed().setTitle(`We received our 20th #accountability post for the day! Only ${hoursTillCountdown} to go!`).setDescription(
 `We officially have 20 posts in today's ${accountabilityChannel} tally! Keep up the great work folks! :stuck_out_tongue_closed_eyes:`
 );
-const message25 = (discordUser, accountabilityChannel, hoursTillCountdown) => new RichEmbed().setTitle(`2We received our 5th #accountability post for the day! Only ${hoursTillCountdown} to go!`).setDescription(
+const message25 = (discordUser, accountabilityChannel, hoursTillCountdown) => new RichEmbed().setTitle(`We received our 25th #accountability post for the day! Only ${hoursTillCountdown} to go!`).setDescription(
 `Incredible! 25 people have posted in ${accountabilityChannel} today, what an effort! :military_medal:`
 );
 // FUTURE: Finish these messages.
