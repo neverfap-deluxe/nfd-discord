@@ -225,9 +225,9 @@ const automatedAccountabilityMessages = async (client, logger, juliusReade) => {
   } catch(error) {
     // NOTE: There is an issue (okay, it's not an 'issue' in that it's breaking anything)
     // However if lastMessageID doesn't fetch anything, then it will throw an error.
-    logger.info(`automatedAccountabilityMessages - ${error}`);
-    await juliusReade.send(`automatedAccountabilityMessages - ${error}`);
-    throw new Error(`automatedAccountabilityMessages - ${error}`);
+    // logger.info(`automatedAccountabilityMessages - ${error}`);
+    // await juliusReade.send(`automatedAccountabilityMessages - ${error}`);
+    // throw new Error(`automatedAccountabilityMessages - ${error}`);
   }
 }
 

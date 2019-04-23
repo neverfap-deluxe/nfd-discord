@@ -102,10 +102,10 @@ const accountabilityMessage = (accountabilityChannel) => new RichEmbed()
     `You must post in #accountability every single day.`,
     `This will prove your commitment to your porn addiction recovery, and it is an excellent way to keep on-top of your progress, and therefore develop your capacity for awareness.`
   )
-  .addField(
-    `I cannot offer you advice if you stop posting in #accountability.`,
-    `If you're not putting your mental health first, there's nothing I can do to help you. I am not a substitute for the process, I merely facilitate your journey.`
-  )
+  // .addField(
+  //   `I cannot offer you advice if you stop posting in #accountability.`,
+  //   `If you're not putting your mental health first, there's nothing I can do to help you. I am not a substitute for the process, I merely facilitate your journey.`
+  // )
   .addField(
     `95% of your time should be spent remaining calm.`,
     `Calmness should be your default state of mind. It's what makes you powerful and act with intention. You can only be in-control of your thoughts, feelings and emotions when you are calm. However, you will only learn to become calm if you practice it throughout your day.`
@@ -124,7 +124,7 @@ const accountabilityMessage = (accountabilityChannel) => new RichEmbed()
   )
   .addField(
     `Oh, and please don't forget to add emoji reacts to other people's posts!`,
-    `It's just a nice thing you can do for others, which helps motivate the community.`
+    `It's just a nice thing you can do for others, which helps motivate the community which loves you so much!`
   )
   .addField(
     `For additional information, please check the website.`,
