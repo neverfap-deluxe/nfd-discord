@@ -31,7 +31,24 @@ const theseUsersReactedToday = async (client, logger, juliusReade, today1153, to
 
         finalMessageCount += messageReacts.length;
 
-        const reactedEmojis = messageReacts.map(react => react.emoji_name).join("");
+        const reactedEmojis = messageReacts.map(react => {
+          switch(react.emoji_name) {
+            case "doge": return `${client.emojis.find(emoji => emoji.name === 'doge')}`;
+            case "thonk": return `${client.emojis.find(emoji => emoji.name === 'thonk')}`;
+            default: return react.emoji_name
+          }
+        }).filter(react => {
+          // FUTURE: get the entire list of supported emojis and filter them as includes.
+          switch(react.emoji_name) {
+            case 'GWovoYayy':
+            case 'jcthecAster':
+              return false;
+            default: 
+              return true;
+          }
+        }).join("");
+
+        
         switch(messageReacts.length) {
           case 1: finalMessageBody += `${discordUser} - ${messageReacts.length} emoji react! ${reactedEmojis}\n`; break;
           default: finalMessageBody += `${discordUser} - ${messageReacts.length} emoji reacts! ${reactedEmojis}\n`;
