@@ -36,22 +36,23 @@ const insertAccountabilityMessage = require('./onMessage/insertAccountabilityMes
 
 const onMessage = (client, logger, twitterClient, redditClient) => {
   return async function (message) {
+    const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
     const channel = _.get(message, 'channel');
     const messageContent = _.get(message, 'content');
     const discordUser = _.get(message, 'author');
 
     if (channel && discordUser && discordUser.id !== process.env.NEVERFAP_DELUXE_BOT_ID) {
       try {
-        const dbUser = await knex('db_users').where('discord_id', discordUser.id).first();
+        const db_user = await knex('db_users').where('discord_id', discordUser.id).first();
 
-        if (dbUser) {
-          accountabilityChannelActions(client, logger, dbUser, discordUser, channel, message, twitterClient, redditClient);
-          neverFapDeluxeBotCommands(client, logger, channel, messageContent);
+        if (db_user) {
+          accountabilityChannelActions(client, logger, db_user, discordUser, channel, message, twitterClient, redditClient, juliusReade);
+          neverFapDeluxeBotCommands(client, logger, channel, messageContent, db_user, discordUser, juliusReade);
         } else {
           const primary_id = uuidv4();
-          const createdDbUser = await knex('db_users').returning('*').insert({ id: primary_id, discord_id: discordUser.id, username: discordUser.username });
-          accountabilityChannelActions(client, logger, createdDbUser[0], discordUser, channel, message, twitterClient, redditClient);
-          neverFapDeluxeBotCommands(client, logger, channel, messageContent);
+          const created_db_user = await knex('db_users').returning('*').insert({ id: primary_id, discord_id: discordUser.id, username: discordUser.username });
+          accountabilityChannelActions(client, logger, created_db_user[0], discordUser, channel, message, twitterClient, redditClient, juliusReade);
+          neverFapDeluxeBotCommands(client, logger, channel, messageContent, created_db_user[0], discordUser, juliusReade);
         }
       } catch(error) {
         logger.error(`onMessage - ${error}`);
@@ -61,31 +62,38 @@ const onMessage = (client, logger, twitterClient, redditClient) => {
   }
 }
 
-const accountabilityChannelActions = async (client, logger, db_user, discordUser, channel, message, twitterClient, redditClient) => {
+const accountabilityChannelActions = async (client, logger, db_user, discordUser, channel, message, twitterClient, redditClient, juliusReade) => {
   if (channel.id === process.env.ACCOUNTABILITY_CHANNEL_ID) {
     if (isAccountabilityMessage(message.content)) {
-      const today = moment().format();
-      const twelveHoursBefore =  process.env.MODE === 'dev' ? (
-        moment().subtract(10, 'seconds')
-      ) : (
-        moment().subtract(12, 'hours')
-      );
-    
-      const reccentAccountabilityMessages = await knex('accountability_messages').where('db_users_id', db_user.id).whereBetween('created_at', [twelveHoursBefore, today]);
-      const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
+      // if(db_user.has_accepted) {
+        const today = moment().format();
+        const twelveHoursBefore =  process.env.MODE === 'dev' ? (
+          moment().subtract(10, 'seconds')
+        ) : (
+          moment().subtract(12, 'hours')
+        );
+      
+        const reccentAccountabilityMessages = await knex('accountability_messages').where('db_users_id', db_user.id).whereBetween('created_at', [twelveHoursBefore, today]);
+  
+        if (reccentAccountabilityMessages.length === 0) {
+          validateAccountabilityPost(client, logger, db_user, discordUser, channel, message, twitterClient, redditClient);
+          insertAccountabilityMessage(client, logger, db_user, discordUser, message, twitterClient, redditClient, juliusReade);
+        } else {
+          logger.error(`posted in accountability too soon, so didn't go into database - ${discordUser.username}`);
+          await juliusReade.send(`posted in accountability too soon, so didn't go into database - ${discordUser.username}`);
+        }
+      // } else {
+      //   await message.delete();
+      //   await discordUser.send(`You silly thing, you didn't read the rules like the bot asked you too! Follow the instructions outlined as per the ${channel} rules and we'll let you post :grin:.\nTo learn the rules, please type and enter \`!accountability\` into the message bar.`);
 
-      if (reccentAccountabilityMessages.length === 0) {
-        validateAccountabilityPost(client, logger, db_user, discordUser, channel, message, twitterClient, redditClient);
-        insertAccountabilityMessage(client, logger, db_user, discordUser, message, twitterClient, redditClient, juliusReade);
-      } else {
-        logger.error(`posted in accountability too soon, so didn't go into database - ${discordUser.username}`);
-        await juliusReade.send(`posted in accountability too soon, so didn't go into database - ${discordUser.username}`);
-      }
+      //   logger.info(`Deleted ${discordUser.username} accountability message for not reading the rules.`)
+      //   await juliusReade.send(`Deleted ${discordUser.username} accountability message for not reading the rules.`);
+      // }
     }
   }
 }
 
-const neverFapDeluxeBotCommands = async (client, logger, channel, messageContent) => {
+const neverFapDeluxeBotCommands = async (client, logger, channel, messageContent, db_user, discordUser, juliusReade) => {
   try {
     const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
 
@@ -137,6 +145,14 @@ const neverFapDeluxeBotCommands = async (client, logger, channel, messageContent
         }
         case 'disboard': break;
         case 'd': break;
+        case 'accept': {
+          // await knex('db_users').where('id', db_user.id).update({has_accepted: true});
+          // await discordUser.send('thank you'); // TODO
+          // logger.info(`${discordUser.user} just accepted the terms and conditions!`);
+          // await juliusReade.send(`${discordUser.user} just accepted the terms and conditions!`);
+          // TODO 
+          break;
+        }
         default: {
           const msg = await channel.send("Sorry, the command doesn't exist (perhaps you put a space inbetween the `!` and the `command`). Please type `!commands` to show all available commands.");
           logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
@@ -145,6 +161,7 @@ const neverFapDeluxeBotCommands = async (client, logger, channel, messageContent
       }
     }
   } catch(error) {
+    await juliusReade.send(`neverFapDeluxeBotCommands - ${error}`);
     logger.error(`neverFapDeluxeBotCommands - ${error}`);
     throw new Error(`neverFapDeluxeBotCommands - ${error}`);
   }

@@ -2,6 +2,7 @@
 const moment = require('moment');
 const knex = require('../../db/knex');
 const uuidv4 = require('uuid/v4');
+const { generateTallyDates } = require('../../util/util-time');
 
 const theseUsersReactedToday = require('../onInterval/theseUsersReactedToday');
 
@@ -36,15 +37,9 @@ const theseUsersPostedToday = async (client, logger, juliusReade) => {
 };
 
 const processUsersPostedToday = async (client, logger, juliusReade, today1153, today1207) => {
+  const { startOfTally, endOfTally } = generateTallyDates();
 
-  const today = moment().format();
-  const twentyFourHoursBeforeToday = process.env.MODE === 'dev' ? (
-    moment().subtract(20, 'seconds')
-  ) : (
-    moment().subtract(24, 'hours')
-  );
-
-  const accountabilityMessages = await knex('accountability_messages').whereBetween('created_at', [twentyFourHoursBeforeToday, today]);
+  const accountabilityMessages = await knex('accountability_messages').whereBetween('created_at', [startOfTally, endOfTally]);
   const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
   let finalMessageTitle = `${accountabilityChannel} update!\n\n`;
   let finalMessageCount = 0;
@@ -68,7 +63,8 @@ const processUsersPostedToday = async (client, logger, juliusReade, today1153, t
       const accountabilityMessageCount = await knex('accountability_messages').where('db_users_id', db_user.id).count();
       const count = parseInt(accountabilityMessageCount[0].count);
 
-      finalMessageCount += count;
+      // NOTE: Because we're not getting the total number of days committed, we're getting the number of people participated.
+      finalMessageCount += 1;
 
       switch(count) {
         case 1:  finalMessageBody += `${discordUser} - Day ${count} - First Day Dynamite! :boom:\n`; break;
@@ -93,7 +89,7 @@ const processUsersPostedToday = async (client, logger, juliusReade, today1153, t
 
   await dailyMilestonesChannel.send(finalMessageBody);
   
-  const finalMessageCountFull = `Total accountability messages: ${finalMessageCount}\n\n`;
+  const finalMessageCountFull = `Total accountability participants: ${finalMessageCount}\n\n`;
   await dailyMilestonesChannel.send(finalMessageCountFull);
 
   logger.info(`Accountability tally posted for today.`);

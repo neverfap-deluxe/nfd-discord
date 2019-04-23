@@ -31,10 +31,11 @@ const removeBotMessages = async (channels, logger) => {
 const deleteMessageIfCommand = async (message, logger) => {
   try {
     const messageContent = _.get(message, '[1].content');
+    const messageCreatedAt = _.get(message, '[1].createdAt');
     if (messageContent) {
-      const isCommand = messageContent.startsWith("!");
+      const isCommand = messageContent.startsWith("!") || messageContent.startsWith("Sorry, the command");
       if (isCommand) {
-        if ((new(Date) - new Date(message[1].created_at)) > DELETE_COMMAND_DELAY) {
+        if ((new(Date) - new Date(messageCreatedAt)) > DELETE_COMMAND_DELAY) {
           const msg = await message[1].delete();
           logger.info(`Deleted message from ${msg.author.username} - deleteMessageIfCommand`)
         }   
@@ -49,11 +50,14 @@ const deleteMessageIfCommand = async (message, logger) => {
 const deleteMessageIfNeverFapDeluxeBot = async (message, logger) => {
   try {
     const messageEmbed = _.get(message, '[1].embeds[0]');
+    const messageEmbedCreatedAt = _.get(messageEmbed, 'message.createdAt');
+
     if (messageEmbed) {
       const messageAuthorId = _.get(message, '[1].author.id');
       if (messageAuthorId === process.env.NEVERFAP_DELUXE_BOT_ID) {
         if (messageEmbed.title !== "#general advice" && messageEmbed.title !== "#accountability advice") {
-          if ((new(Date) - new Date(messageEmbed.message.created_at)) > DELETE_COMMAND_DELAY) {
+          // moment().subtract(10, 'minutes).isBefore(moment(messageEmbed.message.created_at))
+          if ((new(Date) - new Date(messageEmbedCreatedAt)) > DELETE_COMMAND_DELAY) {
             const msg = await message[1].delete();
             logger.info(`Deleted message from ${msg.author.username} - deleteMessageIfNeverFapDeluxeBot`)
           }

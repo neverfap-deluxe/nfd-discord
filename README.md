@@ -2,6 +2,8 @@
 
 npm i -S koa pm2 knex objection pg moment node-cron dotenv discord.js winston koa-static koa-views nodemailer aws-sdk 
 
+npm i -S graphql graphql-yoga graphql-tag reflect-metadata require-graphql-file
+
 knex migrate:latest
 npm start
 

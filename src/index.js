@@ -24,6 +24,9 @@ const { onIntervalTenMinutesDelay, onIntervalOneHourDelay, onIntervalThreeHoursD
 const theseUsersPostedToday = require('./events/cron/theseUsersPostedToday');
 const accountabilityTallyCountdown = require('./events/cron/accountabilityTallyCountdown');
 
+// GraphQL Server
+const graphqlServer = require('./graphql/server');
+
 // Application Setup
 const app = new Koa();
 const client = new Discord.Client();
@@ -93,7 +96,18 @@ cron.schedule('0 0 * * *', async () => {
   accountabilityTallyCountdown(client, logger, juliusReade, "twelveHoursBeforeMessage");
 });
 
+// GraphQL Server
+const options = {
+  port: 2001,
+  endpoint: '/graphql',
+  subscriptions: '/subscriptions',
+  playground: '/playground',
+};
+
+graphqlServer.start(options, () => console.log(`GraphQL Server is running on localhost:${options.port}`))
+
 // Login Bot
 client.login(process.env.DISCORD_NFD_BOT_TOKEN);
  
+// Start Koa Server
 app.listen(2000);

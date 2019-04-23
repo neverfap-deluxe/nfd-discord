@@ -1,17 +1,13 @@
 // const _ = require('lodash');
 const moment = require('moment');
 const uuidv4 = require('uuid/v4');
+const { generateTallyDates } = require('../../util/util-time');
 
 const knex = require('../../db/knex');
 
 const theseUsersReactedToday = async (client, logger, juliusReade, today1153, today1207) => {
   try {
-    const today = moment().format();
-    const twentyFourHoursBeforeToday =  process.env.MODE === 'dev' ? (
-      moment().subtract(20, 'seconds')
-    ) : (
-      moment().subtract(24, 'hours')
-    );
+    const { startOfTally, endOfTally } = generateTallyDates();
 
     const db_users = await knex('db_users').select('id', 'discord_id');
     const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
@@ -25,7 +21,7 @@ const theseUsersReactedToday = async (client, logger, juliusReade, today1153, to
 
     for (const db_user of db_users) {
       const discordUser = await client.fetchUser(db_user.discord_id);
-      const messageReacts = await knex('accountability_reacts').where('db_users_id', db_user.id).whereBetween('created_at', [twentyFourHoursBeforeToday, today]);
+      const messageReacts = await knex('accountability_reacts').where('db_users_id', db_user.id).whereBetween('created_at', [startOfTally, endOfTally]);
       if (messageReacts.length > 0) {
         if (finalMessageBody.length > 1600) {
           await dailyMilestonesChannel.send(finalMessageBody);    
