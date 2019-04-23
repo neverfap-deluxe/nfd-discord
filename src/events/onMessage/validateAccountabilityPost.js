@@ -5,7 +5,6 @@ const {
 
 const validateAccountabilityPost = async (client, logger, dbUser, discordUser, channel, message, twitterClient, redditClient) => {
   try {
-
     const messageAuthor = message.author;
 
     const toImproveRegEx = new RegExp("improve", "i");

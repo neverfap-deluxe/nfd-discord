@@ -32,13 +32,9 @@ const insertAccountabilityMessage = async (client, logger, db_user, discordUser,
     automatedCommitmentTallyMessages(client, logger, db_user, discordUser, juliusReade);
     upvoteUserPost(client, logger, db_user, discordUser, message, juliusReade);
     postTallyUpdate(client, logger, db_user, discordUser, juliusReade);
+    
+    // sendSocialStatuses(client, logger, db_user, discordUser, juliusReade);
 
-    // FUTURE: A function which:
-    // twitterClient, redditClient
-    // - Check total messages of the user.
-    // - If total messages is a certain number, create a post. 
-    // - Send update on my personal Twitter!
-    // - Create Reddit Post All the stuff there.
   } catch(error) {
     await juliusReade.send(`accountabilityMessage failed to add to database - ${discordUser.username} - ${error}`);
     logger.error(`insertAccountabilityMessage - ${error}`);

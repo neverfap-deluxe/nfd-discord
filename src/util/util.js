@@ -27,7 +27,7 @@ const generateDelayValues = (mode) => {
   }
 }
 
-const isAccountabilityMessage = (content) => content.includes("/") || content.includes("19") || content.includes("#track");
+const isAccountabilityMessage = (content) => content.includes("/") || content.includes("19") || content.includes("#accountability");
 
 const configureLogger = (Winston) => {  
   const logger = Winston.createLogger({
