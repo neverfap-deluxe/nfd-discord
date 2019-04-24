@@ -1,9 +1,5 @@
 const knex = require('../../db/knex');
 
-const { 
-  createGraphData,
-} = require('../util/graph-util');
-
 const dbUsersQuery = {
   getAllDbUsers: async (/* _, {} */) => {
     const db_users = 
@@ -20,15 +16,6 @@ const dbUsersQuery = {
 
     return db_user;
   },
-  getDbUsersLineGraph: async (_, { from, to }) => {
-    const db_users = 
-      await knex('db_users')
-        .whereBetween('created_at', [from, to])
-        .select('created_at');
-
-    return createGraphData(db_users, from, to);
-  },
-
 };
 
 const dbUsersMutation = {

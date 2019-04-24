@@ -1,9 +1,5 @@
 const knex = require('../../db/knex');
 
-const { 
-  createGraphData,
-} = require('../util/graph-util');
-
 const accountabilityReactsQuery = {
   getAllAccountabilityReacts: async (/* _, {} */) => {
     // TODO have granularity in what it processes depending on whether it wants db_user etc.

@@ -3,7 +3,7 @@ const moment = require('moment')
 const createGraphData = (items, from, to) => {
   const reducedMessages = items.reduce((acc, message) => {
     const startPeriod = acc.fromMoment;
-    const periodFromNow = acc.fromMoment.add('1', 'day');
+    const periodFromNow = acc.fromMoment.add('1', 'days');
 
     const incrementedAccTally = acc.totalTally + 1;
     const neutraliseTally = 0;

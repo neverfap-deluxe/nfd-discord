@@ -1,9 +1,5 @@
 const knex = require('../../db/knex');
 
-const { 
-  createGraphData,
-} = require('../util/graph-util');
-
 const accountabilityMessagesQuery = {
   getAllAccountabilityMessages: async (/* _, {} */) => {
     const accountability_messages = 
