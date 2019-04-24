@@ -3,7 +3,7 @@ const { generateTallyDates, generateHoursTillCountdown } = require('../../util/u
 
 const knex = require('../../db/knex');
 
-const message1 = (discordUser, accountabilityChannel) => new RichEmbed().setTitle("We just hit our 1st emoji react for today! Only ${hoursTillCountdown} to go!").setDescription(
+const message1 = (discordUser, accountabilityChannel, hoursTillCountdown) => new RichEmbed().setTitle(`We just hit our 1st emoji react for today! Only ${hoursTillCountdown} to go!`).setDescription(
 `${discordUser} just posted our first ${accountabilityChannel} react for today! Hooray! :grin:`
 );
 const message100 = (discordUser, accountabilityChannel, hoursTillCountdown) => new RichEmbed().setTitle(`We just hit 100 emoji reacts for today! Only ${hoursTillCountdown} to go!`).setDescription(
@@ -60,7 +60,7 @@ const reactTallyUpdate = async (client, logger, db_user, discordUser, discordUse
     const count = parseInt(accountabilityMessageCount[0].count);
 
     switch(count) {
-      case 1:   dailyMilestonesChannel.send(message1(discordUser, accountabilityChannel)); break;
+      case 1:   dailyMilestonesChannel.send(message1(discordUser, accountabilityChannel, hoursTillCountdown)); break;
       case 100:  dailyMilestonesChannel.send(message100(discordUser, accountabilityChannel, hoursTillCountdown)); break;
       case 200: dailyMilestonesChannel.send(message200(discordUser, accountabilityChannel, hoursTillCountdown)); break;
       case 300: dailyMilestonesChannel.send(message300(discordUser, accountabilityChannel, hoursTillCountdown)); break;
