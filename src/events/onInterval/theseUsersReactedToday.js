@@ -61,7 +61,7 @@ const theseUsersReactedToday = async (client, logger, juliusReade, today1153, to
     await dailyMilestonesChannel.send(finalMessageCountFull);
 
     finalTextString += finalMessageCountFull;
-    await knex('accountability_tally').whereBetween('tally_date', [today1153, today1207]).update({react_message: finalTextString, total_reacts: finalMessageCountFull});
+    await knex('accountability_tally').whereBetween('tally_date', [today1153, today1207]).update({react_message: finalTextString, total_reacts: finalMessageCount});
     await juliusReade.send(`Accountability react tally posted for today.`);
 
     // create for tomorrow

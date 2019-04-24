@@ -40,6 +40,8 @@ const processUsersPostedToday = async (client, logger, juliusReade, today1153, t
   try {
     const { startOfTally, endOfTally } = generateTallyDates();
 
+    await knex('accountability_tally').whereBetween('tally_date', [today1153, today1207]).update({completed: true});
+
     const accountabilityMessages = await knex('accountability_messages').whereBetween('created_at', [startOfTally, endOfTally]);
     const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
     let finalMessageTitle = `${accountabilityChannel} update!\n\n`;
@@ -97,7 +99,7 @@ const processUsersPostedToday = async (client, logger, juliusReade, today1153, t
     await juliusReade.send(`Accountability tally posted for today.`);
   
     finalTextString += finalMessageCountFull;
-    await knex('accountability_tally').whereBetween('tally_date', [today1153, today1207]).update({post_message: finalTextString, completed: true, total_participants: finalMessageCount});
+    await knex('accountability_tally').whereBetween('tally_date', [today1153, today1207]).update({post_message: finalTextString, total_participants: finalMessageCount});
   
     theseUsersReactedToday(client, logger, juliusReade, today1153, today1207);
   } catch (error) {
