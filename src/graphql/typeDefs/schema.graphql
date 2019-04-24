@@ -9,9 +9,7 @@ type Query {
   getAccountabilityMessage(id: String): AccountabilityMessage
   getAccountabilityTally(id: String): AccountabilityTally
 
-  getAccountabilityMessageLineGraph(from: String, to: String): LineGraph 
-  getAccountabilityReactsLineGraph(from: String, to: String): LineGraph 
-  getDbUsersLineGraph(from: String, to: String): LineGraph 
+  getLineGraph(collection_type: String, from: String, to: String): LineGraph 
 }
 
 type DbUser {

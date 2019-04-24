@@ -36,15 +36,7 @@ const accountabilityMessagesQuery = {
     accountability_message.db_user = db_user;
 
     return accountability_message;
-  },
-  getAccountabilityMessageLineGraph: async (_, { from, to }) => {
-    const accountability_messages = 
-      await knex('accountability_messages')
-        .whereBetween('created_at', [from, to])
-        .select('created_at');
-
-    return createGraphData(accountability_messages, from, to);
-  },
+  }
 };
 
 const accountabilityMessagesMutation = {

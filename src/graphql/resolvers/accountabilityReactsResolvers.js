@@ -68,14 +68,6 @@ const accountabilityReactsQuery = {
 
     return accountability_react;
   },
-  getAccountabilityReactsLineGraph: async (_, { from, to }) => {
-    const accountability_reacts = 
-      await knex('accountability_reacts')
-        .whereBetween('created_at', [from, to])
-        .select('created_at');
-
-    return createGraphData(accountability_reacts, from, to);
-  },
 
 };
 

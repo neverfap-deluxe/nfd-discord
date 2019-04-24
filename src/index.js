@@ -63,7 +63,7 @@ client.setInterval(onIntervalDay(client, logger), onIntervalDayDelay);
 client.setInterval(onIntervalWeek(client, logger), onIntervalWeekDelay);
 
 // CRON
-cron.schedule('30 8 * * *', async () => {
+cron.schedule('0 12 * * *', async () => {
   const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
   theseUsersPostedToday(client, logger, juliusReade);
 });

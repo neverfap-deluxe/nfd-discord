@@ -9,6 +9,7 @@ const { accountabilityMessagesQuery, /* accountabilityMessagesMutation */ } = re
 const { accountabilityReactsQuery, /* accountabilityReactsMutation */ } = require('./resolvers/accountabilityReactsResolvers'); 
 const { dbUsersResolversQuery, /* dbUsersResolversMutation */ } = require('./resolvers/dbUsersResolvers'); 
 const { accountabilityTallyQuery, /* accountabilityTallyMutation */ } = require('./resolvers/accountabilityTallyResolvers');
+const { graphqlQuery, /* graphqlMutation */ } = require('./resolvers/graphResolvers');
 
 const resolvers = {
   Query: {
@@ -16,6 +17,7 @@ const resolvers = {
     ...accountabilityReactsQuery,
     ...dbUsersResolversQuery,
     ...accountabilityTallyQuery,
+    ...graphqlQuery,
   },
   // Mutation: {
   //   ...accountabilityMessagesMutation,
