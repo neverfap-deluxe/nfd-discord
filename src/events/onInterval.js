@@ -4,19 +4,22 @@ const hasNotPostedRecently = require('./onInterval/hasNotPostedRecently');
 const removeBotMessages = require('./onInterval/removeBotMessages');
 const sendYesterdayPostReminder = require('./onInterval/sendYesterdayPostReminder');
 
+const theseUsersPostedToday = require('./cron/theseUsersPostedToday');
+
 const onIntervalTenMinutes = (client, logger) => {
   return async function (/* evt */) {
-    // const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
+    const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
     removeBotMessages(client.channels, logger);
 
     // NOTE: Purely for testing.
     if (process.env.MODE === 'dev') {
-      const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
+      theseUsersPostedToday(client, logger, juliusReade);
+      // const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
 
-      const emoji = client.emojis.find(emoji => emoji.name === 'doge');
+      // const emoji = client.emojis.find(emoji => emoji.name === 'doge');
 
-      const message = `${emoji}`;
-      await accountabilityChannel.send(message);
+      // const message = `${emoji}`;
+      // await accountabilityChannel.send(message);
     }
   }
 };

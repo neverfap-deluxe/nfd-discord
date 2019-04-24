@@ -47,7 +47,6 @@ const theseUsersReactedToday = async (client, logger, juliusReade, today1153, to
               return true;
           }
         }).join("");
-
         
         switch(messageReacts.length) {
           case 1: finalMessageBody += `${discordUser} - ${messageReacts.length} emoji react! ${reactedEmojis}\n`; break;

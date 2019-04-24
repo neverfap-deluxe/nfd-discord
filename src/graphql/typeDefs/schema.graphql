@@ -2,47 +2,57 @@ type Query {
   getAllDbUsers: [DbUser]
   getAllAccountabilityReacts: [AccountabilityReact]
   getAllAccountabilityMessages: [AccountabilityMessage]
+  getAllAccountabilityTally: [AccountabilityTally]
 
   getDbUser(id: String): DbUser
   getAccountabilityReact(id: String): AccountabilityReact
   getAccountabilityMessage(id: String): AccountabilityMessage
+  getAccountabilityTally(id: String): AccountabilityTally
+
+  getAccountabilityMessageLineGraph(from: String, to: String): LineGraph 
+  getAccountabilityReactsLineGraph(from: String, to: String): LineGraph 
+  getDbUsersLineGraph(from: String, to: String): LineGraph 
 }
 
 type DbUser {
   id: String
-  discord_id: String
+  email: String
   username: String
-  sent36HourMessage: Boolean
-  sent72HourMessage: Boolean
-  sentYesterdayPostMessage: Boolean
-  has_accepted: Boolean
-  is_team_leader: Boolean
-  neverfap_team_id: String
   created_at: String
-  updated_at: String
+  # updated_at: String
+  # discord_id: String
+  # sent36HourMessage: Boolean
+  # sent72HourMessage: Boolean
+  # sentYesterdayPostMessage: Boolean
+  # has_accepted: Boolean
+  # is_team_leader: Boolean
+  # neverfap_team_id: String
 }
 
 type AccountabilityMessage {
   id: String
-  message_id: String
   username: String
   content: String
-  db_users_id: String
+  db_user: DbUser
   created_at: String
-  updated_at: String
+  # message_id: String
+  # db_users_id: String
+  # updated_at: String
 }
 
 type AccountabilityReact {
   id: String
-  email: String
   username: String
   emoji_id: String
   emoji_name: String
-  db_users_id: String
-  db_users_id_reacted_to: String
-  accountability_messages_id: String
   created_at: String
-  updated_at: String
+  db_user: DbUser
+  db_user_reacted_to: DbUser
+  accountability_message: AccountabilityMessage
+  # db_users_id: String
+  # db_users_id_reacted_to: String
+  # accountability_messages_id: String
+  # updated_at: String
 }
 
 type AccountabilityTally {
@@ -50,9 +60,11 @@ type AccountabilityTally {
   tally_date: String
   post_message: String
   react_message: String
-  completed: String
+  total_participants: Int
+  total_reacts: Int
   created_at: String
-  updated_at: String
+  completed: String
+  # updated_at: String
 }
 
 type NeverFapLeague {
@@ -72,3 +84,13 @@ type NeverFapTeam {
   updated_at: String
 }
 
+type LineGraph {
+  id: String 
+  color: String 
+  data: [Point]
+}
+
+type Point {
+  x: String
+  y: Int
+}

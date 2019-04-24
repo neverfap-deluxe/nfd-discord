@@ -139,7 +139,7 @@ const accountabilityExampleMessage = (accountabilityChannel) => new RichEmbed()
   .setDescription(`These the are the guidelines for posting in ${accountabilityChannel}.`)
   .addField("Today's date", "20/01/2018")
   .addField("List of Healthy Coping Mechanisms you practiced", "Healthy Coping Mechanisms\n- Meditated for 10 minutes\n - Completed a huge squat + deadlift workout\n - Remained calm throughout the day and really practiced to keep my mind wide and open")
-  .addField("How you will improve tomorrow.", "To Improve\n - I'm going to focus on becoming more calm throughout the day\n - I want to continue learning not to take things personally, and instead take things one step at a time")
+  .addField("How you will improve tomorrow", "To Improve\n - I'm going to focus on becoming more calm throughout the day\n - I want to continue learning not to take things personally, and instead take things one step at a time")
   .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.
 
 
