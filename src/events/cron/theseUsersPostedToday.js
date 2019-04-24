@@ -13,7 +13,7 @@ const theseUsersPostedToday = async (client, logger, juliusReade) => {
 
     const normalTallyDate = process.env.MODE === 'dev' ? moment('11:00', 'HH:mm') : moment('12:00', 'HH:mm')
 
-    if (moment().isBetween(today1153, today1207)) {
+    // if (moment().isBetween(today1153, today1207)) {
       const accountability_tally = await knex('accountability_tally').whereBetween('tally_date', [today1153, today1207]).first();
       
       if (accountability_tally) {
@@ -28,7 +28,7 @@ const theseUsersPostedToday = async (client, logger, juliusReade) => {
 
         processUsersPostedToday(client, logger, juliusReade, today1153, today1207);
       }
-    }
+    // }
   } catch(error) {
     await juliusReade.send(`theseUsersPostedToday - ${error}`);
     logger.error(`theseUsersPostedToday - ${error}`)
