@@ -25,6 +25,7 @@
   "dependencies": {
     "@koa/cors": "^2.2.3",
     "aws-sdk": "^2.438.0",
+    "cors": "^2.8.5",
     "discord.js": "^11.4.2",
     "dotenv": "^7.0.0",
     "graphql": "^14.2.1",
