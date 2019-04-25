@@ -13,22 +13,20 @@ const theseUsersPostedToday = async (client, logger, juliusReade) => {
 
     const normalTallyDate = process.env.MODE === 'dev' ? moment('11:00', 'HH:mm') : moment('12:00', 'HH:mm')
 
-    // if (moment().isBetween(today1153, today1207)) {
-      const accountability_tally = await knex('accountability_tally').whereBetween('tally_date', [today1153, today1207]).first();
-      
-      if (accountability_tally) {
-        if (!accountability_tally.completed) {
-          processUsersPostedToday(client, logger, juliusReade, today1153, today1207);
-        }
-      } else {
-        await knex('accountability_tally').insert({id: uuidv4(), tally_date: normalTallyDate.format()});
-
-        logger.info(`theseUsersPostedToday - created accountability tally for today.`);
-        await juliusReade.send(`theseUsersPostedToday - created accountability tally for today.`);
-
+    const accountability_tally = await knex('accountability_tally').whereBetween('tally_date', [today1153, today1207]).first();
+    
+    if (accountability_tally) {
+      if (!accountability_tally.completed) {
         processUsersPostedToday(client, logger, juliusReade, today1153, today1207);
       }
-    // }
+    } else {
+      await knex('accountability_tally').insert({id: uuidv4(), tally_date: normalTallyDate.format()});
+
+      logger.info(`theseUsersPostedToday - created accountability tally for today.`);
+      await juliusReade.send(`theseUsersPostedToday - created accountability tally for today.`);
+
+      processUsersPostedToday(client, logger, juliusReade, today1153, today1207);
+    }
   } catch(error) {
     await juliusReade.send(`theseUsersPostedToday - ${error}`);
     logger.error(`theseUsersPostedToday - ${error}`)
@@ -54,13 +52,7 @@ const processUsersPostedToday = async (client, logger, juliusReade, today1153, t
   
     for (const message of accountabilityMessages) {
       const db_user = await knex('db_users').where('id', message.db_users_id).select('id', 'discord_id').first();
-  
-      if (finalMessageBody.length > 1600) {
-        await dailyMilestonesChannel.send(finalMessageBody);      
-        finalTextString += finalMessageBody;
-        finalMessageBody = '';
-      }
-  
+    
       if (db_user) {
         const discordUser = await client.fetchUser(db_user.discord_id);
         const accountabilityMessageCount = await knex('accountability_messages').where('db_users_id', db_user.id).count();
@@ -87,10 +79,16 @@ const processUsersPostedToday = async (client, logger, juliusReade, today1153, t
           case 50: finalMessageBody += `${discordUser} - Day ${count} - HALF A BLOODY CENTURY! :statue_of_liberty:\n`; break;
           default: finalMessageBody += `${discordUser} - Day ${count}\n`;
         }
+
+        if (finalMessageBody.length > 1600) {
+          await dailyMilestonesChannel.send(finalMessageBody);      
+          finalTextString += finalMessageBody;
+          finalMessageBody = '';
+        }
       }
     }
   
-    if (finalMessageBody) {
+    if (finalMessageBody.length > 0) {
       await dailyMilestonesChannel.send(finalMessageBody);
     }
     

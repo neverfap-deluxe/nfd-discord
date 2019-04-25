@@ -23,12 +23,6 @@ const theseUsersReactedToday = async (client, logger, juliusReade, today1153, to
       const discordUser = await client.fetchUser(db_user.discord_id);
       const messageReacts = await knex('accountability_reacts').where('db_users_id', db_user.id).whereBetween('created_at', [startOfTally, endOfTally]);
       if (messageReacts.length > 0) {
-        if (finalMessageBody.length > 1600) {
-          await dailyMilestonesChannel.send(finalMessageBody);    
-          finalTextString += finalMessageBody;
-          finalMessageBody = '';
-        }
-
         finalMessageCount += messageReacts.length;
 
         const reactedEmojis = messageReacts.map(react => {
@@ -51,6 +45,12 @@ const theseUsersReactedToday = async (client, logger, juliusReade, today1153, to
         switch(messageReacts.length) {
           case 1: finalMessageBody += `${discordUser} - ${messageReacts.length} emoji react! ${reactedEmojis}\n`; break;
           default: finalMessageBody += `${discordUser} - ${messageReacts.length} emoji reacts! ${reactedEmojis}\n`;
+        }
+
+        if (finalMessageBody.length > 1600) {
+          await dailyMilestonesChannel.send(finalMessageBody);    
+          finalTextString += finalMessageBody;
+          finalMessageBody = '';
         }
       }
     }

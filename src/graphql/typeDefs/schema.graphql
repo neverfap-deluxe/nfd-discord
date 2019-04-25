@@ -1,7 +1,11 @@
 type Query {
-  getAllDbUsers: [DbUser]
-  getAllAccountabilityReacts: [AccountabilityReact]
-  getAllAccountabilityMessages: [AccountabilityMessage]
+  getAccountabilityMessagesStats: Stat
+  getAccountabilityReactsStats: Stat
+  getDbUsersStats: Stat
+
+  getAllDbUsers(limit: Int): [DbUser]
+  getAllAccountabilityReacts(limit: Int): [AccountabilityReact]
+  getAllAccountabilityMessages(limit: Int): [AccountabilityMessage]
   getAllAccountabilityTally: [AccountabilityTally]
 
   getDbUser(id: String): DbUser
@@ -9,7 +13,11 @@ type Query {
   getAccountabilityMessage(id: String): AccountabilityMessage
   getAccountabilityTally(id: String): AccountabilityTally
 
-  getLineGraph(collection_type: String, from: Int, to: Int): LineGraph 
+  getSomeFullAccountabilityMessages(limit: Int): [AccountabilityMessage]
+  getSomeFullAccountabilityReacts(limit: Int): [AccountabilityReact]
+  
+  # Graphs
+  getLineGraph(collection_type: String, from: Int, to: Int): [LineGraph]
 }
 
 type DbUser {
@@ -91,4 +99,9 @@ type LineGraph {
 type Point {
   x: String
   y: Int
+}
+
+type Stat {
+  total: Int
+  total24Hour: Int
 }

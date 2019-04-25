@@ -7,7 +7,7 @@ const typeDefs = requireGraphQLFile('./typeDefs/schema.graphql');
 // resolvers
 const { accountabilityMessagesQuery, /* accountabilityMessagesMutation */ } = require('./resolvers/accountabilityMessagesResolvers'); 
 const { accountabilityReactsQuery, /* accountabilityReactsMutation */ } = require('./resolvers/accountabilityReactsResolvers'); 
-const { dbUsersResolversQuery, /* dbUsersResolversMutation */ } = require('./resolvers/dbUsersResolvers'); 
+const { dbUsersQuery, /* dbUsersMutation */ } = require('./resolvers/dbUsersResolvers'); 
 const { accountabilityTallyQuery, /* accountabilityTallyMutation */ } = require('./resolvers/accountabilityTallyResolvers');
 const { graphqlQuery, /* graphqlMutation */ } = require('./resolvers/graphResolvers');
 
@@ -15,7 +15,7 @@ const resolvers = {
   Query: {
     ...accountabilityMessagesQuery,
     ...accountabilityReactsQuery,
-    ...dbUsersResolversQuery,
+    ...dbUsersQuery,
     ...accountabilityTallyQuery,
     ...graphqlQuery,
   },

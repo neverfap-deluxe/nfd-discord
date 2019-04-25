@@ -9,13 +9,15 @@ const graphqlQuery = {
   getLineGraph: async (_, { collection_type, from, to }) => {
     const momentFrom = moment().add(from, 'days');
     const momentTo = moment().add(to, 'days');
-
+  
     const accountability_messages =
       await knex(collection_type)
         .whereBetween('created_at', [momentFrom, momentTo])
         .select('created_at');
-
-    return createGraphData(accountability_messages, momentFrom, momentTo);
+  
+    const createdLineGraph = [createGraphData(accountability_messages, from, to, collection_type)];
+  
+    return createdLineGraph;
   },
 };
 
@@ -24,6 +26,7 @@ const graphqlMutation = {
 
   // },
 };
+
 
 module.exports = {
   graphqlQuery,

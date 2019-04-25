@@ -1,14 +1,45 @@
 const knex = require('../../db/knex');
+const moment = require('moment');
 
 const accountabilityReactsQuery = {
-  getAllAccountabilityReacts: async (/* _, {} */) => {
-    // TODO have granularity in what it processes depending on whether it wants db_user etc.
-    
+  getAccountabilityReactsStats: async (/* _, {} */) => {
+    const today = moment();
+    const yesterday = moment().subtract(1, 'day');
+
+    const accountabilityMessageCount = await knex('accountability_reacts').count();
+    const accountabilityMessage24HourCount = await knex('accountability_reacts').whereBetween('created_at', [yesterday, today]).count();
+
+    return {
+      total: parseInt(accountabilityMessageCount[0].count),
+      total24Hour: parseInt(accountabilityMessage24HourCount[0].count),
+    }
+  },
+  getAllAccountabilityReacts: async (_, { limit }) => {
+    const enforceLimit = limit > 100 ? (
+      100
+    ) : ( 
+      limit || 100
+    );
     const accountability_reacts = 
       await knex('accountability_reacts')
+        .limit(enforceLimit)
         .select('id', 'username', 'emoji_id', 'emoji_name', 'created_at');
 
-    let full_accountability_reacts;
+    return accountability_reacts;
+  },
+  getSomeFullAccountabilityReacts: async (_, { limit }) => {
+    const enforceLimit = limit > 100 ? (
+      100
+    ) : ( 
+      limit || 100
+    );
+
+    const accountability_reacts = 
+      await knex('accountability_reacts')
+        .limit(enforceLimit)
+        .select('id', 'username', 'emoji_id', 'emoji_name', 'db_users_id', 'db_users_id_reacted_to', 'created_at');
+
+    let full_accountability_reacts = [];
     for (const accountability_react of accountability_reacts) {  
       const db_user = 
         await knex('db_users')
@@ -25,7 +56,7 @@ const accountabilityReactsQuery = {
       accountability_react.db_user_reacted_to = db_user_reacted_to;
 
       const accountability_message = 
-        await knex('db_users')
+        await knex('accountability_messages')
           .where('id', accountability_react.db_users_id_reacted_to)
           .select('id', 'username', 'content', 'created_at');
         // NOTE: Missing DbUser, but we will assume that it's the db_user_reacted_to anyway.
@@ -38,7 +69,8 @@ const accountabilityReactsQuery = {
     return full_accountability_reacts;
   },
   getAccountabilityReact: async (_, { id }) => {
-    const accountability_react = await knex('accountability_reacts').where('id', id).select('*');
+    const accountability_react = await knex('accountability_reacts')
+      .where('id', id).select('*');
 
     const db_user = 
       await knex('db_users')
@@ -55,7 +87,7 @@ const accountabilityReactsQuery = {
     accountability_react.db_user_reacted_to = db_user_reacted_to;
 
     const accountability_message = 
-      await knex('db_users')
+      await knex('accountability_messages')
         .where('id', accountability_react.db_users_id_reacted_to)
         .select('id', 'username', 'content', 'created_at');
       // NOTE: Missing DbUser, but we will assume that it's the db_user_reacted_to anyway.
