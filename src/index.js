@@ -106,6 +106,7 @@ const options = {
   playground: '/playground',
   cors: {
     origin: 'https://league.neverfapdeluxe.com',
+    preflightContinue: true,
   }
 };
 
