@@ -1,5 +1,7 @@
 const moment = require('moment')
 
+const { collectionTypeToName } = require('./knex-util');
+
 const createGraphData = (items, from, to, collection_type) => {
   const reducedMessages = items.reduce((acc, message) => {
     for (const startPoint of acc.data) {
@@ -20,7 +22,7 @@ const createGraphData = (items, from, to, collection_type) => {
   const dateFormat = Math.abs(from) < 8 ? (
     "DD-MM-YYYY"
   ) : (
-    "DD-MM"
+    "DD"
   );
 
   const dataWithFormattedDates = reducedMessages.data.map(point => ({
@@ -29,7 +31,7 @@ const createGraphData = (items, from, to, collection_type) => {
   }));
 
   return {
-    id: collection_type,
+    id: collectionTypeToName(collection_type),
     color: "hsl(111, 70%, 50%)",
     data: dataWithFormattedDates,
   };
