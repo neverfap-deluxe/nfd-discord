@@ -105,8 +105,9 @@ const options = {
   subscriptions: '/subscriptions',
   playground: '/playground',
   cors: {
-    origin: 'https://league.neverfapdeluxe.com',
+    credentials: true,
     preflightContinue: true,
+    origin: ["https://league.neverfapdeluxe.com", "http://localhost:3000"] // your frontend url.
   }
 };
 

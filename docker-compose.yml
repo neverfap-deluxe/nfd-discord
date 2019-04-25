@@ -5,6 +5,7 @@ services:
     container_name: 'nfd-discord'
     ports:
       - 2000:2000
+      - 2001:2001
     build:
       context: .
 

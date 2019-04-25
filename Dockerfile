@@ -13,5 +13,6 @@ RUN cp -a /tmp/api/node_modules /usr/src/app/api
 COPY . .
 
 EXPOSE 2000
+EXPOSE 2001
 CMD [ "npm", "run", "deploy" ]
 # CMD [ "npm", "run", "deploy" ]
