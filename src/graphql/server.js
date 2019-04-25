@@ -30,6 +30,9 @@ const server = new GraphQLServer({ typeDefs, resolvers })
 
 server.express.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', 'https://league.neverfapdeluxe.com');
+  res.header('Access-Control-Allow-Origin', 'https://league.neverfapdeluxe.com/graphql');
+  res.header('Access-Control-Allow-Origin', 'https://staging.neverfapdeluxe.com');
+  res.header('Access-Control-Allow-Origin', 'https://staging.neverfapdeluxe.com/graphql');
   res.header('Access-Control-Allow-Origin', 'https://localhost:3000');
   res.header(
     'Access-Control-Allow-Headers',
