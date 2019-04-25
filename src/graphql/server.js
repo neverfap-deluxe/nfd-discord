@@ -28,4 +28,13 @@ const resolvers = {
 
 const server = new GraphQLServer({ typeDefs, resolvers })
 
+server.express.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'https://league.neverfapdeluxe.com');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
+
 module.exports = server;

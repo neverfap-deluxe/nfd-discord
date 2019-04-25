@@ -7,6 +7,7 @@ const Winston = require('winston');
 const Twit = require('twit');
 const SnooWrap = require('snoowrap');
 const cron = require('node-cron');
+const cors = require('@koa/cors');
 // const nodemailer = require("nodemailer");
 // const aws = require('aws-sdk');
 
@@ -39,6 +40,7 @@ const router = require('./routes');
 // Handle Middleware
 const views = require('koa-views');
 const serve = require('koa-static');
+app.use(cors());
 app.use(serve(__dirname + '/views/css'));
 app.use(views(__dirname + '/views', {
   extension: 'mustache'

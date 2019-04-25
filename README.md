@@ -7,6 +7,8 @@ npm i -S graphql graphql-yoga graphql-tag reflect-metadata require-graphql-file
 knex migrate:latest
 npm start
 
+npm i -S @koa/cors@2
+
 SSL FOR THIS https://tecadmin.net/install-lets-encrypt-create-ssl-ubuntu/
 
 
