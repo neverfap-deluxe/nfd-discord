@@ -104,6 +104,9 @@ const options = {
   endpoint: '/graphql',
   subscriptions: '/subscriptions',
   playground: '/playground',
+  cors: {
+    origin: 'https://league.neverfapdeluxe.com',
+  }
 };
 
 graphqlServer.start(options, () => console.log(`GraphQL Server is running on localhost:${options.port}`))

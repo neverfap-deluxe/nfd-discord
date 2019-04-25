@@ -1,5 +1,5 @@
 require('reflect-metadata');
-const cors = require('cors')
+// const cors = require('cors')
 
 const { GraphQLServer } = require('graphql-yoga')
 const requireGraphQLFile = require('require-graphql-file');
@@ -29,7 +29,7 @@ const resolvers = {
 
 const server = new GraphQLServer({ typeDefs, resolvers })
 
-server.express.use(cors());
+// server.express.use(cors());
 
 // function(req, res, next) {
 //   res.header('Access-Control-Allow-Origin', 'https://league.neverfapdeluxe.com');
