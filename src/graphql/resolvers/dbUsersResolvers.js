@@ -9,6 +9,16 @@ const dbUsersQuery = {
     const dbUsersCount = await knex('db_users').count();
     const dbUsers24HourCount = await knex('db_users').whereBetween('created_at', [yesterday, today]).count();
 
+    // const mostAccountabilityReacts = 
+    //   await knex('db_users')
+    //     .where('db')
+    // Get users that have created the most accountability reacts.
+
+    // TODO
+    // - topDBUsers in terms of accountability posting.
+    // - topDBUsers in terms of consequtive streak
+    // - topDBUsers in terms of lifetime accountability reacts.
+
     return {
       total: parseInt(dbUsersCount[0].count),
       total24Hour: parseInt(dbUsers24HourCount[0].count),

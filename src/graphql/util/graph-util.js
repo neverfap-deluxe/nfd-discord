@@ -2,7 +2,7 @@ const moment = require('moment')
 
 const { collectionTypeToName } = require('./knex-util');
 
-const createGraphData = (items, from, to, collection_type) => {
+const createGraphData = (items, from, to, collection_type, graph_type) => {
   const reducedMessages = items.reduce((acc, message) => {
     for (const startPoint of acc.data) {
       const periodFromNow = moment(startPoint.x).add('1', 'day');
@@ -19,10 +19,10 @@ const createGraphData = (items, from, to, collection_type) => {
     return createGraphReducer(acc.data);
   }, { data: createDatePeriods(from, to)});
   
-  const dateFormat = Math.abs(from) < 8 ? (
-    "DD-MM-YYYY"
-  ) : (
+  const dateFormat = Math.abs(from) > 9 ? (
     "DD"
+  ) : (
+    "DD-MM-YYYY"
   );
 
   const dataWithFormattedDates = reducedMessages.data.map(point => ({
@@ -30,11 +30,23 @@ const createGraphData = (items, from, to, collection_type) => {
     y: point.y || 0,
   }));
 
-  return {
+  const metaData = {
     id: collectionTypeToName(collection_type),
     color: "hsl(111, 70%, 50%)",
-    data: dataWithFormattedDates,
   };
+
+  switch(graph_type) {
+    case 'accumulative': {
+      const reduceTotal = dataWithFormattedDates.reduce((acc, val) => ({
+          previous: val,
+          dates: acc.dates.concat({...val, y: val.y + acc.previous.y }),
+        }), { previous: createPoint(null, 0), dates: [] });
+      return { ...metaData, data: reduceTotal.dates };
+    }
+    default: {
+      return { ...metaData, data: dataWithFormattedDates };
+    }
+  }
 }
 
 const createDatePeriods = (from, to) => {

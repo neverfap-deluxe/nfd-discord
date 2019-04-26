@@ -17,55 +17,39 @@ const accountabilityMessagesQuery = {
   getAllAccountabilityMessages: async (_, { limit }) => {
     const enforceLimit = limit > 100 ? (
       100
-    ) : ( 
+    ) : (
       limit || 100
     );
 
     const accountability_messages =
       await knex('accountability_messages')
         .limit(enforceLimit)
-        .select('id', 'username', 'content', 'db_users_id', 'created_at');
-      
-      // TODO: Okay, I just realised, I just need to learn joins lol to get the full data.
+        .select('accountability_messages.id', 'accountability_messages.username', 'content', 'db_users_id', 'accountability_messages.created_at');
 
     return accountability_messages;
   },
-  getSomeFullAccountabilityMessages: async (_, { limit }) => {
+  getAllFullAccountabilityMessages: async (_, { limit }) => {
     const enforceLimit = limit > 100 ? (
       100
-    ) : ( 
+    ) : (
       limit || 100
     );
 
+    // There is literally no need for a leftJoin AT ALL
     const accountability_messages =
       await knex('accountability_messages')
         .limit(enforceLimit)
-        .select('id', 'username', 'content', 'db_users_id', 'created_at');
-    
-    let full_accountability_messages = [];
-    for (const accountability_message of accountability_messages) {
-      const db_user =
-        await knex('db_users')
-          .where('id', accountability_message.db_users_id)
-          .select('id', 'email', 'username', 'created_at');
-        // TODO: put these selects into const arrays. 
-      accountability_message.db_user = db_user;
-      full_accountability_messages.push(accountability_message);
-    }
+        // .leftJoin('db_users', 'db_users.id', 'accountability_messages.db_users_id')
+        .select('id', 'username', 'content', 'db_users.id', 'accountability_messages.db_users_id');
 
-    return full_accountability_messages;
+    return accountability_messages;
   },
-  getAccountabilityMessage: async (_, { id }) => {
+  getFullAccountabilityMessage: async (_, { id }) => {
     const accountability_message = 
       await knex('accountability_messages')
       .where('id', id)
+      // .leftJoin('db_users', 'db_users.id', 'accountability_messages.db_users_id')
       .select('id', 'username', 'content', 'db_users_id', 'created_at');
-
-    const db_user = await knex('db_users')
-      .where('id', accountability_message.db_users_id)
-      .select('id', 'email', 'username', 'created_at');
-
-    accountability_message.db_user = db_user;
 
     return accountability_message;
   }
@@ -82,3 +66,30 @@ module.exports = {
   accountabilityMessagesMutation,
 };
 
+
+
+// getAllFullAccountabilityMessages: async (_, { limit }) => {
+//   const enforceLimit = limit > 100 ? (
+//     100
+//   ) : (
+//     limit || 100
+//   );
+
+//   const accountability_messages =
+//     await knex('accountability_messages')
+//       .limit(enforceLimit)
+//       .select('id', 'username', 'content', 'db_users_id', 'created_at');
+  
+//   let full_accountability_messages = [];
+//   for (const accountability_message of accountability_messages) {
+//     const db_user =
+//       await knex('db_users')
+//         .where('id', accountability_message.db_users_id)
+//         .select('id', 'email', 'username', 'created_at');
+//       // TODO: put these selects into const arrays. 
+//     accountability_message.db_user = db_user;
+//     full_accountability_messages.push(accountability_message);
+//   }
+
+//   return full_accountability_messages;
+// },

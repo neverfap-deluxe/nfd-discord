@@ -2,32 +2,32 @@ const automatedAccountabilityMessages = require('./onInterval/automatedAccountab
 const automatedGeneralMessages = require('./onInterval/automatedGeneralMessages');
 const hasNotPostedRecently = require('./onInterval/hasNotPostedRecently');
 const removeBotMessages = require('./onInterval/removeBotMessages');
-const sendYesterdayPostReminder = require('./onInterval/sendYesterdayPostReminder');
+const dailyNeverFapDeluxeReport = require('./onInterval/dailyNeverFapDeluxeReport');
 
-// const theseUsersPostedToday = require('./cron/theseUsersPostedToday');
+const theseUsersPostedToday = require('./cron/theseUsersPostedToday');
 
 const onIntervalTenMinutes = (client, logger) => {
   return async function (/* evt */) {
-    // const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
+    const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
     removeBotMessages(client.channels, logger);
 
     // NOTE: Purely for testing.
-    // if (process.env.MODE === 'dev') {
-      // theseUsersPostedToday(client, logger, juliusReade);
+    if (process.env.MODE === 'dev') {
+      theseUsersPostedToday(client, logger, juliusReade);
       // const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
 
       // const emoji = client.emojis.find(emoji => emoji.name === 'doge');
 
       // const message = `${emoji}`;
       // await accountabilityChannel.send(message);
-    // }
+    }
   }
 };
 
 const onIntervalOneHour = (client, logger) => {
   return async function (/* evt */) {
     const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
-    sendYesterdayPostReminder(client, logger, juliusReade);
+    dailyNeverFapDeluxeReport(client, logger, juliusReade);
   }
 };
 

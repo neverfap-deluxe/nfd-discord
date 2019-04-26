@@ -6,16 +6,16 @@ const {
 } = require('../util/graph-util');
 
 const graphqlQuery = {
-  getLineGraph: async (_, { collection_type, from, to }) => {
+  getLineGraph: async (_, { collection_type, from, to, graph_type }) => {
     const momentFrom = moment().add(from, 'days');
     const momentTo = moment().add(to, 'days');
   
-    const accountability_messages =
+    const collection =
       await knex(collection_type)
         .whereBetween('created_at', [momentFrom, momentTo])
         .select('created_at');
   
-    const createdLineGraph = [createGraphData(accountability_messages, from, to, collection_type)];
+    const createdLineGraph = [createGraphData(collection, from, to, collection_type, graph_type)];
   
     return createdLineGraph;
   },

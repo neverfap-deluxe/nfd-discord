@@ -40,10 +40,18 @@ const onMessage = (client, logger, twitterClient, redditClient) => {
     const channel = _.get(message, 'channel');
     const messageContent = _.get(message, 'content');
     const discordUser = _.get(message, 'author');
+    const discordUsername = _.get(message, 'author.username');
+
+    // TODO: function which checks discordUser username, and updates it. 
 
     if (channel && discordUser && discordUser.id !== process.env.NEVERFAP_DELUXE_BOT_ID) {
       try {
         const db_user = await knex('db_users').where('discord_id', discordUser.id).first();
+
+        // FUTURE: Create an old_usernames collection, maybe - it's not strictly necessary. 
+        if (db_user.username !== discordUsername) {
+          await knex('db_users').where('id', db_user.id).update({ username: discordUsername });
+        }
 
         if (db_user) {
           accountabilityChannelActions(client, logger, db_user, discordUser, channel, message, twitterClient, redditClient, juliusReade);

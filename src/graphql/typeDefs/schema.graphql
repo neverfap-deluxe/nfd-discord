@@ -3,21 +3,24 @@ type Query {
   getAccountabilityReactsStats: Stat
   getDbUsersStats: Stat
 
+  # ALL
   getAllDbUsers(limit: Int): [DbUser]
   getAllAccountabilityReacts(limit: Int): [AccountabilityReact]
   getAllAccountabilityMessages(limit: Int): [AccountabilityMessage]
   getAllAccountabilityTally: [AccountabilityTally]
 
+  # ALL - FULL
+  getAllFullAccountabilityMessages(limit: Int): [AccountabilityMessage]
+  getSomeFullAccountabilityReacts(limit: Int): [AccountabilityReact]
+
+  # SINGLE 
   getDbUser(id: String): DbUser
   getAccountabilityReact(id: String): AccountabilityReact
-  getAccountabilityMessage(id: String): AccountabilityMessage
+  getFullAccountabilityMessage(id: String): AccountabilityMessage
   getAccountabilityTally(id: String): AccountabilityTally
-
-  getSomeFullAccountabilityMessages(limit: Int): [AccountabilityMessage]
-  getSomeFullAccountabilityReacts(limit: Int): [AccountabilityReact]
   
   # Graphs
-  getLineGraph(collection_type: String, from: Int, to: Int): [LineGraph]
+  getLineGraph(collection_type: String, from: Int, to: Int, graph_type: String): [LineGraph]
 }
 
 type DbUser {
