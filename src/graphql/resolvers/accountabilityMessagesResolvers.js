@@ -24,6 +24,7 @@ const accountabilityMessagesQuery = {
     const accountability_messages =
       await knex('accountability_messages')
         .limit(enforceLimit)
+        .orderBy('created_at', 'desc')
         .select('accountability_messages.id', 'accountability_messages.username', 'content', 'db_users_id', 'accountability_messages.created_at');
 
     return accountability_messages;

@@ -2,7 +2,7 @@ const _ = require('lodash');
 const knex = require('../../db/knex');
 const uuidv4 = require('uuid/v4');
 
-const userReactedToYourAccountabilityPost = require('./userReactedToYourAccountabilityPost');
+// const userReactedToYourAccountabilityPost = require('./userReactedToYourAccountabilityPost');
 const reactTallyUpdate = require('./reactTallyUpdate');
 
 const insertReact = async (client, logger, db_user, discordUser, juliusReade, messageReaction) => {

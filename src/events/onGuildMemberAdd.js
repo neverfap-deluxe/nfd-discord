@@ -14,7 +14,6 @@ Feel free to introduce yourself to everyone here in ${welcomeChannel}, I promise
 - Anything else you'd like to share! *posts random selfie*
 `;
 
-
 // YO
 // DUDE
 // WELCOME TO NEVERFAP
