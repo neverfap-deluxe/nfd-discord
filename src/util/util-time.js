@@ -1,7 +1,8 @@
 const moment = require('moment');
 
 const generateTallyDates = () => {
-  const isAfterMiddayOrMidday = moment().hour() >= 12;
+  // TODO See if this is correct. I think it now is.
+  const isAfterMiddayOrMidday = moment().hour() > 12;
   return isAfterMiddayOrMidday ? (
     {
       startOfTally: moment().endOf('day').subtract(12,'hours'),

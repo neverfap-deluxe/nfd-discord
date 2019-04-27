@@ -38,18 +38,12 @@ const theseUsersReactedToday = async (client, logger, juliusReade, today1153, to
           default: finalMessageBody += `\`${discordUser.username}\` - ${messageReacts.length} emoji reacts! ${reactedEmojis}\n`;
         }
 
-          await juliusReade.send(finalMessageBody);
-        // if (finalMessageBody.length > 1600) {
-          await dailyMilestonesChannel.send(finalMessageBody);    
-          finalTextString += finalMessageBody;
-          finalMessageBody = '';
-        // }
+        await juliusReade.send(finalMessageBody);
+        await dailyMilestonesChannel.send(finalMessageBody);    
+        finalTextString += finalMessageBody;
+        finalMessageBody = '';
       }
     }
-
-    // if (finalMessageBody) {
-    //   await dailyMilestonesChannel.send(finalMessageBody);
-    // }
 
     const finalMessageCountFull = `Total accountability reacts: ${finalMessageCount}\n\n`;
     await dailyMilestonesChannel.send(finalMessageCountFull);
