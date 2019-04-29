@@ -25,7 +25,8 @@ const theseUsersReactedToday = async (client, logger, juliusReade, today1153, to
       const messageReacts = 
         await knex('accountability_reacts')
           .where('db_users_id', db_user.id)
-          .whereBetween('created_at', [startOfTally, endOfTally]);
+          .whereBetween('created_at', [startOfTally, endOfTally])
+          .select('emoji_name');
 
       if (messageReacts.length > 0) {
         finalMessageCount += messageReacts.length;
@@ -52,7 +53,6 @@ const theseUsersReactedToday = async (client, logger, juliusReade, today1153, to
     await knex('accountability_tally').whereBetween('tally_date', [today1153, today1207]).update({react_message: finalTextString, total_reacts: finalMessageCount});
     await juliusReade.send(`Accountability react tally posted for today.`);
 
-    // create for tomorrow
     const tomorrow1200 = moment('12:00','HH:mm').add(1, 'day').format();
     await knex('accountability_tally').insert({id: uuidv4(), tally_date: tomorrow1200});
 

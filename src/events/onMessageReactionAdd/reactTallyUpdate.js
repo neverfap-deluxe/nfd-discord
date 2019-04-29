@@ -60,16 +60,16 @@ const reactTallyUpdate = async (client, logger, db_user, discordUser, discordUse
     const count = parseInt(accountabilityMessageCount[0].count);
 
     switch(count) {
-      case 1:   dailyMilestonesChannel.send(message1(discordUser, accountabilityChannel, hoursTillCountdown)); break;
+      case 1:    dailyMilestonesChannel.send(message1(discordUser, accountabilityChannel, hoursTillCountdown)); break;
       case 100:  dailyMilestonesChannel.send(message100(discordUser, accountabilityChannel, hoursTillCountdown)); break;
-      case 200: dailyMilestonesChannel.send(message200(discordUser, accountabilityChannel, hoursTillCountdown)); break;
-      case 300: dailyMilestonesChannel.send(message300(discordUser, accountabilityChannel, hoursTillCountdown)); break;
-      case 400: dailyMilestonesChannel.send(message400(discordUser, accountabilityChannel, hoursTillCountdown)); break;
-      case 500: dailyMilestonesChannel.send(message500(discordUser, accountabilityChannel, hoursTillCountdown)); break;
-      case 600: dailyMilestonesChannel.send(message600(discordUser, accountabilityChannel, hoursTillCountdown)); break;
-      case 700: dailyMilestonesChannel.send(message700(discordUser, accountabilityChannel, hoursTillCountdown)); break;
-      case 800: dailyMilestonesChannel.send(message800(discordUser, accountabilityChannel, hoursTillCountdown)); break;
-      case 900: dailyMilestonesChannel.send(message900(discordUser, accountabilityChannel, hoursTillCountdown)); break;
+      case 200:  dailyMilestonesChannel.send(message200(discordUser, accountabilityChannel, hoursTillCountdown)); break;
+      case 300:  dailyMilestonesChannel.send(message300(discordUser, accountabilityChannel, hoursTillCountdown)); break;
+      case 400:  dailyMilestonesChannel.send(message400(discordUser, accountabilityChannel, hoursTillCountdown)); break;
+      case 500:  dailyMilestonesChannel.send(message500(discordUser, accountabilityChannel, hoursTillCountdown)); break;
+      case 600:  dailyMilestonesChannel.send(message600(discordUser, accountabilityChannel, hoursTillCountdown)); break;
+      case 700:  dailyMilestonesChannel.send(message700(discordUser, accountabilityChannel, hoursTillCountdown)); break;
+      case 800:  dailyMilestonesChannel.send(message800(discordUser, accountabilityChannel, hoursTillCountdown)); break;
+      case 900:  dailyMilestonesChannel.send(message900(discordUser, accountabilityChannel, hoursTillCountdown)); break;
       case 1000: dailyMilestonesChannel.send(message1000(discordUser, accountabilityChannel, hoursTillCountdown)); break;
       case 1100: dailyMilestonesChannel.send(message1100(discordUser, accountabilityChannel, hoursTillCountdown)); break;
       case 1200: dailyMilestonesChannel.send(message1200(discordUser, accountabilityChannel, hoursTillCountdown)); break;

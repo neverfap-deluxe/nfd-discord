@@ -25,6 +25,7 @@ const insertReact = async (client, logger, db_user, discordUser, juliusReade, me
       db_users_id_reacted_to: _.get(db_user_reacted_to, 'id'),
       accountability_messages_id: _.get(original_accountaiblity_message, 'id'),
     };
+    await juliusReade.send(`insertReact - accountabilityObject - ${JSON.stringify(accountabilityObject)}`);
     
     await knex('accountability_reacts').insert(accountabilityObject);
     logger.info(`accountabilityReact added to database - ${discordUser.username} sent emoji`);

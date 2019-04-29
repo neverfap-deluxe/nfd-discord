@@ -53,7 +53,9 @@ For further advice, please type and enter \`!help\`.
 
 const hasNotPostedRecently = async (client, logger, juliusReade) => {
   try {
-    const db_users = await knex('db_users').select('id', 'discord_id', 'sent36HourMessage', 'sent72HourMessage');
+    const db_users = 
+      await knex('db_users')
+        .select('id', 'discord_id', 'sent36HourMessage', 'sent72HourMessage');
 
     for (const db_user of db_users) {
       if (db_user.discord_id !== process.env.NEVERFAP_DELUXE_BOT_ID) {
