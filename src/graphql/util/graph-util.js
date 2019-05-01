@@ -38,7 +38,7 @@ const createGraphData = (items, from, to, collection_type, graph_type) => {
   switch(graph_type) {
     case 'accumulative': {
       const reduceTotal = dataWithFormattedDates.reduce((acc, val) => ({
-          previous: val,
+          previous: createPoint(null, acc.dates.reduce((total, date) => total += date.y, 0) + val.y),
           dates: acc.dates.concat({...val, y: val.y + acc.previous.y }),
         }), { previous: createPoint(null, 0), dates: [] });
       return { ...metaData, data: reduceTotal.dates };
