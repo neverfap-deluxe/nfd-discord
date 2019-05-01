@@ -35,12 +35,21 @@ const createGraphData = (items, from, to, collection_type, graph_type) => {
     color: "hsl(111, 70%, 50%)",
   };
 
+  // case 'accumulative': {
+  //   const reduceTotal = dataWithFormattedDates.reduce((acc, val) => ({
+  //       previous: createPoint(null, acc.dates.reduce((total, date) => total += date.y, 0) + val.y),
+  //       dates: acc.dates.concat({...val, y: val.y + acc.previous.y }),
+  //     }), { previous: createPoint(null, 0), dates: [] });
+  //   return { ...metaData, data: reduceTotal.dates };
+  // }
+
   switch(graph_type) {
+    // TODO: I still need to figure this out
     case 'accumulative': {
       const reduceTotal = dataWithFormattedDates.reduce((acc, val) => ({
-          previous: createPoint(null, acc.dates.reduce((total, date) => total += date.y, 0) + val.y),
-          dates: acc.dates.concat({...val, y: acc.dates.reduce((total, date) => total += date.y, 0) + val.y }),
-        }), { previous: createPoint(null, 0), dates: [] });
+          // previous: createPoint(null, val.y),
+          dates: acc.dates.concat({...val, y: acc.dates.reduce((total, date) => date.y, 0) + val.y }),
+        }), { /* previous: createPoint(null, 0), */ dates: [] });
       return { ...metaData, data: reduceTotal.dates };
     }
     default: {
