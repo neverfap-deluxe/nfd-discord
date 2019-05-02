@@ -1,8 +1,9 @@
 const moment = require('moment')
+const knex = require('../../db/knex');
 
 const { collectionTypeToName } = require('./knex-util');
 
-const createGraphData = (items, from, to, collection_type, graph_type) => {
+const createGraphData = async (items, from, to, collection_type, graph_type) => {
   const reducedMessages = items.reduce((acc, message) => {
     for (const startPoint of acc.data) {
       const periodFromNow = moment(startPoint.x).add('1', 'day');
@@ -35,22 +36,24 @@ const createGraphData = (items, from, to, collection_type, graph_type) => {
     color: "hsl(111, 70%, 50%)",
   };
 
-  // case 'accumulative': {
-  //   const reduceTotal = dataWithFormattedDates.reduce((acc, val) => ({
-  //       previous: createPoint(null, acc.dates.reduce((total, date) => total += date.y, 0) + val.y),
-  //       dates: acc.dates.concat({...val, y: val.y + acc.previous.y }),
-  //     }), { previous: createPoint(null, 0), dates: [] });
-  //   return { ...metaData, data: reduceTotal.dates };
-  // }
-
   switch(graph_type) {
-    // TODO: I still need to figure this out
+    // TODO: I still need to figure this out. So, while it's accumulating now, it's not getting data in the past.
     case 'accumulative': {
-      const reduceTotal = dataWithFormattedDates.reduce((acc, val) => ({
-          // previous: createPoint(null, val.y),
-          dates: acc.dates.concat({...val, y: acc.dates.reduce((total, date) => date.y, 0) + val.y }),
-        }), { /* previous: createPoint(null, 0), */ dates: [] });
-      return { ...metaData, data: reduceTotal.dates };
+      // NEED a function here to retrieve all previous data. 
+    const startOf2019 = moment().year(2019).startOf('year').format();
+    const collection =
+      await knex(collection_type)
+        .whereBetween('created_at', [startOf2019, moment().add(from, 'days')])
+        .select('created_at');
+        
+    const startingDateTotal = collection.reduce((acc, date) => date.y, 0);
+    dataWithFormattedDates[0].y = dataWithFormattedDates[0].y + startingDateTotal;
+
+    const reduceTotal = dataWithFormattedDates.reduce((acc, val) => ({
+      dates: acc.dates.concat({...val, y: acc.dates.reduce((total, date) => date.y, 0) + val.y }),
+    }), { dates: [] });
+      
+    return { ...metaData, data: reduceTotal.dates };
     }
     default: {
       return { ...metaData, data: dataWithFormattedDates };
