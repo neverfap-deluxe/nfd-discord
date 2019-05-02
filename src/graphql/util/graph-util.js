@@ -44,10 +44,11 @@ const createGraphData = async (items, from, to, collection_type, graph_type) => 
     const collection =
       await knex(collection_type)
         .whereBetween('created_at', [startOf2019, moment().add(from, 'days')])
-        .select('created_at');
-        
-    const startingDateTotal = collection.reduce((acc, date) => date.y, 0);
-    dataWithFormattedDates[0].y = dataWithFormattedDates[0].y + startingDateTotal;
+        .count();
+
+    const count = parseInt(collection[0].count);
+  
+    dataWithFormattedDates[0].y = dataWithFormattedDates[0].y + count;
 
     const reduceTotal = dataWithFormattedDates.reduce((acc, val) => ({
       dates: acc.dates.concat({...val, y: acc.dates.reduce((total, date) => date.y, 0) + val.y }),
