@@ -48,12 +48,12 @@ const onMessage = (client, logger, twitterClient, redditClient) => {
       try {
         const db_user = await knex('db_users').where('discord_id', discordUser.id).first();
 
-        // FUTURE: Create an old_usernames collection, maybe - it's not strictly necessary. 
-        if (db_user.username !== discordUsername) {
-          await knex('db_users').where('id', db_user.id).update({ username: discordUsername });
-        }
-
         if (db_user) {
+          // FUTURE: Create an old_usernames collection, maybe - it's not strictly necessary. 
+          if (db_user.username !== discordUsername) {
+            await knex('db_users').where('id', db_user.id).update({ username: discordUsername });
+          }
+
           accountabilityChannelActions(client, logger, db_user, discordUser, channel, message, twitterClient, redditClient, juliusReade);
           neverFapDeluxeBotCommands(client, logger, channel, messageContent, db_user, discordUser, juliusReade);
         } else {

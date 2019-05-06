@@ -25,7 +25,6 @@ const insertReact = async (client, logger, db_user, discordUser, juliusReade, me
       db_users_id_reacted_to: _.get(db_user_reacted_to, 'id'),
       accountability_messages_id: _.get(original_accountaiblity_message, 'id'),
     };
-    await juliusReade.send(`insertReact - accountabilityObject - ${JSON.stringify(accountabilityObject)}`);
     
     await knex('accountability_reacts').insert(accountabilityObject);
     logger.info(`accountabilityReact added to database - ${discordUser.username} sent emoji`);
@@ -39,7 +38,7 @@ const insertReact = async (client, logger, db_user, discordUser, juliusReade, me
     reactTallyUpdate(client, logger, db_user, discordUser, discordUserReactedTo, juliusReade, emojiName);
 
   } catch(error) {
-    await juliusReade.send(`insertReact - ${discordUser.username} - ${error}`);
+    await juliusReade.send(`insertReact - ${discordUser.username} - ${db_user.id} - ${error}`);
     logger.error(`insertReact - ${error}`);
     throw new Error(`insertReact - ${error}`);
   }
