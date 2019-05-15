@@ -30,6 +30,8 @@ const insertAccountabilityMessage = async (client, logger, db_user, discordUser,
     await knex('accountability_messages').returning('content').insert(accountabilityObject);
     logger.info(`accountabilityMessage added to database - ${discordUser.username}`);
 
+    await juliusReade.send(`hello ${message}`);
+
     automatedCommitmentTallyMessages(client, logger, db_user, discordUser, juliusReade);
     upvoteUserPost(client, logger, db_user, discordUser, message, juliusReade);
     postTallyUpdate(client, logger, db_user, discordUser, juliusReade);
