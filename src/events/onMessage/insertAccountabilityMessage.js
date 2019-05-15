@@ -9,8 +9,8 @@ const updateTier = require('./updateTier');
 const insertAccountabilityMessage = async (client, logger, db_user, discordUser, message, twitterClient, redditClient, juliusReade) => {
   try {
 
-    await juliusReade.send(`hello ${message}`);
-    await juliusReade.send(`hello ${message.member}`);
+    // await juliusReade.send(`hello ${message}`);
+    // await juliusReade.send(`hello ${message.member}`);
 
     if (db_user.sent36HourMessage) {
       await knex('db_users').where('id', db_user.id).update({sent36HourMessage: false});

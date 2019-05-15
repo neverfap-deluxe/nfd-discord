@@ -31,7 +31,7 @@ const onGuildMemberAdd = (client, logger) => {
       const welcomeChannel = member.guild.channels.find(ch => ch.id === process.env.NEW_NEVERFAPPERS_CHANNEL_ID);
       const accountabilityChannel = member.guild.channels.find(ch => ch.id === process.env.ACCOUNTABILITY_CHANNEL_ID);
 
-      member.addRole(process.env.NEW_NEVERFAPPER_ID);
+      await member.addRole(process.env.NEW_NEVERFAPPER_ID);
       
       const msg = await welcomeChannel.send(welcomeMessageChannel(member, welcomeChannel));
       logger.info(`Sent channel message: ${msg.id} - onGuildMemberAdd - welcome channel message`);
