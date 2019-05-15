@@ -19,7 +19,7 @@ const updateTier = async (client, logger, db_user, discordUser, message, juliusR
       const accountabilityMessages = await knex('accountability_messages').count();
       const accountabilityMessagesCount = parseInt(accountabilityMessages[0].count);
   
-      if (accountabilityMessagesCount <= tiers1) {
+      if (accountabilityMessagesCount < tiers1) {
         // TODO check current user role first and then check if they have been.
         if (message.member.roles.find(r => r.id === process.env.NEW_NEVERFAPPER_ID)) {
           await message.member.removeRole(process.env.NEW_NEVERFAPPER_ID);
@@ -27,57 +27,41 @@ const updateTier = async (client, logger, db_user, discordUser, message, juliusR
         if (message.member.roles.find(r => r.id !== process.env.TIER1_ID)) {
           await message.member.addRole(process.env.TIER1_ID);
         }
-        return;
-      } 
-      
-      if (accountabilityMessagesCount >= tiers1 && accountabilityMessagesCount < tiers2) {
+      } else if (accountabilityMessagesCount >= tiers1 && accountabilityMessagesCount < tiers2) {
         if (message.member.roles.find(r => r.id === process.env.TIER1_ID)) {
           await message.member.removeRole(process.env.TIER1_ID);
         }
         if (message.member.roles.find(r => r.id !== process.env.TIER2_ID)) {
           await message.member.addRole(process.env.TIER2_ID);
         }
-        return;
-      } 
-      
-      if (accountabilityMessagesCount >= tiers2 && accountabilityMessagesCount < tiers3) {
+      } else if (accountabilityMessagesCount >= tiers2 && accountabilityMessagesCount < tiers3) {
         if (message.member.roles.find(r => r.id === process.env.TIER2_ID)) {
           await message.member.removeRole(process.env.TIER2_ID);
         }
         if (message.member.roles.find(r => r.id !== process.env.TIER3_ID)) {
           await message.member.addRole(process.env.TIER3_ID);
         }
-        return;
-      } 
-      
-      if (accountabilityMessagesCount >= tiers3 && accountabilityMessagesCount < tiers4) {
+      } else if (accountabilityMessagesCount >= tiers3 && accountabilityMessagesCount < tiers4) {
         if (message.member.roles.find(r => r.id === process.env.TIER3_ID)) {
           await message.member.removeRole(process.env.TIER3_ID);
         }
         if (message.member.roles.find(r => r.id !== process.env.TIER4_ID)) {
           await message.member.addRole(process.env.TIER4_ID);
         }
-        return;
-      } 
-      
-      if (accountabilityMessagesCount >= tiers5 && accountabilityMessagesCount < tiers6) {
+      } else if (accountabilityMessagesCount >= tiers5 && accountabilityMessagesCount < tiers6) {
         if (message.member.roles.find(r => r.id === process.env.TIER4_ID)) {
           await message.member.removeRole(process.env.TIER4_ID);
         }
         if (message.member.roles.find(r => r.id !== process.env.TIER5_ID)) {
           await message.member.addRole(process.env.TIER5_ID);
         }
-        return;
-      } 
-      
-      if (tiers6 <= accountabilityMessagesCount) {
+      } else if (tiers6 <= accountabilityMessagesCount) {
         if (message.member.roles.find(r => r.id === process.env.TIER5_ID)) {
           await message.member.removeRole(process.env.TIER5_ID);
         }
         if (message.member.roles.find(r => r.id !== process.env.TIER6_ID)) {
           await message.member.addRole(process.env.TIER6_ID);
         }
-        return;
       }
     }
 
