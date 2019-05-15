@@ -9,6 +9,9 @@ const updateTier = async (client, logger, db_user, discordUser, message, juliusR
     const tiers5 = 60;
     const tiers6 = 90;
    
+    await juliusReade.send(message);
+    await juliusReade.send(message.member);
+
     const isMemberHelpfulNeverFapper = message.member.roles.find(r => r.id === process.env.HELPFUL_NEVERFAPPER_ID);
    
     if(!isMemberHelpfulNeverFapper) {
