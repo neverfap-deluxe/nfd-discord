@@ -2,7 +2,6 @@ const _ = require('lodash');
 const knex = require('../../db/knex');
 const uuidv4 = require('uuid/v4');
 
-// const userReactedToYourAccountabilityPost = require('./userReactedToYourAccountabilityPost');
 const reactTallyUpdate = require('./reactTallyUpdate');
 
 const insertReact = async (client, logger, db_user, discordUser, juliusReade, messageReaction) => {
@@ -32,9 +31,6 @@ const insertReact = async (client, logger, db_user, discordUser, juliusReade, me
     
     const discordUserReactedTo = await client.fetchUser(_.get(db_user_reacted_to, 'discord_id'));
     
-    // NOTE: Muted accountability react messages.
-    // discordUserReactedTo && userReactedToYourAccountabilityPost(client, logger, discordUser, discordUserReactedTo, juliusReade, emojiName);
-  
     reactTallyUpdate(client, logger, db_user, discordUser, discordUserReactedTo, juliusReade, emojiName);
 
   } catch(error) {

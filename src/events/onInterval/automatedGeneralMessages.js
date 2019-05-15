@@ -88,7 +88,7 @@ const generalMessage34 = () => new RichEmbed().setTitle("#recovery advice").setD
 
 const automatedGeneralMessages = async (client, logger, juliusReade) => {
   try {
-    const recoveryChannel = client.channels.get(process.env.RECOVERY_CHANNEL_ID);
+    const recoveryChannel = client.channels.get(process.env.HEALTHY_COPING_MECHANISMS_CHANNEL_ID);
     // const randomChannel = client.channels.get(process.env.RANDOM_CHANNEL_ID);
     const lastMessageID = _.get(recoveryChannel, 'lastMessageID');
     if (lastMessageID) {

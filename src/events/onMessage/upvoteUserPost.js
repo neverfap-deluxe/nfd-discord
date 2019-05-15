@@ -49,7 +49,6 @@ const upvoteUserPost50 = (discordUser, accountabilityChannel) => new RichEmbed()
 
 const upvoteUserPost = async (client, logger, db_user, discordUser, message, juliusReade) => {
   try {
-    // const recoveryChannel = client.channels.get(process.env.RECOVERY_CHANNEL_ID);
     const milestonesChannel = client.channels.get(process.env.DAILY_MILESTONES_CHANNEL_ID);
     const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
     const accountabilityMessageCount = await knex('accountability_messages').where('db_users_id', db_user.id).count();

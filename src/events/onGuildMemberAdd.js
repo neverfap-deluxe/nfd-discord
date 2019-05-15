@@ -27,13 +27,16 @@ Feel free to introduce yourself to everyone here in ${welcomeChannel}, I promise
 const onGuildMemberAdd = (client, logger) => {
   return async function(member) {
     try {
-      const welcomeChannel = member.guild.channels.find(ch => ch.id === process.env.WELCOME_CHANNEL_ID);
+      const welcomeChannel = member.guild.channels.find(ch => ch.id === process.env.NEW_NEVERFAPPERS_CHANNEL_ID);
       const accountabilityChannel = member.guild.channels.find(ch => ch.id === process.env.ACCOUNTABILITY_CHANNEL_ID);
+
+      member.addRole(process.env.NEW_NEVERFAPPER_ID);
       
       const msg = await welcomeChannel.send(welcomeMessageChannel(member, welcomeChannel));
       logger.info(`Sent channel message: ${msg.id} - onGuildMemberAdd - welcome channel message`);
       const msg2 = await member.send(welcomeMessageUser(accountabilityChannel));
       logger.info(`Sent channel message: ${msg2.id} - onGuildMemberAdd - welcome user message`);
+
     } catch(error) {
       logger.error(`send message - ${error} - onGuildMemberAdd`);
       throw new Error(`send message - ${error} - onGuildMemberAdd`);

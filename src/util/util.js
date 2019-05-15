@@ -89,8 +89,8 @@ const configureReddit = (SnooWrap) => {
 
 const getChannel = (client, channelType) => {
   switch(channelType) {
-    case "welcome": return client.channels.get(process.env.WELCOME_CHANNEL_ID);
-    case "recovery": return client.channels.get(process.env.RECOVERY_CHANNEL_ID);
+    case "welcome": return client.channels.get(process.env.NEW_NEVERFAPPERS_CHANNEL_ID);
+    case "recovery": return client.channels.get(process.env.HEALTHY_COPING_MECHANISMS_CHANNEL_ID);
     case "random": return client.channels.get(process.env.RANDOM_CHANNEL_ID);
     case "accountability": return client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
     case "daily_milestones": return client.channels.get(process.env.DAILY_MILESTONES_CHANNEL_ID);

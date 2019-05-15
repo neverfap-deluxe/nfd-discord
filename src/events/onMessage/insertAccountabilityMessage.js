@@ -4,6 +4,7 @@ const uuidv4 = require('uuid/v4');
 const automatedCommitmentTallyMessages = require('./automatedCommitmentTallyMessages');
 const postTallyUpdate = require('./postTallyUpdate');
 const upvoteUserPost = require('./upvoteUserPost');
+const updateTier = require('./updateTier');
 
 const insertAccountabilityMessage = async (client, logger, db_user, discordUser, message, twitterClient, redditClient, juliusReade) => {
   try {
@@ -32,7 +33,8 @@ const insertAccountabilityMessage = async (client, logger, db_user, discordUser,
     automatedCommitmentTallyMessages(client, logger, db_user, discordUser, juliusReade);
     upvoteUserPost(client, logger, db_user, discordUser, message, juliusReade);
     postTallyUpdate(client, logger, db_user, discordUser, juliusReade);
-    
+    updateTier(client, logger, db_user, discordUser, message, juliusReade);
+
     // sendSocialStatuses(client, logger, db_user, discordUser, juliusReade);
 
   } catch(error) {

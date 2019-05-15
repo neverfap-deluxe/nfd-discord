@@ -3,8 +3,9 @@ const automatedGeneralMessages = require('./onInterval/automatedGeneralMessages'
 const hasNotPostedRecently = require('./onInterval/hasNotPostedRecently');
 const removeBotMessages = require('./onInterval/removeBotMessages');
 const dailyNeverFapDeluxeReport = require('./onInterval/dailyNeverFapDeluxeReport');
-
 const theseUsersPostedToday = require('./cron/theseUsersPostedToday');
+// const userReactedToYourAccountabilityPost = require('./onInterval/userReactedToYourAccountabilityPost');
+// const updateContentChannels = require('./onInterval/updateContentChannels');
 
 const onIntervalTenMinutes = (client, logger) => {
   return async function (/* evt */) {
@@ -28,6 +29,8 @@ const onIntervalOneHour = (client, logger) => {
   return async function (/* evt */) {
     const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
     dailyNeverFapDeluxeReport(client, logger, juliusReade);
+    // TODO: Implement this functionality.
+    // userReactedToYourAccountabilityPost(client, logger, juliusReade).
   }
 };
 
@@ -51,6 +54,7 @@ const onIntervalDayHalf = (client, logger) => {
   return async function (/* evt */) {
     const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
     hasNotPostedRecently(client, logger, juliusReade);
+    // updateContentChannels(client, logger, juliusReade);
   }
 };
 
