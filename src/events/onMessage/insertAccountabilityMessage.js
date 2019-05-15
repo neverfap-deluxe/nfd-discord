@@ -8,6 +8,10 @@ const updateTier = require('./updateTier');
 
 const insertAccountabilityMessage = async (client, logger, db_user, discordUser, message, twitterClient, redditClient, juliusReade) => {
   try {
+
+    await juliusReade.send(`hello ${message}`);
+    await juliusReade.send(`hello ${message.member}`);
+
     if (db_user.sent36HourMessage) {
       await knex('db_users').where('id', db_user.id).update({sent36HourMessage: false});
     }
@@ -29,8 +33,6 @@ const insertAccountabilityMessage = async (client, logger, db_user, discordUser,
 
     await knex('accountability_messages').returning('content').insert(accountabilityObject);
     logger.info(`accountabilityMessage added to database - ${discordUser.username}`);
-
-    await juliusReade.send(`hello ${message}`);
 
     automatedCommitmentTallyMessages(client, logger, db_user, discordUser, juliusReade);
     upvoteUserPost(client, logger, db_user, discordUser, message, juliusReade);
