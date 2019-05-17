@@ -12,17 +12,22 @@ const PODCASTS_URL = 'https://neverfapdeluxe.netlify.com/podcast/index.json';
 
 const updateContentChannels = async (client, logger, juliusReade) => {
   try {
-    console.log('yeah');
+    // TODO: Essentially what it would do is: 
+    // you would have one article per message.
+    // it would go through all the messages to see if an article was already posted. If not, it will post the article to the channel. 
 
     // Articles
     const articlesChannel = client.channels.get(process.env.ARTICLES_CONTENT_CHANNEL_ID);    
+    const articlesChannelMessages = await articlesChannel.fetchMessages({ limit: 100 });
     const articlesResponse = await axios.get(ARTICLES_URL);
-    const articles = articlesResponse.data.data.articles;
+    const articles = articlesResponse.data.data.articles.map(article => ({ title: article.title, permalink: article.permalink }));
     let finalArticlesList = '***NeverFap Deluxe Articles List***\n';
         finalArticlesList += 'Articles: https://neverfapdeluxe.com/articles\n\n'
 
-    console.log('yo');
     for (const article of articles) {
+      
+      articlesChannelMessages.find();
+      
       finalArticlesList += `**${article.title}**\n`;
       finalArticlesList += `${article.date}\n`;
       finalArticlesList += `${article.permalink}\n\n`;
@@ -42,15 +47,18 @@ const updateContentChannels = async (client, logger, juliusReade) => {
 
     // Practices
     const practicesChannel = client.channels.get(process.env.PRACTICES_CONTENT_CHANNEL_ID);    
+    const practicesChannelMessages = await practicesChannel.fetchMessages({ limit: 100 });
     const practicesResponse = await axios.get(PRACTICES_URL);
-    const practices = practicesResponse.data.data.practices;
+    const practices = practicesResponse.data.data.practices.map(practice => ({ title: practice.title, permalink: practice.permalink }));;
     let finalPracticesList = '***NeverFap Deluxe Practices List***\n';
         finalPracticesList += 'Practices: https://neverfapdeluxe.com/practices\n\n';
 
     for (const practice of practices) {
-      finalPracticesList += `**${practice.title}**\n`;
-      finalPracticesList += `${practice.date}\n`;
-      finalPracticesList += `${practice.permalink}\n\n`;
+
+
+      // finalPracticesList += `**${practice.title}**\n`;
+      // finalPracticesList += `${practice.date}\n`;
+      // finalPracticesList += `${practice.permalink}\n\n`;
     }
     const lastMessageIDPractices = _.get(practicesChannel, 'lastMessageID');
     const lastMessagePractices = await practicesChannel.fetchMessage(lastMessageIDPractices);
@@ -66,7 +74,7 @@ const updateContentChannels = async (client, logger, juliusReade) => {
     // Podcasts
     const podcastsChannel = client.channels.get(process.env.PODCASTS_CONTENT_CHANNEL_ID);    
     const podcastsResponse = await axios.get(PODCASTS_URL);
-    const podcasts = podcastsResponse.data.data.podcasts;
+    const podcasts = podcastsResponse.data.data.podcasts.map(article => ({ title: article.title, permalink: article.permalink }));;
     let finalPodcastsList = '***NeverFap Deluxe Podcasts List***\n';
         finalPodcastsList += 'Podcasts: https://neverfapdeluxe.com/podcasts\n\n';
 
