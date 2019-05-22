@@ -4,8 +4,6 @@ require('dotenv').config()
 const Koa = require('koa');
 const Discord = require('discord.js');
 const Winston = require('winston');
-const Twit = require('twit');
-const SnooWrap = require('snoowrap');
 const cron = require('node-cron');
 const cors = require('@koa/cors');
 // const nodemailer = require("nodemailer");
@@ -17,7 +15,8 @@ const onMessage = require('./events/onMessage');
 // const onMessageUpdate = require('./events/onMessageUpdate');
 const onMessageReactionAdd = require('./events/onMessageReactionAdd');
 const onGuildMemberAdd = require('./events/onGuildMemberAdd');
-const { configureLogger, configureTwitter, configureReddit, configureEmail, generateDelayValues } = require('./util/util');
+const { configureLogger, configureEmail, generateDelayValues } = require('./util/util');
+// const { configureTwitter, configureReddit, configureFacebook } = require('./social/configureSocial');
 const { onIntervalTenMinutes, onIntervalOneHour, onIntervalFourHours, onIntervalFiveHours, onIntervalDayHalf, onIntervalDay, onIntervalWeek } = require('./events/onInterval');
 const { onIntervalTenMinutesDelay, onIntervalOneHourDelay, onIntervalThreeHoursDelay, onIntervalFourHoursDelay, onIntervalDayHalfDelay, onIntervalDayDelay, onIntervalWeekDelay} = generateDelayValues(process.env.MODE);
 
@@ -32,8 +31,6 @@ const graphqlServer = require('./graphql/server');
 const app = new Koa();
 const client = new Discord.Client();
 const logger = configureLogger(Winston);
-const twitterClient = configureTwitter(Twit); 
-const redditClient = configureReddit(SnooWrap);
 const router = require('./routes');
 // const email = configureEmail(aws, nodemailer);
 
@@ -115,6 +112,6 @@ graphqlServer.start(options, () => console.log(`GraphQL Server is running on loc
 
 // Login Bot
 client.login(process.env.DISCORD_NFD_BOT_TOKEN);
- 
+
 // Start Koa Server
 app.listen(2000);

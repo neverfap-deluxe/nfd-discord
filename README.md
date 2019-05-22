@@ -1,8 +1,11 @@
 # nfd_discord
 
-npm i -S koa pm2 knex objection pg moment node-cron dotenv discord.js winston koa-static koa-views nodemailer aws-sdk 
+npm i -S koa pm2 knex objection pg moment node-cron dotenv discord.js winston koa-static koa-views nodemailer aws-sdk
 
 npm i -S graphql graphql-yoga graphql-tag reflect-metadata require-graphql-file
+
+
+npm install --save pinterest-node-api fbgraph node-instagram tumblr.js
 
 knex migrate:latest
 npm start
@@ -15,6 +18,10 @@ SSL FOR THIS https://tecadmin.net/install-lets-encrypt-create-ssl-ubuntu/
 - Memes chat
 
 
+https://www.npmjs.com/package/pinterest-node-api
+https://www.npmjs.com/package/fbgraph
+https://www.npmjs.com/package/node-instagram
+https://github.com/tumblr/tumblr.js/
 
 
 
@@ -37,7 +44,7 @@ app.use(async function (ctx) {
 
    // Emergency page needs to be created.
    // Post-Relapse page needs to be created.
-   
+
    league.neverfapdeluxe.com/
    // setup SSL for domain.
    // setup amazon SES
@@ -75,9 +82,9 @@ app.use(async function (ctx) {
 // send congratulations for starting their first streak!
 // send congratulations for starting their seven day streak!
 
-## Properties 
+## Properties
 
-- get channel properties n' stuff. 
+- get channel properties n' stuff.
 
 
 - message.channel
