@@ -6,6 +6,8 @@ npm i -S graphql graphql-yoga graphql-tag reflect-metadata require-graphql-file
 
 
 npm install --save pinterest-node-api fbgraph node-instagram tumblr.js
+npm install image-size --save
+
 
 knex migrate:latest
 npm start
