@@ -3,7 +3,7 @@ const { RichEmbed } = require('discord.js');
 
 const {
   generateRandomNumber,
-} = require('../../util/util');
+} = require('../../../util/util');
 
 const generalMessage1  = () => new RichEmbed().setTitle("#recovery advice").setDescription(
   `Just a friendly reminder from the NeverFap Deluxe Bot to stay positive! Otherwise, I may have to kill you. :smile:`);

@@ -1,11 +1,16 @@
 const knex = require('../../db/knex');
+const moment = require('moment');
 
 const userReactedToYourAccountabilityPost = async (client, logger, juliusReade) => {
   try {
     const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
+    const now = moment();
+    const nowLessHour = moment().subtract(1, 'hour');
 
     const accountabilityMessages = 
-      await knex('accountability_messages').select('db_users_id');
+      await knex('accountability_messages')
+        .whereBetween('created_at', [nowLessHour, now])
+        .select('db_users_id');
 
     for (const accountabilityMessage of accountabilityMessages) {
       const db_user = await knex('db_users').where('id', discordUser.id).select('discord_id');
@@ -15,7 +20,11 @@ const userReactedToYourAccountabilityPost = async (client, logger, juliusReade) 
         const accountabilityReacts =
           await knex('accountability_reacts')
             .where('db_users_id_reacted_to', accountabilityMessage.db_users_id)
+            .whereBetween('created_at', [nowLessHour, now])
             .select('username', 'emoji_name');
+
+        // TODO Figure out exactly how this function works. 
+        _.groupBy(accountabilityReacts, );
 
         let reactedToList = `These users reacted to your ${accountabilityChannel} post in the last hour!\n`;
 

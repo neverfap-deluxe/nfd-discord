@@ -3,7 +3,7 @@ const { RichEmbed } = require('discord.js');
 
 const {
   generateRandomNumber,
-} = require('../../util/util');
+} = require('../../../util/util');
 
 const accountabilityMessage1 = (accountabilityChannel) => new RichEmbed().setTitle("#accountability advice").setDescription(
   `Don't forget to add emoji reacts to other people's ${accountabilityChannel} posts!`);

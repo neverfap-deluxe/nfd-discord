@@ -173,7 +173,7 @@ const automatedCommitmentTally = async (client, logger, dbUser, discordUser, jul
         break;
       }
     }
-      
+
     await juliusReade.send(`${discordUser.username} - Day ${count} :D`);
     logger.info(`Sent julius message for ${discordUser.username} - Day ${count} :D`);
 

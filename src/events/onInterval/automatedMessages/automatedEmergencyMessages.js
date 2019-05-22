@@ -3,7 +3,7 @@ const { RichEmbed } = require('discord.js');
 
 const {
   generateRandomNumber,
-} = require('../../util/util');
+} = require('../../../util/util');
 
 const emergencyMessage1 = (emergencyChannel) => new RichEmbed().setTitle("#emergency advice").setDescription(
   `Oh nooooo, it's an emergency! Type and enter \`!emergency\` to receive some deliciously accurate advice.`);

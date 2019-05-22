@@ -3,7 +3,7 @@ const { RichEmbed } = require('discord.js');
 
 const {
   generateRandomNumber,
-} = require('../../util/util');
+} = require('../../../util/util');
 
 const relapseMessage1 = (relapseChannel) => new RichEmbed().setTitle("#relapse advice").setDescription(
   `Need some help dealing with your relapse? Please checkout this comprehensive guide I've put together https://neverfapdeluxe.com/post-relapse-academy`);

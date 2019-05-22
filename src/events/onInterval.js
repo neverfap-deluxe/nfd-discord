@@ -1,5 +1,5 @@
-const automatedAccountabilityMessages = require('./onInterval/automatedAccountabilityMessages');
-const automatedGeneralMessages = require('./onInterval/automatedGeneralMessages');
+const automatedAccountabilityMessages = require('./onInterval/automatedMessages/automatedAccountabilityMessages');
+const automatedGeneralMessages = require('./onInterval/automatedMessages/automatedGeneralMessages');
 const hasNotPostedRecently = require('./onInterval/hasNotPostedRecently');
 const removeBotMessages = require('./onInterval/removeBotMessages');
 const dailyNeverFapDeluxeReport = require('./onInterval/dailyNeverFapDeluxeReport');

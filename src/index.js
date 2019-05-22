@@ -46,7 +46,7 @@ app.use(router.routes())
 
 // Incoming Events
 client.on('ready', onReady(client, logger));
-client.on('message', onMessage(client, logger, twitterClient, redditClient));
+client.on('message', onMessage(client, logger));
 // client.on('messageUpdate', onMessageUpdate(client));
 client.on('messageReactionAdd', onMessageReactionAdd(client, logger));
 client.on('guildMemberAdd', onGuildMemberAdd(client, logger));
