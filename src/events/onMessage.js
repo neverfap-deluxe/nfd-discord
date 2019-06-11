@@ -33,6 +33,8 @@ const {
 
 const validateAccountabilityPost = require('./onMessage/validateAccountabilityPost');
 const insertAccountabilityMessage = require('./onMessage/insertAccountabilityMessage');
+const memberAccept = require('./onGuildMemberAdd/memberAccept');
+
 
 const onMessage = (client, logger, twitterClient, redditClient) => {
   return async function (message) {
@@ -55,12 +57,12 @@ const onMessage = (client, logger, twitterClient, redditClient) => {
           }
 
           accountabilityChannelActions(client, logger, db_user, discordUser, channel, message, twitterClient, redditClient, juliusReade);
-          neverFapDeluxeBotCommands(client, logger, channel, messageContent, db_user, discordUser, juliusReade);
+          neverFapDeluxeBotCommands(client, logger, channel, messageContent, db_user, discordUser, juliusReade, message);
         } else {
           const primary_id = uuidv4();
           const created_db_user = await knex('db_users').returning('*').insert({ id: primary_id, discord_id: discordUser.id, username: discordUser.username });
           accountabilityChannelActions(client, logger, created_db_user[0], discordUser, channel, message, twitterClient, redditClient, juliusReade);
-          neverFapDeluxeBotCommands(client, logger, channel, messageContent, created_db_user[0], discordUser, juliusReade);
+          neverFapDeluxeBotCommands(client, logger, channel, messageContent, created_db_user[0], discordUser, juliusReade, message);
         }
       } catch(error) {
         logger.error(`onMessage - ${error}`);
@@ -101,7 +103,7 @@ const accountabilityChannelActions = async (client, logger, db_user, discordUser
   }
 }
 
-const neverFapDeluxeBotCommands = async (client, logger, channel, messageContent, db_user, discordUser, juliusReade) => {
+const neverFapDeluxeBotCommands = async (client, logger, channel, messageContent, db_user, discordUser, juliusReade, message) => {
   try {
     const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
 
@@ -154,11 +156,9 @@ const neverFapDeluxeBotCommands = async (client, logger, channel, messageContent
         case 'disboard': break;
         case 'd': break;
         case 'accept': {
-          // await knex('db_users').where('id', db_user.id).update({has_accepted: true});
-          // await discordUser.send('thank you'); // TODO
-          // logger.info(`${discordUser.user} just accepted the terms and conditions!`);
-          // await juliusReade.send(`${discordUser.user} just accepted the terms and conditions!`);
-          // TODO 
+          if (channel.id === process.env.WELCOME_CHANNEL_ID) {
+            memberAccept(client, logger, channel, message, db_user, discordUser, juliusReade);
+          }
           break;
         }
         default: {

@@ -2,6 +2,8 @@ const automatedAccountabilityMessages = require('./onInterval/automatedMessages/
 const automatedGeneralMessages = require('./onInterval/automatedMessages/automatedGeneralMessages');
 const hasNotPostedRecently = require('./onInterval/hasNotPostedRecently');
 const removeBotMessages = require('./onInterval/removeBotMessages');
+const removeWelcomeMessages = require('./onInterval/removeWelcomeMessages');
+
 const dailyNeverFapDeluxeReport = require('./onInterval/dailyNeverFapDeluxeReport');
 const theseUsersPostedToday = require('./cron/theseUsersPostedToday');
 // const userReactedToYourAccountabilityPost = require('./onInterval/userReactedToYourAccountabilityPost');
@@ -11,10 +13,14 @@ const onIntervalTenMinutes = (client, logger) => {
   return async function (/* evt */) {
     const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
     removeBotMessages(client.channels, logger);
+    removeWelcomeMessages(client.channels, logger) 
 
     // NOTE: Purely for testing.
     if (process.env.MODE === 'dev') {
       theseUsersPostedToday(client, logger, juliusReade);
+
+      
+
       // const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
 
       // const emoji = client.emojis.find(emoji => emoji.name === 'doge');
