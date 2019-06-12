@@ -3,10 +3,11 @@ const onGuildMemberAdd = (client, logger) => {
     const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
     try {
       await member.addRole(process.env.INITIATE_ROLE_ID);
+
     } catch(error) {
-      juliusReade.send(`send message - ${error} - onGuildMemberAdd`)
-      logger.error(`send message - ${error} - onGuildMemberAdd`);
-      throw new Error(`send message - ${error} - onGuildMemberAdd`);
+      juliusReade.send(`send message - ${process.env.INITIATE_ROLE_ID} - ${member} - ${error} - onGuildMemberAdd`)
+      logger.error(`send message - ${process.env.INITIATE_ROLE_ID} - ${member} - ${error} - onGuildMemberAdd`);
+      throw new Error(`send message - ${process.env.INITIATE_ROLE_ID} - ${member} - ${error} - onGuildMemberAdd`);
     }
   }
 }
