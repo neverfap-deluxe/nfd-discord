@@ -211,7 +211,7 @@ const antiCheatsheetMessage = new RichEmbed()
   .addField("Obsession", "Obsession is the worst offender when it comes to losing control over our emotions. There is no better way to derail than consciously deciding to obsess over something, whether it be certain emotions, feelings or even people or things in our lives.")
   .addField("Judging others", "This is the exact same thing as self-criticism, except directed towards others. In fact, they are both different sides of the same coin, which effectively reinforce each other.")
   .addField("Incessant Rationalsation", "Overthinking is not an appropriate response to any situation. ")
-  .addField("Overworking", "Pushing ourselves too hard is both a form of obsession, as well as distraction. When you push yourself too hard, not only do you lose awarenes, however you also lose balance as well - which in most cases leads to relapse. ")
+  .addField("Overworking", "Pushing ourselves too hard is both a form of obsession, as well as distraction. When you push yourself too hard, not only do you lose awareness, however you also lose balance as well - which in most cases leads to relapse. ")
   .setFooter("A friendly message from the NeverFap Deluxe Bot! ^^", "https://neverfapdeluxe.com/images/logo.png") // This message will self-delete within 5 minutes ^^.                                                                                              
 
 

@@ -37,7 +37,7 @@ Now that you have a hang of the ropes, I'll be messaging you less frequently *sa
 Of course, you'll still receieve special messages at key milestones, so don't fret! We will always be friends forever :D
 `;
 const commitmentTallyMessage10 = (accountability) =>
-`Can you believe that you've been doing this for 10 whole days!? That's a rediculous amount of time, if you consider that prior to this effort you may not have been comitting at all, what you're doing here really is something special.\n
+`Can you believe that you've been doing this for 10 whole days!? That's a ridiculous amount of time, if you consider that prior to this effort you may not have been comitting at all, what you're doing here really is something special.\n
 I hope meditation has proven key in helping you develop control over your mind and emotions, and I certainly know that I wouldn't be anywhere near as functional without it (obviously, bots need to look after their mental health too).\n
 Just remember, consistency is your key out of this mess. If you remain consistent, you win the race. It really is that simple. :squid:
 `;

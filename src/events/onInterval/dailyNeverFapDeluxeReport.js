@@ -48,7 +48,7 @@ const dailyNeverFapDeluxeReport = async (client, logger, juliusReade) => {
 
 const finalMessage = `**The Daily NeverFap Deluxe Report**\n
 Total commitment: ${parseInt(accountabilityMessageCount[0].count)} Days
-Total emjoi reacts: ${parseInt(accountabilityReactMessageCount[0].count)} Emojis\n
+Total emoji reacts: ${parseInt(accountabilityReactMessageCount[0].count)} Emojis\n
 Here's a friendly reminder of what you posted yesterday!\n
 \`\`\`${message.content}\`\`\`
 Post emojis: ${messageEmojis}\n

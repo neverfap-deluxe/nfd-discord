@@ -3,6 +3,7 @@ const automatedGeneralMessages = require('./onInterval/automatedMessages/automat
 const hasNotPostedRecently = require('./onInterval/hasNotPostedRecently');
 const removeBotMessages = require('./onInterval/removeBotMessages');
 const removeWelcomeMessages = require('./onInterval/removeWelcomeMessages');
+// const deleteNonAcceptedUsers = require('./onInterval/deleteNonAcceptedUsers');
 
 const dailyNeverFapDeluxeReport = require('./onInterval/dailyNeverFapDeluxeReport');
 const theseUsersPostedToday = require('./cron/theseUsersPostedToday');
@@ -19,8 +20,6 @@ const onIntervalTenMinutes = (client, logger) => {
     if (process.env.MODE === 'dev') {
       theseUsersPostedToday(client, logger, juliusReade);
 
-      
-
       // const accountabilityChannel = client.channels.get(process.env.ACCOUNTABILITY_CHANNEL_ID);
 
       // const emoji = client.emojis.find(emoji => emoji.name === 'doge');
@@ -35,6 +34,7 @@ const onIntervalOneHour = (client, logger) => {
   return async function (/* evt */) {
     const juliusReade = await client.fetchUser(process.env.JULIUS_READE_ID);
     dailyNeverFapDeluxeReport(client, logger, juliusReade);
+    // deleteNonAcceptedUsers(client, logger, juliusReade);
     // TODO: Implement this functionality.
     // userReactedToYourAccountabilityPost(client, logger, juliusReade).
   }
