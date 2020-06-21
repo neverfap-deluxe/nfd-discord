@@ -1,0 +1,45 @@
+version: '3.1'
+services:
+  nfd-discord-api:
+    image: dottjt/nfd-discord
+    container_name: 'nfd-discord'
+    ports:
+      - 2000:2000
+      - 2001:2001
+    volumes:
+    - "/docker/letsencrypt-docker-nginx/src/discord/logs:/usr/src/app/api/logs"
+    depends_on:
+      - nfd-discord-postgres
+    restart: always
+    env_file:
+      - .env
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 2s
+        max_attempts: 3
+        window: 120s
+    networks:
+      - docker-network-discord
+
+  nfd-discord-postgres:
+    image: postgres:alpine
+    container_name: 'nfd-discord-postgres'
+    ports:
+      - 2345:5432
+    volumes:
+      - "./volumes/postgres:/var/lib/postgresql/data"
+    restart: always
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    env_file:
+      - .env
+    networks:
+      - docker-network-discord
+
+networks:
+  docker-network-discord:
+    driver: bridge

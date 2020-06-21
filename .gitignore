@@ -1,7 +1,13 @@
 .env
-nginx/.env
+deployment/environment/.env.local
+deployment/environment/.env.development
+deployment/environment/.env.production
+
+deployment/docker/prod-build/.env
+deployment/docker/prod-build/volumes
+
 node_modules
 deploy_key
 
-logs/combined.log
-logs/error.log
+logs/*
+volumes/*

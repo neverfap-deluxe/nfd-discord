@@ -1,0 +1,7 @@
+      // } else {
+      //   await message.delete();
+      //   await discordUser.send(`You silly thing, you didn't read the rules like the bot asked you too! Follow the instructions outlined as per the <#${channel}> rules and we'll let you post :grin:.\nTo learn the rules, please type and enter \`!accountability\` into the message bar.`);
+
+      //   logger.info(`Deleted ${discordUser.username} accountability message for not reading the rules.`)
+      //   await juliusReade.send(`Deleted ${discordUser.username} accountability message for not reading the rules.`);
+      // }

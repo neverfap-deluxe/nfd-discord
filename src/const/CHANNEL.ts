@@ -1,0 +1,21 @@
+export const WELCOME_CHANNEL_NAME = 'welcome';
+export const RECOVERY_CHANNEL_NAME = 'recovey-chat';
+export const RANDOM_CHANNEL_NAME = 'random-chat';
+export const ACCOUNTABILITY_CHANNEL_NAME = 'accountability';
+export const ASK_JULIUS_CHANNEL_NAME = 'lets-ask-julius-a-question';
+export const ANNOUNCEMENT_CHANNEL_NAME = 'announcements';
+export const POST_RELAPSE_CHANNEL_NAME = 'post-relapse-academy';
+export const EMERGENCY_CHANNEL_NAME = 'emergency';
+export const SERVER_SUGGESTIONS_CHANNEL_NAME = 'server-suggestions';
+// export const LOLFAP_CHANNEL_NAME = 'lolfap';
+
+export const WELCOME_CHANNEL_DESCRIPTION = 'Welcome to the channel.';
+export const RECOVERY_CHANNEL_DESCRIPTION = 'General chat related to porn addiction recovery.';
+export const RANDOM_CHANNEL_DESCRIPTION = 'Random chat about anything, really.';
+export const ACCOUNTABILITY_CHANNEL_DESCRIPTION = "Where you'll post your daily accountability message.";
+export const ASK_JULIUS_CHANNEL_DESCRIPTION = "Ask your lord and saviour Julius Reade for some advice.";
+export const ANNOUNCEMENT_CHANNEL_DESCRIPTION = 'NeverFap Deluxe related announcements.';
+export const POST_RELAPSE_CHANNEL_DESCRIPTION = "A place to gather post-relapse.";
+export const EMERGENCY_CHANNEL_DESCRIPTION = "Emergency support if you're struggling with urges.";
+export const SERVER_SUGGESTIONS_CHANNEL_DESCRIPTION = "Any suggestions you may have for the channel.";
+// export const LOLFAP_CHANNEL_DESCRIPTION = 'Funny things related to porn recovery.';
