@@ -1,6 +1,6 @@
 import { ClientUser, Client, Message, User, TextChannel, Channel } from 'discord.js';
 import logger from '../util/logger';
-import { fetchOrCreateDbUser } from '../util/db';
+import { fetchOrCreateDbUser } from '../util/fetchOrCreateDbUser';
 import { getNFDBotId } from '../util/util';
 
 import accountabilityChannelActions from './channels/accountability/onMessage/accountabilityChannelActions';

@@ -5,6 +5,7 @@ config({ path: path.resolve(__dirname, '..', 'deployment', 'environment') });
 // Libraries
 import Koa from 'koa';
 import Discord, { Client } from 'discord.js';
+import SnooWrap from 'snoowrap';
 
 // Functions
 import onReady from './events/onReady';
@@ -16,9 +17,11 @@ import setupCron from './events/cron';
 import logger from './util/logger';
 import { generateDelayValues } from './util/util';
 import startGraphqlServer from './graphql/server';
+// import redditAccountabilityMain from './redditAccountability/main';
 
-import { onIntervalTenMinutes, onIntervalOneHour, onIntervalFourHours, onIntervalFiveHours, onIntervalDayHalf } from './events/onInterval';
-const { onIntervalTenMinutesDelay, onIntervalOneHourDelay, onIntervalFourHoursDelay, onIntervalFiveHoursDelay, onIntervalDayHalfDelay } = generateDelayValues();
+
+import { onIntervalTenMinutes, onIntervalOneHour, onIntervalThreeHours, onIntervalFourHours, onIntervalFiveHours, onIntervalDayHalf } from './events/onInterval';
+const { onIntervalTenMinutesDelay, onIntervalOneHourDelay, onIntervalThreeHoursDelay, onIntervalFourHoursDelay, onIntervalFiveHoursDelay, onIntervalDayHalfDelay } = generateDelayValues();
 
 const clientReady = (client: Client) => new Promise(resolve => client.once('ready', onReady(client, resolve)));
 
@@ -30,6 +33,13 @@ const main = async () => {
     messageCacheLifetime: 7200, // Allow cached messages to live for 2 hours. default 0
     messageSweepInterval: 600 // every 10 minutes, remove all cached messages older than 2 hours. default 0
   });
+
+  // const redditClient = new SnooWrap({
+  //   userAgent:  process.env.REDDIT_API_USER_AGENT as string,
+  //   clientId: process.env.REDDIT_API_KEY as string,
+  //   clientSecret: process.env.REDDIT_API_KEY_SECRET as string,
+  //   refreshToken: process.env.REDDIT_API_REFRESH_TOKEN as string,
+  // });
 
   client.login(process.env.DISCORD_NFD_BOT_TOKEN);
 
@@ -47,11 +57,13 @@ const main = async () => {
   // Automated Events
   client.setInterval(onIntervalTenMinutes(client), onIntervalTenMinutesDelay);
   client.setInterval(onIntervalOneHour(client), onIntervalOneHourDelay);
+  client.setInterval(onIntervalThreeHours(client), onIntervalThreeHoursDelay);
   client.setInterval(onIntervalFourHours(client), onIntervalFourHoursDelay);
   client.setInterval(onIntervalFiveHours(client), onIntervalFiveHoursDelay);
   client.setInterval(onIntervalDayHalf(client), onIntervalDayHalfDelay);
 
   await setupCron(client);
+  // await redditAccountabilityMain(client, redditClient);
 
   startGraphqlServer();
   app.listen(2000);

@@ -41,3 +41,7 @@ It's not too bad. Here is how I've decided to configure it.
 - `CREATE DATABASE nfd_discord;`
 - `CREATE USER nfd WITH ENCRYPTED PASSWORD 'nfd';`
 - `GRANT ALL PRIVILEGES ON DATABASE nfd_discord TO nfd;`
+
+
+TODO: Put social links in some of the messages. As in, join our facebook and our twitter account
+TODO: Maybe have automated messages which advertises the socials

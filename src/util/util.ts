@@ -12,6 +12,7 @@ export const getNFDBotId = (): string => process.env.NEVERFAP_DELUXE_BOT_ID as s
 export const generateDelayValues = (): {
   onIntervalTenMinutesDelay: number;
   onIntervalOneHourDelay: number;
+  onIntervalThreeHoursDelay: number;
   onIntervalFourHoursDelay: number;
   onIntervalFiveHoursDelay: number;
   onIntervalDayHalfDelay: number;
@@ -20,6 +21,7 @@ export const generateDelayValues = (): {
     return {
       onIntervalTenMinutesDelay: 1000 * 2, // every 2 seconds
       onIntervalOneHourDelay: 1000 * 3, // every 3 seconds
+      onIntervalThreeHoursDelay: 1000 * 4, // every 4 seconds
       onIntervalFourHoursDelay: 1000 * 5, // every 5 seconds
       onIntervalFiveHoursDelay: 1000 * 6, // every 6 seconds
       onIntervalDayHalfDelay: 1000 * 10, // every 10 seconds
@@ -30,6 +32,7 @@ export const generateDelayValues = (): {
   return {
     onIntervalTenMinutesDelay: 1000 * 60 * 10 * 1, // every ten minutes
     onIntervalOneHourDelay: 1000 * 60 * 60 * 1, // every one hour
+    onIntervalThreeHoursDelay: 1000 * 60 * 60 * 3, // every four hours
     onIntervalFourHoursDelay: 1000 * 60 * 60 * 4, // every four hours
     onIntervalFiveHoursDelay: 1000 * 60 * 60 * 5, // every five hours
     onIntervalDayHalfDelay: 1000 * 60 * 60 * 12, // every 12 hours
@@ -177,3 +180,8 @@ export const getChannelId = (channelType: NFDChannelType): string => {
     default: throw new Error(`Incorrect channel type provided: ${channelType}`);
   }
 }
+
+export enum AccountabilityUserType {
+  DiscordUserType='discord_user_type',
+  RedditUserType='reddit_user_type',
+};

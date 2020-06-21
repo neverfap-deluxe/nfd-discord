@@ -2,7 +2,7 @@
 import { Client, MessageReaction, User, PartialUser } from 'discord.js';
 
 import logger from '../util/logger';
-import { fetchOrCreateDbUser } from '../util/db';
+import { fetchOrCreateDbUser } from '../util/fetchOrCreateDbUser';
 import { isAccountabilityMessage, getChannelId } from '../util/util';
 
 import insertReact from './channels/accountability/onMessageReactionAdd/insertReact';
@@ -12,7 +12,7 @@ import { NFDChannelType } from '../types';
 const onMessageReactionAdd = (client: Client) =>
   async (messageReaction: MessageReaction, discordUser: User | PartialUser): Promise<void> => {
     // NOTE: This will only be run on cached messages. So for example, if you were to restart the bot,
-    // this would not work on old messages. 
+    // this would not work on old messages.
     try {
       const messageChannelId: string = messageReaction.message.channel.id;
       const messageContent: string = messageReaction.message.content;
