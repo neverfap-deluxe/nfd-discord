@@ -52,6 +52,7 @@
     "koa-router": "^9.0.1",
     "moment": "^2.24.0",
     "node-cron": "^2.0.3",
+    "node-emoji": "^1.10.0",
     "pg": "^8.2.1",
     "reflect-metadata": "^0.1.13",
     "require-graphql-file": "^1.0.1",

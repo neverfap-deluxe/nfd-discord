@@ -5,6 +5,7 @@ import { getNFDBotId } from '../util/util';
 
 import accountabilityChannelActions from './channels/accountability/onMessage/accountabilityChannelActions';
 import neverFapDeluxeBotCommands from './channels/onMessage/neverFapDeluxeBotCommands';
+import sendEmojiReactToJournalPosts from './channels/journal/onMessage/sendEmojiReactToJournalPosts';
 
 const onMessage = (client: Client) =>
   async (message: Message) => {
@@ -16,6 +17,7 @@ const onMessage = (client: Client) =>
         const db_user = await fetchOrCreateDbUser(discordUser);
         await accountabilityChannelActions(client, channel as TextChannel, db_user, discordUser, message);
         await neverFapDeluxeBotCommands(client, channel as TextChannel, db_user, discordUser, message);
+        await sendEmojiReactToJournalPosts(client, channel as TextChannel, db_user, discordUser, message);
       }
     } catch(error) {
       logger.error(`onMessage - ${error}`);

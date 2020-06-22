@@ -49,3 +49,4 @@ TODO: NFD Bot command which allows you to capture what was written/said in a ser
 TODO: Put social links in some of the messages. As in, join our facebook and our twitter account
 TODO: Maybe have automated messages which advertises the socials
 TODO: Discord Channel display website and socials more prominently.
+TODO: Journal counters?
