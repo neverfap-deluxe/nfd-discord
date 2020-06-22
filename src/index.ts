@@ -35,12 +35,12 @@ const main = async () => {
     messageSweepInterval: 600 // every 10 minutes, remove all cached messages older than 2 hours. default 0
   });
 
-  // const redditClient = new SnooWrap({
-  //   userAgent:  process.env.REDDIT_API_USER_AGENT as string,
-  //   clientId: process.env.REDDIT_API_KEY as string,
-  //   clientSecret: process.env.REDDIT_API_KEY_SECRET as string,
-  //   refreshToken: process.env.REDDIT_API_REFRESH_TOKEN as string,
-  // });
+  const redditClient = new SnooWrap({
+    userAgent:  process.env.REDDIT_API_USER_AGENT as string,
+    clientId: process.env.REDDIT_API_KEY as string,
+    clientSecret: process.env.REDDIT_API_KEY_SECRET as string,
+    refreshToken: process.env.REDDIT_API_REFRESH_TOKEN as string,
+  });
 
   client.login(process.env.DISCORD_NFD_BOT_TOKEN);
 
@@ -64,7 +64,7 @@ const main = async () => {
   client.setInterval(onIntervalFiveHours(client), onIntervalFiveHoursDelay);
   client.setInterval(onIntervalDayHalf(client), onIntervalDayHalfDelay);
 
-  await setupCron(client);
+  await setupCron(client, redditClient);
   // await redditAccountabilityThreadPoolCommentsEventListener(client, redditClient);
 
   startGraphqlServer();
