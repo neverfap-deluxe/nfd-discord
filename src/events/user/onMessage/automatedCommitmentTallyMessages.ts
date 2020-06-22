@@ -9,6 +9,9 @@ import { getChannel } from '../../../util/util';
 const commitmentTallyMessage1 = (_accountabilityChannel: TextChannel): string =>
 `Although it may not seem like it, what you just did was huge. You committed to your mental health and that's more than anyone can ask for. :heart:\n
 Thank you for your commitment, and remember that we're all here to help. :grin:
+
+Please consult our website for any tips or tricks for your recovery.
+https://neverfapdeluxe.com/
 `;
 const commitmentTallyMessage2 = (accountabilityChannel: TextChannel): string =>
 `Well, well, well. You cheeky little thing! You posted again in <#${accountabilityChannel}>!\n

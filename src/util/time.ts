@@ -47,4 +47,3 @@ export const formatRedditAccountabilityDate = (date: Date): string => {
 
   return [day, month, year].join('-');
 }
-

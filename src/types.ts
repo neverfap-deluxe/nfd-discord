@@ -62,3 +62,20 @@ export interface AccountabilityReact {
   accountability_messages_id: string;
   updated_at: string;
 }
+
+export interface RedditAccountabilitySubmission {
+  id: string;
+  submission_id: string;
+  submission_date: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface RedditAccountabilityComment {
+  id: string;
+  comment_id: string;
+  username: string;
+  content: string;
+  db_users_id: string;
+  parent_submission_id: string;
+}

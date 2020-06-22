@@ -12,6 +12,7 @@ import onReady from './events/onReady';
 import onMessage from './events/onMessage';
 import onMessageReactionAdd from './events/onMessageReactionAdd';
 import onGuildMemberAdd from './events/onGuildMemberAdd';
+import onGuildMemberRemove from './events/onGuildMemberRemove';
 
 import setupCron from './events/cron';
 import logger from './util/logger';
@@ -48,6 +49,7 @@ const main = async () => {
 
   client.on('message', onMessage(client));
   client.on('messageReactionAdd', onMessageReactionAdd(client));
+  client.on('guildMemberRemove', onGuildMemberRemove(client));
   client.on('guildMemberAdd', onGuildMemberAdd(client));
   client.on('error', logger.error);
 
@@ -63,7 +65,7 @@ const main = async () => {
   client.setInterval(onIntervalDayHalf(client), onIntervalDayHalfDelay);
 
   await setupCron(client);
-  // await redditAccountabilityMain(client, redditClient);
+  // await redditAccountabilityThreadPoolCommentsEventListener(client, redditClient);
 
   startGraphqlServer();
   app.listen(2000);

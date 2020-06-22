@@ -43,5 +43,9 @@ It's not too bad. Here is how I've decided to configure it.
 - `GRANT ALL PRIVILEGES ON DATABASE nfd_discord TO nfd;`
 
 
+## TODO IDEAS
+
+TODO: NFD Bot command which allows you to capture what was written/said in a server and post it to twitter or reddit. That would be awesome.
 TODO: Put social links in some of the messages. As in, join our facebook and our twitter account
 TODO: Maybe have automated messages which advertises the socials
+TODO: Discord Channel display website and socials more prominently.

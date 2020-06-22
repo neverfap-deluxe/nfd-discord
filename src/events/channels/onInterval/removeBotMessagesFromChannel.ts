@@ -1,4 +1,4 @@
-import { Client, TextChannel, Message, Collection, MessageEmbed } from "discord.js";
+import { Client, TextChannel, Message, Collection, MessageEmbed, Guild } from "discord.js";
 
 import { getChannel, getNFDBotId } from '../../../util/util';
 import logger from '../../../util/logger';
@@ -56,14 +56,6 @@ import { NFDChannelType } from "../../../types";
 //   }
 // };
 
-const removeWelcomeMessageFromNewNeverFappersIfUserLeaves = async (message: [string, Message]) => {
-
-  const messageEmbed: MessageEmbed = message[1].embeds[0];
-  // console.log(messageEmbed);
-  // TODO Figure this out.
-  // I'm assuming this is actually a different client.on event
-}
-
 const removeBotMessagesFromChannel = async (client: Client): Promise<void> => {
   // const accountabilityChannel: TextChannel = await getChannel(client, NFDChannelType.Accountability_Accountability);
   // const accountabilityChannelMessages = await accountabilityChannel.messages.fetch({ limit: 25 });
@@ -74,14 +66,6 @@ const removeBotMessagesFromChannel = async (client: Client): Promise<void> => {
   //     // await deleteBotMessages(message);
   //   }
   // }
-
-  const newNeverFappersChannel: TextChannel = await getChannel(client, NFDChannelType.RecoveryChat_NewNeverFappers);
-  const newNeverFappersChannelMessages = await newNeverFappersChannel.messages.fetch({ limit: 25 });
-  if (newNeverFappersChannelMessages) {
-    for (const messageManager of newNeverFappersChannelMessages) {
-      await removeWelcomeMessageFromNewNeverFappersIfUserLeaves(messageManager);
-    }
-  }
 };
 
 export default removeBotMessagesFromChannel;

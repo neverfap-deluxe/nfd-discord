@@ -9,6 +9,8 @@ cd $CLIENT_ROOT_FOLDER/deployment/docker/prod-build
 docker-compose build
 docker push dottjt/nfd-discord
 
+# https://github.com/neverfap-deluxe/nfd-discord
+
 rm $CLIENT_ROOT_FOLDER/deployment/docker/prod-build/.env
 
 # nginx docker-compose.yml file
