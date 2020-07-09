@@ -1,38 +1,59 @@
-import { Client, ClientUser, TextChannel, User } from 'discord.js';
-import moment, { Moment } from 'moment';
-import { v4 as uuidv4 } from 'uuid';
+import { Client, TextChannel, User } from 'discord.js';
+import { Moment } from 'moment';
 
 import knex from '../../../../../util/knex';
 import logger from '../../../../../util/logger';
 import { getChannel } from '../../../../../util/util';
 
-import { generateTallyDates } from '../../../../../util/time';
+import { generateTallyDates, formatRedditAccountabilityDate } from '../../../../../util/time';
 import { DBUser, NFDChannelType } from '../../../../../types';
 
 const finalMessageBodyText = (count: number, discordUser: User): string => {
   switch(count) {
-    case 1:  return `\`${discordUser.username}\` - Day ${count} - First Day Dynamite! :boom:\n`; break;
-    case 3:  return `\`${discordUser.username}\` - Day ${count} - Triple Threat! :stuck_out_tongue_closed_eyes:\n`; break;
-    case 7:  return `\`${discordUser.username}\` - Day ${count} - One Week Champion! :lifter:\n`; break;
-    case 10: return `\`${discordUser.username}\` - Day ${count} - 10 Day Mania! :christmas_tree:\n`; break;
-    case 14: return `\`${discordUser.username}\` - Day ${count} - Two Week Wonder! :surfer:\n`; break;
-    case 20: return `\`${discordUser.username}\` - Day ${count} - 20 Day Admiration :rainbow:!\n`; break;
-    case 21: return `\`${discordUser.username}\` - Day ${count} - 3 Week Hedonist! :cherry_blossom:\n`; break;
-    case 25: return `\`${discordUser.username}\` - Day ${count} - Quarter Master! :gem:\n`; break;
-    case 28: return `\`${discordUser.username}\` - Day ${count} - 4 Week OMFG! :bangbang:\n`; break;
-    case 30: return `\`${discordUser.username}\` - Day ${count} - 30 Day Craze! :tada:\n`; break;
-    case 35: return `\`${discordUser.username}\` - Day ${count} - 5 Week Wowzer! :punch:\n`; break;
-    case 40: return `\`${discordUser.username}\` - Day ${count} - 40 Day Domination! :100:\n`; break;
-    case 42: return `\`${discordUser.username}\` - Day ${count} - 6 Week Kaiser! :squid:\n`; break;
-    case 49: return `\`${discordUser.username}\` - Day ${count} - 7 Week Emperor! :crossed_swords:\n`; break;
-    case 50: return `\`${discordUser.username}\` - Day ${count} - HALF A BLOODY CENTURY! :statue_of_liberty:\n`; break;
+    case 1:  return `\`${discordUser.username}\` - Day ${count} - First Day Dynamite! :boom:\n`;
+    case 3:  return `\`${discordUser.username}\` - Day ${count} - Triple Threat! :stuck_out_tongue_closed_eyes:\n`;
+    case 7:  return `\`${discordUser.username}\` - Day ${count} - One Week Champion! :lifter:\n`;
+    case 10: return `\`${discordUser.username}\` - Day ${count} - 10 Day Mania! :christmas_tree:\n`;
+    case 14: return `\`${discordUser.username}\` - Day ${count} - Two Week Wonder! :surfer:\n`;
+    case 20: return `\`${discordUser.username}\` - Day ${count} - 20 Day Admiration :rainbow:!\n`;
+    case 21: return `\`${discordUser.username}\` - Day ${count} - 3 Week Hedonist! :cherry_blossom:\n`;
+    case 25: return `\`${discordUser.username}\` - Day ${count} - Quarter Master! :gem:\n`;
+    case 28: return `\`${discordUser.username}\` - Day ${count} - 4 Week OMFG! :bangbang:\n`;
+    case 30: return `\`${discordUser.username}\` - Day ${count} - 30 Day Craze! :tada:\n`;
+    case 35: return `\`${discordUser.username}\` - Day ${count} - 5 Week Wowzer! :punch:\n`;
+    case 40: return `\`${discordUser.username}\` - Day ${count} - 40 Day Domination! :100:\n`;
+    case 42: return `\`${discordUser.username}\` - Day ${count} - 6 Week Kaiser! :squid:\n`;
+    case 49: return `\`${discordUser.username}\` - Day ${count} - 7 Week Emperor! :crossed_swords:\n`;
+    case 50: return `\`${discordUser.username}\` - Day ${count} - HALF A BLOODY CENTURY! :statue_of_liberty:\n`;
     default: return `\`${discordUser.username}\` - Day ${count}\n`;
+  }
+};
+
+const finalMessageBodyTextReddit = (count: number, discordUser: User): string => {
+  switch(count) {
+    case 1:  return `${discordUser.username} - Day ${count} - First Day Dynamite\n`;
+    case 3:  return `${discordUser.username} - Day ${count} - Triple Threat\n`;
+    case 7:  return `${discordUser.username} - Day ${count} - One Week Champion\n`;
+    case 10: return `${discordUser.username} - Day ${count} - 10 Day Mania\n`;
+    case 14: return `${discordUser.username} - Day ${count} - Two Week Wonder\n`;
+    case 20: return `${discordUser.username} - Day ${count} - 20 Day Admiration :rainbow:!\n`;
+    case 21: return `${discordUser.username} - Day ${count} - 3 Week Hedonist\n`;
+    case 25: return `${discordUser.username} - Day ${count} - Quarter Master\n`;
+    case 28: return `${discordUser.username} - Day ${count} - 4 Week OMFG\n`;
+    case 30: return `${discordUser.username} - Day ${count} - 30 Day Craze\n`;
+    case 35: return `${discordUser.username} - Day ${count} - 5 Week Wowzer\n`;
+    case 40: return `${discordUser.username} - Day ${count} - 40 Day Domination\n`;
+    case 42: return `${discordUser.username} - Day ${count} - 6 Week Kaiser\n`;
+    case 49: return `${discordUser.username} - Day ${count} - 7 Week Emperor\n`;
+    case 50: return `${discordUser.username} - Day ${count} - HALF A BLOODY CENTURY\n`;
+    default: return `${discordUser.username} - Day ${count}\n`;
   }
 };
 
 const processDiscordUsersPostedToday = async (client: Client, today1153: Moment, today1207: Moment): Promise<{
   discordUsersTallyStringList: string;
   discordUsersParticipatingCount: number;
+  accountabilityDate: string;
 }> => {
   try {
     const { startOfTally, endOfTally } = generateTallyDates();
@@ -63,11 +84,12 @@ const processDiscordUsersPostedToday = async (client: Client, today1153: Moment,
         const count: number = parseInt(accountabilityMessageCount[0].count as string);
 
         const finalMessageBody = finalMessageBodyText(count, discordUser);
+        const finalMessageBodyReddit = finalMessageBodyTextReddit(count, discordUser);
         await dailyMilestonesChannel.send(finalMessageBody);
 
         discordUsersParticipatingCount += 1;
         finalTextString += finalMessageBody;
-        discordUsersTallyStringList += finalMessageBody;
+        discordUsersTallyStringList += finalMessageBodyReddit;
       }
 
       const finalMessageCountFull = `Total accountability participants: ${discordUsersParticipatingCount}\n\n`;
@@ -84,9 +106,17 @@ const processDiscordUsersPostedToday = async (client: Client, today1153: Moment,
         });
     }
 
+    const accountability_tally =
+      await knex('accountability_tally')
+        .whereBetween('tally_date', [today1153.toDate(), today1207.toDate()])
+        .first('tally_date');
+
+    const accountabilityDate = formatRedditAccountabilityDate(accountability_tally.tally_date);
+
     return {
       discordUsersTallyStringList,
       discordUsersParticipatingCount,
+      accountabilityDate
     }
   } catch (error) {
     // const juliusReade: ClientUser | null = client.user;

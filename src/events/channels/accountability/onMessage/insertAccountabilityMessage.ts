@@ -9,6 +9,7 @@ import automatedCommitmentTallyMessages from '../../../user/onMessage/automatedC
 import postTallyUpdate from '../../daily_milestones/onMessage/postTallyUpdate';
 import upvoteUserPost from '../../daily_milestones/onMessage/upvoteUserPost';
 import updateTier from '../../../user/onMessage/updateTier';
+// import postDiscordAccountabilityToReddit from '../../../user/onMessage/postDiscordAccountabilityToReddit';
 
 const insertAccountabilityMessage = async (client: Client, db_user: DBUser, discordUser: User, channel: TextChannel, message: Message) => {
   try {
@@ -36,6 +37,7 @@ const insertAccountabilityMessage = async (client: Client, db_user: DBUser, disc
     await upvoteUserPost(client, db_user, discordUser);
     await postTallyUpdate(client, db_user, discordUser);
     await updateTier(client, db_user, discordUser, message);
+    // await postDiscordAccountabilityToReddit(client, db_user, discordUser, message);
 
   } catch(error) {
     const juliusReade: ClientUser | null = client.user;

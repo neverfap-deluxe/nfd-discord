@@ -7,7 +7,7 @@ import knex from '../../../../../util/knex';
 import logger from '../../../../../util/logger';
 
 import processDiscordUsersPostedToday from './processDiscordUsersPostedToday';
-// import processRedditUsersPostedToday from './processRedditUsersPostedToday';
+import processRedditUsersPostedToday from './processRedditUsersPostedToday';
 
 const theseUsersPostedToday = async (client: Client) => {
   try {
@@ -22,9 +22,10 @@ const theseUsersPostedToday = async (client: Client) => {
       const {
         discordUsersTallyStringList,
         discordUsersParticipatingCount,
+        accountabilityDate
       } = await processDiscordUsersPostedToday(client, today1153, today1207);
 
-      // await processRedditUsersPostedToday(today1153, today1207, discordUsersTallyStringList, discordUsersParticipatingCount);
+      await processRedditUsersPostedToday(today1153, today1207, discordUsersTallyStringList, discordUsersParticipatingCount, accountabilityDate);
     } else {
       await knex('accountability_tally').insert({
         id: uuidv4(),
@@ -36,9 +37,10 @@ const theseUsersPostedToday = async (client: Client) => {
       const {
         discordUsersTallyStringList,
         discordUsersParticipatingCount,
+        accountabilityDate
       } = await processDiscordUsersPostedToday(client, today1153, today1207);
 
-      // await processRedditUsersPostedToday(today1153, today1207, discordUsersTallyStringList, discordUsersParticipatingCount);
+      await processRedditUsersPostedToday(today1153, today1207, discordUsersTallyStringList, discordUsersParticipatingCount, accountabilityDate);
     }
   } catch(error) {
     // const juliusReade: ClientUser | null = client.user;

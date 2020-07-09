@@ -1,34 +1,14 @@
 import {
   neverFapDeluxeAccountabilityThreadPoolText,
 } from './redditMessages';
-import { formatRedditAccountabilityDate } from '../util/time';
+import { formatRedditAccountabilityDate } from '../../util/time';
 
 import SnooWrap, { Submission, Comment } from 'snoowrap';
 import { CommentStream } from 'snoostorm';
-import knex from '../util/knex';
+import knex from '../../util/knex';
 import { v4 as uuidv4 } from 'uuid';
-import { DBUser } from '../types';
+import { DBUser } from '../../types';
 import Snoowrap from 'snoowrap';
-
-// CRON
-
-export const dailyAccountabilityThreadPoolPost = (redditClient: SnooWrap) => {
-  try {
-    const formattedDate = formatRedditAccountabilityDate(new Date())
-
-    redditClient
-      .getSubreddit('NeverFapDeluxe')
-      // @ts-ignore
-      .submitSelfPost({
-        title: `NeverFap Deluxe #accountability Thread Pool - ${formattedDate}`,
-        text: neverFapDeluxeAccountabilityThreadPoolText(formattedDate),
-      });
-  } catch(error) {
-    throw new Error('dailyAccountabilityThreadPoolPost');
-  }
-};
-
-// DIRECT
 
 export const redditAccountabilityThreadPoolCommentsEventListener = async (redditClient: Snoowrap, submissionId: string): Promise<void> => {
   const commentStream = new CommentStream({
@@ -72,7 +52,6 @@ export const redditAccountabilityThreadPoolCommentsEventListener = async (reddit
     }
   });
 };
-
 
 
 // export default class Submission extends VoteableContent<Submission> {

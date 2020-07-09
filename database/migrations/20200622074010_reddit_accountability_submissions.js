@@ -4,6 +4,8 @@ exports.up = async function(knex) {
     table.uuid('id').notNullable().unique().primary();
     table.string('submission_id');
     table.string('submission_date');
+    table.string('submission_title');
+    table.string('submission_text');
     table.timestamps(true, true);
   });
 };

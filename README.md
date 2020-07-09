@@ -7,6 +7,12 @@ The bot does a heap of different things, but largely it's designed to track your
 
 Released under the [GNU GPLv3 licence](https://github.com/neverfap-deluxe/nfd-discord/blob/master/LICENSE).
 
+## TODO
+
+- cross post functions `events/aggregated`  postDiscordAccountabilityToReddit
+- reddit accountability `events/reddit` in `cron` postRedditAccountabilityThreadPool/listenRedditAccountability /
+
+
 ## Tech
 
 Backend: Node.js, Koa, Discord.js, Postgres, GraphQL, PM2
