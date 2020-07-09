@@ -9,7 +9,7 @@ import logger from '../../../../../util/logger';
 import processDiscordUsersPostedToday from './processDiscordUsersPostedToday';
 // import processRedditUsersPostedToday from './processRedditUsersPostedToday';
 
-const theseUsersPostedToday = async (client: Client, redditClient: Snoowrap) => {
+const theseUsersPostedToday = async (client: Client) => {
   try {
     const today1153: Moment = process.env.NODE_ENV !== 'production' ? moment('0:28', 'HH:mm') : moment('11:53', 'HH:mm');
     const today1207: Moment = process.env.NODE_ENV !== 'production' ? moment('23:30', 'HH:mm') : moment('12:07', 'HH:mm');
@@ -24,7 +24,7 @@ const theseUsersPostedToday = async (client: Client, redditClient: Snoowrap) => 
         discordUsersParticipatingCount,
       } = await processDiscordUsersPostedToday(client, today1153, today1207);
 
-      // await processRedditUsersPostedToday(redditClient, today1153, today1207, discordUsersTallyStringList, discordUsersParticipatingCount);
+      // await processRedditUsersPostedToday(today1153, today1207, discordUsersTallyStringList, discordUsersParticipatingCount);
     } else {
       await knex('accountability_tally').insert({
         id: uuidv4(),
@@ -38,7 +38,7 @@ const theseUsersPostedToday = async (client: Client, redditClient: Snoowrap) => 
         discordUsersParticipatingCount,
       } = await processDiscordUsersPostedToday(client, today1153, today1207);
 
-      // await processRedditUsersPostedToday(redditClient, today1153, today1207, discordUsersTallyStringList, discordUsersParticipatingCount);
+      // await processRedditUsersPostedToday(today1153, today1207, discordUsersTallyStringList, discordUsersParticipatingCount);
     }
   } catch(error) {
     // const juliusReade: ClientUser | null = client.user;

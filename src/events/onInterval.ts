@@ -6,7 +6,7 @@ import hasNotPostedRecently from './user/onInterval/hasNotPostedRecently';
 import removeBotMessagesFromChannel from './channels/onInterval/removeBotMessagesFromChannel';
 
 import dailyNeverFapDeluxeReport from './user/onInterval/dailyNeverFapDeluxeReport';
-import automatedDiscordServerBump from './channels/onInterval/automatedDiscordServerBump';
+import automatedDiscordServerBumpReminder from './channels/onInterval/automatedDiscordServerBumpReminder';
 
 // Test dependencies
 // import { getChannel } from '../util/util';
@@ -44,7 +44,7 @@ export const onIntervalOneHour = (client: Client) =>
 export const onIntervalThreeHours = (client: Client) =>
   async () => {
     if (process.env.NODE_ENV === 'production') {
-      await automatedDiscordServerBump(client);
+      await automatedDiscordServerBumpReminder(client);
     }
   };
 

@@ -1,5 +1,7 @@
 import { Client, Channel, TextChannel } from 'discord.js';
 import { NFDChannelType } from '../types';
+import { generateTallyDates } from './time';
+import knex from './knex';
 
 export const generateRandomNumber = (min: number, max: number): number => {
   const newMin = Math.ceil(min);
@@ -185,3 +187,21 @@ export enum AccountabilityUserType {
   DiscordUserType='discord_user_type',
   RedditUserType='reddit_user_type',
 };
+
+export const getTallyCount = async (): Promise<number> => {
+  const { startOfTally, endOfTally } = generateTallyDates();
+
+  const redditAccountabilityMessages =
+    await knex('reddit_accountability_comments')
+      .whereBetween('reddit_accountability_comments.created_at', [startOfTally.toDate(), endOfTally.toDate()])
+      .count('reddit_accountability_comments.id');
+  const redditCount: number = parseInt(redditAccountabilityMessages[0].count as string);
+
+  const discordAccountabilityMessages =
+    await knex('accountability_messages')
+      .whereBetween('accountability_messages.created_at', [startOfTally.toDate(), endOfTally.toDate()])
+      .count('accountability_messages.id');
+  const discordCount: number = parseInt(discordAccountabilityMessages[0].count as string);
+
+  return redditCount + discordCount;
+}

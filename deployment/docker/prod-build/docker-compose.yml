@@ -5,7 +5,7 @@ services:
     container_name: 'nfd-discord'
     build:
       context: ../../../
-      dockerfile: ./deployment/docker/prod/Dockerfile
+      dockerfile: ./deployment/docker/prod-build/Dockerfile
     ports:
       - 2000:2000
       - 2001:2001

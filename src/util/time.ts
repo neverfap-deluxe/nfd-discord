@@ -45,5 +45,5 @@ export const formatRedditAccountabilityDate = (date: Date): string => {
   if (day.length < 2)
       day = '0' + day;
 
-  return [day, month, year].join('-');
+  return [day, month, year].join('/');
 }

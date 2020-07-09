@@ -18,11 +18,13 @@ import setupCron from './events/cron';
 import logger from './util/logger';
 import { generateDelayValues } from './util/util';
 import startGraphqlServer from './graphql/server';
-// import redditAccountabilityMain from './redditAccountability/main';
-
 
 import { onIntervalTenMinutes, onIntervalOneHour, onIntervalThreeHours, onIntervalFourHours, onIntervalFiveHours, onIntervalDayHalf } from './events/onInterval';
 const { onIntervalTenMinutesDelay, onIntervalOneHourDelay, onIntervalThreeHoursDelay, onIntervalFourHoursDelay, onIntervalFiveHoursDelay, onIntervalDayHalfDelay } = generateDelayValues();
+
+// Testing dependencies
+// import { postRedditAccountabilityThreadPool } from './events/reddit/postRedditAccountabilityThreadPool';
+
 
 const clientReady = (client: Client) => new Promise(resolve => client.once('ready', onReady(client, resolve)));
 
@@ -33,13 +35,6 @@ const main = async () => {
     messageCacheMaxSize: 2000, // 200 default
     messageCacheLifetime: 7200, // Allow cached messages to live for 2 hours. default 0
     messageSweepInterval: 600 // every 10 minutes, remove all cached messages older than 2 hours. default 0
-  });
-
-  const redditClient = new SnooWrap({
-    userAgent:  process.env.REDDIT_API_USER_AGENT as string,
-    clientId: process.env.REDDIT_API_KEY as string,
-    clientSecret: process.env.REDDIT_API_KEY_SECRET as string,
-    refreshToken: process.env.REDDIT_API_REFRESH_TOKEN as string,
   });
 
   client.login(process.env.DISCORD_NFD_BOT_TOKEN);
@@ -64,8 +59,10 @@ const main = async () => {
   client.setInterval(onIntervalFiveHours(client), onIntervalFiveHoursDelay);
   client.setInterval(onIntervalDayHalf(client), onIntervalDayHalfDelay);
 
-  await setupCron(client, redditClient);
+  await setupCron(client);
   // await redditAccountabilityThreadPoolCommentsEventListener(client, redditClient);
+
+  // await postRedditAccountabilityThreadPool(redditClient);
 
   startGraphqlServer();
   app.listen(2000);
