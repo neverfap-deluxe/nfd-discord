@@ -1,9 +1,19 @@
 import Winston, { Logger } from 'winston';
+const { printf } = Winston.format;
+
+import { toMelbourneDateString } from './knex';
+
+// @ts-ignore - Apparently parseZone doesn't take any arguments?
+const timestamp = () => toMelbourneDateString(new Date());
+
+const myFormat = printf(info => {
+  return `${timestamp()} [${info.level}]: ${info.message}`;
+});
 
 const createLogger = (): Logger => {
   const logger: Logger = Winston.createLogger({
     level: 'info',
-    format: Winston.format.json(),
+    format: myFormat,
     defaultMeta: { service: 'user-service' },
     transports: [
       //

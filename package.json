@@ -27,7 +27,7 @@
     "docker:up:dev": "docker-compose -f ./deployment/docker/dev/docker-compose.yml up",
     "docker:up:prod": "docker-compose -f ./deployment/docker/prod/docker-compose.yml up",
     "docker:build:dev": "docker-compose -f ./deployment/docker/dev/docker-compose.yml build --no-cache",
-    "docker:build:prod": "docker-compose -f ./deployment/docker/dev/docker-compose.yml build"
+    "docker:build:prod": "docker-compose -f ./deployment/docker/dev/docker-compose.yml build --no-cache"
   },
   "repository": {
     "type": "git",
@@ -50,7 +50,7 @@
     "knex": "^0.21.1",
     "koa": "^2.12.1",
     "koa-router": "^9.0.1",
-    "moment": "^2.24.0",
+    "moment": "^2.27.0",
     "node-cron": "^2.0.3",
     "node-emoji": "^1.10.0",
     "pg": "^8.2.1",

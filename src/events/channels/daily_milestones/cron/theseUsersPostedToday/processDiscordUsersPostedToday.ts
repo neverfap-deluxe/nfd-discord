@@ -105,13 +105,17 @@ const processDiscordUsersPostedToday = async (client: Client, today1153: Moment,
           total_participants: discordUsersParticipatingCount
         });
     }
-
+    logger.info('before accountability_tally');
     const accountability_tally =
       await knex('accountability_tally')
         .whereBetween('tally_date', [today1153.toDate(), today1207.toDate()])
         .first('tally_date');
 
-    const accountabilityDate = formatRedditAccountabilityDate(accountability_tally.tally_date);
+    logger.info('accountability_tally.tally_date', accountability_tally.tally_date);
+
+    const accountabilityDate = formatRedditAccountabilityDate(new Date(accountability_tally.tally_date));
+
+    logger.info('after accountability_tally - ' + accountabilityDate);
 
     return {
       discordUsersTallyStringList,

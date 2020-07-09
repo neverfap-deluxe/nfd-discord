@@ -31,8 +31,8 @@ export const postRedditAccountabilityThreadPool = async (redditClient: SnooWrap)
       id: uuidv4(),
       submission_id: submissionHollow.name,
       submission_date: formattedDate,
-      submission_title: submission.title,
-      submission_text: submission.selftext,
+      title: submission.title,
+      text: submission.selftext,
     });
   } catch(error) {
     throw new Error('postRedditAccountabilityThreadPool');

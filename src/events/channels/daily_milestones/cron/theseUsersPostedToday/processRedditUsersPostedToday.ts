@@ -98,6 +98,8 @@ const processRedditUsersPostedToday = async (today1153: Moment, today1207: Momen
     // // get submission
     // const submission = await knex();
 
+    logger.info('we did it!');
+
     const tallyText = neverFapDeluxeAccountabilityTallyText({
       discordUsersTallyList,
       discordUsersParticipatingCount,
@@ -105,6 +107,8 @@ const processRedditUsersPostedToday = async (today1153: Moment, today1207: Momen
       // redditUsersParticipatingCount,
       // postLink: 'TODO'
     })
+
+    logger.info(tallyText);
 
     redditClient
       .getSubreddit('NeverFapDeluxe')
@@ -114,7 +118,7 @@ const processRedditUsersPostedToday = async (today1153: Moment, today1207: Momen
         text: tallyText,
       });
 
-    logger.info(`Accountability tally posted for today.`);
+    logger.info(`Reddit Accountability tally posted for today.`);
 
   } catch (error) {
     // const juliusReade: ClientUser | null = client.user;
