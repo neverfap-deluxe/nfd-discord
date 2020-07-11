@@ -12,17 +12,3 @@
 //     text: neverFapDeluxeDailyAccountabilityTallyTwitterText(accountabilityData),
 //   });
 // };
-
-// // NEVERFAP DELUXE
-
-// export const neverFapDeluxeDailyAccountabilityTallyTwitterText =
-//   (tally: TallyData): string => (
-// `NeverFap Deluxe #accountability #NoFap stats.
-
-// Total Accountabilty Posts Today: $
-// `
-// );
-
-
-
-

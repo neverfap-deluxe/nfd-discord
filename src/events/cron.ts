@@ -8,6 +8,7 @@ import theseUsersPostedToday from './channels/daily_milestones/cron/theseUsersPo
 // DISCORD
 import accountabilityTallyCountdown from './channels/daily_milestones/cron/accountabilityTallyCountdown';
 import theseUsersReactedToday from './channels/daily_milestones/onInterval/theseUsersReactedToday';
+import automatedDiscordServerFAK from './channels/onInterval/automatedDiscordServerFAK';
 
 // REDDIT
 // import { postRedditAccountabilityThreadPool } from './reddit/postRedditAccountabilityThreadPool';
@@ -15,8 +16,12 @@ import theseUsersReactedToday from './channels/daily_milestones/onInterval/these
 // TODO Figure out what time this has to post.
 
 const setupCron = async (client: Client): Promise<void> => {
-  cron.schedule('*/10 * * * *', async () => { // Every 10 Minutes
+  // cron.schedule('*/10 * * * *', async () => { // Every 10 Minutes
 
+  // });
+
+  cron.schedule('*/40 * * * *', async () => { // Every 10 Minutes
+    await automatedDiscordServerFAK(client)
   });
 
   cron.schedule('0 12 * * *', async (): Promise<void> => {

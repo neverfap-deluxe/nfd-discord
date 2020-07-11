@@ -1,10 +1,10 @@
 import Winston, { Logger } from 'winston';
 const { printf } = Winston.format;
 
-import { toMelbourneDateString } from './knex';
+import { toMelbourneDateStringLogger } from './time';
 
 // @ts-ignore - Apparently parseZone doesn't take any arguments?
-const timestamp = () => toMelbourneDateString(new Date());
+const timestamp = () => toMelbourneDateStringLogger(new Date());
 
 const myFormat = printf(info => {
   return `${timestamp()} [${info.level}]: ${info.message}`;

@@ -1,13 +1,25 @@
-import { Client, ClientUser, TextChannel } from 'discord.js';
+import { Client } from 'discord.js';
 import moment, { Moment } from 'moment';
 import { v4 as uuidv4 } from 'uuid';
-import Snoowrap from 'snoowrap';
 
 import knex from '../../../../../util/knex';
 import logger from '../../../../../util/logger';
 
 import processDiscordUsersPostedToday from './processDiscordUsersPostedToday';
 import processRedditUsersPostedToday from './processRedditUsersPostedToday';
+import processTwitterUsersPostedToday from './processTwitterUsersPostedToday';
+
+
+const insertTallyIfNotExist = async (accountability_tally, normalTallyDate) => {
+  if (accountability_tally && !accountability_tally.completed) {
+    await knex('accountability_tally').insert({
+      id: uuidv4(),
+      tally_date: normalTallyDate.format()
+    });
+
+    logger.info(`theseUsersPostedToday - created accountability tally for today.`);
+  }
+}
 
 const theseUsersPostedToday = async (client: Client) => {
   try {
@@ -18,30 +30,17 @@ const theseUsersPostedToday = async (client: Client) => {
 
     const accountability_tally = await knex('accountability_tally').whereBetween('tally_date', [today1153.toDate(), today1207.toDate()]).first();
 
-    if (accountability_tally && !accountability_tally.completed) {
-      const {
-        discordUsersTallyStringList,
-        discordUsersParticipatingCount,
-        accountabilityDate
-      } = await processDiscordUsersPostedToday(client, today1153, today1207);
+    await insertTallyIfNotExist(accountability_tally, normalTallyDate);
 
-      await processRedditUsersPostedToday(today1153, today1207, discordUsersTallyStringList, discordUsersParticipatingCount, accountabilityDate);
-    } else {
-      await knex('accountability_tally').insert({
-        id: uuidv4(),
-        tally_date: normalTallyDate.format()
-      });
+    const {
+      discordUsersTallyStringList,
+      discordUsersParticipatingCount,
+      accountabilityDate
+    } = await processDiscordUsersPostedToday(client, today1153, today1207);
 
-      logger.info(`theseUsersPostedToday - created accountability tally for today.`);
+    await processRedditUsersPostedToday(today1153, today1207, discordUsersTallyStringList, discordUsersParticipatingCount, accountabilityDate);
+    await processTwitterUsersPostedToday(today1153, today1207, discordUsersTallyStringList, discordUsersParticipatingCount, accountabilityDate);
 
-      const {
-        discordUsersTallyStringList,
-        discordUsersParticipatingCount,
-        accountabilityDate
-      } = await processDiscordUsersPostedToday(client, today1153, today1207);
-
-      await processRedditUsersPostedToday(today1153, today1207, discordUsersTallyStringList, discordUsersParticipatingCount, accountabilityDate);
-    }
   } catch(error) {
     // const juliusReade: ClientUser | null = client.user;
     // await juliusReade?.send(`theseUsersPostedToday - ${error}`);

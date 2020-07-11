@@ -71,3 +71,25 @@ export const toMelbourneDateString = (date: Date): string => {
 
   return timeZoneDate;
 }
+
+const toISOTimezoneStringLogger = (date: Date): string => {
+  var tzo = - date.getTimezoneOffset(),
+      dif = tzo >= 0 ? '+' : '-',
+      pad = function(num) {
+        var norm = Math.floor(Math.abs(num));
+        return (norm < 10 ? '0' : '') + norm;
+      };
+  return date.getFullYear() +
+      '-' + pad(date.getMonth() + 1) +
+      '-' + pad(date.getDate()) +
+      ' ' + pad(date.getHours()) +
+      ':' + pad(date.getMinutes()) +
+      ':' + pad(date.getSeconds())
+}
+
+export const toMelbourneDateStringLogger = (date: Date): string => {
+  const aestTime = date.toLocaleString("en-US", {timeZone: "Australia/Melbourne"});
+  const timeZoneDate = toISOTimezoneStringLogger(new Date(aestTime));
+
+  return timeZoneDate;
+}
