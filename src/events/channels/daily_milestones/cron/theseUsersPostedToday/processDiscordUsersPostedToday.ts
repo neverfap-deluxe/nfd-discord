@@ -50,7 +50,7 @@ const finalMessageBodyTextReddit = (count: number, discordUser: User): string =>
   }
 };
 
-const processDiscordUsersPostedToday = async (client: Client, today1153: Moment, today1207: Moment): Promise<{
+const processDiscordUsersPostedToday = async (client: Client, today1153: Moment, today1207: Moment, actual_accountability_tally: string): Promise<{
   discordUsersTallyStringList: string;
   discordUsersParticipatingCount: number;
   accountabilityDate: string;
@@ -105,15 +105,11 @@ const processDiscordUsersPostedToday = async (client: Client, today1153: Moment,
           total_participants: discordUsersParticipatingCount
         });
     }
-    logger.info('before accountability_tally');
-    const accountability_tally =
-      await knex('accountability_tally')
-        .whereBetween('tally_date', [today1153.toDate(), today1207.toDate()])
-        .first('tally_date');
 
-    logger.info('accountability_tally.tally_date', accountability_tally.tally_date);
+    logger.info('actual_accountability_tally', actual_accountability_tally);
+    logger.info('actual_accountability_tally date', new Date(actual_accountability_tally));
 
-    const accountabilityDate = formatRedditAccountabilityDate(new Date(accountability_tally.tally_date));
+    const accountabilityDate = formatRedditAccountabilityDate(new Date(actual_accountability_tally));
 
     logger.info('after accountability_tally - ' + accountabilityDate);
 

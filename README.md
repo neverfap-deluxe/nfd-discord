@@ -54,6 +54,5 @@ It's not too bad. Here is how I've decided to configure it.
 TODO: NFD Bot command which allows you to capture what was written/said in a server and post it to twitter or reddit. That would be awesome.
 TODO: Put social links in some of the messages. As in, join our facebook and our twitter account
 TODO: Maybe have automated messages which advertises the socials
-TODO: Journal counters?
-
-
+TODO: Journal counters? (they should just repeat the number of times they've put in a journal)
+TODO: Create seed files so I can actually test shit. Everything seems to be run on a cron schedule.
