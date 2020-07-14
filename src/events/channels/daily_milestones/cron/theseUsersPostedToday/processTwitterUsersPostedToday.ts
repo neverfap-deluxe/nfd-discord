@@ -34,8 +34,8 @@ If you would like to join: https://discord.gg/TuwARWk
   } catch (error) {
     // const juliusReade: ClientUser | null = client.user;
     // await juliusReade?.send(`processTwitterUsersPostedToday - ${error}`);
-    logger.error(`processTwitterUsersPostedToday - ${error}`)
-    throw new Error(`processTwitterUsersPostedToday - ${error}`);
+    logger.error(`processTwitterUsersPostedToday - ${error.toString()}`)
+    throw new Error(`processTwitterUsersPostedToday - ${error.toString()}`);
   }
 }
 
