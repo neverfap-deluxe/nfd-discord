@@ -5,17 +5,15 @@ import twitterClient from '../../../../../util/social/twitterClient';
 
 const processTwitterUsersPostedToday = async (today1153: Moment, today1207: Moment, discordUsersTallyList: string, discordUsersParticipatingCount: number, accountabilityDate: string): Promise<void> => {
   try {
-    const discordUsersTallyListArray = discordUsersTallyList.split('\n');
-    const shuffledArray = discordUsersTallyListArray.sort(() => 0.5 - Math.random());
-    const shuffledDiscordUsers = shuffledArray.splice(0,5).join('\n');
+    const discordUsersTallyListArray: string[] = discordUsersTallyList.split('\n');
+    const shuffledArray: string[] = discordUsersTallyListArray.sort(() => 0.5 - Math.random());
+    // const shuffledDiscordUsers = shuffledArray.splice(0,3).join('\n');
 
     // TODO
     const tallyText = (
 `NeverFap Deluxe Discord #accountability #NoFap Tally! ${accountabilityDate}
 
-Top Five Participants:
-${shuffledDiscordUsers}
-
+Random Participant: ${shuffledArray[0]}
 Total Participants: ${discordUsersParticipatingCount}
 
 If you would like to join: https://discord.gg/TuwARWk
