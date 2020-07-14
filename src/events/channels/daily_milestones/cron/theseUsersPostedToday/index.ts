@@ -9,18 +9,19 @@ import processDiscordUsersPostedToday from './processDiscordUsersPostedToday';
 import processRedditUsersPostedToday from './processRedditUsersPostedToday';
 import processTwitterUsersPostedToday from './processTwitterUsersPostedToday';
 
-
 const insertTallyIfNotExist = async (accountability_tally, normalTallyDate: Moment): Promise<string> => {
-  if (accountability_tally && !accountability_tally.completed) {
+  logger.info(`insertTallyIfNotExist - accountability_tally - ${accountability_tally}`)
+  if (!accountability_tally) { // && !accountability_tally?.completed no idea about why this was in there.
     await knex('accountability_tally').insert({
       id: uuidv4(),
-      tally_date: normalTallyDate.format()
+      tally_date: normalTallyDate.format(),
+      completed: false
     });
 
     logger.info(`theseUsersPostedToday - created accountability tally for today.`);
     return normalTallyDate.format()
   }
-  return accountability_tally.tally_date;
+  return accountability_tally?.tally_date;
 }
 
 const theseUsersPostedToday = async (client: Client) => {

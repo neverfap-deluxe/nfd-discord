@@ -28,11 +28,11 @@ export const onIntervalTenMinutes = (client: Client) =>
 
     //   const result = await knex('db_users').where('discord_id', 'arstarstrstarstarstrst').first('*');
 
-    //   logger.info(result, 'instrt')
+    //   logger.info(result)
     //   // NOTE: I need to test what channelMessages returns
       // const accountabilityChannel = await getChannel(client, NFDChannelType.Accountability_Accountability);
       // const channelMessages = await accountabilityChannel.messages.fetch({ limit: 25 });
-      // logger.info('channelMessages', { channelMessages });
+      // logger.info('channelMessages' + { channelMessages });
     // }
   };
 

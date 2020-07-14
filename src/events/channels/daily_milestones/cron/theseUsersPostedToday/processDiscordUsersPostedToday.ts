@@ -31,22 +31,22 @@ const finalMessageBodyText = (count: number, discordUser: User): string => {
 
 const finalMessageBodyTextReddit = (count: number, discordUser: User): string => {
   switch(count) {
-    case 1:  return `${discordUser.username} - Day ${count} - First Day Dynamite\n`;
-    case 3:  return `${discordUser.username} - Day ${count} - Triple Threat\n`;
-    case 7:  return `${discordUser.username} - Day ${count} - One Week Champion\n`;
-    case 10: return `${discordUser.username} - Day ${count} - 10 Day Mania\n`;
-    case 14: return `${discordUser.username} - Day ${count} - Two Week Wonder\n`;
-    case 20: return `${discordUser.username} - Day ${count} - 20 Day Admiration :rainbow:!\n`;
-    case 21: return `${discordUser.username} - Day ${count} - 3 Week Hedonist\n`;
-    case 25: return `${discordUser.username} - Day ${count} - Quarter Master\n`;
-    case 28: return `${discordUser.username} - Day ${count} - 4 Week OMFG\n`;
-    case 30: return `${discordUser.username} - Day ${count} - 30 Day Craze\n`;
-    case 35: return `${discordUser.username} - Day ${count} - 5 Week Wowzer\n`;
-    case 40: return `${discordUser.username} - Day ${count} - 40 Day Domination\n`;
-    case 42: return `${discordUser.username} - Day ${count} - 6 Week Kaiser\n`;
-    case 49: return `${discordUser.username} - Day ${count} - 7 Week Emperor\n`;
-    case 50: return `${discordUser.username} - Day ${count} - HALF A BLOODY CENTURY\n`;
-    default: return `${discordUser.username} - Day ${count}\n`;
+    case 1:  return `${discordUser.username} - Day ${count} - First Day Dynamite\n\n`;
+    case 3:  return `${discordUser.username} - Day ${count} - Triple Threat\n\n`;
+    case 7:  return `${discordUser.username} - Day ${count} - One Week Champion\n\n`;
+    case 10: return `${discordUser.username} - Day ${count} - 10 Day Mania\n\n`;
+    case 14: return `${discordUser.username} - Day ${count} - Two Week Wonder\n\n`;
+    case 20: return `${discordUser.username} - Day ${count} - 20 Day Admiration :rainbow:!\n\n`;
+    case 21: return `${discordUser.username} - Day ${count} - 3 Week Hedonist\n\n`;
+    case 25: return `${discordUser.username} - Day ${count} - Quarter Master\n\n`;
+    case 28: return `${discordUser.username} - Day ${count} - 4 Week OMFG\n\n`;
+    case 30: return `${discordUser.username} - Day ${count} - 30 Day Craze\n\n`;
+    case 35: return `${discordUser.username} - Day ${count} - 5 Week Wowzer\n\n`;
+    case 40: return `${discordUser.username} - Day ${count} - 40 Day Domination\n\n`;
+    case 42: return `${discordUser.username} - Day ${count} - 6 Week Kaiser\n\n`;
+    case 49: return `${discordUser.username} - Day ${count} - 7 Week Emperor\n\n`;
+    case 50: return `${discordUser.username} - Day ${count} - HALF A BLOODY CENTURY\n\n`;
+    default: return `${discordUser.username} - Day ${count}\n\n`;
   }
 };
 
@@ -106,10 +106,10 @@ const processDiscordUsersPostedToday = async (client: Client, today1153: Moment,
         });
     }
 
-    logger.info('actual_accountability_tally', actual_accountability_tally);
-    logger.info('actual_accountability_tally date', new Date(actual_accountability_tally));
+    logger.info(`actual_accountability_tally - ${actual_accountability_tally}`);
+    logger.info(`actual_accountability_tally date - ${new Date(actual_accountability_tally)}`);
 
-    const accountabilityDate = formatRedditAccountabilityDate(new Date(actual_accountability_tally));
+    const accountabilityDate = formatRedditAccountabilityDate(new Date(actual_accountability_tally) || new Date());
 
     logger.info('after accountability_tally - ' + accountabilityDate);
 

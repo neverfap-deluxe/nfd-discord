@@ -40,7 +40,7 @@ const theseUsersReactedToday = async (client: Client) => {
         // TODO: Filter only supported emoji
         const reactedEmojis = messageReacts.map(react => react.emoji_name).join("");
 
-        // TODO Check this and validate whether `\`${discordUser.username}\` is correct. 
+        // TODO Check this and validate whether `\`${discordUser.username}\` is correct.
         switch(messageReacts.length) {
           case 1: finalMessageBody += `\`${discordUser.username}\` - ${messageReacts.length} emoji react! ${reactedEmojis}\n`; break;
           default: finalMessageBody += `\`${discordUser.username}\` - ${messageReacts.length} emoji reacts! ${reactedEmojis}\n`;
@@ -58,8 +58,9 @@ const theseUsersReactedToday = async (client: Client) => {
     finalTextString += finalMessageCountFull;
     await knex('accountability_tally').whereBetween('tally_date', [today1153.toDate(), today1207.toDate()]).update({react_message: finalTextString, total_reacts: finalMessageCount});
 
-    const tomorrow1200 = moment('12:00','HH:mm').add(1, 'day').format();
-    await knex('accountability_tally').insert({id: uuidv4(), tally_date: tomorrow1200});
+    // So if it doesn't get to this point, then it never creates the accountability tally. Instead, it should just create it daily. 
+    // const tomorrow1200 = moment('12:00','HH:mm').add(1, 'day').format();
+    // await knex('accountability_tally').insert({id: uuidv4(), tally_date: tomorrow1200});
 
   } catch(error) {
     const juliusReade: ClientUser | null = client.user;
