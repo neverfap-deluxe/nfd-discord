@@ -10,6 +10,7 @@ import sendEmojiReactToJournalPosts from './channels/journal/onMessage/sendEmoji
 const onMessage = (client: Client) =>
   async (message: Message) => {
     try {
+      
       const channel: Channel = message.channel;
       const discordUser: User = message.author;
 
