@@ -9,6 +9,7 @@ import theseUsersPostedToday from './channels/daily_milestones/cron/theseUsersPo
 import accountabilityTallyCountdown from './channels/daily_milestones/cron/accountabilityTallyCountdown';
 import theseUsersReactedToday from './channels/daily_milestones/onInterval/theseUsersReactedToday';
 import automatedDiscordServerFAK from './channels/onInterval/automatedDiscordServerFAK';
+import automatedDiscordServerJuliusReadeIsAwesome from './channels/onInterval/automatedDiscordServerJuliusReadeIsAwesome';
 
 // REDDIT
 // import { postRedditAccountabilityThreadPool } from './reddit/postRedditAccountabilityThreadPool';
@@ -17,11 +18,14 @@ import automatedDiscordServerFAK from './channels/onInterval/automatedDiscordSer
 
 const setupCron = async (client: Client): Promise<void> => {
   // cron.schedule('*/10 * * * *', async () => { // Every 10 Minutes
-
   // });
 
-  cron.schedule('*/10 * * * *', async () => { // Every 10 Minutes
-    // await automatedDiscordServerFAK(client)
+  cron.schedule('* */3 * * *', async () => { // Every 10 Minutes
+    await automatedDiscordServerFAK(client)
+  });
+
+  cron.schedule('* */5 * * *', async () => { // Every 10 Minutes
+    await automatedDiscordServerJuliusReadeIsAwesome(client)
   });
 
   cron.schedule('0 12 * * *', async (): Promise<void> => {

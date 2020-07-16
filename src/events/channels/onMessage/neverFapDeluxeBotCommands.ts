@@ -1,14 +1,24 @@
 import { Client, TextChannel, User, Message, ClientUser } from "discord.js";
 import { DBUser, NFDChannelType } from "../../../types";
 import { getChannel } from "../../../util/util";
-import { RULES_COMMAND, HELP_COMMAND, COMMANDS_COMMAND, CHANNELS_COMMAND, ACCOUNTABILITY_COMMAND, ACCOUNTABILITY_EXAMPLE_COMMAND, CHEATSHEET_COMMAND, ANTI_CHEATSHEET_COMMAND, EMERGENCY_COMMAND } from "../../../const/COMMAND";
+import { RULES_COMMAND, HELP_COMMAND, COMMANDS_COMMAND, CHANNELS_COMMAND, ACCOUNTABILITY_COMMAND, ACCOUNTABILITY_EXAMPLE_COMMAND, CHEATSHEET_COMMAND, ANTI_CHEATSHEET_COMMAND, EMERGENCY_COMMAND, GAY_COMMAND } from "../../../const/COMMAND";
 import { rulesMessage, commandListMessage, channelListMessage, accountabilityMessage, accountabilityExampleMessage, cheatsheetMessage, antiCheatsheetMessage, emergencyMessage } from "../../../const/MESSAGE";
 import logger from "../../../util/logger";
+import emojiNameListCurated from "../../../util/emojiNameListCurated";
+import nodeEmoji from 'node-emoji';
 
 const sendBotMessage = async (cmd: string, channel: TextChannel, accountabilityChannel: TextChannel) => {
   switch(cmd) {
     case RULES_COMMAND: {
       const msg = await channel.send(rulesMessage(accountabilityChannel));
+      logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+      break;
+    }
+    case GAY_COMMAND: {
+      const randomEmoji = emojiNameListCurated[Math.floor(Math.random() * emojiNameListCurated.length)]
+      const emoji = nodeEmoji.emojify(`:${randomEmoji}:`);
+
+      const msg = await channel.send(`Julius Reade is awesome. ${emoji}`);
       logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
       break;
     }

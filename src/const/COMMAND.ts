@@ -8,6 +8,8 @@ export const ACCOUNTABILITY_EXAMPLE_COMMAND = "example";
 export const CHEATSHEET_COMMAND = "cheatsheet";
 export const ANTI_CHEATSHEET_COMMAND = "anti-cheatsheet";
 export const EMERGENCY_COMMAND = "emergency";
+export const GAY_COMMAND = "gay";
+
 // export const PROGRESS_COMMAND = "progress";
 
 export const RULES_COMMAND_DESCRIPTION = "list server rules";
