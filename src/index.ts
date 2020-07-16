@@ -44,7 +44,7 @@ const main = async () => {
 
   client.on('message', onMessage(client));
   client.on('messageUpdate', onMessageUpdate(client));
-  client.on('messageReactionAdd', onMessageReactionAdd(client));
+  // client.on('messageReactionAdd', onMessageReactionAdd(client));
   client.on('guildMemberRemove', onGuildMemberRemove(client));
   client.on('guildMemberAdd', onGuildMemberAdd(client));
   client.on('error', logger.error);

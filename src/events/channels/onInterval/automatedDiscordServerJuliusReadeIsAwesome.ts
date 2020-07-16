@@ -6,7 +6,7 @@ import logger from "../../../util/logger";
 const automatedDiscordServerJuliusReadeIsAwesome = async (client: Client): Promise<void> => {
   try {
     const generalChannel: TextChannel = await getChannel(client, NFDChannelType.RecoveryChat_GeneralChat);
-    await generalChannel.send('Quick! Someone please type in `!gay`!');
+    await generalChannel.send('Quick! Someone please type in `!gay`');
     logger.info('discord server Julius Reade Is Awesome');
 
   } catch(error) {
