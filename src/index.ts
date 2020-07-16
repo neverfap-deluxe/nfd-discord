@@ -4,12 +4,12 @@ config({ path: path.resolve(__dirname, '..', 'deployment', 'environment') });
 
 // Libraries
 import Koa from 'koa';
-import Discord, { Client } from 'discord.js';
-import SnooWrap from 'snoowrap';
+import Discord, { Client, Channel, TextChannel } from 'discord.js';
 
 // Functions
 import onReady from './events/onReady';
 import onMessage from './events/onMessage';
+import onMessageUpdate from './events/onMessageUpdate';
 import onMessageReactionAdd from './events/onMessageReactionAdd';
 import onGuildMemberAdd from './events/onGuildMemberAdd';
 import onGuildMemberRemove from './events/onGuildMemberRemove';
@@ -43,6 +43,7 @@ const main = async () => {
   await clientReady(client);
 
   client.on('message', onMessage(client));
+  client.on('messageUpdate', onMessageUpdate(client));
   client.on('messageReactionAdd', onMessageReactionAdd(client));
   client.on('guildMemberRemove', onGuildMemberRemove(client));
   client.on('guildMemberAdd', onGuildMemberAdd(client));
