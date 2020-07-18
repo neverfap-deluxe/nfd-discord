@@ -1,7 +1,7 @@
 import { Client, TextChannel, User, Message, ClientUser } from "discord.js";
 import { DBUser, NFDChannelType } from "../../../types";
 import { getChannel } from "../../../util/util";
-import { RULES_COMMAND, HELP_COMMAND, COMMANDS_COMMAND, CHANNELS_COMMAND, ACCOUNTABILITY_COMMAND, ACCOUNTABILITY_EXAMPLE_COMMAND, CHEATSHEET_COMMAND, ANTI_CHEATSHEET_COMMAND, EMERGENCY_COMMAND, GAY_COMMAND } from "../../../const/COMMAND";
+import { RULES_COMMAND, HELP_COMMAND, COMMANDS_COMMAND, CHANNELS_COMMAND, ACCOUNTABILITY_COMMAND, ACCOUNTABILITY_EXAMPLE_COMMAND, CHEATSHEET_COMMAND, ANTI_CHEATSHEET_COMMAND, EMERGENCY_COMMAND, GAY_COMMAND, FAK_COMMAND } from "../../../const/COMMAND";
 import { rulesMessage, commandListMessage, channelListMessage, accountabilityMessage, accountabilityExampleMessage, cheatsheetMessage, antiCheatsheetMessage, emergencyMessage } from "../../../const/MESSAGE";
 import logger from "../../../util/logger";
 import emojiNameListCurated from "../../../util/emojiNameListCurated";
@@ -19,6 +19,11 @@ const sendBotMessage = async (cmd: string, channel: TextChannel, accountabilityC
       const emoji = nodeEmoji.emojify(`:${randomEmoji}:`);
 
       const msg = await channel.send(`Julius Reade is awesome. ${emoji}`);
+      logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
+      break;
+    }
+    case FAK_COMMAND: {
+      const msg = await channel.send(`FAK`);
       logger.info(`Sent channel message: ${msg.id} - neverFapDeluxeBotCommands`);
       break;
     }
@@ -81,10 +86,10 @@ const neverFapDeluxeBotCommands = async (client: Client, channel: TextChannel, d
     const accountabilityChannel: TextChannel = await getChannel(client, NFDChannelType.Accountability_Accountability);
     const  messageContent = message.content;
 
-    if (new RegExp(/g *a+ *y+/i).test(messageContent)) { // NOTE: please change it to this if you ever decide to reintroduce it, because the current one does not work well.
-      const emoji = nodeEmoji.emojify(`:man_firefighter:`);
-      await channel.send(`Yes, Eliott Mahn is gay. Thank you for reminding everyone. ${emoji}`);
-    }
+    // if (new RegExp(/g *a+ *y+/i).test(messageContent)) { // NOTE: please change it to this if you ever decide to reintroduce it, because the current one does not work well.
+    //   const emoji = nodeEmoji.emojify(`:man_firefighter:`);
+    //   await channel.send(`Yes, Eliott Mahn is gay. Thank you for reminding everyone. ${emoji}`);
+    // }
 
     if (messageContent.substring(0, 1) == '!') {
       const args = messageContent.substring(1).split(' ');

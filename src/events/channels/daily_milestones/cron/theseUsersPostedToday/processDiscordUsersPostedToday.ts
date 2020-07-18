@@ -7,6 +7,7 @@ import { getChannel } from '../../../../../util/util';
 
 import { generateTallyDates, formatRedditAccountabilityDate } from '../../../../../util/time';
 import { DBUser, NFDChannelType } from '../../../../../types';
+import nodeEmoji from 'node-emoji';
 
 const finalMessageBodyText = (count: number, discordUser: User): string => {
   switch(count) {
@@ -31,21 +32,21 @@ const finalMessageBodyText = (count: number, discordUser: User): string => {
 
 const finalMessageBodyTextReddit = (count: number, discordUser: User): string => {
   switch(count) {
-    case 1:  return `${discordUser.username} - Day ${count} - First Day Dynamite\n\n`;
-    case 3:  return `${discordUser.username} - Day ${count} - Triple Threat\n\n`;
-    case 7:  return `${discordUser.username} - Day ${count} - One Week Champion\n\n`;
-    case 10: return `${discordUser.username} - Day ${count} - 10 Day Mania\n\n`;
-    case 14: return `${discordUser.username} - Day ${count} - Two Week Wonder\n\n`;
-    case 20: return `${discordUser.username} - Day ${count} - 20 Day Admiration :rainbow:!\n\n`;
-    case 21: return `${discordUser.username} - Day ${count} - 3 Week Hedonist\n\n`;
-    case 25: return `${discordUser.username} - Day ${count} - Quarter Master\n\n`;
-    case 28: return `${discordUser.username} - Day ${count} - 4 Week OMFG\n\n`;
-    case 30: return `${discordUser.username} - Day ${count} - 30 Day Craze\n\n`;
-    case 35: return `${discordUser.username} - Day ${count} - 5 Week Wowzer\n\n`;
-    case 40: return `${discordUser.username} - Day ${count} - 40 Day Domination\n\n`;
-    case 42: return `${discordUser.username} - Day ${count} - 6 Week Kaiser\n\n`;
-    case 49: return `${discordUser.username} - Day ${count} - 7 Week Emperor\n\n`;
-    case 50: return `${discordUser.username} - Day ${count} - HALF A BLOODY CENTURY\n\n`;
+    case 1:  return `${discordUser.username} - Day ${count} - First Day Dynamite! ${nodeEmoji.emojify(':boom:')}\n\n`;
+    case 3:  return `${discordUser.username} - Day ${count} - Triple Threat! ${nodeEmoji.emojify(':stuck_out_tongue_closed_eyes:')}\n\n`;
+    case 7:  return `${discordUser.username} - Day ${count} - One Week Champion! ${nodeEmoji.emojify(':lifter:')}\n\n`;
+    case 10: return `${discordUser.username} - Day ${count} - 10 Day Mania! ${nodeEmoji.emojify(':christmas_tree:')}\n\n`;
+    case 14: return `${discordUser.username} - Day ${count} - Two Week Wonder! ${nodeEmoji.emojify(':surfer:')}\n\n`;
+    case 20: return `${discordUser.username} - Day ${count} - 20 Day Admiration! ${nodeEmoji.emojify(':rainbow:')}\n\n`;
+    case 21: return `${discordUser.username} - Day ${count} - 3 Week Hedonist! ${nodeEmoji.emojify(':cherry_blossom:')}\n\n`;
+    case 25: return `${discordUser.username} - Day ${count} - Quarter Master! ${nodeEmoji.emojify(':gem:')}\n\n`;
+    case 28: return `${discordUser.username} - Day ${count} - 4 Week OMFG! ${nodeEmoji.emojify(':bangbang:')}\n\n`;
+    case 30: return `${discordUser.username} - Day ${count} - 30 Day Craze! ${nodeEmoji.emojify(':tada:')}\n\n`;
+    case 35: return `${discordUser.username} - Day ${count} - 5 Week Wowzer! ${nodeEmoji.emojify(':punch:')}\n\n`;
+    case 40: return `${discordUser.username} - Day ${count} - 40 Day Domination! ${nodeEmoji.emojify(':100:')}\n\n`;
+    case 42: return `${discordUser.username} - Day ${count} - 6 Week Kaiser! ${nodeEmoji.emojify(':squid:')}\n\n`;
+    case 49: return `${discordUser.username} - Day ${count} - 7 Week Emperor! ${nodeEmoji.emojify(':crossed_swords:')}\n\n`;
+    case 50: return `${discordUser.username} - Day ${count} - HALF A BLOODY CENTURY! ${nodeEmoji.emojify(':statue_of_liberty:')}\n\n`;
     default: return `${discordUser.username} - Day ${count}\n\n`;
   }
 };

@@ -116,7 +116,8 @@ const processRedditUsersPostedToday = async (today1153: Moment, today1207: Momen
       .submitSelfpost({
         title: `NeverFap Deluxe Discord #accountability Tally - ${accountabilityDate}`,
         text: tallyText,
-      });
+      })
+      .selectFlair({ flair_template_id: 'b1345eda-b3ff-11ea-9015-0e00deef429b' }); // accountability thread pool flair id
 
     logger.info(`Reddit Accountability tally posted for today.`);
 

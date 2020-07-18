@@ -9,6 +9,7 @@ export const CHEATSHEET_COMMAND = "cheatsheet";
 export const ANTI_CHEATSHEET_COMMAND = "anti-cheatsheet";
 export const EMERGENCY_COMMAND = "emergency";
 export const GAY_COMMAND = "gay";
+export const FAK_COMMAND = "fak";
 
 // export const PROGRESS_COMMAND = "progress";
 
