@@ -9,12 +9,13 @@ const processTwitterUsersPostedToday = async (today1153: Moment, today1207: Mome
     const shuffledArray: string[] = discordUsersTallyListArray.sort(() => 0.5 - Math.random());
     // const shuffledDiscordUsers = shuffledArray.splice(0,3).join('\n');
 
+    // Random Participant: ${shuffledArray[0]}
+
     // TODO
     const tallyText = (
 `NeverFap Deluxe Discord #accountability #NoFap Tally! ${accountabilityDate}
 
-Random Participant: ${shuffledArray[0]}
-Total Participants: ${discordUsersParticipatingCount}
+Total Participants Today: ${discordUsersParticipatingCount}
 
 If you would like to join: https://discord.gg/TuwARWk
 `
