@@ -86,10 +86,10 @@ const neverFapDeluxeBotCommands = async (client: Client, channel: TextChannel, d
     const accountabilityChannel: TextChannel = await getChannel(client, NFDChannelType.Accountability_Accountability);
     const  messageContent = message.content;
 
-    // if (new RegExp(/g *a+ *y+/i).test(messageContent)) { // NOTE: please change it to this if you ever decide to reintroduce it, because the current one does not work well.
-    //   const emoji = nodeEmoji.emojify(`:man_firefighter:`);
-    //   await channel.send(`Yes, Eliott Mahn is gay. Thank you for reminding everyone. ${emoji}`);
-    // }
+    if (new RegExp(/g *a+ *y+/i).test(messageContent)) { // NOTE: please change it to this if you ever decide to reintroduce it, because the current one does not work well.
+      const emoji = nodeEmoji.emojify(`:man_firefighter:`);
+      await channel.send(`Yes, Eliott Mahn is gay. Thank you for reminding everyone. ${emoji}`);
+    }
 
     if (messageContent.substring(0, 1) == '!') {
       const args = messageContent.substring(1).split(' ');

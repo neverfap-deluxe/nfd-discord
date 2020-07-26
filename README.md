@@ -10,8 +10,19 @@ Released under the [GNU GPLv3 licence](https://github.com/neverfap-deluxe/nfd-di
 ## TODO
 
 - cross post functions `events/aggregated`  postDiscordAccountabilityToReddit
+- post journal and accountability milestones. Like every 1000 or 500
+
+## NICE TO HAVE
+
+- NFD Bot command which allows you to capture what was written/said in a server and post it to twitter or reddit. That would be awesome.
 - reddit accountability `events/reddit` in `cron` postRedditAccountabilityThreadPool/listenRedditAccountability /
 
+## DONE
+
+- Create seed files so I can actually test shit. Everything seems to be run on a cron schedule. (POINTLESS)
+- Journal counters? (they should just repeat the number of times they've put in a journal)
+- Put social links in some of the messages. As in, join our facebook and our twitter account
+- Maybe have automated messages which advertises the socials
 
 ## Tech
 
@@ -48,11 +59,3 @@ It's not too bad. Here is how I've decided to configure it.
 - `CREATE USER nfd WITH ENCRYPTED PASSWORD 'nfd';`
 - `GRANT ALL PRIVILEGES ON DATABASE nfd_discord TO nfd;`
 
-
-## TODO IDEAS
-
-TODO: NFD Bot command which allows you to capture what was written/said in a server and post it to twitter or reddit. That would be awesome.
-TODO: Put social links in some of the messages. As in, join our facebook and our twitter account
-TODO: Maybe have automated messages which advertises the socials
-TODO: Journal counters? (they should just repeat the number of times they've put in a journal)
-TODO: Create seed files so I can actually test shit. Everything seems to be run on a cron schedule.

@@ -158,6 +158,12 @@ export const getChannelId = (channelType: NFDChannelType): string => {
     case NFDChannelType.Accountability_GratitudeJournal: {
       return process.env.ACCOUNTABILITY_GRATITUDEJOURNAL as string;
     }
+    case NFDChannelType.Accountability_RelapseJournal: {
+      return process.env.ACCOUNTABILITY_RELAPSEJOURNAL as string;
+    }
+    case NFDChannelType.Accountability_ReadingJournal: {
+      return process.env.ACCOUNTABILITY_READINGJOURNAL as string;
+    }
     case NFDChannelType.RecoveryChat_NewNeverFappers: {
       return process.env.RECOVERYCHAT_NEWNEVERFAPPERS as string;
     }

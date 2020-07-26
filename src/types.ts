@@ -11,6 +11,8 @@ export enum NFDChannelType {
   Accountability_MeditationJournal = 'Accountability_MeditationJournal',
   Accountability_ExerciseJournal = 'Accountability_ExerciseJournal',
   Accountability_GratitudeJournal = 'Accountability_GratitudeJournal',
+  Accountability_RelapseJournal = 'Accountability_RelapseJournal',
+  Accountability_ReadingJournal = 'Accountability_ReadingJournal',
 
   RecoveryChat_NewNeverFappers = 'RecoveryChat_NewNeverFappers',
   RecoveryChat_LetsAskJuliusAQuestion = 'RecoveryChat_LetsAskJuliusAQuestion',
@@ -78,4 +80,15 @@ export interface RedditAccountabilityComment {
   content: string;
   db_users_id: string;
   parent_submission_id: string;
+}
+
+export interface Journal {
+  id: string;
+  db_users_id: string;
+  message_id: string;
+  journal_type: string;
+  content: string;
+  is_valid: boolean;
+  created_at: string;
+  updated_at: string;
 }
