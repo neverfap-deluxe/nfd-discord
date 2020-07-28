@@ -20,11 +20,13 @@ import { generateDelayValues } from './util/util';
 import startGraphqlServer from './graphql/server';
 
 import { onIntervalTenMinutes, onIntervalOneHour, onIntervalThreeHours, onIntervalFourHours, onIntervalFiveHours, onIntervalDayHalf } from './events/onInterval';
+
+import postRedditUpdatesToDiscord from './cross/postRedditUpdatesToDiscord';
+
 const { onIntervalTenMinutesDelay, onIntervalOneHourDelay, onIntervalThreeHoursDelay, onIntervalFourHoursDelay, onIntervalFiveHoursDelay, onIntervalDayHalfDelay } = generateDelayValues();
 
 // Testing dependencies
 // import { postRedditAccountabilityThreadPool } from './events/reddit/postRedditAccountabilityThreadPool';
-
 
 const clientReady = (client: Client) => new Promise(resolve => client.once('ready', onReady(client, resolve)));
 
@@ -64,6 +66,8 @@ const main = async () => {
   // await redditAccountabilityThreadPoolCommentsEventListener(client, redditClient);
 
   // await postRedditAccountabilityThreadPool(redditClient);
+
+  await postRedditUpdatesToDiscord(client);
 
   startGraphqlServer();
   app.listen(2000);
