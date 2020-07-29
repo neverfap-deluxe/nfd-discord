@@ -1,4 +1,4 @@
-import { Client, TextChannel } from 'discord.js';
+import { MessageEmbed, Client, TextChannel } from 'discord.js';
 import { SubmissionStream } from "snoostorm";
 import { v4 as uuidv4 } from 'uuid';
 import knex from '../util/knex';
@@ -10,9 +10,9 @@ import redditClient from '../util/social/redditClient';
 
 const postRedditUpdatesToDiscord = async (client: Client): Promise<void> => {
   const submissions = new SubmissionStream(redditClient, {
-    subreddit: "TheWritersDaily",
+    subreddit: "NeverFapDeluxe",
     limit: 1,
-    pollTime: 2000,
+    pollTime: 10000,
   });
 
   submissions.on("item", async (item) => {
@@ -20,7 +20,7 @@ const postRedditUpdatesToDiscord = async (client: Client): Promise<void> => {
 
     const title = item?.title;
     const subreddit = item?.subreddit_name_prefixed;
-    const permalink = 'https://reddit.com' + item.permalink;
+    const permalink = 'https://reddit.com' + item.permalink.slice(0, -1);
     const author = item?.author?.name;
 
     const doesThisPostExist = await knex('track_posting').where({
@@ -43,7 +43,11 @@ const postRedditUpdatesToDiscord = async (client: Client): Promise<void> => {
         author
       });
 
-      await generalChannel.send(`A person just posted in r/NeverFapDeluxe \n\n ${title} ${permalink}`);
+      const messageEmbed = new MessageEmbed()
+        .setTitle('New Reddit Post! - r/NeverFapDeluxe!')
+        .setDescription(`${title}\n\n${permalink}`);
+
+      await generalChannel.send(messageEmbed);
     }
   });
 }

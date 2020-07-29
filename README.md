@@ -9,8 +9,9 @@ Released under the [GNU GPLv3 licence](https://github.com/neverfap-deluxe/nfd-di
 
 ## TODO
 
+- Discord server stats, like x amount of messages have been created etc.
 - cross post functions `events/aggregated`  postDiscordAccountabilityToReddit
-- post journal and accountability milestones. Like every 1000 or 500
+- post journal and accountability milestones. Like every 1000 or 500 to reddit. Woud be awesome.
 
 ## NICE TO HAVE
 
