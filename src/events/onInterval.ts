@@ -7,6 +7,8 @@ import removeBotMessagesFromChannel from './channels/onInterval/removeBotMessage
 
 import dailyNeverFapDeluxeReport from './user/onInterval/dailyNeverFapDeluxeReport';
 import automatedDiscordServerBumpReminder from './channels/onInterval/automatedDiscordServerBumpReminder';
+import stayHydrated from './channels/onMessage/stayHydrated';
+// import logger from '../util/logger';
 
 // Test dependencies
 // import { getChannel } from '../util/util';
@@ -48,9 +50,10 @@ export const onIntervalThreeHours = (client: Client) =>
     }
   };
 
-export const onIntervalFourHours = (client: Client) =>
+export const onIntervalFourHours = (client: Client, waterClient: Client) =>
   async () => {
     await automatedGeneralMessages(client);
+    await stayHydrated(waterClient);
   };
 
 export const onIntervalFiveHours = (client: Client) =>

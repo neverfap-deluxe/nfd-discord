@@ -39,11 +39,20 @@ const main = async () => {
     messageSweepInterval: 600 // every 10 minutes, remove all cached messages older than 2 hours. default 0
   });
 
-  client.login(process.env.DISCORD_NFD_BOT_TOKEN);
+  const waterClient: Client = new Discord.Client({
+    messageCacheMaxSize: 20, // 200 default
+    // messageCacheLifetime: 0, // Allow cached messages to live for 2 hours. default 0
+    // messageSweepInterval: 0 // every 10 minutes, remove all cached messages older than 2 hours. default 0
+  });
 
-  // Incoming Events
+  // Client Login
+  client.login(process.env.DISCORD_NFD_BOT_TOKEN);
   await clientReady(client);
 
+  waterClient.login(process.env.DISCORD_WATER_BOT_TOKEN);
+  await clientReady(waterClient);
+
+  // Incoming Events
   client.on('message', onMessage(client));
   // client.on('messageUpdate', onMessageUpdate(client));
   client.on('messageReactionAdd', onMessageReactionAdd(client));
@@ -58,7 +67,7 @@ const main = async () => {
   client.setInterval(onIntervalTenMinutes(client), onIntervalTenMinutesDelay);
   client.setInterval(onIntervalOneHour(client), onIntervalOneHourDelay);
   client.setInterval(onIntervalThreeHours(client), onIntervalThreeHoursDelay);
-  client.setInterval(onIntervalFourHours(client), onIntervalFourHoursDelay);
+  client.setInterval(onIntervalFourHours(client, waterClient), onIntervalFourHoursDelay);
   client.setInterval(onIntervalFiveHours(client), onIntervalFiveHoursDelay);
   client.setInterval(onIntervalDayHalf(client), onIntervalDayHalfDelay);
 
