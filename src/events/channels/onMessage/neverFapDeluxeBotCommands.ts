@@ -65,6 +65,9 @@ const sendBotMessage = async (cmd: string, channel: TextChannel, accountabilityC
     }
     case 'disboard': break;
     case 'd': break;
+    case 'Play': break;
+    case 'p': break;
+    case 'P': break;
     case 'accept': {
       // NOTE: I have decided to remove this condition for now, and accept everyone.
       // This has now been renamed to `memberWelcome` in `onGuildMemberAdd`
