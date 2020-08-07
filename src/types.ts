@@ -31,31 +31,7 @@ export enum NFDChannelType {
 
   Administration_ServerSuggestions = 'Administration_ServerSuggestions',
   Administration_HelpfulNeverFappersUnite = 'Administration_HelpfulNeverFappersUnite',
-
-  // OLD
-  // StartHere_Welcome = 'StartHere_Welcome',
-  // StartHere_ServerGuide = 'StartHere_ServerGuide',
-  // StartHere_WebsiteGuide = 'StartHere_WebsiteGuide',
-  // StartHere_HelpfulNeverFappers = 'StartHere_HelpfulNeverFappers',
-  // StartHere_Announcements = 'StartHere_Announcements',
-
-  // Accountability_DailyMilestones = 'Accountability_DailyMilestones',
-  // Accountability_AccountabilityRules = 'Accountability_AccountabilityRules',
-  // Accountability_Accountability = 'Accountability_Accountability',
-  // Accountability_MeditationJournal = 'Accountability_MeditationJournal',
-  // Accountability_ExerciseJournal = 'Accountability_ExerciseJournal',
-  // Accountability_GratitudeJournal = 'Accountability_GratitudeJournal',
-  // Accountability_RelapseJournal = 'Accountability_RelapseJournal',
-  // Accountability_ReadingJournal = 'Accountability_ReadingJournal',
-
-  // StartHere_NewNeverFappers = 'StartHere_NewNeverFappers',
-  // RecoveryChat_LetsAskJuliusAQuestion = 'RecoveryChat_LetsAskJuliusAQuestion',
-  // RecoveryChat_ArtChat = 'RecoveryChat_ArtChat',
-  // RecoveryChat_RecoveryChat = 'RecoveryChat_RecoveryChat',
-  // RecoveryChat_GeneralChat = 'RecoveryChat_GeneralChat',
-  // StartHere_NeverFapDeluxePodcast = 'StartHere_NeverFapDeluxePodcast',
-
-  // Administration_HelpfulNeverFappersUnite = 'Administration_HelpfulNeverFappersUnite',
+  Administration_BotCommands = 'Administration_BotCommands',
 }
 
 export interface DBUser {

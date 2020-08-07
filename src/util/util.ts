@@ -168,11 +168,15 @@ export const getChannel = async (client: Client, channelType: NFDChannelType): P
       const channel: Channel = await client.channels.fetch(process.env.ADMINISTRATION_SERVERSUGGESTIONS as string);
       return channel as TextChannel;
     }
-
     case NFDChannelType.Administration_HelpfulNeverFappersUnite: {
       const channel: Channel = await client.channels.fetch(process.env.ADMINISTRATION_HELPFULNEVERFAPPERSUNITE as string);
       return channel as TextChannel;
     }
+    case NFDChannelType.Administration_BotCommands: {
+      const channel: Channel = await client.channels.fetch(process.env.ADMINISTRATION_BOTCOMMANDS as string);
+      return channel as TextChannel;
+    }
+
     default: throw new Error(`Incorrect channel type provided: ${channelType}`);
   }
 }
@@ -272,6 +276,9 @@ export const getChannelId = (channelType: NFDChannelType): string => {
     }
     case NFDChannelType.Administration_HelpfulNeverFappersUnite: {
       return process.env.ADMINISTRATION_HELPFULNEVERFAPPERSUNITE as string;
+    }
+    case NFDChannelType.Administration_BotCommands: {
+      return process.env.ADMINISTRATION_BOTCOMMANDS as string;
     }
     default: throw new Error(`Incorrect channel type provided: ${channelType}`);
   }
