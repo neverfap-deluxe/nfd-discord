@@ -38,7 +38,7 @@ Also please don't forget to visit the website! Because it's the first thing I'll
 
 const memberWelcome = async (client: Client, member: GuildMember | PartialGuildMember) => {
   try {
-    const newNeverFapperChannel: TextChannel = await getChannel(client, NFDChannelType.RecoveryChat_NewNeverFappers);
+    const newNeverFapperChannel: TextChannel = await getChannel(client, NFDChannelType.StartHere_NewNeverFappers);
     const accountabilityRulesChannel: TextChannel = await getChannel(client, NFDChannelType.Accountability_AccountabilityRules);
     const generalChatChannel: TextChannel = await getChannel(client, NFDChannelType.RecoveryChat_GeneralChat);
     // TODO Direct users to these channels in the thing.

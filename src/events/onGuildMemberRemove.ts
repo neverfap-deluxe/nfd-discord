@@ -22,7 +22,7 @@ const removeWelcomeMessageFromNewNeverFappersIfUserLeaves = async (message: [str
 const onGuildMemberRemove = (client: Client) =>
   async (member: GuildMember | PartialGuildMember) => {
     try {
-      const newNeverFappersChannel: TextChannel = await getChannel(client, NFDChannelType.RecoveryChat_NewNeverFappers);
+      const newNeverFappersChannel: TextChannel = await getChannel(client, NFDChannelType.StartHere_NewNeverFappers);
       const newNeverFappersChannelMessages = await newNeverFappersChannel.messages.cache;
       // fetch({ limit: 25 });
       if (newNeverFappersChannelMessages) {
