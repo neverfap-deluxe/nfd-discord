@@ -3,12 +3,12 @@
 SERVER_ROOT_FOLDER=/docker/letsencrypt-docker-nginx/src/discord
 CLIENT_ROOT_FOLDER=/Users/julius.reade/Code/PER/nfd-discord
 
-cp $CLIENT_ROOT_FOLDER/deployment/environment/.env.production $CLIENT_ROOT_FOLDER/deployment/docker/prod-build/.env
-cd $CLIENT_ROOT_FOLDER/deployment/docker/prod-build
-
 git add .
 git commit -m 'automated commit'
 git push
+
+cp $CLIENT_ROOT_FOLDER/deployment/environment/.env.production $CLIENT_ROOT_FOLDER/deployment/docker/prod-build/.env
+cd $CLIENT_ROOT_FOLDER/deployment/docker/prod-build
 
 docker-compose build
 docker push dottjt/nfd-discord

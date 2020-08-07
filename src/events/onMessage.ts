@@ -16,7 +16,7 @@ const onMessage = (client: Client) =>
       if (discordUser.id !== getNFDBotId()) {
         const db_user = await fetchOrCreateDbUser(discordUser);
         await accountabilityChannelActions(client, channel as TextChannel, db_user, discordUser, message);
-        // await insertJournalMessage(client, channel as TextChannel, db_user, discordUser, message);
+        await insertJournalMessage(client, channel as TextChannel, db_user, discordUser, message);
         await neverFapDeluxeBotCommands(client, channel as TextChannel, db_user, discordUser, message);
         await sendEmojiReactToJournalPosts(client, channel as TextChannel, db_user, discordUser, message);
       }

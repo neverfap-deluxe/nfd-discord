@@ -7,19 +7,23 @@ import { getChannelId } from '../../../../util/util';
 import moment from 'moment';
 
 export enum JournalType {
-  Meditation="meditation",
-  Exercise="exercise",
-  Gratitude="gratitude",
-  Relapse="relapse",
-  Reading="reading",
+  Exercise = 'exercise',
+  Meditation = 'meditation',
+  HealthyEating = 'healthy_eating',
+  Reading = 'reading',
+  Relapse = 'relapse',
+  Gratitude = 'gratitude',
 }
 
 const getJournalTypeFromChannelId = (channel: TextChannel): JournalType | undefined => {
-  if (channel.id === getChannelId(NFDChannelType.Accountability_MeditationJournal)) {
-    return JournalType.Meditation;
-  }
   if (channel.id === getChannelId(NFDChannelType.Accountability_ExerciseJournal)) {
     return JournalType.Exercise;
+  }
+  if (channel.id === getChannelId(NFDChannelType.Accountability_HealthyEatingJournal)) {
+    return JournalType.HealthyEating;
+  }
+  if (channel.id === getChannelId(NFDChannelType.Accountability_MeditationJournal)) {
+    return JournalType.Meditation;
   }
   if (channel.id === getChannelId(NFDChannelType.Accountability_GratitudeJournal)) {
     return JournalType.Gratitude;
@@ -36,9 +40,15 @@ const getJournalTypeFromChannelId = (channel: TextChannel): JournalType | undefi
 const insertJournalMessage = async (client: Client, channel: TextChannel, db_user: DBUser, discordUser: User, message: Message) => {
   try {
     const journalType = getJournalTypeFromChannelId(channel);
-    // TODO capture if journal was written in the past 5 minutes
-    // await knex<Journal>('journals').whereBetween('created_at', [moment().toDate(), moment().subtract(5, 'minutes').toDate()]).select('id', 'created_at');
 
+    const doesJournalExist = await knex<Journal>('journals')
+      .where({ db_users_id: db_user.id })
+      .whereBetween('created_at', [moment().subtract(5, 'minutes').toDate(), moment().toDate()])
+      .first('id', 'created_at');
+
+    if (doesJournalExist) return;
+
+    // FUTURE - # won't work, so we'll need something else.
     // Maybe we tag the robot instead? I'm not sure.
     // const isValidJournal = message.content.includes('#journal');
 
@@ -52,7 +62,7 @@ const insertJournalMessage = async (client: Client, channel: TextChannel, db_use
         // is_valid: isValidJournal,
       });
 
-      logger.info(`${journalType} - ${message.content}`);
+      logger.info(`Journal Type: ${journalType} - Message: ${message.content}`);
     }
   } catch(error) {
     const juliusReade: ClientUser | null = client.user;
