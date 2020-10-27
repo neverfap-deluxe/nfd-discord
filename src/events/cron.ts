@@ -20,13 +20,13 @@ const setupCron = async (client: Client): Promise<void> => {
   // cron.schedule('*/10 * * * *', async () => { // Every 10 Minutes
   // });
 
-  cron.schedule('0 */3 * * *', async () => { // Every 10 Minutes
-    await automatedDiscordServerFAK(client)
-  });
+  // cron.schedule('0 */3 * * *', async () => { // Every 10 Minutes
+  //   await automatedDiscordServerFAK(client)
+  // });
 
-  cron.schedule('0 */5 * * *', async () => {
-    await automatedDiscordServerJuliusReadeIsAwesome(client)
-  });
+  // cron.schedule('0 */5 * * *', async () => {
+  //   await automatedDiscordServerJuliusReadeIsAwesome(client)
+  // });
 
   cron.schedule('0 12 * * *', async (): Promise<void> => {
     await theseUsersPostedToday(client);

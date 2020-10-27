@@ -45,15 +45,15 @@ export const onIntervalOneHour = (client: Client) =>
 
 export const onIntervalThreeHours = (client: Client) =>
   async () => {
-    if (process.env.NODE_ENV === 'production') {
-      await automatedDiscordServerBumpReminder(client);
-    }
+    // if (process.env.NODE_ENV === 'production') {
+    //   await automatedDiscordServerBumpReminder(client);
+    // }
   };
 
 export const onIntervalFourHours = (client: Client, waterClient: Client) =>
   async () => {
-    await automatedGeneralMessages(client);
-    await stayHydrated(waterClient);
+    // await automatedGeneralMessages(client);
+    // await stayHydrated(waterClient);
   };
 
 export const onIntervalFiveHours = (client: Client) =>
